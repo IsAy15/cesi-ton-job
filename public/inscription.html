@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+</head>
+<body>
+    <center><h1>Inscription</h1></center>
+    <form style="display: flex; flex-flow: column wrap; align-items: center; gap: 1rem;">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="firstname">Prénom:</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <label for="campus">Campus:</label>
+        <select id="campus" name="campus" required>
+            <option value="Nancy">Nancy</option>
+            <option value="Strasbourg">Strasbourg</option>
+            <option value="Dijon">Dijon</option>
+            <option value="Reims">Reims</option>
+            <option value="Châteauroux">Châteauroux</option>
+            <option value="Orléans">Orléans</option>
+            <option value="Paris">Paris</option>
+            <option value="Angoulême">Angoulême</option>
+            <option value="Brest">Brest</option>
+            <option value="La Rochelle">La Rochelle</option>
+            <option value="Le Mans">Le Mans</option>
+            <option value="Nantes">Nantes</option>
+            <option value="Saint-Nazaire">Saint-Nazaire</option>
+            <option value="Aix-en-Provence">Aix-en-Provence</option>
+            <option value="Grenoble">Grenoble</option>
+            <option value="Lyon">Lyon</option>
+            <option value="Nice">Nice</option>
+            <option value="Bordeaux">Bordeaux</option>
+            <option value="Montpellier">Montpellier</option>
+            <option value="Pau">Pau</option>
+            <option value="Toulouse">Toulouse</option>
+            <option value="Lille">Lille</option>
+            <option value="Rouen">Rouen</option>
+            <option value="Arras">Arras</option>
+            <option value="Caen">Caen</option>
+        </select>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="passwordConfirm">Confirmer le mot de passe:</label>
+        <input type="password" id="passwordConfirm" name="passwordConfirm" required>
+        
+        <input type="submit" value="S'inscrire">
+    </form>
+</body>
+</html>
