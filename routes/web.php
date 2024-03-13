@@ -18,14 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Policy
+// Policy
 Route::get('/policy', function () {
     return view('policy');
 })->name('policy');
 
 // Admin routes
 Route::prefix('admin')->group(function () {
-
     Route::prefix('pilotes')->group(function () {
         Route::get('/', [UserController::class, 'pilotes'])->name('admin.pilotes.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.pilotes.create');
