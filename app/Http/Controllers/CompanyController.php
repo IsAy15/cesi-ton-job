@@ -12,6 +12,11 @@ class CompanyController extends Controller
         $companies = Company::all();
         return view('companies.index', compact('companies'));
     }
+
+    public function create()
+    {
+        return view('companies.create');
+    }
     
 
     public function store(Request $request)
