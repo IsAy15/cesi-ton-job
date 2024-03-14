@@ -5,13 +5,13 @@
         @foreach ($users as $user)
             <div class="user">
                 <div class="infos">
-                <h2>{{ $user->user_lastname }} {{ $user->user_firstname }}</h2>
-                <p>{{ $user->user_email }}</p>
-                <p>{{ $user->user_role }}</p>
+                <h2>{{ $user->lastname }} {{ $user->firstname }}</h2>
+                <p>{{ $user->email }}</p>
+                <p>{{ $user->role }}</p>
                 </div>
                 <div class="actions">
-                    <a href="{{ route('admin.pilotes.edit', $user->user_id) }}">Modifier</a>
-                    <form action="{{ route('admin.pilotes.destroy', $user->user_id) }}" method="post">
+                    <a href="{{ route('admin.pilotes.edit', $user->id) }}">Modifier</a>
+                    <form action="{{ route('admin.pilotes.destroy', $user->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Supprimer</button>

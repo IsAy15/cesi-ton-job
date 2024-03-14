@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,15 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('company')->group(function (){
+    Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
+    Route::get('/create', [CompanyController::class, 'create'])->name('companies.create');
+    Route::post('/store', [CompanyController::class, 'store'])->name('companies.store');
+    Route::get('/{id}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::put('/{id}/update', [CompanyController::class, 'update'])->name('companies.update');
+    Route::delete('/{id}/destroy', [CompanyController::class, 'destroy'])->name('companies.destroy');
 });
 
 // Policy
@@ -34,3 +45,4 @@ Route::prefix('admin')->group(function () {
         Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('admin.pilotes.destroy');
     });
 });
+
