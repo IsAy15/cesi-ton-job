@@ -40,7 +40,8 @@ CREATE TABLE offers(
    salary DOUBLE,
    applies_count INT,
    type VARCHAR(50),
-   publication_date DATE,
+   created_at DATE,
+   updated_at DATE,
    company_id INT NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(company_id) REFERENCES companies(id)
