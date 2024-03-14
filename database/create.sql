@@ -9,7 +9,7 @@ CREATE TABLE users(
 );
 
 CREATE TABLE companies(
-   id INT,
+   id INT AUTO_INCREMENT,
    name VARCHAR(50),
    sector VARCHAR(50),
    localization VARCHAR(50),
