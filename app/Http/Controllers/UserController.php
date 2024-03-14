@@ -14,7 +14,7 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    public function pilotes($role)
+    public function pilotes()
     {
         $users = User::where('user_role', 'pilote')->get();
         return view('admin.pilotes.index', compact('users'));
