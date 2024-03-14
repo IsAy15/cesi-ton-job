@@ -1,4 +1,4 @@
-INSERT INTO `users` (`user_id`, `user_lastname`, `user_firstname`, `user_email`, `user_password`, `user_role`) VALUES
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`) VALUES
 (1, 'admin', 'admin', 'admin@ctj.fr', 'admin', 'admin'),
 (2, 'user', 'user', 'user@ctj.fr', 'user', 'user'),
 (3, 'user2', 'user2', 'user2@ctj.fr', 'user2', 'user'),

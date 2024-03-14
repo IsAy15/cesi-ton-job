@@ -38,17 +38,16 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::where('user_id', $id)->first();
+        $user = User::where('id', $id)->first();
         return view('admin.pilotes.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::where('user_id', $id)->first();
+        $user = User::where('id', $id)->first();
         $user->user_lastname = $request->input('user_lastname');
         $user->user_firstname = $request->input('user_firstname');
         $user->user_email = $request->input('user_email');
-        $user->user_password = $request->input('user_password');
         $user->user_role = $request->input('user_role');
         $user->save();
         return redirect()->route('admin.pilotes.index');
