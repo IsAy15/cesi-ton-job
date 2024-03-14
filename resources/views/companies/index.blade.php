@@ -7,19 +7,24 @@
     </title>
 </head>
 <body>
-    <h1>Liste des entreprises</h1>
-    <a href="{{ route('companies.create') }}">Ajouter une entreprise</a>
-    @foreach ($companies as $company)
-        <div class="company">
-            <div class="infos">
-                <h2>{{ $company->cp_name }}</h2>
-                <p>{{ $company->cp_sector }}</p>
-                <p>{{ $company->cp_localization }}</p>
+    <h1>Liste des Entreprises</h1>
+        <a href="{{ route('companies.create') }}">Ajouter une entreprise</a>
+        @foreach ($companies as $company)
+            <div class="company">
+                <div class="infos">
+                    <h2>{{ $company->name }}</h2>
+                    <p>Secteur : {{ $company->sector }}</p>
+                    <p>Localisation : {{ $company->localization }}</p>
+                </div>
+                <div class="actions">
+                    <a href="{{ route('companies.edit', $company->id) }}">Modifier</a>
+                    <form action="{{ route('companies.destroy', $company->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </div>
             </div>
-            <div class="actions">
-                </form>
-            </div>
-        </div>
-    @endforeach
+        @endforeach
 </body>
 </html>
