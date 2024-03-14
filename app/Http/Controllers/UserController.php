@@ -28,10 +28,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $user->user_lastname = $request->input('user_lastname');
-        $user->user_firstname = $request->input('user_firstname');
-        $user->user_email = $request->input('user_email');
-        $user->user_role = $request->input('user_role');
+        $user->lastname = $request->input('user_lastname');
+        $user->firstname = $request->input('user_firstname');
+        $user->email = $request->input('user_email');
+        $user->role = $request->input('user_role');
         $user->save();
         return redirect()->route('admin.pilotes.index');
     }
@@ -44,11 +44,11 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::where('id', $id)->first();
-        $user->user_lastname = $request->input('user_lastname');
-        $user->user_firstname = $request->input('user_firstname');
-        $user->user_email = $request->input('user_email');
-        $user->user_role = $request->input('user_role');
+        $user = User::find($id);
+        $user->lastname = $request->input('user_lastname');
+        $user->firstname = $request->input('user_firstname');
+        $user->email = $request->input('user_email');
+        $user->role = $request->input('user_role');
         $user->save();
         return redirect()->route('admin.pilotes.index');
     }

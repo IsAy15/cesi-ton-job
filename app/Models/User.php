@@ -12,12 +12,12 @@ class User extends Model
     protected $table = 'users';
 
     protected $fillable = [
-        'user_lastname',
-        'user_firstname',
-        'user_email',
-        'user_role',
+        'lastname',
+        'firstname',
+        'email',
+        'role',
     ];
 
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 }
