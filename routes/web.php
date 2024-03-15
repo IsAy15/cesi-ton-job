@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AbilityController;
+use App\Http\Controllers\PromotionController;
 
 
 
@@ -22,6 +23,7 @@ use App\Http\Controllers\AbilityController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 // Policy
 Route::get('/policy', function () {
@@ -71,4 +73,14 @@ Route::prefix('ability')->group(function(){
     Route::get('/{id}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
     Route::put('/{id}/update', [AbilityController::class, 'update'])->name('abilities.update');
     Route::delete('/{id}/destroy', [AbilityController::class, 'destroy'])->name('abilities.destroy');
+});
+
+//Promotions routes
+Route::prefix('promotion')->group(function(){
+    Route::get('/', [PromotionController::class, 'index'])->name('promotions.index');
+    Route::get('/create', [PromotionController::class, 'create'])->name('promotions.create');
+    Route::post('/store', [PromotionController::class, 'store'])->name('promotions.store');
+    Route::get('/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+    Route::put('/{id}/update', [PromotionController::class, 'update'])->name('promotions.update');
+    Route::delete('/{id}/destroy', [PromotionController::class, 'destroy'])->name('promotions.destroy');
 });
