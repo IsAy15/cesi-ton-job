@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
 
@@ -16,6 +16,12 @@ class User extends Model
         'firstname',
         'email',
         'role',
+        'password', // N'oubliez pas de spécifier le champ de mot de passe si vous utilisez l'authentification par mot de passe
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     protected $primaryKey = 'id';
