@@ -1,1 +1,1 @@
-mysql -u root -p -D cesi_ton_job < database/create.sql
+mysql -u root -p --default-character-set=utf8mb4 -D cesi_ton_job < database/create.sql
