@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\AuthController;
 
 
 
@@ -24,6 +25,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Auth routes
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
 
 // Policy
 Route::get('/policy', function () {
@@ -42,8 +46,11 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-//Entreprise routes
+// User routes
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
+
+//Entreprise routes
 Route::prefix('company')->group(function (){
     Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
     Route::get('/create', [CompanyController::class, 'create'])->name('companies.create');
@@ -84,3 +91,5 @@ Route::prefix('promotion')->group(function(){
     Route::put('/{id}/update', [PromotionController::class, 'update'])->name('promotions.update');
     Route::delete('/{id}/destroy', [PromotionController::class, 'destroy'])->name('promotions.destroy');
 });
+
+

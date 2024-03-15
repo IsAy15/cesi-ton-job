@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres</title>
+</head>
+<body>
+    <div id="search" style="display: flex; flex-direction: column;">
+        <div id="search_bar" style="display: flex; flex-direction: row; justify-content: center;">
+            <input type="text" id="search" name="search" placeholder="Rechercher un poste" required>
+            <h>|</h>
+            <input type="text" id="search" name="search" placeholder="Localisation" required>
+            <input type="submit" value="Rechercher">
+        </div>
+        <div id="sort" style="display: flex; flex-direction: row; justify-content: center;">
+            <select id="dates">
+                <option value="" disabled selected style="display:none;">DATES</option>
+            </select>
+            <select id="contrat">
+                <option value="" disabled selected style="display:none;">TYPE DE CONTRAT</option>
+            </select>
+            <select id="etudes">
+                <option value="" disabled selected style="display:none;">NIVEAU D'ETUDES</option>
+            </select>
+        </div>
+    </div>
+    <div id="offres" style="display: flex; flex-direction: row;">
+        <div id="list" style="display: flex; flex-direction: column; justify-content: center; width: 50%; padding: 1rem; gap: 1rem; background: rgb(255, 0, 0);">
+            <div id="offres_1" style="display: flex; flex-direction: column; background: rgb(255, 100, 0);">
+                <h1>Titre de l'offre</h1>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <p>Type de contrat</p>
+                <p>Date de publication</p>
+                <p>Description</p>
+            </div>
+            <div id="offres_2" style="display: flex; flex-direction: column; background: rgb(255, 100, 0);">
+                <h1>Titre de l'offre</h1>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <p>Type de contrat</p>
+                <p>Date de publication</p>
+                <p>Description</p>
+            </div>
+        </div>
+        <div id="cadre_info" style="display: flex; flex-direction: column; justify-content: center; width: 50%; padding: 1rem; gap: 1rem; background: rgb(3, 3, 152);">
+            <div id="info_offres_x" style="display: flex; flex-direction: column; background: rgb(0, 0, 255);">
+                <h1>Titre de l'offre</h1>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <p>Type de contrat</p>
+                <p>Date de publication</p>
+                <p>Description</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
