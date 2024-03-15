@@ -1,5 +1,5 @@
 DELETE FROM `student_abilities`;
-
+--Ca ne fonctionne pas
 INSERT INTO `student_abilities` (`user_id`, `ability_id`) VALUES
 (2,1),
 (2,2),
