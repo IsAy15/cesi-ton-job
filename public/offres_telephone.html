@@ -39,9 +39,9 @@
         <h2>LES OFFRES ACTUELLES</h2>
         <div id="offres" style="display: flex; flex-direction: row; width: 100%;">
             <div id="list" style="display: flex; flex-direction: column; justify-content: center; width: 100%; padding: 1rem; gap: 1rem; background: rgb(255, 0, 0);">
-                <div id="offres_1" class="offre" onclick="active('offres_1')">
+                <div class="offre" onclick="active(this)">
                     <div class="info_principale" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div id="title" style="display: flex; flex-flow: row;justify-content: space-between; align-items: center; ">
+                        <div class="title" style="display: flex; flex-flow: row;justify-content: space-between; align-items: center; ">
                             <h1>Titre de l'offre :</h1>
                             <button onclick="toggleInfo(this)"><i class="fa-solid fa-heart"></i></button>
                         </div>
@@ -51,7 +51,7 @@
                             <p>Type de contrat</p>
                             <p>Date de publication</p>
                         </div>
-                        <div class="info_secondaire">
+                        <div class="info_secondaire" style="display: none;">
                             <p>
                                 Description de l'emploi :
                                 
@@ -65,13 +65,14 @@
                                 Assurer la documentation technique des projets développés.
                                 Compétences requises :
                             </p>
-                            <button onclick="toggleInfo(this)">Postuler</button>
-                        </div>
+                            <div style="display: flex; justify-content: center;">
+                                <button onclick="toggleInfo(this)">Postuler</button>
+                            </div>                        </div>
                     </div>
                 </div>
-                <div id="offres_2" class="offre" onclick="active('offres_2')">
+                <div class="offre" onclick="active(this)">
                     <div class="info_principale" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div id="title" style="display: flex; flex-flow: row;justify-content: space-between; align-items: center; ">
+                        <div class="title" style="display: flex; flex-flow: row;justify-content: space-between; align-items: center; ">
                             <h1>Titre de l'offre :</h1>
                             <button onclick="toggleInfo(this)"><i class="fa-solid fa-heart"></i></button>
                         </div>
@@ -81,7 +82,7 @@
                             <p>Type de contrat</p>
                             <p>Date de publication</p>
                         </div>
-                        <div class="info_secondaire">
+                        <div class="info_secondaire" style="display: none;">
                             <p>
                                 Description de l'emploi :
                                 
@@ -95,46 +96,49 @@
                                 Assurer la documentation technique des projets développés.
                                 Compétences requises :
                             </p>
-                            <button onclick="toggleInfo(this)">Postuler</button>
-                        </div>
+                            <div style="display: flex; justify-content: center;">
+                                <button onclick="toggleInfo(this)">Postuler</button>
+                            </div>                        </div>
                     </div>
                 </div>
-                
-                <script>
-                    function active(id) {
-                        var currentDiv = document.getElementById(id);
-                        var allDivs = document.querySelectorAll('.offre');
-                        
-                        // Désactive tous les autres éléments
-                        allDivs.forEach(function(div) {
-                            var infoSecondaire = div.querySelector(".info_secondaire");
-                            if (div !== currentDiv) {
-                                infoSecondaire.style.display = "none";
-                            }
-                        });
-                
-                        // Récupère le bouton actuel
-                        var currentButton = currentDiv.querySelector("button");
-                        // Récupère info_secondaire de l'élément actuel
-                        var infoSecondaire = currentDiv.querySelector(".info_secondaire");
-                        
-                        // Si le bouton est actif, cache l'info_secondaire
-                        if (currentButton.classList.contains('active')) {
-                            infoSecondaire.style.display = "none";
-                            currentButton.classList.remove('active');
-                        } else { // Sinon, affiche l'info_secondaire
-                            infoSecondaire.style.display = "block";
-                            currentButton.classList.add('active');
-                        }
-                    }
-
-                    function toggleInfo(button) {
-                        var parentDiv = button.closest('.offre');
-                        active(parentDiv.id);
-                    }
-                </script>
+                <!-- Ajoutez d'autres offres ici avec la même structure -->
             </div>
         </div>
+        
+        <script>
+            function active(element) {
+                var currentDiv = element;
+                var allDivs = document.querySelectorAll('.offre');
+                
+                // Désactive tous les autres éléments
+                allDivs.forEach(function(div) {
+                    var infoSecondaire = div.querySelector(".info_secondaire");
+                    if (div !== currentDiv) {
+                        infoSecondaire.style.display = "none";
+                    }
+                });
+        
+                // Récupère le bouton actuel
+                var currentButton = currentDiv.querySelector("button");
+                // Récupère info_secondaire de l'élément actuel
+                var infoSecondaire = currentDiv.querySelector(".info_secondaire");
+                
+                // Si le bouton est actif, cache l'info_secondaire
+                if (currentButton.classList.contains('active')) {
+                    infoSecondaire.style.display = "none";
+                    currentButton.classList.remove('active');
+                } else { // Sinon, affiche l'info_secondaire
+                    infoSecondaire.style.display = "block";
+                    currentButton.classList.add('active');
+                }
+            }
+        
+            function toggleInfo(button) {
+                var parentDiv = button.closest('.offre');
+                active(parentDiv);
+            }
+        </script>
+        
     </main>
 </body>
 </html>
