@@ -34,7 +34,7 @@ for fichier in os.listdir(dossier_scripts):
         with open(chemin_fichier, "r") as script_file:
             script = script_file.read()
             try:
-                cursor.execute(script, multi=True)
+                cursor.execute(script)
                 conn.commit()
                 print(f"Script {fichier} exécuté avec succès.")
             except mysql.connector.Error as err:
