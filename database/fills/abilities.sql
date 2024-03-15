@@ -1,3 +1,5 @@
+DELETE FROM `abilities`;
+
 INSERT INTO `abilities` (`title`, `description`) VALUES
 ('HTML', 'Langage de balisage'),
 ('CSS', 'Langage de style'),

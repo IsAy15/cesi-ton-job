@@ -1,3 +1,5 @@
+DELETE FROM `applications`;
+
 INSERT INTO `applications` (`offer_id`,`user_id`,`cv`,`letter`) VALUES
 (1, 2, 'cv.pdf', 'lettre.pdf'),
 (1, 3, 'cv.pdf', 'lettre.pdf'),

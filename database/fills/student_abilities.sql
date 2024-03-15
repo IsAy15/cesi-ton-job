@@ -1,3 +1,5 @@
+DELETE FROM `student_abilities`;
+
 INSERT INTO `student_abilities` (`user_id`, `ability_id`) VALUES
 (2,1),
 (2,2),

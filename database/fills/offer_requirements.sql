@@ -1,3 +1,5 @@
+DELETE FROM offer_requirements;
+
 INSERT INTO offer_requirements (of_id, ab_id) VALUES
 (1, 1), (1, 2), (1, 3),
 (2, 4), (2, 5), (2, 6), (2, 9), (2, 14), (2, 15), (2, 16),
