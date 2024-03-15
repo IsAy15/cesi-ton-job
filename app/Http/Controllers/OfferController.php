@@ -15,6 +15,12 @@ class OfferController extends Controller
     return view("offers.index",compact("offers"));
   }
 
+  public function company()
+  {
+      return $this->belongsTo(Company::class);
+  }
+
+
   public function create()
   {
       $companies = Company::all();

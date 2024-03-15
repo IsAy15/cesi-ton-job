@@ -21,6 +21,10 @@
             <label for="cp_localization">Localisation</label>
             <input type="text" name="cp_localization" id="cp_localization">
         </div>
+        <div>
+            <input type="checkbox" name="create_offer" id="create_offer">
+            <label for="create_offer">Créer une offre après l'ajout de l'entreprise</label>
+        </div>
         <button type="submit">Ajouter</button>
     </form>
 </body>

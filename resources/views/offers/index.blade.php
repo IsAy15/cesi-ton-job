@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,7 @@
                 <th>Places disponibles</th>
                 <th>Salaire</th>
                 <th>Type</th>
+                <th>Entreprise</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -33,6 +34,7 @@
                     <td>{{ $offer->places }}</td>
                     <td>{{ $offer->salary }}</td>
                     <td>{{ $offer->type }}</td>
+                    <td>{{ $offer->company->name }}</td> <!-- Afficher le nom de l'entreprise -->
                     <td>
                         <a href="{{ route('offers.edit', $offer->id) }}">Modifier</a>
                         <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
