@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,11 +41,15 @@
             <label for="of_type">Type</label>
             <input type="text" name="of_type" id="of_type" value="{{ $offer->type }}">
         </div>
-        <!-- Modifier le formulaire dans edit.blade.php -->
         <div>
-            <label for="of_company_id">ID de l'entreprise</label>
-            <input type="number" name="of_company_id" id="of_company_id" value="{{ $offer->company_id }}">
+            <label for="of_company_id">Nom de l'entreprise</label>
+            <select name="of_company_id" id="of_company_id">
+                @foreach($companies as $company)
+                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                @endforeach
+            </select>
         </div>
         <button type="submit">Modifier</button>
+    </form>
 </body>
 </html>

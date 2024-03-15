@@ -15,26 +15,25 @@ class AuthController extends Controller
     }
 
     public function dologin(LoginRequest $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    $user = User::where('email', $credentials['email'])->first();
+        $user = User::where('email', $credentials['email'])->first();
 
-    if ($user && $user->password == $credentials['password']) {
-        Auth::login($user);
+        if ($user && $user->password == $credentials['password']) {
+            Auth::login($user);
 
-        if ($user->role === 'admin') {
-            return redirect()->intended(route('admin.pilotes.index'));
-        } elseif ($user->role === 'pilote') {
-            return redirect()->intended(route('companies.index'));
-        } else {
-            return redirect()->intended(route('dashboard'));
+            if ($user->role === 'admin') {
+                return redirect()->intended(route('admin.pilotes.index'));
+            } elseif ($user->role === 'pilote') {
+                return redirect()->intended(route('companies.index'));
+            } else {
+                return redirect()->intended(route('promotions.index'));
+            }
         }
+
+        return redirect()->back()->withInput()->withErrors([
+            'email' => 'Email ou mot de passe incorrect',
+        ]);
     }
-
-    return redirect()->back()->withInput()->withErrors([
-        'email' => 'Email ou mot de passe incorrect',
-    ]);
-}
-
 }

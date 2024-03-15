@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Offres d'emploi</h1>
-    <a href="{{ route('offers.create') }}">Ajouter une entreprise</a>
+    <a href="{{ route('offers.create') }}">Ajouter une offre</a>
     <table>
         <thead>
             <tr>

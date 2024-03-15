@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return view('admin.pilotes.create');
     }
 
     public function store(Request $request)
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::where('user_id', $id)->delete();
+        $user = User::where('id', $id)->delete();
         return redirect()->route('admin.pilotes.index');
     }
 }

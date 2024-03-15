@@ -42,9 +42,15 @@
             <input type="text" name="of_type" id="of_type">
         </div>
         <div>
-            <label for="of_company_id">ID de l'entreprise</label>
-            <input type="number" name="of_company_id" id="of_company_id">
+        <label for="of_company_id">Nom de l'entreprise</label>
+        <select name="of_company_id" id="of_company_id">
+            @foreach($companies as $company)
+                <option value="{{ $company->id }}">{{ $company->name }}</option>
+            @endforeach
+        </select>
         </div>
+    
+
         <button type="submit">Ajouter</button>
     </form>
 </body>

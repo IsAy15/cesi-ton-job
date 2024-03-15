@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Ajouter un utilisateur</h1>
-    <form action="{{ route('users.store') }}" method="post">
+    <form action="{{ route('admin.pilotes.store') }}" method="post">
         @csrf
         <div>
             <label for="user_lastname">Nom</label>
