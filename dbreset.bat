@@ -1,1 +1,1 @@
-mysql -u root --password="" -D cesi_ton_job < database/create.sql
+mysql -u root -p -D cesi_ton_job < database/create.sql
