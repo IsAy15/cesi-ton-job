@@ -1,3 +1,5 @@
+DELETE FROM companies;
+
 INSERT INTO companies (name, sector, localization) VALUES
 ('Dassault Systèmes', 'Informatique', 'Vélizy-Villacoublay'),
 ('Capgemini', 'Informatique', 'Paris'),

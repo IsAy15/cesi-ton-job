@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS users;
 CREATE TABLE users(
    id INT AUTO_INCREMENT,
    lastname VARCHAR(50),
@@ -8,6 +9,7 @@ CREATE TABLE users(
    PRIMARY KEY(id)
 );
 
+DROP TABLE IF EXISTS companies;
 CREATE TABLE companies(
    id INT AUTO_INCREMENT,
    name VARCHAR(50),
@@ -16,6 +18,7 @@ CREATE TABLE companies(
    PRIMARY KEY(id)
 );
 
+DROP TABLE IF EXISTS abilities;
 CREATE TABLE abilities(
    id INT AUTO_INCREMENT,
    title VARCHAR(50),
@@ -23,12 +26,14 @@ CREATE TABLE abilities(
    PRIMARY KEY(id)
 );
 
+DROP TABLE IF EXISTS promotions;
 CREATE TABLE promotions(
    id INT AUTO_INCREMENT,
    name VARCHAR(50),
    PRIMARY KEY(id)
 );
 
+DROP TABLE IF EXISTS offers;
 CREATE TABLE offers(
    id INT AUTO_INCREMENT,
    title VARCHAR(50),
@@ -47,6 +52,7 @@ CREATE TABLE offers(
    FOREIGN KEY(company_id) REFERENCES companies(id)
 );
 
+DROP TABLE IF EXISTS applications;
 CREATE TABLE applications(
    offer_id INT,
    user_id INT,
@@ -57,6 +63,7 @@ CREATE TABLE applications(
    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS student_abilities;
 CREATE TABLE student_abilities(
    user_id INT,
    ability_id INT,
@@ -65,6 +72,7 @@ CREATE TABLE student_abilities(
    FOREIGN KEY(ability_id) REFERENCES abilities(id)
 );
 
+DROP TABLE IF EXISTS grades;
 CREATE TABLE grades(
    user_id INT,
    company_id INT,
@@ -74,6 +82,7 @@ CREATE TABLE grades(
    FOREIGN KEY(company_id) REFERENCES companies(id)
 );
 
+DROP TABLE IF EXISTS user_promotions;
 CREATE TABLE user_promotions(
    user_id INT,
    promotion_id INT,
@@ -82,6 +91,7 @@ CREATE TABLE user_promotions(
    FOREIGN KEY(promotion_id) REFERENCES promotions(id)
 );
 
+DROP TABLE IF EXISTS user_offer;
 CREATE TABLE user_offer(
    offer_id INT,
    user_id INT,
@@ -90,6 +100,7 @@ CREATE TABLE user_offer(
    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS user_wishlist;
 CREATE TABLE user_wishlist(
    offer_id INT,
    user_id INT,
@@ -98,6 +109,7 @@ CREATE TABLE user_wishlist(
    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS offer_requirements;
 CREATE TABLE offer_requirements(
    of_id INT,
    ab_id INT,

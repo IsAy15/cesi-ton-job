@@ -1,3 +1,5 @@
+DELETE FROM `users`;
+
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`) VALUES
 (1, 'admin', 'admin', 'admin@ctj.fr', 'admin', 'admin'),
 (2, 'user', 'user', 'user@ctj.fr', 'user', 'user'),
