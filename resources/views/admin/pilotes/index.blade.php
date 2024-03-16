@@ -1,9 +1,18 @@
-@extends('layouts.home')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+</head>
+<body>
     <h1>Utilisateurs</h1>
     @auth
         <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
+        <form action="{{ route('auth.logout') }}" method="POST">
+            @csrf
+            <button type="submit">Déconnexion</button>
+        </form>
     @endauth
     @guest
         <a href="{{ route('auth.login') }}">Se connecter</a> 
@@ -26,4 +35,5 @@
             </div>
         </div>
     @endforeach
-@endsection
+</body>
+</html>

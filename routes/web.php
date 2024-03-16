@@ -7,6 +7,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GradeController;
 
 
 
@@ -25,14 +26,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Auth routes
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
+//Grades routes
+Route::prefix('grade')->group(function(){
+    Route::get('/', [GradeController::class, 'index'])->name('grades.index');
+    Route::get('/create', [GradeController::class, 'create'])->name('grades.create');
+    Route::post('/store', [GradeController::class, 'store'])->name('grades.store');
+    Route::get('/{id}/edit', [GradeController::class, 'edit'])->name('grades.edit');
+    Route::put('/{id}/update', [GradeController::class, 'update'])->name('grades.update');
+    Route::delete('/{id}/destroy', [GradeController::class, 'destroy'])->name('grades.destroy');
+});
 
-// Policy
-Route::get('/policy', function () {
-    return view('policy');
-})->name('policy');
+//Abilities routes
+Route::prefix('ability')->group(function(){
+    Route::get('/', [AbilityController::class, 'index'])->name('abilities.index');
+    Route::get('/create',[AbilityController::class, 'create'])->name('abilities.create');
+    Route::post('/store', [AbilityController::class, 'store'])->name('abilities.store');
+    Route::get('/{id}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
+    Route::put('/{id}/update', [AbilityController::class, 'update'])->name('abilities.update');
+    Route::delete('/{id}/destroy', [AbilityController::class, 'destroy'])->name('abilities.destroy');
+});
 
 // Admin routes
 Route::prefix('admin')->group(function () {
@@ -46,9 +58,14 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+
+//Auth routes
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-
 
 //Entreprise routes
 Route::prefix('company')->group(function (){
@@ -71,16 +88,12 @@ Route::prefix('offer')->group(function(){
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
 });
 
-//Abilities routes
 
-Route::prefix('ability')->group(function(){
-    Route::get('/', [AbilityController::class, 'index'])->name('abilities.index');
-    Route::get('/create',[AbilityController::class, 'create'])->name('abilities.create');
-    Route::post('/store', [AbilityController::class, 'store'])->name('abilities.store');
-    Route::get('/{id}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
-    Route::put('/{id}/update', [AbilityController::class, 'update'])->name('abilities.update');
-    Route::delete('/{id}/destroy', [AbilityController::class, 'destroy'])->name('abilities.destroy');
-});
+
+//Policy
+Route::get('/policy', function () {
+    return view('policy');
+})->name('policy');
 
 //Promotions routes
 Route::prefix('promotion')->group(function(){

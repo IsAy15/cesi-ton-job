@@ -4,14 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Grade;
+use Illuminate\Support\Facades\DB;
+
 
 class CompanyController extends Controller
 {
     public function index()
     {
         $companies = Company::all();
+
+        foreach ($companies as $company) {
+            // Récupérer les notes correspondant à l'entreprise
+            $grades = Grade::where('company_id', $company->id)->pluck('value');
+            
+            // Calculer la moyenne des notes
+            $averageGrade = $grades->avg();
+            
+            // Ajouter la moyenne des notes à l'objet de l'entreprise
+            $company->average_grade = $averageGrade;
+        }
+
         return view('companies.index', compact('companies'));
     }
+
 
     public function create()
     {
