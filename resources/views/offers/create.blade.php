@@ -18,9 +18,8 @@
             <input type="text" name="of_description" id="of_description">
         </div>
         <div>
-            <label for="of_codepos">Code Postal</label>
-            <input type="text" name="of_codepos" id="of_codepos">
-            <span id="ville"></span> <!-- Place pour afficher la ville -->
+            <label for="of_localization">Code postal</label>
+            <input type="text" name="of_localization" id="of_localization">
         </div>
         
         <div>
@@ -54,32 +53,5 @@
 
         <button type="submit">Ajouter</button>
     </form>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var codePostalInput = document.getElementById('of_codepos');
-            var villeSpan = document.getElementById('ville');
-
-            codePostalInput.addEventListener('blur', function() {
-                var codePostal = codePostalInput.value.trim();
-
-                var apiUrl = 'https://api-adresse.data.gouv.fr/search/?q=' + codePostal;
-
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data && data.features && data.features.length > 0 && data.features[0].properties.city) {
-                            villeSpan.textContent = data.features[0].properties.city;
-                        } else {
-                            villeSpan.textContent = 'Non disponible';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                        villeSpan.textContent = 'Erreur lors de la récupération';
-                    });
-            });
-        });
-    </script>
 </body>
 </html>
