@@ -18,4 +18,9 @@ class Promotion extends Model
     protected $primaryKey = 'id';
 
     public $timestamps = false;
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_promotions', 'promotion_id', 'user_id');
+    }
 }

@@ -64,6 +64,9 @@ Route::prefix('ability')->group(function(){
 
 // Admin routes
 Route::prefix('admin')->group(function () {
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'users'])->name('admin.users.index');
+    });
     Route::prefix('pilotes')->group(function () {
         Route::get('/', [UserController::class, 'pilotes'])->name('admin.pilotes.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.pilotes.create');
@@ -79,9 +82,15 @@ Route::prefix('admin')->group(function () {
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/register/confirmation', function () { return view('auth.confirmation');})->name('registration.confirmation');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+
+Route::get('/admin/users', [UserController::class, 'users'])->name('admin.users.index');
+
 
 //Entreprise routes
 Route::prefix('company')->group(function (){
@@ -123,6 +132,7 @@ Route::prefix('promotion')->group(function(){
     Route::get('/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
     Route::put('/{id}/update', [PromotionController::class, 'update'])->name('promotions.update');
     Route::delete('/{id}/destroy', [PromotionController::class, 'destroy'])->name('promotions.destroy');
+    Route::get('/{id}/users', [PromotionController::class, 'showUsers'])->name('promotions.users');
 });
 
 

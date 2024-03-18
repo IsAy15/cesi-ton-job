@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Promotion;
+use App\Models\User;
 
 class PromotionController extends Controller
 {
@@ -52,4 +53,14 @@ class PromotionController extends Controller
 
         return redirect()->route('promotions.index');
     }
+
+    public function showUsers($id)
+    {
+        $promotion = Promotion::findOrFail($id);
+        $users = $promotion->users;
+
+        return view('promotions.users', compact('promotion', 'users'));
+    }
+
+
 }
