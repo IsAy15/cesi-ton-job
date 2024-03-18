@@ -4,23 +4,21 @@
     <title>Liste des utilisateurs</title>
 </head>
 <body>
-    <?php
-        // Vérifie si l'utilisateur est authentifié et s'il a le rôle "user"
-        if (Auth::check() && Auth::user()->role == 'user') {
-            // Redirige vers une page d'accès refusé ou une autre page appropriée
-            header('Location: /access-denied.php'); // Remplacez '/access-denied.php' par le chemin de la page d'accès refusé
-            exit();
-        }
-    ?>
-    
-    <h1>Liste des utilisateurs</h1>
-    @auth
+@auth
         <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
         <form action="{{ route('auth.logout') }}" method="POST">
             @csrf
             <button type="submit">Déconnexion</button>
         </form>
     @endauth
+    <?php
+        if (Auth::check() && Auth::user()->role == 'user') {
+            header('Location: /access-denied.php'); 
+            exit();
+        }
+    ?>
+    <h1>Liste des utilisateurs</h1>
+   
     @guest
         <a href="{{ route('auth.login') }}">Se connecter</a> 
     @endguest

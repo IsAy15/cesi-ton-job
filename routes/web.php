@@ -54,7 +54,6 @@ Route::prefix('ability')->group(function(){
     Route::delete('/{id}/destroy', [AbilityController::class, 'destroy'])->name('abilities.destroy');
 });
 
-// Admin routes
 
 
 
