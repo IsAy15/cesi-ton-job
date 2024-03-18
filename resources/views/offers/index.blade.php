@@ -7,8 +7,9 @@
 </head>
 <body>
     <h1>Offres d'emploi</h1>
+    <input type="text" id="searchInput" placeholder="Rechercher une offre...">
     <a href="{{ route('offers.create') }}">Ajouter une offre</a>
-    <table>
+    <table id="offerTable">
         <thead>
             <tr>
                 <th>Titre</th>
@@ -52,29 +53,28 @@
     </table>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var codePostalElements = document.querySelectorAll('.code-postal');
-            codePostalElements.forEach(function(element) {
-                var codePostal = element.textContent.trim();
-                var villeElement = element.nextElementSibling;
+        // Fonction pour filtrer les offres
+        function filterOffers() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("offerTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Première colonne, soit le titre de l'offre
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = ""; // Afficher la ligne si le titre correspond à la recherche
+                    } else {
+                        tr[i].style.display = "none"; // Masquer la ligne si le titre ne correspond pas à la recherche
+                    }
+                }       
+            }
+        }
 
-                var apiUrl = 'https://api-adresse.data.gouv.fr/search/?q=' + codePostal;
-
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data && data.features && data.features.length > 0 && data.features[0].properties.city) {
-                            villeElement.textContent = data.features[0].properties.city;
-                        } else {
-                            villeElement.textContent = 'Non disponible';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                        villeElement.textContent = 'Erreur lors de la récupération';
-                    });
-            });
-        });
+        // Appeler la fonction de filtrage lorsque l'utilisateur tape quelque chose dans la barre de recherche
+        document.getElementById("searchInput").addEventListener("keyup", filterOffers);
     </script>
 </body>
 </html>

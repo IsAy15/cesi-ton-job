@@ -4,58 +4,50 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Promotion; 
 
 class UserController extends Controller
 {
-    //
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
-    }
+        // Récupérer tous les utilisateurs avec leurs promotions associées
+        $usersWithPromotions = User::with('promotions')->get();
 
-    public function pilotes()
-    {
-        $users = User::where('role', 'pilote')->get();
-        return view('admin.pilotes.index', compact('users'));
+        return view('users.index', compact('usersWithPromotions'));
     }
 
     public function create()
     {
-        return view('admin.pilotes.create');
+        $promotions = Promotion::all();
+        return view('users.create', compact('promotions'));
     }
 
     public function store(Request $request)
     {
+        // Validation des données du formulaire
+        $request->validate([
+            'lastname' => 'required',
+            'firstname' => 'required',
+            'email' => 'required|email|unique:users',
+            'role' => 'required',
+            'password' => 'required|min:6',
+            'promotion' => 'required|exists:promotions,id',
+        ]);
+
+        // Création d'un nouvel utilisateur
         $user = new User();
-        $user->lastname = $request->input('user_lastname');
-        $user->firstname = $request->input('user_firstname');
-        $user->email = $request->input('user_email');
-        $user->role = $request->input('user_role');
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->password = $request->password; // Assurez-vous de hasher le mot de passe
         $user->save();
-        return redirect()->route('admin.pilotes.index');
+
+        // Attachement de l'utilisateur à la promotion sélectionnée
+        $user->promotions()->attach($request->promotion);
+
+        // Redirection avec un message de succès
+        return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès.');
     }
 
-    public function edit($id)
-    {
-        $user = User::where('id', $id)->first();
-        return view('admin.pilotes.edit', compact('user'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $user = User::find($id);
-        $user->lastname = $request->input('user_lastname');
-        $user->firstname = $request->input('user_firstname');
-        $user->email = $request->input('user_email');
-        $user->role = $request->input('user_role');
-        $user->save();
-        return redirect()->route('admin.pilotes.index');
-    }
-
-    public function destroy($id)
-    {
-        $user = User::where('id', $id)->delete();
-        return redirect()->route('admin.pilotes.index');
-    }
 }

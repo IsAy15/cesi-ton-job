@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+ 
 
 class AuthController extends Controller
 {
@@ -14,15 +17,13 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // Méthode pour gérer la déconnexion de l'utilisateur
     public function logout()
     {
-        Auth::logout(); // Déconnexion de l'utilisateur
+        Auth::logout(); 
 
-        return redirect()->route('auth.login'); // Redirection vers la page de connexion
+        return redirect()->route('auth.login'); 
     }
 
-    // Méthode pour traiter la soumission du formulaire de connexion
     public function dologin(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
@@ -33,11 +34,11 @@ class AuthController extends Controller
             Auth::login($user);
 
             if ($user->role === 'admin') {
-                return redirect()->intended(route('admin.pilotes.index'));
+                return redirect()->intended(route('users.index'));
             } elseif ($user->role === 'pilote') {
-                return redirect()->intended(route('companies.index'));
+                return redirect()->intended(route('users.index'));
             } else {
-                return redirect()->intended(route('promotions.index'));
+                return redirect()->intended(route('offers.index'));
             }
         }
 

@@ -26,17 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Admin routes
-Route::prefix('admin')->group(function () {
-    Route::prefix('pilotes')->group(function () {
-        Route::get('/', [UserController::class, 'pilotes'])->name('admin.pilotes.index');
-        Route::get('/create', [UserController::class, 'create'])->name('admin.pilotes.create');
-        Route::post('/store', [UserController::class, 'store'])->name('admin.pilotes.store');
-        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.pilotes.edit');
-        Route::put('/{id}/update', [UserController::class, 'update'])->name('admin.pilotes.update');
-        Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('admin.pilotes.destroy');
-    });
-});
+
+
+
 
 //Users routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -62,26 +54,21 @@ Route::prefix('ability')->group(function(){
     Route::delete('/{id}/destroy', [AbilityController::class, 'destroy'])->name('abilities.destroy');
 });
 
-// Admin routes
-Route::prefix('admin')->group(function () {
-    Route::prefix('pilotes')->group(function () {
-        Route::get('/', [UserController::class, 'pilotes'])->name('admin.pilotes.index');
-        Route::get('/create', [UserController::class, 'create'])->name('admin.pilotes.create');
-        Route::post('/store', [UserController::class, 'store'])->name('admin.pilotes.store');
-        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.pilotes.edit');
-        Route::put('/{id}/update', [UserController::class, 'update'])->name('admin.pilotes.update');
-        Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('admin.pilotes.destroy');
-    });
-});
+
 
 
 //Auth routes
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/register/confirmation', function () { return view('auth.confirmation');})->name('registration.confirmation');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+
+
 
 //Entreprise routes
 Route::prefix('company')->group(function (){
@@ -123,6 +110,7 @@ Route::prefix('promotion')->group(function(){
     Route::get('/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
     Route::put('/{id}/update', [PromotionController::class, 'update'])->name('promotions.update');
     Route::delete('/{id}/destroy', [PromotionController::class, 'destroy'])->name('promotions.destroy');
+    Route::get('/{id}/users', [PromotionController::class, 'showUsers'])->name('promotions.users');
 });
 
 

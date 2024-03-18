@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Promotion;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
         'firstname',
         'email',
         'role',
-        'password', // N'oubliez pas de spécifier le champ de mot de passe si vous utilisez l'authentification par mot de passe
+        'password',
     ];
 
     protected $hidden = [
@@ -26,4 +27,9 @@ class User extends Authenticatable
 
     protected $primaryKey = 'id';
     public $timestamps = false;
+
+    public function promotions()
+    {
+        return $this->belongsToMany(Promotion::class, 'user_promotions', 'user_id', 'promotion_id');
+    }
 }
