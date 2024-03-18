@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres</title>
+    <style>
+        html{
+            width: 100dvw;
+        }
+        h1{
+            margin: 0;
+        }
+        .offre {
+            display: flex;
+            padding: 1rem;
+            flex-direction: column;
+            background: rgb(255, 100, 0);
+            cursor: pointer;
+        }
+        .info_secondaire {
+            display: none;
+            flex-flow: row;
+            justify-content: space-between;
+        }
+        p{
+            margin: 0;
+        }
+
+    </style>
+    <script src="https://kit.fontawesome.com/985e8bf704.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="search_bar" style="display: flex; flex-direction: row; justify-content: center;">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        <input type="text" id="search" name="search" placeholder="Rechercher un poste" required>
+    </div>
+    <main style="display: flex; flex-direction: column; align-items: center;">
+        <h2>LES OFFRES</h2>
+        <div id="offres" style="display: flex; flex-flow: row wrap; justify-content: center; width: 100%;">
+            <div id="list" style="display: flex; flex-direction: column; justify-content: center; width: 100%; padding: 1rem; gap: 1rem; background: rgb(255, 0, 0);">
+                <div class="offre" onclick="active(this)">
+                    <div class="info_principale" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div class="title" style="display: flex; flex-flow: row;justify-content: space-between; align-items: center; ">
+                            <h1>Titre de l'offre :</h1>
+                            <button onclick="toggleInfo(this)"><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <p>Entreprise</p>
+                        <p>Localisation</p>
+                        <div style="display: flex; flex-flow: row; justify-content: space-between;">
+                            <p>Type de contrat</p>
+                            <p>Date de publication</p>
+                        </div>
+                        <div class="info_secondaire" style="display: none;">
+                            <p>
+                                Description de l'emploi :
+                                
+                                Responsabilités :
+                                
+                                Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                                Collaborer avec l'équipe de conception pour traduire les maquettes en interfaces utilisateur fonctionnelles.
+                                Intégrer des APIs et des services tiers pour enrichir les fonctionnalités des applications.
+                                Assurer la qualité du code en effectuant des tests unitaires et des tests d'intégration.
+                                Participer à l'optimisation des performances et à la sécurité des applications.
+                                Assurer la documentation technique des projets développés.
+                                Compétences requises :
+                            </p>
+                            <div style="display: flex; justify-content: center;">
+                                <button onclick="toggleInfo(this)">Candidatures</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offre" onclick="active(this)">
+                    <div class="info_principale" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div class="title" style="display: flex; flex-flow: row;justify-content: space-between; align-items: center; ">
+                            <h1>Titre de l'offre :</h1>
+                            <button onclick="toggleInfo(this)"><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <p>Entreprise</p>
+                        <p>Localisation</p>
+                        <div style="display: flex; flex-flow: row; justify-content: space-between;">
+                            <p>Type de contrat</p>
+                            <p>Date de publication</p>
+                        </div>
+                        <div class="info_secondaire" style="display: none;">
+                            <p>
+                                Description de l'emploi :
+                                
+                                Responsabilités :
+                                
+                                Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                                Collaborer avec l'équipe de conception pour traduire les maquettes en interfaces utilisateur fonctionnelles.
+                                Intégrer des APIs et des services tiers pour enrichir les fonctionnalités des applications.
+                                Assurer la qualité du code en effectuant des tests unitaires et des tests d'intégration.
+                                Participer à l'optimisation des performances et à la sécurité des applications.
+                                Assurer la documentation technique des projets développés.
+                                Compétences requises :
+                            </p>
+                            <div style="display: flex; justify-content: center;">
+                                <button onclick="toggleInfo(this)">Candidatures</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres offres ici avec la même structure -->
+            </div>
+            <div id="interaction" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                <button>Ajouter</button>
+                <button>Modifier</button>
+                <button>Supprimer</button>
+            </div>
+        </div>
+        
+        <script>
+            function active(element) {
+                var currentDiv = element;
+                var allDivs = document.querySelectorAll('.offre');
+                
+                // Désactive tous les autres éléments
+                allDivs.forEach(function(div) {
+                    var infoSecondaire = div.querySelector(".info_secondaire");
+                    if (div !== currentDiv) {
+                        infoSecondaire.style.display = "none";
+                    }
+                });
+        
+                // Récupère le bouton actuel
+                var currentButton = currentDiv.querySelector("button");
+                // Récupère info_secondaire de l'élément actuel
+                var infoSecondaire = currentDiv.querySelector(".info_secondaire");
+                
+                // Si le bouton est actif, cache l'info_secondaire
+                if (currentButton.classList.contains('active')) {
+                    infoSecondaire.style.display = "none";
+                    currentButton.classList.remove('active');
+                } else { // Sinon, affiche l'info_secondaire
+                    infoSecondaire.style.display = "block";
+                    currentButton.classList.add('active');
+                }
+            }
+        
+            function toggleInfo(button) {
+                var parentDiv = button.closest('.offre');
+                active(parentDiv);
+            }
+        </script>
+        
+    </main>
+</body>
+</html>
+
+
+<!-- CSS
+.searchbar{
+  padding: 1px;
+  background-color: white;
+  border-radius: 15px;
+  *{
+    border: 0;
+    background: none;
+    outline: none;
+  }
+}
+-->
