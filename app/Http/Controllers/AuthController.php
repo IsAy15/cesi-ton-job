@@ -34,11 +34,11 @@ class AuthController extends Controller
             Auth::login($user);
 
             if ($user->role === 'admin') {
-                return redirect()->intended(route('admin.pilotes.index'));
+                return redirect()->intended(route('users.index'));
             } elseif ($user->role === 'pilote') {
-                return redirect()->intended(route('companies.index'));
+                return redirect()->intended(route('users.index'));
             } else {
-                return redirect()->intended(route('promotions.index'));
+                return redirect()->intended(route('offers.index'));
             }
         }
 

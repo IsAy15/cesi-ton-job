@@ -26,17 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Admin routes
-Route::prefix('admin')->group(function () {
-    Route::prefix('pilotes')->group(function () {
-        Route::get('/', [UserController::class, 'pilotes'])->name('admin.pilotes.index');
-        Route::get('/create', [UserController::class, 'create'])->name('admin.pilotes.create');
-        Route::post('/store', [UserController::class, 'store'])->name('admin.pilotes.store');
-        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.pilotes.edit');
-        Route::put('/{id}/update', [UserController::class, 'update'])->name('admin.pilotes.update');
-        Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('admin.pilotes.destroy');
-    });
-});
+
+
+
 
 //Users routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -63,19 +55,7 @@ Route::prefix('ability')->group(function(){
 });
 
 // Admin routes
-Route::prefix('admin')->group(function () {
-    Route::prefix('users')->group(function () {
-        Route::get('/', [UserController::class, 'users'])->name('admin.users.index');
-    });
-    Route::prefix('pilotes')->group(function () {
-        Route::get('/', [UserController::class, 'pilotes'])->name('admin.pilotes.index');
-        Route::get('/create', [UserController::class, 'create'])->name('admin.pilotes.create');
-        Route::post('/store', [UserController::class, 'store'])->name('admin.pilotes.store');
-        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.pilotes.edit');
-        Route::put('/{id}/update', [UserController::class, 'update'])->name('admin.pilotes.update');
-        Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('admin.pilotes.destroy');
-    });
-});
+
 
 
 //Auth routes
@@ -89,7 +69,6 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
 
-Route::get('/admin/users', [UserController::class, 'users'])->name('admin.users.index');
 
 
 //Entreprise routes
