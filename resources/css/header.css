@@ -1,0 +1,148 @@
+@import "reset.css";
+
+@font-face {
+    font-family: fkscreamer;
+    font-style: normal;
+    font-display: fallback;
+    src: url("../fonts/FKScreamer-Bold.woff") format("woff");
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    }
+}
+
+body {
+    min-height: 100dvh;
+    height: fit-content;
+    margin: 0;
+    background: linear-gradient(to bottom right, #fab330, #ff0000, #800080);
+    background-color: #ed5c3c;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-flow: column;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card {
+    background-color: white;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+p {
+    font-size: 1rem;
+}
+
+/* body:has(header.scrolled) main {
+  margin-top: 3rem;
+} */
+
+.slogan > *,
+.welcome {
+    color: white;
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+}
+
+header {
+    padding: 1rem;
+    color: white;
+    gap: 1rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: sticky;
+    top: 0; /* Assurez-vous que le header soit fixé en haut de la page */
+    .header-container {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+
+        .title {
+            font-family: fkscreamer;
+            font-size: 6rem;
+            transition: font-size 0.3s ease-in-out;
+        }
+        .logo {
+            width: 10rem;
+            transition: width 0.3s ease-in-out;
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &.scrolled {
+        justify-content: space-between;
+        /* background: linear-gradient(to bottom right, #fab330, #ff0000, #800080); */
+        /* background-color: #ed5c3c;
+    background: rgba(0, 0, 0, 0.2); */
+        background: rgb(from #ed5c3c r g b / 75%);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 0.2rem 0.5rem 0px rgba(0, 0, 0, 0.5);
+        flex-direction: row;
+        .header-container {
+            flex-direction: row;
+        }
+        .slogan > * {
+            display: none;
+        }
+        .title {
+            font-size: 3rem;
+        }
+        .logo {
+            width: 5rem;
+        }
+    }
+}
+
+.btn {
+    border: 1px solid #2a008c;
+    border-radius: 15px;
+    padding: 10px 20px;
+    background: rgb(16, 0, 105);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s ease;
+    transform-origin: center; /* Définir l'origine de la transformation au centre */
+    &:hover {
+        background: rgb(50, 4, 86);
+        color: white;
+        transform: scale(1.1); /* Agrandir les boutons au survol */
+    }
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+}
