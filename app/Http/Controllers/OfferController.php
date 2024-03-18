@@ -44,12 +44,12 @@ class OfferController extends Controller
 }
 
 
-public function edit($id)
-  {
-      $offer = Offer::findOrFail($id);
-      $companies = Company::all(); // Récupère toutes les entreprises
-      return view('offers.edit', compact('offer', 'companies'));
-  }
+  public function edit($id)
+    {
+        $offer = Offer::findOrFail($id);
+        $companies = Company::all(); // Récupère toutes les entreprises
+        return view('offers.edit', compact('offer', 'companies'));
+    }
 
 
   public function update(Request $request, $id)
@@ -78,4 +78,12 @@ public function edit($id)
     $offer = Offer::where('id', $id)->delete();
     return redirect()->route('offers.index');
   }
+
+
+  public function apply($id)
+  {
+      $offer = Offer::findOrFail($id);
+      return view('offers.apply', compact('offer'));
+  }
+
 }

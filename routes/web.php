@@ -91,7 +91,10 @@ Route::prefix('company')->group(function (){
     Route::get('/{id}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
     Route::put('/{id}/update', [CompanyController::class, 'update'])->name('companies.update');
     Route::delete('/{id}/destroy', [CompanyController::class, 'destroy'])->name('companies.destroy');
+    Route::get('/{id}/stats', [CompanyController::class, 'stats'])->name('companies.stats');
 });
+
+
 
 
 //Offres routes
@@ -102,6 +105,7 @@ Route::prefix('offer')->group(function(){
     Route::get('/{id}/edit', [OfferController::class, 'edit'])->name('offers.edit');
     Route::put('/{id}/update', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
+    Route::get('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
 });
 
 

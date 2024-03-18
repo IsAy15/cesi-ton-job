@@ -18,4 +18,9 @@ class Company extends Model
     ];
 
     public $timestamps = false;
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }
