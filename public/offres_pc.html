@@ -6,8 +6,35 @@
     <title>Offres</title>
     <script src="https://kit.fontawesome.com/985e8bf704.js" crossorigin="anonymous"></script>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+
         .offre {
             cursor: pointer;
+        }
+
+        h1, p {
+            margin: 0;
+        }
+        .notation{
+            color: black;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .notation:hover{
+            display: inline-block;
+            color: #ffd700;
+        }
+        .notation div{
+            display: inline-block;
+            padding: 5px;
         }
     </style>
 </head>
@@ -33,10 +60,10 @@
             </div>
         </div>
     </div>
-    <div id="offres" style="display: flex; background: #000000; padding: 1rem;">
-        <div id="liste_offres" style="display: flex; flex-direction: column; background: #0000ff; padding: 1rem; gap: 0.5rem; width: 50%;">
+    <div id="offres" style="display: flex; background: #000000; padding: 1rem; margin: 1rem; overflow: auto;">
+        <div id="liste_offres" style="display: flex; flex-direction: column; background: #0000ff; padding: 1rem; gap: 0.5rem; width: 50%; overflow-y: auto;">
             <div class="offre_1 offre" style="display: flex; flex-direction: column; gap: 0.5rem; background-color: #005eff;">
-                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center; ">
+                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center;">
                     <h1>Titre de l'offre :</h1>
                     <button><i class="fa-solid fa-heart"></i></button>
                 </div>
@@ -48,7 +75,55 @@
                 </div>
             </div>
             <div class="offre_2 offre" style="display: flex; flex-direction: column; gap: 0.5rem; background-color: #005eff;">
-                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center; ">
+                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center;">
+                    <h1>Titre de l'offre :</h1>
+                    <button><i class="fa-solid fa-heart"></i></button>
+                </div>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <div style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+                    <p>Type de contrat</p>
+                    <p>Date de publication</p>
+                </div>
+            </div>
+            <div class="offre_3 offre" style="display: flex; flex-direction: column; gap: 0.5rem; background-color: #005eff;">
+                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center;">
+                    <h1>Titre de l'offre :</h1>
+                    <button><i class="fa-solid fa-heart"></i></button>
+                </div>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <div style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+                    <p>Type de contrat</p>
+                    <p>Date de publication</p>
+                </div>
+            </div>
+            <div class="offre_4 offre" style="display: flex; flex-direction: column; gap: 0.5rem; background-color: #005eff;">
+                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center;">
+                    <h1>Titre de l'offre :</h1>
+                    <button><i class="fa-solid fa-heart"></i></button>
+                </div>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <div style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+                    <p>Type de contrat</p>
+                    <p>Date de publication</p>
+                </div>
+            </div>
+            <div class="offre_5 offre" style="display: flex; flex-direction: column; gap: 0.5rem; background-color: #005eff;">
+                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center;">
+                    <h1>Titre de l'offre :</h1>
+                    <button><i class="fa-solid fa-heart"></i></button>
+                </div>
+                <p>Entreprise</p>
+                <p>Localisation</p>
+                <div style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+                    <p>Type de contrat</p>
+                    <p>Date de publication</p>
+                </div>
+            </div>
+            <div class="offre_6 offre" style="display: flex; flex-direction: column; gap: 0.5rem; background-color: #005eff;">
+                <div class="title" style="display: flex; flex-flow: row ;justify-content: space-between; align-items: center;">
                     <h1>Titre de l'offre :</h1>
                     <button><i class="fa-solid fa-heart"></i></button>
                 </div>
@@ -60,19 +135,107 @@
                 </div>
             </div>
         </div>
-        <div id="info_complémentaire" style="display: flex; flex-flow: wrap;background: #00ff00; width: 50%; padding: 1rem; gap: 0.5rem;">
-            <div class="offre_1_infos_secondaire" style="display: none; background-color: #ffff00;">
+        <div id="info_complémentaire" style="display: flex; flex-flow: wrap;background: #00ff00; width: 50%; padding: 1rem; gap: 0.5rem; overflow: auto;">
+            <div class="offre_1_infos_secondaire" style="display: none; background-color: gray;">
+                <div id="presentation" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                    <img src="https://via.placeholder.com/100" alt="logo entreprise">
+                    <div id="infos_entreprise" style="display: flex; flex-direction: column; justify-content: center;">
+                        <h1>Nom de l'entreprise</h1>
+                        <p>Localisation</p>
+                        <p>Adresse</p>
+                        <div id="notation" style="display: flex; flex-flow: row;">
+                            <span class="notation"><div><i class="fa-solid fa-star"></i></div>
+                                <span class="notation"><div><i class="fa-solid fa-star"></i></div>
+                                    <span class="notation"><div><i class="fa-solid fa-star"></i></div>
+                                        <span class="notation"><div><i class="fa-solid fa-star"></i></div>
+                                            <span class="notation"><div><i class="fa-solid fa-star"></i></div>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                        <p>type de contrat</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                        <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                            <button>Postuler</button>
+                            <button><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <p>Publié il y a 2 semaineS</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="offre_2_infos_secondaire" style="display: none; background-color: #ffff00;">
                 <p>
-                    Description de l'emploi pour l'offre 1 :
+                    Description de l'emploi pour l'offre 2 :
+                    
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                </p>
+            </div>
+            <div class="offre_3_infos_secondaire" style="display: none; background-color: #ffff00;">
+                <p>
+                    Description de l'emploi pour l'offre 3 :
                     
                     Responsabilités :
                     
                     Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
                 </p>
             </div>
-            <div class="offre_2_infos_secondaire" style="display: none; background-color: #ffff00;">
+            <div class="offre_4_infos_secondaire" style="display: none; background-color: #ffff00;">
                 <p>
-                    Description de l'emploi pour l'offre 2 :
+                    Description de l'emploi pour l'offre 4 :
+                    
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                </p>
+            </div>
+            <div class="offre_5_infos_secondaire" style="display: none; background-color: #ffff00;">
+                <p>
+                    Description de l'emploi pour l'offre 5 :
+                    
+                    Responsabilités :
+                    
+                    Concevoir, développer et déployer des applications Web hautement interactives et évolutives.
+                </p>
+            </div>
+            <div class="offre_6_infos_secondaire" style="display: none; background-color: #ffff00;">
+                <p>
+                    Description de l'emploi pour l'offre 6 :
                     
                     Responsabilités :
                     
@@ -90,7 +253,7 @@
         offres.forEach(offre => {
             offre.addEventListener('click', () => {
                 // Masquez toutes les informations complémentaires
-                const infosComplementaires = document.querySelectorAll('.offre_infos_secondaire');
+                const infosComplementaires = document.querySelectorAll('[class*=infos_secondaire]');                
                 infosComplementaires.forEach(info => {
                     info.style.display = 'none';
                 });
