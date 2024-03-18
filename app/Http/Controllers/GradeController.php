@@ -9,7 +9,7 @@ class GradeController extends Controller
 {
     public function index()
 {
-    $grades = Grade::all(); // Récupérer toutes les notes
+    $grades = Grade::all();
     return view('grades.index', compact('grades'));
 }
 
@@ -21,13 +21,11 @@ class GradeController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request...
         $grade = new Grade;
-
         $grade->value = $request->value;
-
         $grade->save();
     }
+
 
     
 }

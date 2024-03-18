@@ -1,6 +1,3 @@
-// postal.js
-
-// Script pour récupérer la localisation en fonction du code postal
 var codeposInput = document.getElementById('of_codepos');
 var localizationInput = document.getElementById('of_localization');
 
@@ -28,8 +25,6 @@ codeposInput.addEventListener('input', function() {
         });
 });
 
-// Script pour filtrer les caractères non numériques dans le champ du code postal
 codeposInput.addEventListener('input', function() {
-    // Filtrer les caractères non numériques
     codeposInput.value = codeposInput.value.replace(/\D/g, '');
 });
