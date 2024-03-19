@@ -35,6 +35,8 @@
         </svg>
         <div class="slogan">
           <p>Vous cherchez <p><span class="multiple-text"> </span>
+          <p>Et toujours aucune offre ?</p>
+          <p>Vous êtes au bon endroit !</p>
         </div>
       </div>
       <div class="btn-container">
@@ -188,7 +190,7 @@
     <script>
   document.addEventListener('DOMContentLoaded', function() {
     const typed = new Typed('.multiple-text', {
-      strings: ['Frontend Developer', 'Un stage ? Une alternance ?', 'Et toujours aucune offre ?', 'Vous êtes au bon endroit !'],
+      strings: ['Frontend Developer', 'Un stage ? Une alternance ?', 'Un emploi ? Une mission ?'],
       typeSpeed: 75,
       backSpeed: 75,
       backDelay: 1000,
