@@ -1,2 +1,39 @@
 @import url(reset.css);
 
+body {
+    min-height: 100dvh;
+    height: fit-content;
+    margin: 0;
+    background: linear-gradient(to bottom right, #fab330, #ff0000, #800080);
+    background-color: #ed5c3c;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-flow: column;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: 3rem;
+}
+.container {
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.connexion{
+    background-color: white;
+    margin: 1rem;
+}
+
+.connexion.form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 1rem;
+}
