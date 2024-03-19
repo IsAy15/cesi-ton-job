@@ -20,11 +20,9 @@
         <a href="{{ route('auth.login') }}">Se connecter</a> 
     @endguest
 
-    <!-- Barre de recherche -->
     <input type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
     
-    <!-- Bouton "Ajouter un utilisateur" -->
-    <a href="{{ route('users.create') }}">Ajouter un utilisateur</a>
+    <a href="{{ route('users.create') }}" class="btn btn-primary">Ajouter un utilisateur</a>
 
     <table id="userTable">
         <thead>

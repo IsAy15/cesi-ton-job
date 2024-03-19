@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Votre</div>
+                    <div class="card-header">Votre profil</div>
 
                     <div class="card-body">
                         <div>
@@ -24,8 +24,6 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @else
-                            <p>Aucune promotion n'est associée à cet utilisateur.</p>
                         @endif
                         <div>
                             <a href="{{ route('profile.offers') }}" class="btn btn-primary">Voir les offres postulées</a>
