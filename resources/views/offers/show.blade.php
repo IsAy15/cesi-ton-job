@@ -2,6 +2,13 @@
 @section('title', 'Détails de l\'offre')
 @section('content')
     <h1>Détails de l'offre</h1>
+    @auth
+        <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
+        <form action="{{ route('auth.logout') }}" method="POST">
+            @csrf
+            <button type="submit">Déconnexion</button>
+        </form>
+    @endauth
     <div>
         <p><strong>Titre :</strong> {{ $offer->title }}</p>
         <p><strong>Description :</strong> {{ $offer->description }}</p>
@@ -19,6 +26,21 @@
     <form action="{{ route('offers.apply', $offer->id) }}" method="get">
         <button type="submit">Postuler</button>
     </form>
+
+    @auth
+        @if ($isInWishlist)
+        <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
+            @csrf
+            @method('DELETE') <!-- Ajout de la méthode DELETE -->
+            <button type="submit">Supprimer de la wishlist</button>
+        </form>
+        @else
+        <form action="{{ route('wishlist.add', $offer->id) }}" method="post">
+            @csrf
+            <button type="submit">Ajouter à la wishlist</button>
+        </form>
+        @endif
+    @endauth
 
     <a href="{{ route('offers.index') }}">Retour à la page précédente</a>
 

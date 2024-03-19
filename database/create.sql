@@ -122,6 +122,14 @@ CREATE TABLE offer_requirements(
    FOREIGN KEY(ab_id) REFERENCES abilities(id)
 );
 
+--Pour éviter les erreurs de clés étrangères
+ALTER TABLE user_wishlist
+ADD CONSTRAINT fk_offer_id
+FOREIGN KEY (offer_id)
+REFERENCES offers(id)
+ON DELETE CASCADE;
+
+
 -- Remplissage de la base de données
 
 -- Remplissage de la table users

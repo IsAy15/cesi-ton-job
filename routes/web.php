@@ -29,8 +29,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-Route::post('/wishlist/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+Route::post('/wishlist/add/{offer}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+Route::post('/wishlist/remove/{offer}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
 
 //Profiles routes

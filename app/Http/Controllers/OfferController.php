@@ -20,11 +20,13 @@ class OfferController extends Controller
       return $this->belongsTo(Company::class);
   }
 
+  
   public function show($id)
-  {
-      $offer = Offer::findOrFail($id);
-      return view('offers.show', compact('offer'));
-  }
+    {
+        $offer = Offer::findOrFail($id);
+        $isInWishlist = auth()->check() ? auth()->user()->wishlist->contains($offer) : false;
+        return view('offers.show', compact('offer', 'isInWishlist'));
+    }
 
 
 
