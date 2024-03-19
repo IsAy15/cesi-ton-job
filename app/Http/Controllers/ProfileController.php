@@ -14,7 +14,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = auth()->user(); // Ou récupérez l'utilisateur d'une autre manière
+        $user = auth()->user(); 
         return view('profile.index', compact('user'));
     }
 

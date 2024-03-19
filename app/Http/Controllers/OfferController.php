@@ -20,6 +20,13 @@ class OfferController extends Controller
       return $this->belongsTo(Company::class);
   }
 
+  public function show($id)
+  {
+      $offer = Offer::findOrFail($id);
+      return view('offers.show', compact('offer'));
+  }
+
+
 
   public function create()
   {

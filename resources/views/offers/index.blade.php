@@ -13,13 +13,10 @@
         <thead>
             <tr>
                 <th>Titre</th>
-                <th>Description</th>
                 <th>Code postal</th>
                 <th>Ville</th>
                 <th>Date de début</th>
                 <th>Date de fin</th>
-                <th>Places disponibles</th>
-                <th>Salaire</th>
                 <th>Type</th>
                 <th>Entreprise</th>
                 <th>Action</th>
@@ -28,14 +25,11 @@
         <tbody>
             @foreach ($offers as $offer)
                 <tr>
-                    <td>{{ $offer->title }}</td>
-                    <td>{{ $offer->description }}</td>
+                    <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
                     <td class="code-postal">{{ $offer->localization }}</td>
                     <td class="ville"></td> 
                     <td>{{ $offer->starting_date }}</td>
                     <td>{{ $offer->ending_date }}</td>
-                    <td>{{ $offer->places }}</td>
-                    <td>{{ $offer->salary }}</td>
                     <td>{{ $offer->type }}</td>
                     <td>{{ $offer->company->name }}</td>
                     <td>
@@ -75,6 +69,16 @@
 
         // Appeler la fonction de filtrage lorsque l'utilisateur tape quelque chose dans la barre de recherche
         document.getElementById("searchInput").addEventListener("keyup", filterOffers);
+
+        // Ajouter un événement de clic à chaque titre d'offre pour afficher les détails de l'offre
+        var offerTitles = document.querySelectorAll('#offerTable tbody tr td:first-child a');
+        offerTitles.forEach(function(offerTitle) {
+            offerTitle.addEventListener('click', function(event) {
+                event.preventDefault();
+                var offerUrl = offerTitle.getAttribute('href');
+                window.location.href = offerUrl;
+            });
+        });
     </script>
 </body>
 </html>

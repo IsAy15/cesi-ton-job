@@ -10,16 +10,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Applied Offers</div>
+                    <div class="card-header">Vos offres</div>
 
                     <div class="card-body">
                         @if ($appliedOffers->isEmpty())
-                            <p>No offers applied.</p>
+                            <p>Vos offres :</p>
                         @else
                             <ul>
                                 @foreach($appliedOffers as $offer)
                                     <li>
-                                        <a href="{{ route('offer.index', $offer->id) }}">{{ $offer->title }}</a>
+                                    <a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a>
                                     </li>
                                 @endforeach
                             </ul>
