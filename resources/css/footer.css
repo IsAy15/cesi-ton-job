@@ -1,0 +1,12 @@
+
+footer{
+    display : flex;
+    flex-flow: column;
+    gap : 1rem;
+}
+
+.footer-link{
+    display: flex;
+    flex-flow: row;
+    color : white;
+}
