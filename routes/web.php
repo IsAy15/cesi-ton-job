@@ -8,6 +8,7 @@ use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -24,7 +25,11 @@ use App\Http\Controllers\GradeController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+//Profiles routes
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/profile/offers', [ProfileController::class, 'offers'])->name('profile.offers');
 
 
 

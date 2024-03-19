@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Promotion::class, 'user_promotions', 'user_id', 'promotion_id');
     }
+
+    public function appliedOffers()
+    {
+        return $this->belongsToMany(Offer::class, 'user_offer', 'user_id', 'offer_id');
+    }
 }
