@@ -6,7 +6,7 @@
 
         <title>CESI Ton Stage</title>
 
-        @vite('resources/css/header.css')
+        @vite('resources/css/welcome.css')
     </head>
     <body>
     <h1 class="welcome">Bienvenue sur</h1>
@@ -39,8 +39,8 @@
         </div>
       </div>
       <div class="btn-container">
-        <button class="btn">Se connecter</button>
-        <button class="btn">S'inscrire</button>
+        <a href="{{ route('auth.login') }}" class="btn">Se connecter</a>
+        <!-- <a class="btn">S'inscrire</a> -->
       </div>
     </header>
     <main>

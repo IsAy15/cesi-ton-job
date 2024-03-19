@@ -8,6 +8,7 @@
 }
 
 html {
+    font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
     font-size: 16px;
     @media screen and (max-width: 768px) {
@@ -118,6 +119,7 @@ header {
 }
 
 .btn {
+    text-decoration: none;
     border: 1px solid #2a008c;
     border-radius: 15px;
     padding: 10px 20px;
