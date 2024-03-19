@@ -38,7 +38,7 @@ class AuthController extends Controller
             } elseif ($user->role === 'pilote') {
                 return redirect()->intended(route('users.index'));
             } else {
-                return redirect()->intended(route('offers.index'));
+                return redirect()->intended(route('profile.index'));
             }
         }
 
