@@ -1,12 +1,25 @@
-
 footer{
     display : flex;
     flex-flow: column;
+    justify-content : center;
     gap : 1rem;
+    position: sticky;
 }
 
 .footer-link{
     display: flex;
     flex-flow: row;
     color : white;
+    font-size : 1rem;
+    gap : 1rem;
+    justify-content: center;
+}
+
+.footer-button:hover{
+    transform: scale(1.2);
+}
+
+a{
+    text-decoration: none;
+    color : inherit;
 }

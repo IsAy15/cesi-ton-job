@@ -2,11 +2,11 @@
 @vite('resources/css/footer.css')
 <footer>
         <div class="footer-link">
-            <a href="#">A Propos</a>
+            <a class="footer-button" href="#">A Propos</a>
             <p>|<p>
-            <a href="{{ route('policy')}}">Politique De Confidentialité</a>
+            <a class="footer-button" href="{{ route('policy')}}">Politique De Confidentialité</a>
             <p>|<p>
-            <a href="#">Contact</a>
+            <a class="footer-button" href="#">Contact</a>
         </div>
         <div id="Copyright">
             <p>CESI Ton Job &copy; <script>document.write(new Date().getFullYear());
