@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Créer un utilisateur</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Ajouter un utilisateur')
+@section('content')
     <h1>Créer un utilisateur</h1>
 
     <form action="{{ route('users.store') }}" method="post">
@@ -57,5 +53,4 @@
             });
         };
     </script>
-</body>
-</html>
+@endsection

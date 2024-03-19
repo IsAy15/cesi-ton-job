@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'accueil</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Utilisateurs')
+@section('content')
     <h1>Utilisateurs</h1>
     @auth
         <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
@@ -35,5 +30,4 @@
             </div>
         </div>
     @endforeach
-</body>
-</html>
+@endsection

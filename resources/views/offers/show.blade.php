@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails de l'offre</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Détails de l\'offre')
+@section('content')
     <h1>Détails de l'offre</h1>
     <div>
         <p><strong>Titre :</strong> {{ $offer->title }}</p>
@@ -42,5 +37,4 @@
             })
             .catch(error => console.error('Erreur lors de la récupération de la ville :', error));
     </script>
-</body>
-</html>
+@endsection

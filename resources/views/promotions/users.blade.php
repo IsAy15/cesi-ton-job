@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utilisateurs de la promotion</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Utilisateurs de la promotion')
+@section('content')
     <h1>Utilisateurs de la promotion "{{ $promotion->name }}"</h1>
     <table>
         <thead>
@@ -28,5 +23,4 @@
         </tbody>
     </table>
     <a href="{{ route('promotions.index') }}">Retour</a>
-</body>
-</html>
+@endsection

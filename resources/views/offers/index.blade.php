@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les offres</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Offres d\'emploi')
+@section('content')
     <h1>Offres d'emploi</h1>
     <input type="text" id="searchInput" placeholder="Rechercher une offre...">
     <a href="{{ route('offers.create') }}">Ajouter une offre</a>
@@ -79,5 +74,4 @@
             });
         });
     </script>
-</body>
-</html>
+@endsection

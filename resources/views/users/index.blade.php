@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Liste des utilisateurs</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Liste des utilisateurs')
+@section('content')
 @auth
         <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
         <form action="{{ route('auth.logout') }}" method="POST">
@@ -103,6 +100,5 @@
         // Appeler la fonction de filtrage lorsque l'utilisateur tape quelque chose dans la barre de recherche
         document.getElementById("searchInput").addEventListener("keyup", filterUsers);
     </script>
-</body>
-</html>
+@endsection
 

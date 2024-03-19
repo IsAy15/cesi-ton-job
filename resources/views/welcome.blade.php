@@ -156,7 +156,8 @@
       </div>
     </main>
 
-    <footer>Test de footer</footer>
+    @extends('layouts.footer')
+    @section('footer')
 
     <!-- Ajoutez un lien vers votre fichier JavaScript -->
     @vite('resources/js/welcome.js')
