@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    @vite('general.css')
+    @vite('resources/css/general.css')
 </head>
 <body>
     <header>
@@ -18,7 +18,16 @@
     <main>
         @yield('content')
     </main>
-    @extends('layouts.footer')
-    @section('footer')
+
+    <footer>
+        <div>
+
+            <p>CESI Ton Job &copy; <script>document.write(new Date().getFullYear());
+            </script></p>
+        </div>
+        <div>
+            <a href="{{ route('policy')}}">Politique de confidentialité</a>
+        </div>
+    </footer>
 </body>
 </html>

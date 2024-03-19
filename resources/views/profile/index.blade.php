@@ -30,6 +30,9 @@
                         <div>
                             <a href="{{ route('profile.offers') }}" class="btn btn-primary">Voir les offres postulées</a>
                         </div>
+                        <div>
+                            <a href="{{ route('profile.wishlist') }}" class="btn btn-primary">View Wishlist</a>
+                        </div>
                     </div>
                 </div>
             </div>

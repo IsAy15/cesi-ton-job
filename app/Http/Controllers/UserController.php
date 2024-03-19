@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Promotion; 
+use App\Models\Wishlist;
 
 class UserController extends Controller
 {
@@ -49,5 +50,11 @@ class UserController extends Controller
         // Redirection avec un message de succès
         return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès.');
     }
+
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
 
 }
