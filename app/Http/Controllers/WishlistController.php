@@ -13,23 +13,12 @@ class WishlistController extends Controller
 {
  
     public function removeFromWishlist(Request $request, $offerId)
-    {
-        if (!auth()->check()) {
-            return redirect()->route('auth.login')->with('error', 'Veuillez vous connecter pour gérer votre wishlist.');
-        }
+{
+    $user = auth()->user();
+    $user->wishlist()->detach($offerId);
 
-        $user = auth()->user();
-
-        $wishlistItem = $user->wishlist()->where('offer_id', $offerId)->first();
-
-        if (!$wishlistItem) {
-            return redirect()->back()->with('error', 'Cette offre n\'est pas dans votre wishlist.');
-        }
-
-        $wishlistItem->delete();
-
-        return redirect()->back()->with('success', 'L\'offre a été supprimée de votre wishlist avec succès.');
-    }
+    return redirect()->back()->with('success', 'L\'offre a été supprimée de votre wishlist avec succès.');
+}
 
     public function addToWishlist(Request $request, $offerId)
     {

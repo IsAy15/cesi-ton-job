@@ -20,10 +20,12 @@
                                     <li>
                                         <a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a>
                                         @auth
-                                            <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
-                                                @csrf
-                                                <button type="submit">Supprimer de la wishlist</button>
-                                            </form>
+                                        <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Supprimer de la wishlist</button>
+</form>
+
                                         @endauth
                                     </li>
                                 @endforeach

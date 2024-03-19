@@ -97,4 +97,6 @@ class OfferController extends Controller
       return view('offers.apply', compact('offer'));
   }
 
+  
+
 }
