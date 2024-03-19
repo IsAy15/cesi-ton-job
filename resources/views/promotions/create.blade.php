@@ -1,12 +1,6 @@
-<!-- create.blade.php -->
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Ajouter une promotion')
+@section('content')
     <h1>Ajouter une promotion</h1>
     <form action="{{ route('promotions.store') }}" method="post">
         @csrf
@@ -16,5 +10,4 @@
         </div>
         <button type="submit">Ajouter</button>
     </form>
-</body>
-</html>
+@endsection

@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Liste des utilisateurs</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Liste des utilisateurs')
+@section('content')
     <h1>Liste des utilisateurs</h1>
 
     <table>
@@ -32,5 +29,4 @@
         </tbody>
     </table>
 
-</body>
-</html>
+@endsection

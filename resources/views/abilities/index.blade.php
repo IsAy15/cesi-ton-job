@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affichage des compétences
-    </title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Liste des compétences')
+@section('content')
     <h1>Liste des compétences</h1>
         <a href="{{ route('abilities.create') }}">Ajouter une compétence</a>
         <table>
@@ -34,5 +28,4 @@
                 @endforeach
             </tbody>
         </table>
-</body>
-</html>
+@endsection

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Création des offres</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Ajouter une offre')
+@section('content')
     <h1>Ajouter une offre</h1>
     <form action="{{ route('offers.store') }}" method="post">
         @csrf
@@ -53,5 +48,4 @@
 
         <button type="submit">Ajouter</button>
     </form>
-</body>
-</html>
+@endsection

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $user->lastname }} {{ $user->firstname }}</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Modifier un utilisateur')
+@section('content')
     <form action="{{ route('admin.pilotes.update', $user->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -27,5 +22,4 @@
         </div>
         <button type="submit">Modifier</button>
     </form>
-</body>
-</html>
+@endsection

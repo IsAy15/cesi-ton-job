@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistiques de l'entreprise {{ $company->name }}</title>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Statistiques de l\'entreprise')
+@section('content')
     <h1>Statistiques de l'entreprise {{ $company->name }}</h1>
     <p>Nombre total de candidatures : {{ $totalApplications }}</p>
 
@@ -17,5 +12,4 @@
     </ul>
     
     <a href="{{ route('companies.index') }}" class="btn btn-primary">Retour</a>
-</body>
-</html>
+@endsection

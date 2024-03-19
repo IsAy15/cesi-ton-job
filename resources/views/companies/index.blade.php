@@ -1,30 +1,6 @@
-<!-- resources/views/companies/index.blade.php -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des entreprises</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .company {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .company .infos {
-            margin-bottom: 10px;
-        }
-        .company .actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
+@extends('layouts.home')
+@section('title', 'Liste des entreprises')
+@section('content')
     <h1>Liste des Entreprises</h1>
     <a href="{{ route('companies.create') }}" class="btn btn-primary">Ajouter une entreprise</a>
 
@@ -46,5 +22,4 @@
             </div>
         </div>
     @endforeach
-</body>
-</html>
+@endsection
