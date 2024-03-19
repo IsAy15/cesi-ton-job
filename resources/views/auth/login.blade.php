@@ -1,6 +1,13 @@
 @extends('layouts.home')
 @section('title', 'Se connecter')
 @section('content')
+<?php
+    if (Auth::check()) {
+        header('Location: ' . route('profile.index')); 
+        exit();
+    }
+?>
+
     <div class="container connexion">
         <h1>Connexion</h1>
         <form action="{{ route('auth.login') }}" method="post">
