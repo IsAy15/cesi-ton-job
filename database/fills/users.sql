@@ -10,8 +10,4 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`)
 (7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', 'pilote3', 'pilote'),
 (8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', 'pilote4', 'pilote'),
 (9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', 'pilote5', 'pilote'),
-(11, 'pilote6', 'pilote6', 'pilote7@ctj.fr', 'pilote6', 'pilote')
-
-
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`) VALUES
-(11, 'pilote6', 'pilote6', 'pilote7@ctj.fr', 'pilote6', 'pilote')
+(11, 'pilote6', 'pilote6', 'pilote7@ctj.fr', 'pilote6', 'pilote');
