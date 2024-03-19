@@ -37,4 +37,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Offer::class, 'user_offer', 'user_id', 'offer_id');
     }
+
+    public function wishlist()
+    {
+        return $this->belongsToMany(Offer::class, 'user_wishlist', 'user_id', 'offer_id');
+    }
+
 }

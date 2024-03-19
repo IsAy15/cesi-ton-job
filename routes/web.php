@@ -9,6 +9,8 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WishlistController;
+
 
 
 
@@ -27,13 +29,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+Route::post('/wishlist/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
+
 //Profiles routes
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile/offers', [ProfileController::class, 'offers'])->name('profile.offers');
+Route::get('/profile/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
 
 //Offres routes
 Route::prefix('offer')->group(function(){
     Route::get('/', [OfferController::class, 'index'])->name('offers.index');
+    Route::get('/create', [OfferController::class, 'create'])->name('offers.create');
     Route::get('/{id}', [OfferController::class, 'show'])->name('offers.show');
     Route::post('/store', [OfferController::class, 'store'])->name('offers.store');
     Route::get('/{id}/edit', [OfferController::class, 'edit'])->name('offers.edit');
@@ -42,7 +50,6 @@ Route::prefix('offer')->group(function(){
     Route::get('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
 });
 
-Route::get('/offers/create', [OfferController::class, 'create'])->name('offers.create');
 
 
 
