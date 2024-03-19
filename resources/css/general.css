@@ -27,7 +27,9 @@ header {
     justify-content: right;
 }
 
-
+.logo {
+    cursor: pointer;
+}
 
 body {
     min-height: 100dvh;
@@ -184,7 +186,6 @@ h1 {
         color: white;
         transform: scale(1.1);
     }
-
 }
 
 .profile-menu a {
@@ -268,8 +269,6 @@ h1 {
     display: block;
 }
 
-
-
 .profile-menu:hover .submenu {
     display: block;
 }
@@ -286,7 +285,6 @@ h1 {
     color: white;
     transform: scale(1.1);
 }
-
 
 .submenu li:not(:hover) {
     background-color: white;
@@ -347,5 +345,3 @@ h1 {
     color: white;
     transform: scale(1.1);
 }
-
-

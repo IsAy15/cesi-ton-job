@@ -39,7 +39,32 @@
         </div>
       </div>
       <div class="btn-container">
-        <a href="{{ route('auth.login') }}" class="btn">Se connecter</a>
+        <?php
+        if (Auth::check()){
+          switch(Auth::user()->role){
+            case 'user':
+              $url = route('offers.index');
+              $text = 'Voir les offres';
+              break;
+            case 'pilote':
+              $url = route('profile.index');
+              $text = 'Accéder au profil';
+              break;
+            case 'admin':
+              $url = route('profile.index');
+              $text = 'Accéder au profil';
+              break;
+            default:
+              $url = route('auth.login');
+              $text = 'Se connecter';
+              break;
+          }
+        } else {
+          $url = route('auth.login');
+          $text = 'Se connecter';
+        }
+        ?>
+        <a href="{{ route('auth.login') }}" class="btn">{{ $text }}</a>
         <!-- <a class="btn">S'inscrire</a> -->
       </div>
     </header>
