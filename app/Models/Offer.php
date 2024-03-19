@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Company;
+use App\Models\User;
 
 class Offer extends Model
 {
@@ -33,4 +34,13 @@ class Offer extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function users()
+{
+    return $this->belongsToMany(User::class, 'user_offer');
+}
+
+    public function wishlist()
+    {
+        return $this->belongsToMany(User::class, 'user_wishlist', 'offer_id', 'user_id')->withTimestamps();
+    }
 }

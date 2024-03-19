@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Promotion; 
 use App\Models\Offer;
 use App\Models\Auth;
+use App\Models\Wishlist;
 
 
 
@@ -25,5 +26,13 @@ class ProfileController extends Controller
         return view('profile.offers', compact('appliedOffers'));
     }
 
+    public function wishlist()
+    {
+        $user = auth()->user();
+        $wishlist = $user->wishlist;
+        return view('profile.wishlist', compact('wishlist'));
+    }
+
 
 }
+
