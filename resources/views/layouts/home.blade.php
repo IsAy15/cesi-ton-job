@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>@yield('title')</title>
+    @vite('general.css')
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="{{ route('admin.pilotes.index') }}">Utilisateurs</a></li>
+                <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
             </ul>
         </nav>
     </header>
@@ -20,7 +21,9 @@
 
     <footer>
         <div>
-            <p>CESI Ton Job &copy; 2024</p>
+
+            <p>CESI Ton Job &copy; <script>document.write(new Date().getFullYear());
+            </script></p>
         </div>
         <div>
             <a href="{{ route('policy')}}">Politique de confidentialité</a>
