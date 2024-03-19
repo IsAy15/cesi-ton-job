@@ -92,10 +92,11 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 20rem;
     text-decoration: none;
     border: 1px solid #2a008c;
     border-radius: 15px;
-    padding: 10px 20px;
+    padding: 0.5rem;
     background: rgb(16, 0, 105);
     font-size: 1rem;
     font-weight: bold;
