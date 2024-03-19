@@ -47,7 +47,6 @@
     </table>
 
     <script>
-        // Fonction pour filtrer les offres
         function filterOffers() {
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("searchInput");
@@ -55,13 +54,13 @@
             table = document.getElementById("offerTable");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0]; // Première colonne, soit le titre de l'offre
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // Afficher la ligne si le titre correspond à la recherche
+                        tr[i].style.display = ""; 
                     } else {
-                        tr[i].style.display = "none"; // Masquer la ligne si le titre ne correspond pas à la recherche
+                        tr[i].style.display = "none"; 
                     }
                 }       
             }
