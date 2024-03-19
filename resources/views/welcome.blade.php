@@ -34,8 +34,7 @@
           </text>
         </svg>
         <div class="slogan">
-          <p>Un stage ? Une alternance ? Et toujours aucune offre ?</p>
-          <p>Vous êtes au bon endroit !</p>
+          <p>Vous cherchez <p><span class="multiple-text"> </span>
         </div>
       </div>
       <div class="btn-container">
@@ -186,5 +185,20 @@
 
     <!-- Ajoutez un lien vers votre fichier JavaScript -->
     @vite('resources/js/welcome.js')
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const typed = new Typed('.multiple-text', {
+      strings: ['Frontend Developer', 'Un stage ? Une alternance ?', 'Et toujours aucune offre ?', 'Vous êtes au bon endroit !'],
+      typeSpeed: 75,
+      backSpeed: 75,
+      backDelay: 1000,
+      loop: true
+    });
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="script.js"></script>
+
+
   </body>
 </html>

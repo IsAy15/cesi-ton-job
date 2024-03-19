@@ -9,7 +9,7 @@
         </form>
     @endauth
     <?php
-        if (Auth::check() && Auth::user()->role == 'user') {
+        if (Auth::check() && strpos(Auth::user()->role, 'user') !== false) {
             header('Location: /access-denied.php'); 
             exit();
         }

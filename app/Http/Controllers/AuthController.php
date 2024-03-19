@@ -21,7 +21,7 @@ class AuthController extends Controller
     {
         Auth::logout(); 
 
-        return redirect()->route('welcome'); 
+        return redirect()->route('auth.login'); 
     }
 
     public function dologin(LoginRequest $request)

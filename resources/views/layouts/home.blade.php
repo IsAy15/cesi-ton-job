@@ -25,7 +25,7 @@
             <div class="profile-menu">
                 <a href="{{ route('profile.index') }}" id="profile-link">
                 <i class="fa-solid fa-user"></i>
-                <span>{{ Auth::user()->firstname }}</span></a>
+                <span>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span></a>
                 <ul class="submenu">
                 @if (Auth::user()->role == 'admin')
                     <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
