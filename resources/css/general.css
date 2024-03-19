@@ -115,7 +115,6 @@ input {
     margin-left: 1rem;
 }
 
-.mdp {
 .mdp{
     color:black;
     display: flex;
@@ -153,4 +152,3 @@ input {
         transform: scale(1.1); /* Agrandir les boutons au survol */
     }
 }
-
