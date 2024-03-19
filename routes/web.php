@@ -35,13 +35,14 @@ Route::get('/profile/offers', [ProfileController::class, 'offers'])->name('profi
 Route::prefix('offer')->group(function(){
     Route::get('/', [OfferController::class, 'index'])->name('offers.index');
     Route::get('/{id}', [OfferController::class, 'show'])->name('offers.show');
-    Route::get('/create', [OfferController::class, 'create'])->name('offers.create');
     Route::post('/store', [OfferController::class, 'store'])->name('offers.store');
     Route::get('/{id}/edit', [OfferController::class, 'edit'])->name('offers.edit');
     Route::put('/{id}/update', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::get('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
 });
+
+Route::get('/offers/create', [OfferController::class, 'create'])->name('offers.create');
 
 
 

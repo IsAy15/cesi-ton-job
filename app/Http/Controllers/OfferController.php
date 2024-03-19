@@ -34,7 +34,8 @@ class OfferController extends Controller
       return view("offers.create", compact("companies"));
   }
 
-  public function store(Request $request){
+  public function store(Request $request)
+{
     $offer = new Offer();
     $offer->title = $request->input('of_title');
     $offer->description = $request->input('of_description');
@@ -43,12 +44,13 @@ class OfferController extends Controller
     $offer->ending_date = $request->input('of_ending_date');
     $offer->places = $request->input('of_places');
     $offer->salary = $request->input('of_salary');
-    $offer->applies_count = $request->input('of_applies_count');
     $offer->type = $request->input('of_type');
-    $offer->company_id = $request->input('of_company_id'); // Assurez-vous de récupérer la valeur de company_id depuis le formulaire
+    $offer->company_id = $request->input('of_company_id');
     $offer->save();
     return redirect()->route('offers.index');
 }
+
+
 
 
   public function edit($id)
