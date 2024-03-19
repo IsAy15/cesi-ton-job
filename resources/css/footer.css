@@ -7,19 +7,29 @@ footer{
 }
 
 .footer-link{
+    align-items: center;
     display: flex;
     flex-flow: row;
     color : white;
-    font-size : 1rem;
+    font-size : 1.3rem;
     gap : 1rem;
     justify-content: center;
 }
 
+.separation{
+    font-size : 1.5rem;
+}
+
 .footer-button:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 a{
     text-decoration: none;
     color : inherit;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
 }
