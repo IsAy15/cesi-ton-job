@@ -1,5 +1,25 @@
 @import url(reset.css);
 
+html {
+    font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth;
+    @media screen and (max-width: 1920px) {
+        font-size: 24px;
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 20px;
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 16px;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    }
+    @media screen and (max-width: 480px) {
+        font-size: 10px;
+    }
+}
+
 body {
     min-height: 100dvh;
     height: fit-content;
@@ -10,6 +30,14 @@ body {
     background-size: cover;
     display: flex;
     flex-flow: column;
+}
+
+main{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
 }
 
 h1 {
@@ -28,12 +56,33 @@ h1 {
 
 .connexion{
     background-color: white;
-    margin: 1rem;
+    width: fit-content;
+    margin-inline: auto;
 }
 
-.connexion.form{
+.connexion form {
     display: flex;
     flex-flow: column;
     align-items: center;
     gap: 1rem;
+}
+
+::placeholder {
+    text-align: center; 
+ }
+
+input {
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.mdp{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    width: 100%;
 }
