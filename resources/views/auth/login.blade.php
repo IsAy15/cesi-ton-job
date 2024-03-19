@@ -16,12 +16,12 @@
                 <div class="mdp">
                     <a href="#" onclick="alert('Alors connard ?\nTu as oublié ton mot de passe ?');">Mot de passe oublié ?</a>
                 </div>
-            <button type="submit">Se connecter</button>
+            <button type="submit" class="btn">Se connecter</button>
         </form>
     </div>
     <div class="container connexion">
-        <a href="#">Pas encore inscrit ?</a>
-        <a href="#" onclick="alert('Alors connard ?\nTu es nul ?');">Je n'arrive pas à me connecter</a>
+        <a href="#" class="btn">Pas encore inscrit ?</a>
+        <a href="#" class="btn"onclick="alert('Alors connard ?\nTu es nul ?');">Je n'arrive pas à me connecter</a>
     </div>
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 @endsection

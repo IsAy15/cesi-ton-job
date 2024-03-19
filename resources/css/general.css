@@ -58,6 +58,7 @@ h1 {
     background-color: white;
     width: fit-content;
     margin-inline: auto;
+    gap: 1rem;
 }
 
 .connexion form {
@@ -85,4 +86,27 @@ input {
     justify-content: end;
     align-items: end;
     width: 100%;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: 1px solid #2a008c;
+    border-radius: 15px;
+    padding: 10px 20px;
+    background: rgb(16, 0, 105);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s ease;
+    transform-origin: center; /* Définir l'origine de la transformation au centre */
+    &:hover {
+        background: rgb(50, 4, 86);
+        color: white;
+        transform: scale(1.1); /* Agrandir les boutons au survol */
+    }
 }
