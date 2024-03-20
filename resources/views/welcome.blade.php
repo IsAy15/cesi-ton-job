@@ -193,7 +193,7 @@
       strings: ['Frontend Developer', 'Un stage ? Une alternance ?', 'Un emploi ? Une mission ?'],
       typeSpeed: 75,
       backSpeed: 75,
-      backDelay: 1000,
+      backDelay: 1200,
       loop: true
     });
   });
