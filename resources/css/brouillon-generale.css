@@ -118,3 +118,20 @@ form select /* general */{
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     background-color: rgba(128, 128, 128, 0.116);
 }
+
+table /* general */{
+    width: 100%;
+    border: 0.1rem solid rgb(117, 117, 117);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+}
+thead, tfoot /* general */{
+  background-color: rgba(128, 128, 128, 0.4);
+  border: 1rem solid rgba(128, 128, 128,);
+}
+
+th,td /* general */{
+  background-color: rgba(128, 128, 128, 0.2);
+  padding: 8px 10px;
+  text-align: center;
+}
