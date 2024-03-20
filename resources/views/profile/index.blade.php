@@ -2,6 +2,7 @@
 @section('title', 'Votre profil')
 @section('content')
 @vite('resources/css/profile.css')
+@vite('resources/css/brouillon-generale.css')
     <div class="c-1 bg-1">
         <div id="infos_perso" class="liste-h">
             <div id="photo" class="cr-1">
@@ -51,7 +52,7 @@
             @if(Auth::user()->role=="pilote")
                 <div id="admin" class="c-1 bg-2">
                     <p>Promotions :</p>
-                    <div class="liste"> <!-- A compléter -->
+                    <div class="liste-h"> <!-- A compléter -->
                         <div class="elements">
                             <a href="#">Promo 1</a>
                         </div>

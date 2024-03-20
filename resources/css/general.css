@@ -136,7 +136,7 @@ h1 {
     text-align: center;
 }
 
-.connexion form input {
+form input {
     width: 20rem;
     padding: 0.5rem;
     border-radius: 10px;
