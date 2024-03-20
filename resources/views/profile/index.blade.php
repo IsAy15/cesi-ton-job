@@ -18,18 +18,60 @@
                 @endif
             </div>
         </div>
-        @if(Auth::user()->role="user")
-            <div id="admin" class="c-3">
-                <p>Compétences :</p>
-                <div class="competences">
-                <div><a href="#">Compétence 1</a><form style="display: none"><a>+</a></form></div>
-                <p>Compétence 2</p>
-                <p>Compétence 3</p>
-                <p>Compétence 4</p>
-                <p>Compétence 5</p>
-                <a href="#" class="btn-1 btn-2">+</a>
+        @if(Auth::user()->role=="admin")
+
+        @else
+            @if(Auth::user()->role=='user')
+                <div id="admin" class="c-3">
+                    <p>Compétences :</p>
+                    <div class="liste"> <!-- A compléter -->
+                        <div class="elements">
+                            <p>Compétence 1</p>
+                            <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
+                        </div>
+                        <div class="elements">
+                            <p>Compétence 2</p>
+                            <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
+                        </div>
+                        <div class="elements">
+                            <p>Compétence 3</p>
+                            <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
+                        </div>
+                        <div class="elements">
+                            <p>Compétence 4</p>
+                            <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
+                        </div>
+                        <div class="elements">
+                            <p>Compétence 4</p>
+                            <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
+                        </div>
+                    <a href="#" class="btn-1 btn-2">+</a>
+                    </div>
                 </div>
-            </div>
+            @endif
+            @if(Auth::user()->role=="pilote")
+                <div id="admin" class="c-3">
+                    <p>Promotions :</p>
+                    <div class="liste"> <!-- A compléter -->
+                        <div class="elements">
+                            <a href="#">Promo 1</a>
+                        </div>
+                        <div class="elements">
+                            <a href="#">Promo 2</a>
+                        </div>
+                        <div class="elements">
+                            <a href="#">Promo 3</a>
+                        </div>
+                        <div class="elements">
+                            <a href="#">Promo 4</a>
+                        </div>
+                        <div class="elements">
+                            <a href="#">Promo 5</a>
+                        </div>
+                    <a href="#" class="btn-1 btn-2">+</a>
+                    </div>
+                </div>
+            @endif
         @endif
         @if(Auth::user()->role=="admin")
             <div class="interaction">
