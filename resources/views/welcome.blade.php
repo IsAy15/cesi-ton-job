@@ -40,6 +40,10 @@
         </div>
       </div>
       <div class="btn-container">
+        @php
+          $url = route('auth.login');
+          $text = 'Se connecter';
+        @endphp
         @if(Auth::check())
           @switch(Auth::user()->role)
             @case('user')
@@ -59,16 +63,10 @@
                 $url = route('profile.index');
                 $text = 'Accéder au profil';
               @endphp
-              @break
-            @default
-              @php
-                $url = route('auth.login');
-                $text = 'Se connecter';
-              @endphp
+              @break              
           @endswitch
         @endif
         <a href="{{ $url }}" class="btn">{{ $text }}</a>
-        <!-- <a class="btn">S'inscrire</a> -->
       </div>
     </header>
     <main>

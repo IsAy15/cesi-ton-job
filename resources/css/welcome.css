@@ -52,9 +52,9 @@ p {
     font-size: 1rem;
 }
 
-/* body:has(header.scrolled) main {
-  margin-top: 3rem;
-} */
+.welcome {
+    margin-top: 1rem;
+}
 
 .slogan > *,
 .welcome {
@@ -99,9 +99,6 @@ header {
 
     &.scrolled {
         justify-content: space-between;
-        /* background: linear-gradient(to bottom right, #fab330, #ff0000, #800080); */
-        /* background-color: #ed5c3c;
-    background: rgba(0, 0, 0, 0.2); */
         background: rgb(from #ed5c3c r g b / 75%);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
