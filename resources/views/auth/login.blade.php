@@ -31,7 +31,7 @@
         </form>
     </div>
     <div class="container connexion">
-        <a href="#" class="btn">Pas encore inscrit ?</a>
+        <a href="{{ route('auth.register') }}" class="btn">Pas encore inscrit ?</a>
         <a href="#" class="btn"onclick="alert('Alors connard ?\nTu es nul ?');">Je n'arrive pas à me connecter</a>
     </div>
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->

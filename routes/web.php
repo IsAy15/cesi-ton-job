@@ -87,6 +87,7 @@ Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/register/confirmation', function () { return view('auth.confirmation');})->name('registration.confirmation');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

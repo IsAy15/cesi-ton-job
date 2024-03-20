@@ -19,18 +19,18 @@ class ProfileController extends Controller
         return view('profile.index', compact('user'));
     }
 
-    public function offers()
-    {
-        $user = auth()->user();
-        $appliedOffers = $user->appliedOffers;
-        return view('profile.offers', compact('appliedOffers'));
-    }
-
     public function wishlist()
     {
         $user = auth()->user();
         $wishlist = $user->wishlist;
         return view('profile.wishlist', compact('wishlist'));
+    }
+
+    public function offers()
+    {
+        $user = auth()->user();
+        $appliedOffers = $user->offers()->get(); // Utilisez get() pour récupérer les offres
+        return view('profile.offers', compact('appliedOffers'));
     }
 
 

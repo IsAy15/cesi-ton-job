@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Http\CompanyControllers;
 
 
+
 class OfferController extends Controller
 {
   public function index(){
@@ -21,12 +22,15 @@ class OfferController extends Controller
   }
 
   
-  public function show($id)
-    {
-        $offer = Offer::findOrFail($id);
-        $isInWishlist = auth()->check() ? auth()->user()->wishlist->contains($offer) : false;
-        return view('offers.show', compact('offer', 'isInWishlist'));
-    }
+
+public function show($id)
+{
+    $offer = Offer::findOrFail($id);
+    $isInWishlist = auth()->check() ? auth()->user()->wishlist->contains($offer) : false;
+    $isApplied = auth()->check() ? auth()->user()->offers->contains($offer) : false;
+    return view('offers.show', compact('offer', 'isInWishlist', 'isApplied'));
+}
+
 
 
 
