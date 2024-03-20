@@ -22,7 +22,7 @@
             <nav class="navbar">
             <?php
             if(Auth::check()) {?>
-            <div class="profile-menu">
+            <div class="nav-menu profile">
                 <a href="{{ route('profile.index') }}" id="profile-link">
                 <i class="fa-solid fa-user"></i>
                 <span>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span></a>
@@ -44,18 +44,18 @@
             </ul>
         </div>
             </div>
-            <div class="offer">
+            <div class="nav-menu offer">
                 <a href="{{ route('profile.offers') }}">
                     <i class="fa-solid fa-suitcase"></i>
                     <span>Vos offres</span></a>
-                <ul class="submenu-offer">
+                <ul class="submenu">
                     <li><a href="{{ route('offers.index') }}">Voir les offres</a></li>
                 @if (Auth::user()->role == 'admin')
                     <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
                 @endif
                 </ul>
             </div>
-            <div class="wishlist">
+            <div class="nav-menu wishlist">
                 <a href="{{ route('profile.wishlist') }}">
                 <i class="fa-solid fa-heart"></i>
                 <span>Wishlist</span></a>

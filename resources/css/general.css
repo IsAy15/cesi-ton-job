@@ -167,48 +167,13 @@ h1 {
     }
 }
 
-.profile-menu {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    gap: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    background-color: white;
-    transition: 0.5s ease;
-    transform-origin: right;
-    position: relative; /* Ajoutez le positionnement relatif au conteneur */
-    &:hover {
-        background: rgb(50, 4, 86);
-        color: white;
-        transform: scale(1.1);
-    }
-}
-
-.profile-menu a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none; /* Déplacer la décoration du texte */
-}
-
-.profile-menu a i {
-    margin-bottom: 0.5rem; /* Déplacer l'icône */
-}
-
-.offer,
-.wishlist {
-    /* Vos styles existants */
+.nav-menu {
     text-decoration: none;
     flex-direction: column;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
     padding: 0.5rem;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -219,129 +184,49 @@ h1 {
         background: rgb(50, 4, 86);
         color: white;
         transform: scale(1.1);
+        .submenu {
+            display: block;
+        }
     }
-}
-
-.offer a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none; /* Déplacer la décoration du texte */
-}
-
-.offer a i {
-    margin-bottom: 0.5rem; /* Déplacer l'icône */
-}
-
-.wishlist a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none; /* Déplacer la décoration du texte */
-}
-
-.wishlist a i {
-    margin-bottom: 0.5rem; /* Déplacer l'icône */
-}
-
-.submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: none;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    background-color: white;
-    border-radius: 10px;
-    z-index: 100;
-    transition: 0.5s ease;
-    transform-origin: center;
-    &:hover {
-        background: rgb(50, 4, 86);
-        color: white;
-        transform: scale(1.1);
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        i {
+            margin-bottom: 0.5rem;
+        }
     }
-}
-
-.offer:hover .submenu-offer {
-    display: block;
-}
-
-.profile-menu:hover .submenu {
-    display: block;
-}
-
-.submenu li {
-    padding: 0.5rem;
-    text-align: center;
-    transition: 0.5s ease;
-    transform-origin: center;
-}
-
-.submenu li:hover {
-    background: rgb(50, 4, 86);
-    color: white;
-    transform: scale(1.1);
-}
-
-.submenu li:not(:hover) {
-    background-color: white;
-    color: black;
-}
-
-.submenu li:not(:hover):hover {
-    background: rgb(50, 4, 86);
-    color: white;
-    transform: scale(1.1);
-}
-
-.submenu-offer {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: none;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    background-color: white;
-    border-radius: 10px;
-    z-index: 100;
-    transition: 0.5s ease;
-    transform-origin: center;
-    &:hover {
-        background: rgb(50, 4, 86);
-        color: white;
-        transform: scale(1.1);
+    .submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        /* background-color: white; */
+        border-radius: 10px;
+        z-index: 100;
+        transition: 0.5s ease;
+        transform-origin: center;
+        li {
+            background-color: white;
+            color: black;
+            padding: 0.5rem;
+            text-align: center;
+            transition: 0.5s ease;
+            transform-origin: center;
+            &:first-child {
+                border-radius: 0.5rem 0.5rem 0 0;
+            }
+            &:last-child {
+                border-radius: 0 0 0.5rem 0.5rem;
+            }
+            &:hover {
+                background: rgb(50, 4, 86);
+                color: white;
+                transform: scale(1.1);
+                border-radius: 0.75rem;
+            }
+        }
     }
-}
-
-.offer:hover .submenu-offer {
-    display: block;
-}
-
-.submenu-offer li {
-    padding: 0.5rem;
-    text-align: center;
-    transition: 0.5s ease;
-    transform-origin: center;
-}
-
-.submenu-offer li:hover {
-    background: rgb(50, 4, 86);
-    color: white;
-    transform: scale(1.1);
-}
-
-.submenu-offer li:not(:hover) {
-    background-color: white;
-    color: black;
-}
-
-.submenu-offer li:not(:hover):hover {
-    background: rgb(50, 4, 86);
-    color: white;
-    transform: scale(1.1);
 }
