@@ -60,8 +60,8 @@ DROP TABLE IF EXISTS applications;
 CREATE TABLE applications(
    offer_id INT,
    user_id INT,
-   cv VARCHAR(50),
-   letter VARCHAR(50),
+   cv VARCHAR(5000),
+   letter VARCHAR(5000),
    PRIMARY KEY(offer_id, user_id),
    FOREIGN KEY(offer_id) REFERENCES offers(id),
    FOREIGN KEY(user_id) REFERENCES users(id)

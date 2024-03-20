@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Company;
 use App\Http\CompanyControllers;
+use App\Models\Application;
 
 
 
@@ -95,11 +96,28 @@ public function show($id)
   }
 
 
-  public function apply($id)
-  {
-      $offer = Offer::findOrFail($id);
-      return view('offers.apply', compact('offer'));
-  }
+  public function apply(Request $request, $id)
+{
+    $request->validate([
+        'cv' => 'required|file|mimes:pdf|max:2048',
+        'letter' => 'required|file|mimes:pdf|max:2048',
+    ]);
+
+    $cvPath = $request->file('cv')->store('cv');
+    $letterPath = $request->file('letter')->store('letter');
+
+    $application = new Application();
+    $application->cv = $cvPath;
+    $application->letter = $letterPath;
+    $application->offer_id = $id;
+    $application->user_id = auth()->id();
+    $application->save();
+
+    $offer = Offer::findOrFail($id);
+    $offer->increment('applies_count');
+
+    return redirect()->route('offers.show', $id)->with('success', 'Votre candidature a été soumise avec succès.');
+}
 
   
 

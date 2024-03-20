@@ -21,10 +21,18 @@
     <!-- Bouton pour postuler à l'offre -->
     @auth
     @if (!$isApplied)
-    <form action="{{ route('offers.apply', $offer->id) }}" method="POST">
+    <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST">
     @csrf
+    @csrf
+    <label for="cv">CV:</label><br>
+    <input type="file" id="cv" name="cv"><br><br>
+
+    <label for="letter">Lettre de motivation:</label><br>
+    <input type="file" id="letter" name="letter"><br><br>
+    
     <button type="submit" class="btn btn-primary">Postuler</button>
-    </form>
+</form>
+
     @else
     <p>Vous avez déjà postulé à cette offre.</p>
     @endif
@@ -57,5 +65,7 @@
                 }
             })
             .catch(error => console.error('Erreur lors de la récupération de la ville :', error));
+
+            
     </script>
 @endsection
