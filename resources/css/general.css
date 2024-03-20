@@ -6,31 +6,6 @@ html {
     font-size: clamp(12px, 2vw, 20px);
 }
 
-header {
-    display: flex;
-    padding: 1rem;
-    color: white;
-    /*box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); */
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        gap: 1rem;
-    }
-}
-
-.navbar {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: right;
-}
-
-.logo {
-    cursor: pointer;
-}
-
 body {
     min-height: 100dvh;
     height: fit-content;
@@ -41,6 +16,85 @@ body {
     background-size: cover;
     display: flex;
     flex-flow: column;
+}
+
+header {
+    display: flex;
+    padding: 1rem;
+    color: white;
+    .logo {
+        cursor: pointer;
+    }
+    .navbar {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: right;
+        .nav-menu {
+            text-decoration: none;
+            flex-direction: column;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+            background-color: white;
+            transition: 0.5s ease;
+            transform-origin: center;
+            &:hover {
+                background: rgb(50, 4, 86);
+                color: white;
+                transform: scale(1.1);
+                .submenu {
+                    display: block;
+                }
+            }
+            a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-decoration: none;
+                i {
+                    margin-bottom: 0.5rem;
+                }
+            }
+            .submenu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                display: none;
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+                /* background-color: white; */
+                border-radius: 10px;
+                z-index: 100;
+                transition: 0.5s ease;
+                transform-origin: center;
+                li {
+                    background-color: white;
+                    color: black;
+                    padding: 0.5rem;
+                    text-align: center;
+                    transition: 0.5s ease;
+                    transform-origin: center;
+                    &:first-child {
+                        border-radius: 0.5rem 0.5rem 0 0;
+                    }
+                    &:last-child {
+                        border-radius: 0 0 0.5rem 0.5rem;
+                    }
+                    &:hover {
+                        background: rgb(50, 4, 86);
+                        color: white;
+                        transform: scale(1.1);
+                        border-radius: 0.75rem;
+                    }
+                }
+            }
+        }
+    }
 }
 
 main {
@@ -164,69 +218,5 @@ h1 {
         background: rgb(50, 4, 86);
         color: white;
         transform: scale(1.1); /* Agrandir les boutons au survol */
-    }
-}
-
-.nav-menu {
-    text-decoration: none;
-    flex-direction: column;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    background-color: white;
-    transition: 0.5s ease;
-    transform-origin: center;
-    &:hover {
-        background: rgb(50, 4, 86);
-        color: white;
-        transform: scale(1.1);
-        .submenu {
-            display: block;
-        }
-    }
-    a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        i {
-            margin-bottom: 0.5rem;
-        }
-    }
-    .submenu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        display: none;
-        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-        /* background-color: white; */
-        border-radius: 10px;
-        z-index: 100;
-        transition: 0.5s ease;
-        transform-origin: center;
-        li {
-            background-color: white;
-            color: black;
-            padding: 0.5rem;
-            text-align: center;
-            transition: 0.5s ease;
-            transform-origin: center;
-            &:first-child {
-                border-radius: 0.5rem 0.5rem 0 0;
-            }
-            &:last-child {
-                border-radius: 0 0 0.5rem 0.5rem;
-            }
-            &:hover {
-                background: rgb(50, 4, 86);
-                color: white;
-                transform: scale(1.1);
-                border-radius: 0.75rem;
-            }
-        }
     }
 }
