@@ -6,6 +6,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     gap: 1rem;
+    background-color: white;
 }
 
 .c-2 {
@@ -22,12 +23,21 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    background-color: rgba(128, 128, 128, 0.116);
     width: 80%;
     padding: 1rem 1.5rem 1.5rem;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     gap: 1rem;
     overflow: hidden;
+}
+
+.competences {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .bandeau-1 {
@@ -50,4 +60,34 @@
     flex-flow: row wrap;
     justify-content: center;
     gap: 1rem;
+}
+
+.btn-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    text-decoration: none;
+    border: 1px solid #2a008c;
+    border-radius: 15px;
+    padding: 0.5rem;
+    background: rgb(16, 0, 105);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s ease;
+    transform-origin: center; /* Définir l'origine de la transformation au centre */
+
+    &:hover {
+        background: rgb(50, 4, 86);
+        color: white;
+        transform: scale(1.1); /* Agrandir les boutons au survol */
+    }
+}
+
+.btn-2 {
+    width: 1rem;
+    border-radius: 1rem;
 }

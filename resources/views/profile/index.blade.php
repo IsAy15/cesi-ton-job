@@ -5,7 +5,7 @@
     <div class="c-1">
         <div id="infos_perso" class="bandeau-1">
             <div id="photo" class="c-2">
-                <img src="cesi-ton-job\public\images\icons\33645487-icC3B4ne-de-profil-avatar-portrait-masculin-personne-dC3A9contractC3A9e.png" />
+                <img src="{{ asset('images/icons/33645487-icC3B4ne-de-profil-avatar-portrait-masculin-personne-dC3A9contractC3A9e.png') }}" />
             </div>
             <div id="infos" class="infos">
                     <p>{{ Auth::user()->lastname }}</p>
@@ -21,20 +21,22 @@
         @if(Auth::user()->role="user")
             <div id="admin" class="c-3">
                 <p>Compétences :</p>
-                <div 
-                <p>Compétence 1</p>
+                <div class="competences">
+                <div><a href="#">Compétence 1</a><form style="display: none"><a>+</a></form></div>
                 <p>Compétence 2</p>
                 <p>Compétence 3</p>
                 <p>Compétence 4</p>
                 <p>Compétence 5</p>
+                <a href="#" class="btn-1 btn-2">+</a>
+                </div>
             </div>
         @endif
         @if(Auth::user()->role=="admin")
             <div class="interaction">
-                <a href="#" class="btn btn-primary">Voir les utilisateurs</a>
-                <a href="#" class="btn btn-primary">Voir les pilotes</a>
-                <a href="#" class="btn btn-primary">Voir les offres publiée(s)</a>
-                <a href="#" class="btn btn-primary">Voir les entreprises</a>
+                <a href="#" class="btn-1">Voir les utilisateurs</a>
+                <a href="#" class="btn-1">Voir les pilotes</a>
+                <a href="#" class="btn-1">Voir les offres publiée(s)</a>
+                <a href="#" class="btn-1">Voir les entreprises</a>
             </div>
         @else
             @if(Auth::user()->role=="user")
