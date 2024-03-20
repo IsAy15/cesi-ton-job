@@ -46,4 +46,9 @@ class AuthController extends Controller
             'email' => 'Email ou mot de passe incorrect',
         ]);
     }
+    
+    public function register()
+    {
+        return view('auth.register');
+    } 
 }

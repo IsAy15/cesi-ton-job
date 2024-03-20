@@ -2,7 +2,7 @@
 @section('title', 'S\'inscrire')
 @section('content')
     <div class="container">
-        <h1 class="mt-5">S'inscrire</h1>
+        <h1 class="mt-5">Formulaire d'inscription</h1>
         <div class="card mt-3">
             <div class="card-body">
                 <form action="{{ route('auth.register') }}" method="post">
@@ -26,7 +26,6 @@
                     <div class="form-group">
                     <label for="role">Rôle</label>
                     <select class="form-control" id="role" name="role">
-                        <option value="admin">Admin</option>
                         <option value="pilote">Pilote</option>
                         <option value="user">User</option>
                     </select>

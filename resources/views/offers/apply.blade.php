@@ -3,7 +3,7 @@
 @section('content')
     <h1>Postuler à l'offre "{{ $offer->title }}" de {{ $offer->company->name }}</h1>
 
-    <form action="{{ route('offers.apply', $offer->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('offers.apply', $offer->id) }}" method="get" enctype="multipart/form-data">
         @csrf
         <label for="cv">CV:</label><br>
         <input type="file" id="cv" name="cv"><br><br>

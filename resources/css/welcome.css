@@ -42,7 +42,7 @@ span {
     margin-left: 0.2rem;
     margin-right: 0.2rem;
     border-radius: 5px;
-    padding: 10px;
+    padding: 1rem;
     display: flex;
     flex-flow: column;
     gap: 3rem;
@@ -124,9 +124,9 @@ header {
 
 .btn {
     text-decoration: none;
-    border: 1px solid #2a008c;
+    border: thin solid #2a008c;
     border-radius: 15px;
-    padding: 10px 20px;
+    padding: 1rem 2rem;
     background: rgb(16, 0, 105);
     font-size: 1rem;
     font-weight: bold;
@@ -150,10 +150,10 @@ header {
 .para {
     display: flex;
     flex-flow: column;
-    gap: 5px;
+    gap: 1rem;
 }
 
 h2 {
     font-weight: bold;
-    font-size: 35px;
+    font-size: 1.5rem;
 }
