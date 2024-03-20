@@ -2,12 +2,12 @@
 @section('title', 'Votre profil')
 @section('content')
 @vite('resources/css/profile.css')
-    <div class="c-1">
-        <div id="infos_perso" class="bandeau-1">
-            <div id="photo" class="c-2">
+    <div class="c-1 bg-1">
+        <div id="infos_perso" class="liste-h">
+            <div id="photo" class="cr-1">
                 <img src="{{ asset('images/icons/33645487-icC3B4ne-de-profil-avatar-portrait-masculin-personne-dC3A9contractC3A9e.png') }}" />
             </div>
-            <div id="infos" class="infos">
+            <div id="infos" class="liste-v">
                     <p>{{ Auth::user()->lastname }}</p>
                     <p>{{ Auth::user()->firstname }}</p>
                     <p>{{ Auth::user()->email }}</p>
@@ -19,29 +19,28 @@
             </div>
         </div>
         @if(Auth::user()->role=="admin")
-
         @else
             @if(Auth::user()->role=='user')
-                <div id="admin" class="c-3">
+                <div id="admin" class="c-1 bg-2">
                     <p>Compétences :</p>
-                    <div class="liste"> <!-- A compléter -->
-                        <div class="elements">
+                    <div class="liste-h"> <!-- A compléter -->
+                        <div class="liste-h elements">
                             <p>Compétence 1</p>
                             <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
                         </div>
-                        <div class="elements">
+                        <div class="liste-h elements">
                             <p>Compétence 2</p>
                             <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
                         </div>
-                        <div class="elements">
+                        <div class="liste-h elements">
                             <p>Compétence 3</p>
                             <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
                         </div>
-                        <div class="elements">
+                        <div class="liste-h elements">
                             <p>Compétence 4</p>
                             <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
                         </div>
-                        <div class="elements">
+                        <div class="liste-h elements">
                             <p>Compétence 4</p>
                             <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
                         </div>
@@ -50,7 +49,7 @@
                 </div>
             @endif
             @if(Auth::user()->role=="pilote")
-                <div id="admin" class="c-3">
+                <div id="admin" class="c-1 bg-2">
                     <p>Promotions :</p>
                     <div class="liste"> <!-- A compléter -->
                         <div class="elements">
@@ -74,7 +73,7 @@
             @endif
         @endif
         @if(Auth::user()->role=="admin")
-            <div class="interaction">
+            <div class="liste-h">
                 <a href="#" class="btn-1">Voir les utilisateurs</a>
                 <a href="#" class="btn-1">Voir les pilotes</a>
                 <a href="#" class="btn-1">Voir les offres publiée(s)</a>
@@ -82,15 +81,15 @@
             </div>
         @else
             @if(Auth::user()->role=="user")
-                <div class="interaction">
-                    <a href="{{ route('profile.offers') }}" class="btn btn-primary">Voir les offres postulées</a>
-                    <a href="#" class="btn btn-primary">voir les stats</a>
+                <div class="liste-h">
+                    <a href="{{ route('profile.offers') }}" class="btn-1">Voir les offres postulées</a>
+                    <a href="#" class="btn-1">voir les stats</a>
                 </div>
             @endif
             @if(Auth::user()->role=="pilote")
-                <div class="interaction">
-                    <a href="#" class="btn btn-primary">Voir les offres publiée(s)</a>
-                    <a href="#" class="btn btn-primary">Voir les entreprises</a>
+                <div class="liste-h">
+                    <a href="#" class="btn-1">Voir les offres publiée(s)</a>
+                    <a href="#" class="btn-1">Voir les entreprises</a>
                 </div>
             @endif
         @endif

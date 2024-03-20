@@ -1,4 +1,4 @@
-.c-1 {
+.c-1 /* general */{
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -6,10 +6,9 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     gap: 1rem;
-    background-color: white;
 }
 
-.c-2 {
+.cr-1 /* general */ {
     display: flex;
     justify-content: center;
     width: 10rem;
@@ -19,54 +18,29 @@
     overflow: hidden;    
 }
 
-.c-3 {
+.bg-1 /* general */{
+    background-color: white;
+}
+
+.liste-h /* general */{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.liste-v /* general */{
     display: flex;
     flex-flow: column;
-    align-items: center;
-    background-color: rgba(128, 128, 128, 0.116);
-    width: 80%;
-    padding: 1rem 1.5rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    gap: 1rem;
-    overflow: hidden;
-}
-
-.liste {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
 }
 
-.bandeau-1 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    gap: 1rem;
-}
-
-.infos {
-    display: flex;
-    flex-flow: column;
-    gap: 2rem;
-}
-
-.interaction {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.btn-1 {
+.btn-1 /* general */{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: auto;
+    width: 20rem;
     text-decoration: none;
     border: 1px solid #2a008c;
     border-radius: 15px;
@@ -87,17 +61,18 @@
     }
 }
 
-.btn-2 {
+.btn-2 /* general */{
     width: 1rem;
     border-radius: 1rem;
 }
 
+.bg-2 {
+    background-color: rgba(128, 128, 128, 0.116);
+    width: 80%;
+    overflow: auto;
+}
+
 .elements {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
     padding: 0.5rem;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
