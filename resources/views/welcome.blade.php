@@ -71,114 +71,15 @@
     </header>
     <main>
       <div class="card">
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis.Lorem ipsum dolor sit
-          amet consectetur, adipisicing elit. Soluta, provident minus quos est
-          reprehenderit a sequi et veniam atque quia asperiores facilis dicta
-          voluptatem rem facere molestiae laborum perferendis. Reiciendis. Lorem
-          ipsum dolor sit amet consectetur, adipisicing elit. Soluta, provident
-          minus quos est reprehenderit a sequi et veniam atque quia asperiores
-          facilis dicta voluptatem rem facere molestiae laborum perferendis.
-          Reiciendis. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Soluta, provident minus quos est reprehenderit a sequi et veniam atque
-          quia asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis.
-          Reiciendis.Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Soluta, provident minus quos est reprehenderit a sequi et veniam atque
-          quia asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis.Lorem ipsum dolor sit
-          amet consectetur, adipisicing elit. Soluta, provident minus quos est
-          reprehenderit a sequi et veniam atque quia asperiores facilis dicta
-          voluptatem rem facere molestiae laborum perferendis. Reiciendis. Lorem
-          ipsum dolor sit amet consectetur, adipisicing elit. Soluta, provident
-          minus quos est reprehenderit a sequi et veniam atque quia asperiores
-          facilis dicta voluptatem rem facere molestiae laborum perferendis.
-          Reiciendis. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Soluta, provident minus quos est reprehenderit a sequi et veniam atque
-          quia asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          provident minus quos est reprehenderit a sequi et veniam atque quia
-          asperiores facilis dicta voluptatem rem facere molestiae laborum
-          perferendis. Reiciendis. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Soluta, provident minus quos est reprehenderit a
-          sequi et veniam atque quia asperiores facilis dicta voluptatem rem
-          facere molestiae laborum perferendis. Reiciendis. Lorem ipsum dolor
-          sit amet consectetur, adipisicing elit. Soluta, provident minus quos
-          est reprehenderit a sequi et veniam atque quia asperiores facilis
-          dicta voluptatem rem facere molestiae laborum perferendis. Reiciendis.
-        </p>
+        <div class="cell">
+          <div class="para">
+            <h2>Qu’est-ce que CESI-TON-JOB ?</h2>
+            <p>CESI-TON-JOB est un projet en partenariat avec CESI école d’ingénieur afin d’aider les étudiants à trouver leur contrat professionnel. Stage, alternance, CDI ou CDD, vos pilotes de promotion posteront ici toute les offres des partenaires de CESI que vous pourrez consulter et même y candidater. Ce système est là pour faciliter le travail de recherche et mettre en valeur la collaboration avec le monde professionnel qui est la base de l’enseignement au CESI.</p>
+          </div>
+          <div class="illu">
+            
+          </div>
+        </div>
       </div>
     </main>
 

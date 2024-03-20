@@ -57,6 +57,9 @@ span{
     margin-right: 0.2rem;
     border-radius: 5px;
     padding: 10px;
+    display: flex;
+    flex-flow: column;
+    gap : 10px;
 }
 
 p {
@@ -153,13 +156,18 @@ header {
     }
 }
 
-footer {
-    background: rgba(0, 0, 0, 0.2);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    font-size: 1.5rem;
+.cell{
+    display: flex;
+    flex-flow: row;
+}
+
+.para{
+    display: flex;
+    flex-flow:column;
+    gap : 5px;
+}
+
+h2{
     font-weight: bold;
-    text-align: center;
-    padding: 1rem;
+    font-size: 35px;
 }
