@@ -7,6 +7,20 @@
     src: url("../fonts/FKScreamer-Bold.woff") format("woff");
 }
 
+ 
+  ::-webkit-scrollbar {
+    height: 1rem;
+    width: 0.5rem;
+    background-color: #ed5c3c;
+    
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #2a008c;
+    width: 1px;
+    border-radius: 1rem;
+  }
+
 html {
     font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
