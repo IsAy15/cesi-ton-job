@@ -18,7 +18,8 @@
                     <tr>
                         <td>{{ $promotion->name }}</td>
                         <td>
-                            <div class="a-001">
+                            <div class="table-interactions">
+                                <a href="#" class="btn-1 btn-2"><i class="fa-solid fa-user-plus"></i></a>
                                 <a href="{{ route('promotions.users', $promotion->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-eye"></i></a>
                                 <a href="{{ route('promotions.edit', $promotion->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <form action="{{ route('promotions.destroy', $promotion->id) }}" method="post"  class="form-v">

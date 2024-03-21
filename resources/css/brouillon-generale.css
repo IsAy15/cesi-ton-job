@@ -147,3 +147,10 @@ tbody tr:nth-child(odd) /* general */{
 tbody tr:nth-child(even) /* general */{
     background-color: rgba(128, 128, 128, 0.6);
 }
+
+.table-interactions /* general */{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 1rem;
+}
