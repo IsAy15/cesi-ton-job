@@ -31,6 +31,12 @@
     background-color: white;
 }
 
+.bg-2 /* general */{
+    background-color: rgba(128, 128, 128, 0.116);
+    width: 80%;
+    overflow: auto;
+}
+
 .liste-h /* general */{
     display: flex;
     flex-flow: row wrap;
@@ -95,6 +101,13 @@ h1 /* general */{
     font-size: 2.5rem;
 }
 
+h2 /* general */{
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+}
+
 .form-v /* general */{
     display: flex;
     flex-flow: column;
@@ -102,7 +115,7 @@ h1 /* general */{
     gap: 1rem;
 }
 
-form input /* general */{
+input[type="text"] /* general */{
     width: 20rem;
     padding: 0.5rem;
     border-radius: 10px;
@@ -155,4 +168,25 @@ tbody tr:nth-child(even) /* general */{
     flex-direction: row;
     justify-content: end;
     gap: 1rem;
+}
+
+.clickable /* general */{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.clickable:hover /* general */{
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.4);
+
+}
+
+.elements /* general */{
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.3);
+    transition: 0.5s ease;
+    transform-origin: center;
 }
