@@ -1,6 +1,8 @@
 @extends('layouts.home')
 @section('title', 'Utilisateurs de la promotion')
 @section('content')
+@vite('resources/css/brouillon-generale.css')
+    <div class="c-1 bg-1 fit-center">
     <h1>Utilisateurs de la promotion "{{ $promotion->name }}"</h1>
     <table>
         <thead>
