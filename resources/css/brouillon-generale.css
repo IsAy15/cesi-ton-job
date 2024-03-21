@@ -19,6 +19,9 @@
 }
 
 .fit-center /* general */{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     width: fit-content;
     min-width: 30dvw;
     margin-inline: auto;
