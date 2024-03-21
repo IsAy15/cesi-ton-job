@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'name' => 'LaravelPWA',
+    'name' => 'CESI Ton Job',
     'manifest' => [
-        'name' => env('APP_NAME', 'My PWA App'),
-        'short_name' => 'PWA',
+        'name' => env('CESI Ton Job', 'CESI Ton Job'),
+        'short_name' => 'CTJ',
         'start_url' => '/',
         'background_color' => '#ffffff',
         'theme_color' => '#000000',

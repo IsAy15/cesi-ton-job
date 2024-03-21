@@ -6,11 +6,12 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/general.css')
+    @cookieconsentscripts
 </head>
 <body>
     <header>
         <div class="logo" onclick="window.location = '{{ route('welcome') }}'">
-            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2090 2090" width="3rem" height="auto">
+            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2090 2090" width="3rem">
                 <style>
                         .s0 { fill: #ffffff } 
                         .s1 { fill: #fefefe } 
@@ -22,11 +23,12 @@
         <nav class="navbar">
             @if (Auth::check())
                 <div class="nav-menu profile">
-                    <a href="{{ route('profile.index') }}" id="profile-link">
+                    <div class="nav-menu-content" id="profile-link">
                         <i class="fa-solid fa-user"></i>
                         <span>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
-                    </a>
+                    </div>
                     <ul class="submenu">
+                        <li><a href="{{ route('profile.index') }}">Profil</a></li>
                         @if (Auth::user()->role == 'admin')
                             <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                             <li><a href="{{ route('companies.index') }}">Entreprises</a></li>
@@ -42,47 +44,30 @@
                     </ul>
                 </div>
                 <div class="nav-menu offer">
-                    <a href="{{ route('profile.offers') }}">
+                    <div class="nav-menu-content" href="{{ route('profile.offers') }}">
                         <i class="fa-solid fa-suitcase"></i>
-                        <span>Vos offres</span></a>
+                        <span>Vos offres</span>
+                    </div>
                     <ul class="submenu">
-                        <li><a href="{{ route('offers.index') }}">Voir les offres</a></li>
+                        <li><a href="{{ route('profile.offers') }}">Voir mes offres</a></li>
+                        <li><a href="{{ route('offers.index') }}">Voir toutes les offres</a></li>
                     @if (Auth::user()->role == 'admin')
                         <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
                     @endif
                     </ul>
                 </div>
                 <div class="nav-menu wishlist">
-                    <a href="{{ route('profile.wishlist') }}">
-                    <i class="fa-solid fa-heart"></i>
-                    <span>Wishlist</span></a>
-                </a>
+                    <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Wishlist</span>
+                    </a>
                 </div>
             @endif             
         </nav>
     </header>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const profileLink = document.getElementById('profile-link');
-        const logoutButton = document.getElementById('logout-button');
-
-        profileLink.addEventListener('mouseenter', function() {
-            logoutButton.style.display = 'block';
-        });
-
-        profileLink.addEventListener('mouseleave', function() {
-            logoutButton.style.display = 'none';
-        });
-    });
-
-    function logout() {
-    event.preventDefault(); 
-    document.getElementById('logout-form').submit();
-}
-
-    </script>
     <main>
         @yield('content')
+        @cookieconsentview
     </main>
     @extends('layouts.footer')
     @yield('footer')

@@ -1,9 +1,17 @@
 // Attend que le document soit prêt
 document.addEventListener("DOMContentLoaded", function () {
+// Defilement des textes
+    const typed = new Typed('.multiple-text', {
+        strings: ['Frontend Developer', 'Un stage ? Une alternance ?', 'Un emploi ? Une mission ?'],
+        typeSpeed: 75,
+        backSpeed: 75,
+        backDelay: 1200,
+        loop: true
+      });
+
+// Header
     // Récupère les éléments HTML nécessaires
     var header = document.querySelector("header");
-    var welcomeText = document.querySelector(".welcome");
-
     // Fonction pour gérer le défilement
     function handleScroll() {
         var scrollPosition = window.scrollY;
