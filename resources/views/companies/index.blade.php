@@ -3,7 +3,7 @@
 @section('content')
     <h1>Liste des Entreprises</h1>
     <input type="text" id="searchInput" placeholder="Rechercher une entreprise...">
-    <a href="{{ route('companies.create') }}" class="btn btn-primary">Ajouter une entreprise</a>
+    <a href="{{ route('companies.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
 
     @foreach ($companies as $company)
         <div class="company">
@@ -14,11 +14,11 @@
                 <p>Moyenne des notes : {{ $company->average_grade }}</p>
             </div>
             <div class="actions">
-                <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-warning">Modifier</a>
+                <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                 <form action="{{ route('companies.destroy', $company->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                 </form>
             </div>
         </div>
