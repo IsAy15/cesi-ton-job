@@ -20,6 +20,7 @@
 
 .fit-center /* general */{
     width: fit-content;
+    min-width: 30dvw;
     margin-inline: auto;
 }
 
@@ -67,8 +68,8 @@
 }
 
 .btn-2 /* general */{
-    width: 1rem;
-    border-radius: 1rem;
+    width: fit-content;
+    border-radius: 0.5rem;
 }
 
 .text-danger /* general */{
@@ -88,7 +89,7 @@ h1 /* general */{
     color: black;
     text-align: center;
     display: block;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .form-v /* general */{
@@ -123,15 +124,26 @@ table /* general */{
     width: 100%;
     border: 0.1rem solid rgb(117, 117, 117);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    font-size: 1rem;
-}
-thead, tfoot /* general */{
-  background-color: rgba(128, 128, 128, 0.4);
-  border: 1rem solid rgba(128, 128, 128,);
+    font-size: 1rem;    
 }
 
-th,td /* general */{
-  background-color: rgba(128, 128, 128, 0.2);
-  padding: 8px 10px;
-  text-align: center;
+thead, tfoot /* general */{
+    background-color: rgb(16, 0, 105);
+    border: 1rem solid rgba(128, 128, 128,);
+    color: white;
+}
+
+th,td /* general */{    
+    background-color: rgba(128, 128, 128, 0.2);
+    padding: 1rem;
+    text-align: center;
+}
+
+tbody tr:nth-child(odd) /* general */{
+    background-color: rgba(128, 128, 128, 0.8);
+    border: solid black 1px;
+}
+  
+tbody tr:nth-child(even) /* general */{
+    background-color: rgba(128, 128, 128, 0.6);
 }
