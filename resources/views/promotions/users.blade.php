@@ -4,7 +4,7 @@
 @vite('resources/css/brouillon-generale.css')
     <div class="c-1 bg-1 fit-center">
     <h1>Utilisateurs de la promotion "{{ $promotion->name }}"</h1>
-    <table>
+        <table>
         <thead>
             <tr>
                 <th>Nom</th>
@@ -24,5 +24,6 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('promotions.index') }}">Retour</a>
+    <a href="#" class="btn-1 btn-2"><i class="fa-solid fa-user-plus"></i></a>
+    <a href="{{ route('promotions.index') }}" class="btn-1">Retour</a>
 @endsection
