@@ -34,11 +34,11 @@
                     <input type="date" name="of_ending_date" id="of_ending_date">
                 </div>
             </div>
-            <div class="">
+            <div>
                 <label for="of_places">Places disponibles</label>
                 <input type="number" name="of_places" id="of_places">
             </div>
-            <div class="">
+            <div>
                 <label for="of_salary">Salaire (/mois)</label>
                 <input type="number" name="of_salary" id="of_salary">
             </div>

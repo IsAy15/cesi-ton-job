@@ -40,6 +40,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->role = $request->role;
         $user->password = $request->password; 
+        $user->status = 'approved';
         $user->save();
 
         $user->promotions()->attach($request->promotion);
