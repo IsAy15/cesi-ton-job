@@ -6,7 +6,9 @@
     <div class="c-1 bg-1 fit-center">
         <h1>Liste des Entreprises</h1>
         <input type="text" id="searchInput" placeholder="Rechercher une entreprise...">
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')
         <a href="{{ route('companies.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></a>
+        @endif
         @foreach ($companies as $company)
             <div class="c-1 bg-2">
                 <div class="liste-v">
@@ -26,6 +28,7 @@
                         </div>
                     </div>
                 </div>
+                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')
                 <div class="liste-h">
                     <a href="{{ route('companies.edit', $company->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
                     <form action="{{ route('companies.destroy', $company->id) }}" method="post">
@@ -34,6 +37,7 @@
                         <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
+                @endif
             </div>
         @endforeach
         <script>

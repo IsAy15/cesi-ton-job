@@ -3,6 +3,13 @@
 @section('content')
 @vite('resources/css/brouillon-generale.css')
 @vite('resources/css/checkmark.css')
+
+@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
+    <?php
+        header('Location: /access-denied.php');
+        exit();
+    ?>
+@endif
     <div class="c-1 bg-1 fit-center">
         <h1>Ajouter une entreprise</h1>
         <form action="{{ route('companies.store') }}" method="post" class="form-v">

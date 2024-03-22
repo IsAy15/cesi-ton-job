@@ -2,6 +2,14 @@
 @section('title', 'Modifier une entreprise')
 @section('content')
 @vite('resources/css/brouillon-generale.css')
+
+@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
+    <?php
+        header('Location: /access-denied.php');
+        exit();
+    ?>
+@endif
+
     <div class="c-1 bg-1 fit-center">
         <h1>Modifier une entreprise</h1>
         <form action="{{ route('companies.update', $company->id) }}" method="post" class="form-v">

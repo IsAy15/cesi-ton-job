@@ -1,6 +1,12 @@
 @extends('layouts.home')
 @section('title', 'Ajouter une offre')
 @section('content')
+@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
+    <?php
+        header('Location: /access-denied.php');
+        exit();
+    ?>
+@endif
     <h1>Ajouter une offre</h1>
     <form action="{{ route('offers.store') }}" method="post">
         @csrf

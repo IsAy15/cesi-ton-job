@@ -1,6 +1,12 @@
 @extends('layouts.home')
 @section('title', 'Modifier une offre')
 @section('content')
+@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
+    <?php
+        header('Location: /access-denied.php');
+        exit();
+    ?>
+@endif
     <form action="{{ route('offers.update', $offer->id) }}" method="post">
         @csrf
         @method('PUT')
