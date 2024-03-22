@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>CESI Ton Stage</title>
+
+    <script src="https://kit.fontawesome.com/985e8bf704.js" crossorigin="anonymous"></script>
+
     @cookieconsentscripts
     @laravelPWA
     @vite('resources/css/welcome.css')
@@ -104,6 +107,11 @@
 
       </div>
       @cookieconsentview
+      @cookieconsentbutton(action: 'reset', label: '', attributes: ['id' => 'reset-cookies-button'])
+      <script>
+        document.querySelector('.cookiebtn__label').innerHTML = '<i class="fa-solid fa-cookie"></i>';
+      </script>
+      
     </main>
 
     @extends('layouts.footer')
