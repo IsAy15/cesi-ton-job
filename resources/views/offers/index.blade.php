@@ -1,8 +1,17 @@
 @extends('layouts.home')
 @section('title', 'Offres d\'emploi')
 @section('content')
+@vite('resources/css/offer.css')
     <h1>Offres d'emploi</h1>
-    <input type="text" id="searchInput" placeholder="Rechercher une offre...">
+    
+    <div class="search-container">
+    <div class="container">
+        <input type="text" placeholder="Search..." id="searchInput">
+        <div class="search"></div>
+    </div>
+</div>
+
+
     <a href="{{ route('offers.create') }}">Ajouter une offre</a>
     <table id="offerTable">
         <thead>
@@ -34,7 +43,6 @@
                             @method('DELETE')
                             <button type="submit">Supprimer</button>
                         </form>
-                        <a href="{{ route('offers.apply', $offer->id) }}" class="btn btn-primary">Postuler</a>
                     </td>
                 </tr>
             @endforeach
