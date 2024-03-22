@@ -9,8 +9,8 @@
             @csrf
             <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}" placeholder="Nom">
             <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}" placeholder="Prénom">
-            <input type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
-            <input type="text" name="password" id="password" placeholder="Mot de passe">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
+            <input type="password" name="password" id="password" placeholder="Mot de passe">
             <div>
                 <label for="role">Rôle :</label>
                 <select id="role" name="role">

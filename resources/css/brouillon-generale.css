@@ -124,6 +124,24 @@ input[type="text"] /* general */{
     background-color: rgba(128, 128, 128, 0.116);
 }
 
+input[type="password"] /* general */{
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+input[type="email"] /* general */{
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
 ::placeholder /* general */{
     text-align: center;
 }
