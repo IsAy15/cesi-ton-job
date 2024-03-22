@@ -33,7 +33,6 @@ class OfferController extends Controller
       $relatedOffers = Offer::where('company_id', $offer->company_id)
                           ->where('id', '!=', $offer->id) // Exclure l'offre actuelle
                           ->get();
-  
       return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'relatedOffers'));
   }
   
