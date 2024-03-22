@@ -8,9 +8,9 @@
         <div>
             <form>
                 <div class="liste-h search-bar">
-                    <input type="text" id="keywordInput" placeholder="Mot-clés" class="">
-                    <h2>|</h2>
-                    <input type="text" id="locationInput" placeholder="Localisation" class="input-search-bar">
+                        <input type="text" id="keywordInput" placeholder="Mot-clés" class="">
+                        <h2>|</h2>
+                        <input type="text" id="locationInput" placeholder="Localisation" class="input-search-bar">
                     <a href="#" id="searchButton" class="btn-1 btn-2"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </div>
             </form>
