@@ -128,6 +128,9 @@ Route::prefix('promotion')->group(function(){
     Route::put('/{id}/update', [PromotionController::class, 'update'])->name('promotions.update');
     Route::delete('/{id}/destroy', [PromotionController::class, 'destroy'])->name('promotions.destroy');
     Route::get('/{id}/users', [PromotionController::class, 'showUsers'])->name('promotions.users');
+    Route::get('/{id}/addUser', [PromotionController::class, 'addUser'])->name('promotions.addUser');
+    Route::post('/{id}/addUser', [PromotionController::class, 'storeUser'])->name('promotions.storeUser');
+    Route::delete('/{id}/removeUser/{userId}', [PromotionController::class, 'removeUser'])->name('promotions.removeUser');
 });
 
 
