@@ -83,14 +83,14 @@
         @else
             @if(Auth::user()->role=="user")
                 <div class="liste-h">
-                    <a href="{{ route('profile.offers') }}" class="btn-1">Voir les offres postulées</a>
-                    <a href="#" class="btn-1">voir les stats</a>
+                    <a href="{{ route('profile.offers') }}" class="btn-1 btn-2">Voir les offres postulées</a>
+                    <a href="#" class="btn-1 btn-2">voir les stats</a>
                 </div>
             @endif
             @if(Auth::user()->role=="pilote")
                 <div class="liste-h">
-                    <a href="{{ route('offers.index') }}" class="btn-1">Voir les offres publiée(s)</a>
-                    <a href="{{ route('companies.index') }}" class="btn-1">Voir les entreprises</a>
+                    <a href="{{ route('offers.index') }}" class="btn-1 btn-2">Voir les offres publiée(s)</a>
+                    <a href="{{ route('companies.index') }}" class="btn-1 btn-2">Voir les entreprises</a>
                 </div>
             @endif
         @endif
