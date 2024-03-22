@@ -31,9 +31,7 @@
                 <p>Date de début : {{ $offer->starting_date }}</p>
                 <p>Date de fin : {{ $offer->ending_date }}</p>
             </div>
-            <div class="fit-center">
-                <p>Salaire : {{ $offer->salary }}</p>
-            </div>
+            <p>Salaire : {{ $offer->salary }}</p>
             <div>
                 <p>Places disponibles : {{ $offer->places }}</p>
                 <p>Nombres de candidatures : {{ $offer->applies_count }}</p>
@@ -45,14 +43,16 @@
                     @csrf
                     @csrf
                     <div class="liste-h">
-                        <div class="input-required">
-                            <input type="file" id="cv" name="cv" class="inputfile">
-                            <label for="cv">Upload CV</label>
-                        </div>
-                        <div class="input-required">
-                            <input type="file" id="letter" name="letter" class="inputfile">
-                            <label for="letter">Lettre de motivation</label>
-                        </div>
+                    <div class="input-required">
+                        <input type="file" id="cv" name="cv" class="inputfile">
+                        <label for="cv" class="clickable">Upload CV</label>
+                        <p id="cvFileName" class="file-name"></p>
+                    </div>
+                    <div class="input-required">
+                        <input type="file" id="letter" name="letter" class="inputfile">
+                        <label for="letter" class="clickable">Lettre de motivation</label>
+                        <p id="letterFileName" class="file-name"></p>
+                    </div>
                     </div>
                     <button type="submit" class="btn-1 btn-2">Postuler</button>
                 </form>
@@ -64,6 +64,20 @@
 
         <a href="{{ route('offers.index') }}" class="btn-1">Retour</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var inputs = document.querySelectorAll('.inputfile');
+            inputs.forEach(function(input) {
+                input.addEventListener('change', function() {
+                    var fileName = this.files[0].name;
+                    var fileId = this.id + 'FileName';
+                    var fileDisplay = document.getElementById(fileId);
+                    fileDisplay.textContent = fileName;
+                });
+            });
+        });
+    </script>
 
     <script>
         var postalCode = "{{ $offer->localization }}";
