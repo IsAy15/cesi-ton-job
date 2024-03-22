@@ -1,9 +1,29 @@
-.mdp {
+@import url("checkmark.css");
+
+.mdp-options {
     color: black;
     display: flex;
+    width: 100%;
     flex-direction: row;
-    justify-content: end;
-    align-items: end;
+    justify-content: space-between;
+    align-items: center;
     text-decoration: underline;
-    width: 90%;
+    *:hover {
+        text-decoration: underline;
+        color: blue;
+    }
+
+    a {
+        color: black;
+    }
+
+    .rememberme {
+        display: flex;
+        gap: 0.25rem;
+        cursor: pointer;
+        align-items: center;
+        * {
+            cursor: pointer;
+        }
+    }
 }
