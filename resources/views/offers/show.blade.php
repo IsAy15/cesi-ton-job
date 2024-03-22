@@ -23,38 +23,36 @@
                 <p>Salaire : {{ $offer->salary }}</p>
             </div>
         </div>
-        
-        <!-- Bouton pour postuler à l'offre -->
         @auth
-        @if (!$isApplied)
-        <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST">
-        @csrf
-        @csrf
-        <label for="cv">CV:</label><br>
-        <input type="file" id="cv" name="cv"><br><br>
+            @if (!$isApplied)
+                <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v">
+                    @csrf
+                    @csrf
+                    <div class="form-v">
+                        <label for="cv">CV:</label><br>
+                        <input type="file" id="cv" name="cv"><br><br>
+                    </div>
+                    <label for="letter">Lettre de motivation:</label><br>
+                    <input type="file" id="letter" name="letter"><br><br>
+                    
+                    <button type="submit" class="btn btn-primary">Postuler</button>
+                </form>
 
-        <label for="letter">Lettre de motivation:</label><br>
-        <input type="file" id="letter" name="letter"><br><br>
-        
-        <button type="submit" class="btn btn-primary">Postuler</button>
-        </form>
-
-        @else
-        <p>Vous avez déjà postulé à cette offre.</p>
-        @endif
-
-        @if ($isInWishlist)
-        <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
-        @csrf
-        @method('DELETE') <!-- Ajout de la méthode DELETE -->
-                <button type="submit">Supprimer de la wishlist</button>
-        </form>
-        @else
-        <form action="{{ route('wishlist.add', $offer->id) }}" method="post">
-        @csrf
-        <button type="submit">Ajouter à la wishlist</button>
-        </form>
-        @endif
+            @else
+                <p>Vous avez déjà postulé à cette offre.</p>
+            @endif
+            @if ($isInWishlist)
+                <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
+                @csrf
+                @method('DELETE') <!-- Ajout de la méthode DELETE -->
+                        <button type="submit">Supprimer de la wishlist</button>
+                </form>
+            @else
+                <form action="{{ route('wishlist.add', $offer->id) }}" method="post">
+                    @csrf
+                    <button type="submit">Ajouter à la wishlist</button>
+                </form>
+            @endif
         @endauth
 
         <a href="{{ route('offers.index') }}">Retour à la page précédente</a>

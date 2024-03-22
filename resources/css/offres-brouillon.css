@@ -1,7 +1,6 @@
 .end-item {
     display: flex;
-    flex-flow: row;
-    justify-content: end;
+    flex-flow: row-reverse;
     width: 100%;
     gap: 1rem;
 }

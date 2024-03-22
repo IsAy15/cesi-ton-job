@@ -3,7 +3,7 @@
 @section('content')
 @vite('resources/css/profile.css')
 @vite('resources/css/brouillon-generale.css')
-    <div class="c-1 bg-1">
+    <div class="c-1 bg-1 fit-center">
         <div id="infos_perso" class="liste-h">
             <div id="photo" class="cr-1">
                 <img src="{{ asset('images/icons/33645487-icC3B4ne-de-profil-avatar-portrait-masculin-personne-dC3A9contractC3A9e.png') }}" />
