@@ -26,7 +26,7 @@
             <h2>{{ $offer->company->name }}</h2>
             <p>Type de contrat: {{ $offer->type }}</p>
             <p>{{ $offer->description }}</p>
-            <p>Ville : <span id="ville"></span> ({{ $offer->localization }})</p> <!-- Ajout de l'élément span pour afficher la ville -->
+            <p>Ville : <span id="ville"></span> ({{ $offer->localization }})</p> 
             <div class="space">
                 <p>Date de début : {{ $offer->starting_date }}</p>
                 <p>Date de fin : {{ $offer->ending_date }}</p>
@@ -39,7 +39,7 @@
         </div>
         @auth
             @if (!$isApplied)
-                <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v">
+                <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v" enctype="multipart/form-data">
                     @csrf
                     @csrf
                     <div class="liste-h">
