@@ -24,13 +24,14 @@ html {
     font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
     font-size: clamp(12px, 2vw, 20px);
+    color: var(--textcolor);
 }
 
 body {
     min-height: 100dvh;
     height: fit-content;
     margin: 0;
-    background: linear-gradient(to bottom right, #fab330, #ff0000, #800080);
+    background: var(--background);
     background-color: var(--main);
     background-repeat: no-repeat;
     background-size: cover;
@@ -50,11 +51,11 @@ main {
 }
 
 span {
-    color: white;
+    color: var(--titlecolor);
 }
 
 .card {
-    background-color: white;
+    background-color: var(--backcolor);
     border-radius: 0.5rem;
     padding: 1rem;
     display: flex;
@@ -72,7 +73,7 @@ p {
 
 .slogan > *,
 .welcome {
-    color: white;
+    color: var(--titlecolor);
     text-align: center;
     display: block;
     font-size: 1.5rem;
@@ -80,7 +81,6 @@ p {
 
 header {
     padding: 1rem;
-    color: white;
     gap: 1rem;
     background-repeat: no-repeat;
     background-size: cover;

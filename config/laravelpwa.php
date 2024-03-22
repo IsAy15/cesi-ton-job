@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'CESI Ton Job',
+    'name' => env('APP_NAME'),
     'manifest' => [
-        'name' => env('CESI Ton Job', 'CESI Ton Job'),
+        'name' => env('APP_NAME', 'CESI Ton Job'),
         'short_name' => 'CTJ',
         'start_url' => '/',
         'background_color' => '#ffffff',
