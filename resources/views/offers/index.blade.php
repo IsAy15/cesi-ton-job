@@ -3,16 +3,21 @@
 @section('content')
 @vite('resources/css/offer.css')
     <h1>Offres d'emploi</h1>
-    
-    <div class="search-container">
     <div class="container">
-        <input type="text" placeholder="Search..." id="searchInput">
-        <div class="search"></div>
-    </div>
+        <form>
+            <div class="wrapper">
+                <p>Cherchez l'offre qui vous correspond</p>
+                <div class="search-container">
+                    <input type="text" class="search" placeholder="Mot-clés">
+                    <input type="text" class="location" placeholder="Localisation">
+                    <a href="#" class="button">Rechercher</a>
+                </div>
+            </div>
+        </form>
 </div>
 
 
-    <a href="{{ route('offers.create') }}">Ajouter une offre</a>
+    <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre</a>
     <table id="offerTable">
         <thead>
             <tr>
