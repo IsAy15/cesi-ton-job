@@ -3,12 +3,26 @@
 @section('content')
 @vite('resources/css/offer.css')
 @vite('resources/css/brouillon-generale.css')
-@vite('resources/css/offre-brouillon.css')
+@vite('resources/css/offres-brouillon.css')
     <div class="c-1 bg-1 fit-center">
-        <h1>{{ $offer->title }}</h1>
+        <div class="space">
+            <h1>{{ $offer->title }}</h1>
+            @if ($isInWishlist)
+                <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
+                @csrf
+                @method('DELETE') <!-- Ajout de la méthode DELETE -->
+                        <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-heart"></i></button>
+                </form>
+            @else
+                <form action="{{ route('wishlist.add', $offer->id) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn-1 btn-2"><i class="fa-regular fa-heart"></i></button>
+                </form>
+            @endif
+        </div>
         @auth
         @endauth
-        <div class="liste-v">
+        <div class="c-2 bg-2 liste-v">
             <h2>{{ $offer->company->name }}</h2>
             <p>Type de contrat: {{ $offer->type }}</p>
             <p>{{ $offer->description }}</p>
@@ -17,10 +31,12 @@
                 <p>Date de début : {{ $offer->starting_date }}</p>
                 <p>Date de fin : {{ $offer->ending_date }}</p>
             </div>
-            <p>Places disponibles : {{ $offer->places }}</p>
-            <p>Nombres de candidatures : {{ $offer->applies_count }}</p>
-            <div class="end-item">
+            <div class="fit-center">
                 <p>Salaire : {{ $offer->salary }}</p>
+            </div>
+            <div>
+                <p>Places disponibles : {{ $offer->places }}</p>
+                <p>Nombres de candidatures : {{ $offer->applies_count }}</p>
             </div>
         </div>
         @auth
@@ -28,34 +44,23 @@
                 <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v">
                     @csrf
                     @csrf
-                    <div class="form-v">
-                        <label for="cv">CV:</label><br>
-                        <input type="file" id="cv" name="cv"><br><br>
+                    <div class="input-required fit-center">
+                        <input type="file" id="cv" name="cv" class="inputfile">
+                        <label for="cv">Upload CV</label>
                     </div>
-                    <label for="letter">Lettre de motivation:</label><br>
-                    <input type="file" id="letter" name="letter"><br><br>
-                    
-                    <button type="submit" class="btn btn-primary">Postuler</button>
+                    <div class="input-required fit-center">
+                        <input type="file" id="letter" name="letter" class="inputfile">
+                        <label for="letter">Lettre de motivation:</label>
+                    </div>
+                    <button type="submit" class="btn-1 btn-2">Postuler</button>
                 </form>
 
             @else
                 <p>Vous avez déjà postulé à cette offre.</p>
             @endif
-            @if ($isInWishlist)
-                <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
-                @csrf
-                @method('DELETE') <!-- Ajout de la méthode DELETE -->
-                        <button type="submit">Supprimer de la wishlist</button>
-                </form>
-            @else
-                <form action="{{ route('wishlist.add', $offer->id) }}" method="post">
-                    @csrf
-                    <button type="submit">Ajouter à la wishlist</button>
-                </form>
-            @endif
         @endauth
 
-        <a href="{{ route('offers.index') }}">Retour à la page précédente</a>
+        <a href="{{ route('offers.index') }}" class="btn-1">Retour</a>
     </div>
 
     <script>
