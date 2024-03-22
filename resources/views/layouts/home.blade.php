@@ -22,25 +22,6 @@
         </div>
         <nav class="navbar">
             @if (Auth::check())
-                <div class="nav-menu offer">
-                    <div class="nav-menu-content" href="{{ route('profile.offers') }}">
-                        <i class="fa-solid fa-suitcase"></i>
-                        <span>Vos offres</span>
-                    </div>
-                    <ul class="submenu">
-                        <li><a href="{{ route('profile.offers') }}">Voir mes offres</a></li>
-                        <li><a href="{{ route('offers.index') }}">Voir toutes les offres</a></li>
-                    @if (Auth::user()->role == 'admin')
-                        <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
-                    @endif
-                    </ul>
-                </div>
-                <div class="nav-menu wishlist">
-                    <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
-                        <i class="fa-solid fa-heart"></i>
-                        <span>Wishlist</span>
-                    </a>
-                </div>
                 <div class="nav-menu profile">
                     <div class="nav-menu-content" id="profile-link">
                         <i class="fa-solid fa-user"></i>
@@ -61,6 +42,25 @@
                             </form>
                         </li>
                     </ul>
+                </div>
+                <div class="nav-menu offer">
+                    <div class="nav-menu-content" href="{{ route('profile.offers') }}">
+                        <i class="fa-solid fa-suitcase"></i>
+                        <span>Vos offres</span>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="{{ route('profile.offers') }}">Voir mes offres</a></li>
+                        <li><a href="{{ route('offers.index') }}">Voir toutes les offres</a></li>
+                    @if (Auth::user()->role == 'admin')
+                        <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
+                    @endif
+                    </ul>
+                </div>
+                <div class="nav-menu wishlist">
+                    <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Wishlist</span>
+                    </a>
                 </div>
             @endif             
         </nav>
