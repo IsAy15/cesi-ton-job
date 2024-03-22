@@ -37,6 +37,10 @@ Route::delete('/wishlist/remove/{offerId}', [WishlistController::class, 'removeF
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile/offers', [ProfileController::class, 'offers'])->name('profile.offers');
 Route::get('/profile/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
+Route::get('/profile/pending', [ProfileController::class, 'pending'])->name('profile.pending');
+Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
 
 //Offres routes
 Route::prefix('offer')->group(function(){
@@ -86,8 +90,10 @@ Route::prefix('ability')->group(function(){
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-Route::get('/register/confirmation', function () { return view('auth.confirmation');})->name('registration.confirmation');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'doregister'])->name('auth.register');
+Route::get('/register/confirmation', [AuthController::class, 'confirmation'])->name('auth.confirmation');
+
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

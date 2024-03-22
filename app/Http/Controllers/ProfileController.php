@@ -19,20 +19,25 @@ class ProfileController extends Controller
         return view('profile.index', compact('user'));
     }
 
-    public function wishlist()
+    public function pending()
     {
-        $user = auth()->user();
-        $wishlist = $user->wishlist;
-        return view('profile.wishlist', compact('wishlist'));
+        $pendingUsers = User::where('status', 'pending')->get();
+        return view('profile.pending', compact('pendingUsers'));
     }
 
-    public function offers()
+    public function edit($id)
     {
-        $user = auth()->user();
-        $appliedOffers = $user->offers()->get(); // Utilisez get() pour récupérer les offres
-        return view('profile.offers', compact('appliedOffers'));
+        $user = User::findOrFail($id);
+        return view('profile.edit', compact('user'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'approved';
+        $user->save();
 
+        return redirect()->route('profile.pending')->with('success', 'Le statut de l\'utilisateur a été changé avec succès.');
+    }
 }
 

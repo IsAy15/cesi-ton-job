@@ -79,6 +79,7 @@
                 <a href="{{ route('promotions.index') }}" class="btn-1">Voir les promotions</a>
                 <a href="{{ route('offers.index') }}" class="btn-1">Voir les offres publiée(s)</a>
                 <a href="{{ route('companies.index') }}" class="btn-1">Voir les entreprises</a>
+                <a href="{{route('profile.pending')}}" class="btn-1">Voir les utilisateurs en attente</a>
             </div>
         @else
             @if(Auth::user()->role=="user")

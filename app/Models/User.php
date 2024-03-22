@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'status',
     ];
 
     protected $hidden = [
@@ -42,5 +43,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Offer::class, 'user_wishlist', 'user_id', 'offer_id');
     }
+
+    
 
 }
