@@ -179,7 +179,6 @@ tbody tr:nth-child(even) /* general */{
     padding: 0.5rem;
     border-radius: 10px;
     background-color: rgba(128, 128, 128, 0.4);
-
 }
 
 .elements /* general */{
