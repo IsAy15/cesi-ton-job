@@ -20,12 +20,7 @@
                     <td>{{ $user->lastname }} {{ $user->firstname }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                    <form action="{{ route('profile.edit', $user->id) }}" method="GET">
-    @csrf
-    <!-- Vos champs de formulaire -->
-    <button type="submit" class="btn btn-primary">Éditer</button>
-</form>
-
+                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary">Éditer</a>
                     </td>
                 </tr>
                 @endforeach
