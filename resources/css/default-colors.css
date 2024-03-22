@@ -1,0 +1,11 @@
+:root {
+    --main: #ed5c3c;
+    --background: linear-gradient(to bottom right, #fab330, #ff0000, #800080);
+    --backcolor: #fff;
+    --textcolor: #000;
+    --hovertext: #fff;
+    --hoverback: #000;
+    --eltcolor: #2a008c;
+    --elthover: #320456;
+    --elttext: #fff;
+}
