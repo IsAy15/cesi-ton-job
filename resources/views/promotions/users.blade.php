@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Utilisateurs de la promotion')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
+    @vite('resources/css/brouillon-generale.css')
 
     <link rel="stylesheet" href="{{ asset('resources/css/brouillon-generale.css') }}">
     <div class="c-1 bg-1 fit-center">

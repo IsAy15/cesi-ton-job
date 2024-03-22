@@ -74,9 +74,6 @@ class PromotionController extends Controller
 
     public function storeUser(Request $request, $id)
     {
-        $request->validate([
-            'user' => 'required|exists:users,id' 
-        ]);
     
         $promotion = Promotion::findOrFail($id);
         $user = User::findOrFail($request->user);
@@ -87,13 +84,14 @@ class PromotionController extends Controller
     }
 
     public function removeUser($userId, $promotionId)
-{
-    $promotion = Promotion::findOrFail($promotionId);
+    {
+        $promotion = Promotion::findOrFail($promotionId);
     
-    $promotion->users()->detach($userId);
+        $promotion->users()->detach($userId);
+        
+        return redirect()->route('promotions.users', $promotion->id)->with('success', 'Utilisateur supprimé de la promotion avec succès');
 
-    return redirect()->route('promotions.users', $promotion->id)->with('success', 'Utilisateur supprimé de la promotion avec succès');
-}
+    }
 
    
 }
