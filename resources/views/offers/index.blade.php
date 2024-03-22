@@ -15,42 +15,44 @@
         </div>
     </form>
 </div>
-<a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre</a>
-<table id="offerTable">
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Code postal</th>
-            <th>Ville</th>
-            <th>Date de début</th>
-            <th>Date de fin</th>
-            <th>Type</th>
-            <th>Entreprise</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($offers as $offer)
+
+
+    <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre</a>
+    <table id="offerTable">
+        <thead>
             <tr>
-                <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
-                <td class="code-postal">{{ $offer->localization }}</td>
-                <td class="ville"></td> 
-                <td>{{ $offer->starting_date }}</td>
-                <td>{{ $offer->ending_date }}</td>
-                <td>{{ $offer->type }}</td>
-                <td>{{ $offer->company->name }}</td>
-                <td>
-                    <a href="{{ route('offers.edit', $offer->id) }}">Modifier</a>
-                    <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Supprimer</button>
-                    </form>
-                </td>
+                <th>Titre</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Type</th>
+                <th>Entreprise</th>
+                <th>Action</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach ($offers as $offer)
+                <tr>
+                    <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
+                    <td class="code-postal">{{ $offer->localization }}</td>
+                    <td class="ville"></td> 
+                    <td>{{ $offer->starting_date }}</td>
+                    <td>{{ $offer->ending_date }}</td>
+                    <td>{{ $offer->type }}</td>
+                    <td>{{ $offer->company->name }}</td>
+                    <td>
+                        <a href="{{ route('offers.edit', $offer->id) }}">Modifier</a>
+                        <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

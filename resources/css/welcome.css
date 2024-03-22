@@ -7,19 +7,17 @@
     src: url("../fonts/FKScreamer-Bold.woff") format("woff");
 }
 
- 
-  ::-webkit-scrollbar {
+::-webkit-scrollbar {
     height: 1rem;
     width: 0.5rem;
     background-color: #ed5c3c;
-    
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background-color: #2a008c;
     width: 1px;
     border-radius: 1rem;
-  }
+}
 
 html {
     font-family: "Roboto", sans-serif;
@@ -53,9 +51,7 @@ span {
 
 .card {
     background-color: white;
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     padding: 1rem;
     display: flex;
     flex-flow: column;

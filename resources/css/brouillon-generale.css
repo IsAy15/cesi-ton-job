@@ -207,3 +207,12 @@ tbody tr:nth-child(even) /* general */{
     transition: 0.5s ease;
     transform-origin: center;
 }
+
+.space /* general */{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
