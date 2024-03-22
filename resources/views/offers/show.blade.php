@@ -26,7 +26,7 @@
             <h2>{{ $offer->company->name }}</h2>
             <p>Type de contrat: {{ $offer->type }}</p>
             <p>{{ $offer->description }}</p>
-            <p>Ville : <span id="ville"></span> {{ $offer->localization }}</p> <!-- Ajout de l'élément span pour afficher la ville -->
+            <p>Ville : <span id="ville"></span> ({{ $offer->localization }})</p> <!-- Ajout de l'élément span pour afficher la ville -->
             <div class="space">
                 <p>Date de début : {{ $offer->starting_date }}</p>
                 <p>Date de fin : {{ $offer->ending_date }}</p>
@@ -44,13 +44,15 @@
                 <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v">
                     @csrf
                     @csrf
-                    <div class="input-required fit-center">
-                        <input type="file" id="cv" name="cv" class="inputfile">
-                        <label for="cv">Upload CV</label>
-                    </div>
-                    <div class="input-required fit-center">
-                        <input type="file" id="letter" name="letter" class="inputfile">
-                        <label for="letter">Lettre de motivation:</label>
+                    <div class="liste-h">
+                        <div class="input-required">
+                            <input type="file" id="cv" name="cv" class="inputfile">
+                            <label for="cv">Upload CV</label>
+                        </div>
+                        <div class="input-required">
+                            <input type="file" id="letter" name="letter" class="inputfile">
+                            <label for="letter">Lettre de motivation</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn-1 btn-2">Postuler</button>
                 </form>
