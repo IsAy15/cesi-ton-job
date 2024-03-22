@@ -1,63 +1,42 @@
+import Typed from "typed.js";
+
 // Attend que le document soit prêt
 document.addEventListener("DOMContentLoaded", function () {
-// Defilement des textes
-    const typed = new Typed('.multiple-text', {
-        strings: ['Frontend Developer', 'Un stage ? Une alternance ?', 'Un emploi ? Une mission ?'],
-        typeSpeed: 75,
-        backSpeed: 75,
-        backDelay: 1200,
-        loop: true
-      });
-
-// Header
+    // Header
     // Récupère les éléments HTML nécessaires
     var header = document.querySelector("header");
     // Fonction pour gérer le défilement
     function handleScroll() {
         var scrollPosition = window.scrollY;
 
-
-        if(scrollPosition > 0 && header.offsetTop == Math.round(scrollPosition) && !header.classList.contains("scrolled")){
+        if (
+            scrollPosition > 0 &&
+            header.offsetTop == Math.round(scrollPosition) &&
+            !header.classList.contains("scrolled")
+        ) {
             header.classList.add("scrolled");
             console.log("scrolled");
-            header.style.marginBottom = "5rem";
-        }
-        else if(scrollPosition == 0 && header.classList.contains("scrolled")){
+            header.style.marginBottom = "10rem";
+            //window.scrollY = 2;
+        } else if (
+            scrollPosition == 0 &&
+            header.classList.contains("scrolled")
+        ) {
             header.classList.remove("scrolled");
             console.log("not scrolled");
             header.style.marginBottom = "0";
         }
-
     }
-
-
-        // else{
-        //     header.classList.remove("scrolled");
-        // }
-
-        // // Si le scroll dépasse le texte de bienvenue
-        // if (scrollPosition > (welcomeText.offsetHeight / 1.5) && !header.classList.contains("scrolled")){
-        //     // Ajoute la classe "scrolled" au header
-        //     header.classList.add("scrolled");
-        //     console.log("scrolled");
-
-        //     if(document.body.scrollHeight > window.innerHeight) {
-        //         console.log("scrollHeight > innerHeight");
-        //         welcomeText.style.display = "block";}
-        //     else {
-        //         console.log("scrollHeight <= innerHeight");
-        //         welcomeText.style.display = "none";
-        //     }
-
-        // }else if(scrollPosition <= (welcomeText.offsetHeight / 1.5) ){
-        //     // Sinon, retire la classe "scrolled" du header
-        //     if(header.classList.contains("scrolled")){
-        //         header.classList.remove("scrolled");
-            
-        //         console.log("not scrolled");
-        //     }
-        // }
 
     // Écoute l'événement de défilement et appelle la fonction de gestion du défilement
     window.addEventListener("scroll", handleScroll);
+
+    // Defilement des textes
+    const typed = new Typed(".multiple-text", {
+        strings: ["Un stage ? Une alternance ?", "Un emploi ? Une mission ?"],
+        typeSpeed: 75,
+        backSpeed: 75,
+        backDelay: 1200,
+        loop: true,
+    });
 });
