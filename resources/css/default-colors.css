@@ -1,11 +1,25 @@
 :root {
     --main: #ed5c3c;
-    --background: linear-gradient(to bottom right, #fab330, #ff0000, #800080);
+    --lefttopcorner: #fab330;
+    --rightbottomcorner: #800080;
+    --background: linear-gradient(
+        to bottom right,
+        var(--lefttopcorner),
+        var(--main),
+        var(--rightbottomcorner)
+    );
     --backcolor: #fff;
     --textcolor: #000;
+    --titlecolor: #fff;
     --hovertext: #fff;
     --hoverback: #000;
     --eltcolor: #2a008c;
     --elthover: #320456;
     --elttext: #fff;
 }
+
+/* :root {
+    --main: #002d9f;
+    --backcolor: #000;
+    --textcolor: #fff;
+} */
