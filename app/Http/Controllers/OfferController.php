@@ -122,8 +122,6 @@ class OfferController extends Controller
     $offer->increment('applies_count');
 
     return redirect()->route('offers.show', $id)->with('success', 'Votre candidature a été soumise avec succès.');
-}
-
-  
+} 
 
 }

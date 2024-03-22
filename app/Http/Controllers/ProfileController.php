@@ -39,5 +39,19 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.pending')->with('success', 'Le statut de l\'utilisateur a été changé avec succès.');
     }
+
+    public function wishlist()
+    {
+        $user = auth()->user();
+        $wishlist = $user->wishlist;
+        return view('profile.wishlist', compact('wishlist'));
+    }
+
+    public function offers()
+    {
+        $user = auth()->user();
+        $appliedOffers = $user->offers;
+        return view('profile.offers', compact('appliedOffers'));
+    }
 }
 
