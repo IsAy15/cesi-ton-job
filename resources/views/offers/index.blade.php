@@ -28,7 +28,9 @@
                     <th>Date de fin</th>
                     <th>Type</th>
                     <th>Entreprise</th>
-                    <th>Action</th>
+                    @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
+                        <th>Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -41,16 +43,18 @@
                         <td>{{ $offer->ending_date }}</td>
                         <td>{{ $offer->type }}</td>
                         <td>{{ $offer->company->name }}</td>
-                        <td>
-                            <div class="table-interactions">
-                                <a href="{{ route('offers.edit', $offer->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
-                                </form>
-                            </div>
-                        </td>
+                        @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
+                            <td>
+                                <div class="table-interactions">
+                                    <a href="{{ route('offers.edit', $offer->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
