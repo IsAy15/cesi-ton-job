@@ -1,13 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Liste des utilisateurs')
+@vite('/resources/css/tableaux.css')
 @section('content')
-@auth
-        <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
-        <form action="{{ route('auth.logout') }}" method="POST">
-            @csrf
-            <button type="submit">Déconnexion</button>
-        </form>
-    @endauth
     <?php
         if (Auth::check() && strpos(Auth::user()->role, 'user') !== false) {
             header('Location: /access-denied.php'); 
