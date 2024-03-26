@@ -34,11 +34,26 @@
 
         @php
             $userId = auth()->id();
-            $existingGrade = $company->grades()->where('user_id', $userId)->exists();
+            $existingGrade = $company->grades()->where('user_id', $userId);
         @endphp
 
-        @if ($existingGrade)
-            <p>Cette entreprise a déjà été notée.</p>
+        @if ($existingGrade->exists())
+            <!-- <p>Cette entreprise a déjà été notée.</p> -->
+            <form action="{{ route('saveRating') }}" method="POST">
+                @csrf
+                <h1>Vous connaissez cette entreprise ?</h1>
+                <h2>Donnez votre avis :</h2>
+                <div class="ratings">
+                    <span data-rating="5" @if($existingGrade->value('value') > 4) data-clicked @endif>&#9733;</span>
+                    <span data-rating="4" @if($existingGrade->value('value') > 3) data-clicked @endif>&#9733;</span>
+                    <span data-rating="3" @if($existingGrade->value('value') > 2) data-clicked @endif>&#9733;</span>
+                    <span data-rating="2" @if($existingGrade->value('value') > 1) data-clicked @endif>&#9733;</span>
+                    <span data-rating="1" @if($existingGrade->value('value') < 2) data-clicked @endif>&#9733;</span>
+                </div>
+                <input type="hidden" name="company_id" value="{{ $company->id }}">
+                <input type="hidden" name="rating" id="rating">
+                <input type="submit" value="Envoyer" class="btn-1">
+            </form>
         @else
             <form action="{{ route('saveRating') }}" method="POST">
                 @csrf

@@ -102,7 +102,8 @@ class CompanyController extends Controller
                               ->first();
 
         if ($existingGrade) {
-            return redirect()->back()->withErrors(['error' => 'Vous avez déjà noté cette entreprise.']);
+            $existingGrade->where('company_id', $companyId)->where('user_id', $userId)->update(['value' => $rating]);
+            return redirect()->route('companies.index')->with('success', 'Note modifiée avec succès.');
         }
 
         $grade = new Grade();
