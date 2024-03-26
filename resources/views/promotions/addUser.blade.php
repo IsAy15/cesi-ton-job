@@ -1,9 +1,8 @@
 @extends('layouts.home')
 @section('title', 'Ajouter un utilisateur à une promotion')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
-    <div class="c-1 bg-1 fit-center">
-        <h2>Ajouter un utilisateur à la promotion {{ $promotion->name }}</h2    >
+    <div class="container-1 default-bg fit-center">
+        <h2>Ajouter un utilisateur à la promotion {{ $promotion->name }}</h2>
         <form action="{{ route('promotions.addUser', $promotion->id) }}" method="post" class="form-v">
             @csrf
             <select name="user" id="user">
