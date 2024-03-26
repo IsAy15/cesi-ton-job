@@ -20,6 +20,15 @@ body {
     gap: 3rem;
 }
 
+main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
 ::-webkit-scrollbar {
     height: 1rem;
     width: 0.5rem;
