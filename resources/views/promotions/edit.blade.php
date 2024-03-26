@@ -1,8 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Modifier la promotion')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <h1>Modifier la promotion</h1>
         <form action="{{ route('promotions.update', $promotion->id) }}" method="post" class="form-v">
             @csrf
