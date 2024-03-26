@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Grade;
 use App\Models\Offer;
+use App\Models\Application;
 use Illuminate\Support\Facades\DB;
 
 
@@ -68,10 +69,17 @@ class CompanyController extends Controller
 
     public function destroy($id)
     {
-        $company = Company::find($id);
-        $company->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+    
+        Offer::where('company_id', $id)->delete();
+        
+        Company::destroy($id);
+    
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+    
         return redirect()->route('companies.index');
     }
+
 
         public function stats($id)
     {

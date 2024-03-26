@@ -48,6 +48,39 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès.');
     }
 
+    public function edit($id)
+    {
+        $user = User::find($id);
+        $promotions = Promotion::all();
+        return view('users.edit', compact('user', 'promotions'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validation des données du formulaire
+        $request->validate([
+            'lastname' => 'required',
+            'firstname' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'role' => 'required',
+            'password' => 'required|min:6',
+            'promotion' => 'required|exists:promotions,id',
+        ]);
+
+        $user = User::find($id);
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->password = $request->password;
+        $user->promotions()->attach($request->promotion);
+        $user->save();
+
+        $user->promotions()->sync($request->promotion);
+
+        return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
+    }
+
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class);

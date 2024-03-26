@@ -48,7 +48,7 @@ CREATE TABLE offers(
    ending_date DATE,
    places INT,
    salary DOUBLE,
-   applies_count INT,
+   applies_count INT DEFAULT 0,
    type VARCHAR(50),
    created_at DATE,
    updated_at DATE,
@@ -124,11 +124,6 @@ CREATE TABLE offer_requirements(
 );
 
 -- Pour éviter les erreurs de clés étrangères
-ALTER TABLE user_wishlist
-ADD CONSTRAINT fk_offer_id
-FOREIGN KEY (offer_id)
-REFERENCES offers(id)
-ON DELETE CASCADE;
 
 
 -- Remplissage de la base de données
