@@ -11,7 +11,6 @@
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Action</th>
-                    <!-- Ajoutez d'autres colonnes si nécessaire -->
                 </tr>
             </thead>
             <tbody>

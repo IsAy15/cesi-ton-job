@@ -30,7 +30,7 @@
         </thead>
         <tbody>
             @foreach($usersWithPromotions as $user)
-                @if(Auth::user()->role == 'pilote' && $user->role == 'user')
+                @if($user->role !== 'admin')
                     <tr>
                         <td>{{ $user->lastname }}</td>
                         <td>{{ $user->firstname }}</td>
@@ -89,9 +89,6 @@
                     }
                 }       
             }
-        }
-
-        // Appeler la fonction de filtrage lorsque l'utilisateur tape quelque chose dans la barre de recherche
-        document.getElementById("searchInput").addEventListener("keyup", filterUsers);
+        }        document.getElementById("searchInput").addEventListener("keyup", filterUsers);
     </script>
 @endsection

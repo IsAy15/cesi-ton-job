@@ -3,53 +3,58 @@
 @section('content')
 @vite('resources/css/offres.css')
 @vite('resources/css/brouillon-generale.css')
-@if(Auth::user()->role == 'user')
-    <?php
-        header('Location: /access-denied.php');
-        exit();
-    ?>
-@endif
+@section('content')
 <div class="c-1 bg-1 fit-center">
-    <form action="{{ route('users.update', $user->id) }}" method="post" class="form-v">
+    <h1>Modifier l'utilisateur</h1>
+
+    <form method="POST" action="{{ route('users.update', $user->id) }}">
         @csrf
         @method('PUT')
+
         <div class="input-required fit-center">
             <label for="lastname">Nom</label>
-            <input type="text" name="lastname" id="lastname" value="{{ $user->lastname }}">
+            <input id="lastname" type="text" name="lastname" value="{{ old('lastname', $user->lastname) }}">
         </div>
+
         <div class="input-required fit-center">
             <label for="firstname">Prénom</label>
-            <input type="text" name="firstname" id="firstname" value="{{ $user->firstname }}">
+            <input id="firstname" type="text" name="firstname" value="{{ old('firstname', $user->firstname) }}">
         </div>
+
         <div class="input-required fit-center">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ $user->email }}">
+            <label for="email">Adresse email</label>
+            <input id="email" type="email" name="email" value="{{ old('email', $user->email) }}">
         </div>
+
         <div class="input-required fit-center">
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" value="{{ $user->password }}">
+            <input id="password" type="password" name="password" value="{{ old('email', $user->password) }}">
         </div>
-        @if($user->role != 'admin')
+
+        @if($user->role !== 'admin')
         <div class="input-required fit-center">
             <label for="role">Rôle</label>
-            <select name="role" id="role">
-                <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                <option value="pilote" {{ $user->role == 'pilote' ? 'selected' : '' }}>Pilote</option>
-                <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+            <select id="role" name="role">
+                <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                <option value="pilote" {{ $user->role === 'pilote' ? 'selected' : '' }}>Pilote</option>
+                <option value="user" {{ $user->role === 'user' ? 'selected' : '' }}>User</option>
             </select>
         </div>
+
         <div class="input-required fit-center">
             <label for="promotion">Promotion</label>
-            <select name="promotion" id="promotion">
+            <select id="promotion" name="promotion">
                 @foreach($promotions as $promotion)
-                    <option value="{{ $promotion->id }}" {{ $user->promotions->contains($promotion->id) ? 'selected' : '' }}>
-                        {{ $promotion->name }}
-                    </option>
+                <option value="{{ $promotion->id }}" {{ $user->promotions->contains($promotion->id) ? 'selected' : '' }}>{{ $promotion->name }}</option>
                 @endforeach
             </select>
         </div>
         @endif
-        <button type="submit" class="btn-1">Modifier</button>
+
+        <div class="fit-center">
+            <!-- Ajouter un champ caché pour envoyer le rôle actuel -->
+            <button type="submit" class="btn-1">Modifier</button>
+        </div>
     </form>
 </div>
 @endsection
