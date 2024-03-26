@@ -43,4 +43,9 @@ class Offer extends Model
     {
         return $this->belongsToMany(User::class, 'user_wishlist', 'offer_id', 'user_id')->withTimestamps();
     }
+
+    public function abilities()
+{
+    return $this->belongsToMany(Ability::class, 'offer_requirements', 'of_id', 'ab_id');
+}
 }

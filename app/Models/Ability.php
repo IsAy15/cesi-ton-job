@@ -20,4 +20,9 @@ class Ability extends Model
     
     public $timestamps = false;
 
+    public function offers()
+    {
+        return $this->belongsToMany(Offer::class, 'offer_requirements', 'of_id', 'ab_id');
+    }
+
 }

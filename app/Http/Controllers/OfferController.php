@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Offer;
 use App\Models\Company;
-use App\Http\CompanyControllers;
 use App\Models\Application;
 
 
@@ -95,10 +95,22 @@ class OfferController extends Controller
     }
 
 
-  public function destroy($id){
-    $offer = Offer::where('id', $id)->delete();
+    public function destroy($id)
+{
+    // Supprimer les références dans la table offer_requirements
+    DB::table('offer_requirements')->where('of_id', $id)->delete();
+
+    DB::table('user_offer')->where('offer_id', $id)->delete();
+
+    DB::table('applications')->where('offer_id', $id)->delete();
+
+    DB::table('user_wishlist')->where('offer_id', $id)->delete();
+    // Ensuite, supprimer l'offre elle-même
+    $offer = Offer::findOrFail($id);
+    $offer->delete();
+
     return redirect()->route('offers.index');
-  }
+}
 
 
   public function apply(Request $request, $id)
