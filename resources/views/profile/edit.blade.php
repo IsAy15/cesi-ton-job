@@ -2,7 +2,6 @@
 @section('title', 'Votre profil')
 @section('content')
 @vite('resources/css/profile.css')
-@vite('resources/css/brouillon-generale.css')
     <div class="container">
         <h1>Modifier l'utilisateur</h1>
         <form action="{{ route('profile.update', $user->id) }}" method="POST">
@@ -19,7 +18,7 @@
             </div>
 
             <!-- Bouton de soumission -->
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" class="btn-1">Enregistrer</button>
         </form>
     </div>
 @endsection
