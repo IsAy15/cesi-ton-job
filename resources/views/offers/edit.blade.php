@@ -31,7 +31,7 @@
             </div>
             <div class="input-required fit-center">
                 <label for="of_description">Description</label>
-                <input type="text" name="of_description" id="of_description" value="{{ $offer->description }}">
+                <textarea name="of_description" id="of_description">{{ $offer->description }}</textarea>
             </div>
             <div class="input-required fit-center">
                 <label for="of_localization">Localisation</label>
