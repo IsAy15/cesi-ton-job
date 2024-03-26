@@ -3,7 +3,7 @@
 @section('content')
 @vite('resources/css/brouillon-generale.css')
     <div class="c-1 bg-1 fit-center">
-        <h2>Vos offres</h2>
+        <h2>Vos favoris</h2>
         @if ($wishlist->count() === 0)
             <p>Votre wishlist est vide.</p>
         @else
