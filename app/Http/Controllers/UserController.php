@@ -73,7 +73,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->role = $request->role;
         $user->password = $request->password;
-        $user->promotions()->attach($request->promotion);
+        $user->promotions()->sync($request->input('promotion'));
         $user->save();
 
         $user->promotions()->sync($request->promotion);

@@ -63,6 +63,7 @@ Route::prefix('offer')->group(function(){
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 
+
 //Grades routes
 Route::prefix('grade')->group(function(){
     Route::get('/', [GradeController::class, 'index'])->name('grades.index');
@@ -99,7 +100,8 @@ Route::get('/register/confirmation', [AuthController::class, 'confirmation'])->n
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-
+Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/{id}/update', [UserController::class, 'update'])->name('users.update');
 
 
 //Entreprise routes

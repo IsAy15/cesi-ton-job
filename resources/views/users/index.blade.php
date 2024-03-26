@@ -1,13 +1,6 @@
 @extends('layouts.home')
 @section('title', 'Liste des utilisateurs')
 @section('content')
-@auth
-        <p>Connecté en tant que : {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
-        <form action="{{ route('auth.logout') }}" method="POST">
-            @csrf
-            <button type="submit">Déconnexion</button>
-        </form>
-    @endauth
     <?php
         if (Auth::check() && strpos(Auth::user()->role, 'user') !== false) {
             header('Location: /access-denied.php'); 
@@ -50,6 +43,7 @@
                             @endforeach
                         </td>
                         <td>
+                            <a href="{{ route('users.edit', ['id' => $user->id]) }}">Modifier</a>
                         </td>
                     </tr>
                 @elseif(Auth::user()->role != 'pilote')
@@ -66,6 +60,7 @@
                             @endforeach
                         </td>
                         <td>
+                            <a href="{{ route('users.edit', ['id' => $user->id]) }}">Modifier</a>
                         </td>
                     </tr>
                 @endif
@@ -99,4 +94,3 @@
         document.getElementById("searchInput").addEventListener("keyup", filterUsers);
     </script>
 @endsection
-
