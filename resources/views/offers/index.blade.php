@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Offres d\'emploi')
 @section('content')
-@vite('resources/css/offres-brouillon.css')
+@vite('resources/css/offres.css')
 @vite('resources/css/brouillon-generale.css')
     <div class="c-1 bg-1 fit-center">
         <h1>Offres d'emploi</h1>
