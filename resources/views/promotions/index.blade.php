@@ -1,11 +1,10 @@
 @extends('layouts.home')
 @section('title', 'Liste des promotions')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
-<div class="c-1 bg-1 fit-center">
+<div class="container-1 default-bg fit-center">
     <h1>Liste des promotions</h1>
        <a href="{{ route('promotions.create') }}" class="btn-1">Ajouter une promotion</a>
-        <table class="">
+        <table>
             <thead>
                 <tr>
                     <th>Titre</th>
