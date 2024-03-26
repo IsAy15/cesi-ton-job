@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Modifier une offre')
 @section('content')
-@vite('resources/css/offres-brouillon.css')
+@vite('resources/css/offres.css')
 @vite('resources/css/brouillon-generale.css')
 @if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
     <?php
