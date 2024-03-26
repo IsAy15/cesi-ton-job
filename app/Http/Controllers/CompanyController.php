@@ -91,7 +91,7 @@ class CompanyController extends Controller
         return view('companies.stats', compact('company', 'totalApplications', 'offers'));
     }
 
-    public function saveRating(Request $request)
+    public function rate(Request $request)
     {
         $userId = auth()->id(); 
         $companyId = $request->input('company_id');
