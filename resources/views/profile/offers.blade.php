@@ -1,27 +1,19 @@
 @extends('layouts.home')
 @section('title', 'Vos offres')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Vos offres</div>
-
-                <div class="card-body">
-                    @if ($appliedOffers)
-                        <ul>
-                            @foreach($appliedOffers as $offer)
-                                <li>
-                                    <a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <p>Vous n'avez pas encore candidaté à des offres.</p>
-                    @endif
-                </div>
-            </div>
+@vite('resources/css/brouillon-generale.css')
+    <div class="c-1 bg-1 fit-center">
+        <h2>Vos offres</h2>
+        <div class="form-v">
+            @if ($appliedOffers)
+                @foreach($appliedOffers as $offer)
+                    <div class="c-1 bg-2">
+                        <a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a>
+                    </div>
+                @endforeach
+            @else
+                <p>Vous n'avez pas encore candidaté à des offres.</p>
+            @endif
         </div>
     </div>
-</div>
 @endsection

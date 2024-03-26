@@ -46,7 +46,7 @@
                 <div class="nav-menu offer">
                     <div class="nav-menu-content" href="{{ route('profile.offers') }}">
                         <i class="fa-solid fa-suitcase"></i>
-                        <span>Vos offres</span>
+                        <span>Offres</span>
                     </div>
                     <ul class="submenu">
                         <li><a href="{{ route('profile.offers') }}">Voir mes offres</a></li>
@@ -59,7 +59,7 @@
                 <div class="nav-menu wishlist">
                     <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
                         <i class="fa-solid fa-heart"></i>
-                        <span>Wishlist</span>
+                        <span>Favoris</span>
                     </a>
                 </div>
             @endif             
