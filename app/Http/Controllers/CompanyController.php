@@ -91,7 +91,7 @@ class CompanyController extends Controller
         return view('companies.stats', compact('company', 'totalApplications', 'offers'));
     }
 
-    public function saveRating(Request $request)
+    public function rate(Request $request)
     {
         $userId = auth()->id(); 
         $companyId = $request->input('company_id');
@@ -100,10 +100,6 @@ class CompanyController extends Controller
         $existingGrade = Grade::where('company_id', $companyId)
                               ->where('user_id', $userId)
                               ->first();
-
-        if ($existingGrade) {
-            return redirect()->back()->withErrors(['error' => 'Vous avez déjà noté cette entreprise.']);
-        }
 
         $grade = new Grade();
         $grade->value = $rating;

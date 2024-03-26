@@ -40,7 +40,7 @@
         @if ($existingGrade)
             <p>Cette entreprise a déjà été notée.</p>
         @else
-            <form action="{{ route('saveRating') }}" method="POST">
+            <form action="{{ route('companies.rate') }}" method="POST">
                 @csrf
                 <h1>Vous connaissez cette entreprise ?</h1>
                 <h2>Donnez votre avis :</h2>
