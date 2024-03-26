@@ -13,6 +13,8 @@ class Grade extends Model
 
     protected $fillable = [
         'value',
+        'company_id',
+        'user_id'
     ];
     public $timestamps = false;
 }

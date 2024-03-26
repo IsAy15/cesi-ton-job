@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Grade;
 use App\Models\Offer;
 use App\Models\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
 
@@ -88,6 +89,29 @@ class CompanyController extends Controller
         $offers = $company->offers()->get();
 
         return view('companies.stats', compact('company', 'totalApplications', 'offers'));
+    }
+
+    public function saveRating(Request $request)
+    {
+        $userId = auth()->id(); 
+        $companyId = $request->input('company_id');
+        $rating = $request->input('rating');
+
+        $existingGrade = Grade::where('company_id', $companyId)
+                              ->where('user_id', $userId)
+                              ->first();
+
+        if ($existingGrade) {
+            return redirect()->back()->withErrors(['error' => 'Vous avez déjà noté cette entreprise.']);
+        }
+
+        $grade = new Grade();
+        $grade->value = $rating;
+        $grade->company_id = $companyId;
+        $grade->user_id = $userId;
+        $grade->save();
+
+        return redirect()->route('companies.index')->with('success', 'Note enregistrée avec succès.');
     }
 
 }

@@ -113,6 +113,7 @@ Route::prefix('company')->group(function (){
     Route::put('/{id}/update', [CompanyController::class, 'update'])->name('companies.update');
     Route::delete('/{id}/destroy', [CompanyController::class, 'destroy'])->name('companies.destroy');
     Route::get('/{id}/stats', [CompanyController::class, 'stats'])->name('companies.stats');
+    Route::post('/save-rating', [CompanyController::class, 'saveRating'])->name('saveRating');
 });
 
 

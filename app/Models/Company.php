@@ -23,4 +23,9 @@ class Company extends Model
     {
         return $this->hasMany(Offer::class);
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }

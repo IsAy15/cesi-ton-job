@@ -16,20 +16,47 @@
         <a href="{{ route('companies.index') }}" class="btn-1">Retour</a>
     </div>
     <div class="c-1 bg-1 fit-center">
-        <form>
-            <h1>Vous connaissez cette entreprise ?</h1>
-            <h2>Donnez votre avis :</h2>
-            <div class="ratings">
-                <span data-rating="5">&#9733;</span>
-                <span data-rating="4">&#9733;</span>
-                <span data-rating="3">&#9733;</span>
-                <span data-rating="2">&#9733;</span>
-                <span data-rating="1">&#9733;</span>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <input type="hidden" name="rating" id="rating">
-            <input type='submit' value='Envoyer' class="btn-1">
-        </form>
-	</div>
+        @endif
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @php
+            $userId = auth()->id();
+            $existingGrade = $company->grades()->where('user_id', $userId)->exists();
+        @endphp
+
+        @if ($existingGrade)
+            <p>Cette entreprise a déjà été notée.</p>
+        @else
+            <form action="{{ route('saveRating') }}" method="POST">
+                @csrf
+                <h1>Vous connaissez cette entreprise ?</h1>
+                <h2>Donnez votre avis :</h2>
+                <div class="ratings">
+                    <span data-rating="5">&#9733;</span>
+                    <span data-rating="4">&#9733;</span>
+                    <span data-rating="3">&#9733;</span>
+                    <span data-rating="2">&#9733;</span>
+                    <span data-rating="1">&#9733;</span>
+                </div>
+                <input type="hidden" name="company_id" value="{{ $company->id }}">
+                <input type="hidden" name="rating" id="rating">
+                <input type="submit" value="Envoyer" class="btn-1">
+            </form>
+        @endif
+    </div>
     @vite('resources/js/star_rate.js')
     @vite('resources/css/star_rate.css')
 @endsection
