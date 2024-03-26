@@ -113,82 +113,60 @@ header {
     }
 }
 
-main {
-    display: flex;
-    flex: 1;
-    flex-flow: column;
-    gap: 3rem;
-    padding: 1rem;
-    margin: 0 1rem;
-    background-color: var(--backcolor);
-    border-radius: 1rem;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    @media (orientation: landscape) {
-        margin: 0 15dvw;
-        @media screen and (max-width: 768px) {
-            margin: 0 20dvw;
-        }
-    }
-}
-
-.container {
+.c-1 /* general */{
     display: flex;
     flex-flow: column;
+    align-items: center;
     padding: 1rem 1.5rem 1.5rem;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    gap: 1rem;
 }
 
-.connexion {
+.cr-1 /* general */ {
+    display: flex;
+    justify-content: center;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 20rem;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    overflow: hidden;    
+}
+
+.fit-center /* general */{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     width: fit-content;
+    min-width: 30dvw;
     margin-inline: auto;
 }
 
-.connexion form {
+.bg-1 /* general */{
+    background-color: white;
+}
+
+.bg-2 /* general */{
+    background-color: rgba(128, 128, 128, 0.116);
+    width: 80%;
+    overflow: auto;
+}
+
+.liste-h /* general */{
     display: flex;
-    flex-flow: column;
+    flex-flow: row wrap;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
 }
 
-.input-required {
+.liste-v /* general */{
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    flex-flow: column;
+    gap: 1rem;
 }
 
-::placeholder {
-    text-align: center;
-}
-
-.input-required {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.text-danger {
-    color: red;
-    font-size: 0.5rem;
-    text-align: left;
-    margin-left: 1rem;
-}
-
-.mdp {
-    color: black;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: end;
-    text-decoration: underline;
-    width: 90%;
-}
-
-.mdp:hover {
-    color: blue;
-}
-
-.btn {
+.btn-1 /* general */{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -211,4 +189,182 @@ main {
         color: white;
         transform: scale(1.1); /* Agrandir les boutons au survol */
     }
+}
+
+.btn-2 /* general */{
+    width: fit-content;
+    border-radius: 0.5rem;
+}
+
+.text-danger /* general */{
+    color: red;
+    font-size: 0.5rem;
+    text-align: left;
+    margin-left: 1rem;
+}
+
+.input-required /* general */{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+h1 /* general */{
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: 2.5rem;
+}
+
+h2 /* general */{
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+}
+
+.form-v /* general */{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type="text"] /* general */{
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+input[type="password"] /* general */{
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+input[type="email"] /* general */{
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+textarea /* general */{
+    height: 5rem;
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+    font-family: "Roboto", sans-serif;
+}
+
+::placeholder /* general */{
+    text-align: center;
+}
+
+form select /* general */{
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+table /* general */{
+    width: 100%;
+    border: 0.1rem solid rgb(117, 117, 117);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    font-size: 1rem;    
+}
+
+thead, tfoot /* general */{
+    background-color: rgb(16, 0, 105);
+    border: 1rem solid rgba(128, 128, 128,);
+    color: white;
+}
+
+th,td /* general */{    
+    background-color: rgba(128, 128, 128, 0.2);
+    padding: 1rem;
+    text-align: center;
+}
+
+tbody tr:nth-child(odd) /* general */{
+    background-color: rgba(128, 128, 128, 0.8);
+}
+  
+tbody tr:nth-child(even) /* general */{
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+.table-interactions /* general */{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.clickable /* general */{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.clickable:hover /* general */{
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.4);
+}
+
+.elements /* general */{
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.3);
+    transition: 0.5s ease;
+    transform-origin: center;
+}
+
+.space /* general */{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.connexion {
+    width: fit-content;
+    margin-inline: auto;
+}
+
+.connexion form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mdp {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    text-decoration: underline;
+    width: 90%;
+}
+
+.mdp:hover {
+    color: blue;
 }
