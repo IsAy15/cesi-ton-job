@@ -2,10 +2,9 @@
 @section('title', 'Votre profil')
 @section('content')
 @vite('resources/css/profile.css')
-@vite('resources/css/brouillon-generale.css')
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <div id="infos_perso" class="liste-h">
-            <div id="photo" class="cr-1">
+            <div id="photo" class="container-rond">
                 <img src="{{ asset('images/icons/33645487-icC3B4ne-de-profil-avatar-portrait-masculin-personne-dC3A9contractC3A9e.png') }}" />
             </div>
             <div id="infos" class="liste-v">
@@ -22,7 +21,7 @@
         @if(Auth::user()->role=="admin")
         @else
             @if(Auth::user()->role=='user')
-                <div id="admin" class="c-1 bg-2">
+                <div id="admin" class="container-1 area-bg">
                     <p>Compétences :</p>
                     <div class="liste-h"> <!-- A compléter -->
                         <div class="liste-h elements">
@@ -50,7 +49,7 @@
                 </div>
             @endif
             @if(Auth::user()->role=="pilote")
-                <div id="admin" class="c-1 bg-2">
+                <div id="admin" class="container-1 area-bg">
                     <p>Promotions :</p>
                     <div class="liste-h"> <!-- A compléter -->
                         <div class="elements">
