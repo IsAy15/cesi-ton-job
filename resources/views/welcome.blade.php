@@ -74,6 +74,7 @@
       </div>
     </header>
     <main>
+      <div class="card">
         <div class="cell">
           <div class="para">
             <h2>Qu’est-ce que CESI-TON-JOB ?</h2>
@@ -102,6 +103,7 @@
           <div class="illu">
             
           </div>
+        </div>
         </div>
 
 

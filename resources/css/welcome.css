@@ -92,6 +92,15 @@ header {
     }
 }
 
+.card {
+    background-color: var(--backcolor);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+    gap: 3rem;
+}
+
 .cell {
     display: flex;
     flex-flow: row;

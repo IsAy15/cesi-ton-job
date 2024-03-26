@@ -27,6 +27,12 @@ main {
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
+    @media (orientation: landscape) {
+        @media screen and (max-width: 770px){
+            margin: 0 10dvw;
+        }
+        margin: 0 20dvw;
+    }
 }
 
 ::-webkit-scrollbar {
