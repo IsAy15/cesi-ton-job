@@ -1,5 +1,6 @@
 @extends('layouts.home')
 @section('title', 'Liste des utilisateurs')
+@vite('/resources/css/tableaux.css')
 @section('content')
     <?php
         if (Auth::check() && strpos(Auth::user()->role, 'user') !== false) {

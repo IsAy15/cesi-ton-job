@@ -74,7 +74,6 @@
       </div>
     </header>
     <main>
-      <div class="card">
         <div class="cell">
           <div class="para">
             <h2>Qu’est-ce que CESI-TON-JOB ?</h2>
@@ -105,7 +104,7 @@
           </div>
         </div>
 
-      </div>
+
       @cookieconsentview
       @cookieconsentbutton(action: 'reset', label: '', attributes: ['id' => 'reset-cookies-button'])
       <script>

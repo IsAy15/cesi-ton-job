@@ -3,7 +3,7 @@
 @section('content')
 @vite('resources/css/offer.css')
 @vite('resources/css/brouillon-generale.css')
-@vite('resources/css/offres-brouillon.css')
+@vite('resources/css/offres.css')
 
 <div class="c-1 bg-1 fit-center">
     <div class="space">

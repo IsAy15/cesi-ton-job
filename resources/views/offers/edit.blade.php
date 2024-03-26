@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Modifier une offre')
 @section('content')
-@vite('resources/css/offres-brouillon.css')
+@vite('resources/css/offres.css')
 @vite('resources/css/brouillon-generale.css')
 @if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
     <?php
@@ -31,7 +31,7 @@
             </div>
             <div class="input-required fit-center">
                 <label for="of_description">Description</label>
-                <input type="text" name="of_description" id="of_description" value="{{ $offer->description }}">
+                <textarea name="of_description" id="of_description">{{ $offer->description }}</textarea>
             </div>
             <div class="input-required fit-center">
                 <label for="of_localization">Localisation</label>

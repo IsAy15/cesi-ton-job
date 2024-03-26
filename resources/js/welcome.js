@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             header.classList.add("scrolled");
             console.log("scrolled");
-            header.style.marginBottom = "10rem";
+            header.style.marginBottom = "9rem";
             //window.scrollY = 2;
         } else if (
             scrollPosition == 0 &&
