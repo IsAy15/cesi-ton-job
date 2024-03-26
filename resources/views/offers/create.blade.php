@@ -21,7 +21,7 @@
                 </select>
                 <input type="text" name="of_title" id="of_title" placeholder="Titre">
                 <input type="text" name="of_type" id="of_type" placeholder="Type">
-                <input type="text" name="of_description" id="of_description" placeholder="Description">
+                <textarea type="text" name="of_description" id="of_description" placeholder="Description"></textarea>
                 <input type="text" name="of_localization" id="of_localization" placeholder="Code postal">
             
             <div class="liste-h space">
