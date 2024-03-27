@@ -1,15 +1,14 @@
 @extends('layouts.home')
 @section('title', 'Liste des utilisateurs')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <h2>Vos favoris</h2>
         @if ($wishlist->count() === 0)
             <p>Votre wishlist est vide.</p>
         @else
             <div class="form-v fit-center">
                 @foreach($wishlist as $offer)
-                    <div class="c-1 bg-2 liste-h">
+                    <div class="container-1 area-bg liste-h">
                             <a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a>
                             @auth
                             <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
