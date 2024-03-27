@@ -384,10 +384,11 @@ table /* general */ {
 .clickable /* general */ {
     cursor: pointer;
     text-decoration: underline;
+    padding: 0.5rem;
 }
 
 .clickable:hover /* general */ {
-    padding: 0.5rem;
+    transform: scale(1.1);
     border-radius: 10px;
     background-color: rgba(128, 128, 128, 0.4);
 }
