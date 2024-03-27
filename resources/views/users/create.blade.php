@@ -1,37 +1,42 @@
 @extends('layouts.home')
 @section('title', 'Ajouter un utilisateur')
 @section('content')
-    <h1>Créer un utilisateur</h1>
+    <div class="container-1 default-bg ">
+        <h1>Créer un utilisateur</h1>
+        <form action="{{ route('users.store') }}" method="post" class="form-v">
+            @csrf
+            <div class="input-required">
+                <input type="text" id="lastname" name="lastname" placeholder="Nom">
+            </div>
+            <div class="input-required">
+                <input type="text" id="firstname" name="firstname" placeholder="Prénom">
+            </div>
+            <div class="input-required">
+                <input type="email" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="input-required">
+                <select id="role" name="role">
+                    <option value="user" disabled selected>Rôle</option>
+                    <option value="admin">Admin</option>
+                    <option value="users">User</option>
+                    <option value="pilote">Pilote</option>
+                </select>
+            </div>
+            <div class="input-required">
+                <input type="password" id="password" name="password" placeholder="Mot de passe">
+            </div>
+            <div class="input-required">
+                <select id="promotion" name="promotion" style="display:none;">
+                    <option value="" disabled selected>Promotion</option>
+                    @foreach($promotions as $promotion)
+                        <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-    <form action="{{ route('users.store') }}" method="post">
-        @csrf
-        <label for="lastname">Nom:</label><br>
-        <input type="text" id="lastname" name="lastname"><br>
-        <label for="firstname">Prénom:</label><br>
-        <input type="text" id="firstname" name="firstname"><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br>
-        <label for="role">Rôle:</label><br>
-        <select id="role" name="role">
-            <option value="admin">Admin</option>
-            <option value="users">User</option>
-            <option value="pilote">Pilote</option>
-        </select><br><br>
-        <label for="password">Mot de passe:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        
-        <!-- Titre de la promotion -->
-        <label id="promotionLabel" for="promotion" style="display:none;">Promotion:</label><br>
-
-        <!-- Sélection de la promotion -->
-        <select id="promotion" name="promotion" style="display:none;">
-            @foreach($promotions as $promotion)
-                <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
-            @endforeach
-        </select><br><br>
-
-        <button type="submit">Créer</button>
-    </form>
+            <button type="submit" class="btn-1">Créer</button>
+        </form>
+    </div>
     <script>
         window.onload = function() {
             var roleSelect = document.getElementById('role');
@@ -42,12 +47,10 @@
             roleSelect.addEventListener('change', function() {
                 // Vérifier si le rôle sélectionné est "admin"
                 if (roleSelect.value === 'admin') {
-                    // Masquer le champ de sélection de promotion et son titre
-                    promotionLabel.style.display = 'none';
+                    // Masquer le champ de sélection de promotion
                     promotionSelect.style.display = 'none';
                 } else {
-                    // Afficher le champ de sélection de promotion et son titre
-                    promotionLabel.style.display = 'block';
+                    // Afficher le champ de sélection de promotion
                     promotionSelect.style.display = 'block';
                 }
             });

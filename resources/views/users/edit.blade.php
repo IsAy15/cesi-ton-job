@@ -4,8 +4,7 @@
 @vite('resources/css/offer.css')
 <div class="container-1 default-bg fit-center">
     <h1>Modifier l'utilisateur</h1>
-
-    <form method="POST" action="{{ route('users.update', $user->id) }}">
+    <form method="POST" action="{{ route('users.update', $user->id) }}" class="form-v">
         @csrf
         @method('PUT')
 
