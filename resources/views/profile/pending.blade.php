@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1>Utilisateurs en attente</h1>
-        <table class="table">
+        <table>
             <thead>
                 <tr>
                     <th>Nom</th>

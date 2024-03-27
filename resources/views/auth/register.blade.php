@@ -1,9 +1,7 @@
 @extends('layouts.home')
 @section('title', 'S\'inscrire')
 @section('content')
-@vite('resources/css/auth-register.css')
-@vite('resources/css/brouillon-generale.css')
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <h1>Formulaire d'inscription</h1>
         <form action="{{ route('auth.register') }}" method="post" class="form-v">
             @csrf

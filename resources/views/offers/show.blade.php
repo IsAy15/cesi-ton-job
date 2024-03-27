@@ -2,10 +2,8 @@
 @section('title', 'Détails de l\'offre')
 @section('content')
 @vite('resources/css/offer.css')
-@vite('resources/css/brouillon-generale.css')
-@vite('resources/css/offres.css')
 
-<div class="c-1 bg-1 fit-center">
+<div class="container-1 default-bg fit-center">
     <div class="space">
         <h1>{{ $offer->title }}</h1>
         @if ($isInWishlist)
@@ -23,7 +21,7 @@
     </div>
     @auth
     @endauth
-    <div class="c-2 bg-2 liste-v">
+    <div class="container-2 area-bg liste-v">
         <h2>{{ $offer->company->name }}</h2>
         <p>Type de contrat: {{ $offer->type }}</p>
         <p>{{ $offer->description }}</p>

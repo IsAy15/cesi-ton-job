@@ -1,8 +1,6 @@
 @extends('layouts.home')
 @section('title', 'Liste des entreprises')
 @section('content')
-@vite('resources/css/companies.css')
-@vite('resources/css/brouillon-generale.css')
 
 @if (session('success'))
     <div class="alert alert-success">
@@ -10,14 +8,14 @@
     </div>
 @endif
 
-<div class="c-1 bg-1 fit-center">
+<div class="container-1 default-bg fit-center">
     <h1>Liste des Entreprises</h1>
     <input type="text" id="searchInput" placeholder="Rechercher une entreprise...">
     @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')
     <a href="{{ route('companies.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></a>
     @endif
     @foreach ($companies as $company)
-        <div class="c-1 bg-2">
+        <div class="container-1 area-bg">
             <div class="liste-v">
                 <h2><a href="{{ route('companies.stats', $company->id) }}" class="clickable">{{ $company->name }}</a></h2>
                 <div class="liste-v">
