@@ -56,12 +56,14 @@
                     @endif
                     </ul>
                 </div>
+                @if (Auth::user()->role == !'pilote')
                 <div class="nav-menu wishlist">
                     <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
                         <i class="fa-solid fa-heart"></i>
                         <span>Favoris</span>
                     </a>
                 </div>
+                @endif
             @endif             
         </nav>
     </header>

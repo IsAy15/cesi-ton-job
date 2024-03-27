@@ -26,9 +26,7 @@ class WishlistController extends Controller
             $offer = Offer::find($offerId);
 
             if ($offer) {
-                // Vérifie si l'offre n'est pas déjà dans la wishlist de l'utilisateur
                 if (!auth()->user()->wishlist()->where('offer_id', $offerId)->exists()) {
-                    // Attache l'offre à la wishlist de l'utilisateur
                     auth()->user()->wishlist()->attach($offerId);
 
                     return redirect()->back()->with('success', 'L\'offre a été ajoutée à votre wishlist.');
@@ -45,15 +43,13 @@ class WishlistController extends Controller
 
 
     public function deleteOffer($offerId)
-{
-    // Supprimer les enregistrements dans la table 'applications' qui référencent l'offre à supprimer
-    DB::table('applications')->where('offer_id', $offerId)->delete();
+    {
+        DB::table('applications')->where('offer_id', $offerId)->delete();
 
-    // Supprimer l'offre de la table 'offers'
-    $offer = Offer::findOrFail($offerId);
-    $offer->delete();
+        $offer = Offer::findOrFail($offerId);
+        $offer->delete();
 
-    return redirect()->route('offers.index')->with('success', 'Offre supprimée avec succès');
-}
+        return redirect()->route('offers.index')->with('success', 'Offre supprimée avec succès');
+    }
 
 }

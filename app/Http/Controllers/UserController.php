@@ -11,10 +11,27 @@ use App\Models\Wishlist;
 class UserController extends Controller
 {
     public function index()
-    {
-        $usersWithPromotions = User::with('promotions')->where('status', 'approved')->get();
-        return view('users.index', compact('usersWithPromotions'));
+{
+    $currentUser = auth()->user();
+
+    if ($currentUser->role === 'pilote'){
+        $pilotePromotionId = $currentUser->promotions->pluck('id')->toArray();
+        $usersWithPromotions = User::with('promotions')
+            ->where('id', '!=', $currentUser->id) // Exclure l'utilisateur actuel
+            ->whereHas('promotions', function ($query) use ($pilotePromotionId) {
+                $query->whereIn('id', $pilotePromotionId);
+            })
+            ->where('status', 'approved')
+            ->get();
+    } else {
+        $usersWithPromotions = User::with('promotions')
+            ->where('status', 'approved')
+            ->get();
     }
+
+    return view('users.index', compact('usersWithPromotions'));
+}
+
 
     public function show($id)
     {
@@ -22,11 +39,24 @@ class UserController extends Controller
         return view('users.show', compact('user'));
     }
 
+
     public function create()
-    {
-        $promotions = Promotion::all();
-        return view('users.create', compact('promotions'));
+{
+    $promotions = Promotion::all();
+    $user = auth()->user();
+    
+    $roles = [
+        'user' => 'Utilisateur',
+        'admin' => 'Administrateur',
+        'pilote' => 'Pilote',
+    ];
+
+    if ($user->role == 'pilote') {
+        $roles = ['user' => 'Utilisateur'];
     }
+    
+    return view('users.create', compact('roles', 'promotions'));
+}
 
     public function store(Request $request)
     {

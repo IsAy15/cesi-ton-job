@@ -16,7 +16,6 @@
                             @method('DELETE')
                             <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-heart"></i></button>
                         </form>
-
                             @endauth
                     </div>
                 @endforeach

@@ -51,7 +51,7 @@
             @if(Auth::user()->role=="pilote")
                 <div id="admin" class="container-1 area-bg">
                     <p>Promotions :</p>
-                    <div class="liste-h"> <!-- A compléter -->
+                    <div class="liste-h"> 
                         <div class="elements">
                             <a href="#">Promo 1</a>
                         </div>
@@ -89,7 +89,7 @@
             @endif
             @if(Auth::user()->role=="pilote")
                 <div class="liste-h">
-                    <a href="{{ route('offers.index') }}" class="btn-1 btn-2">Voir les offres publiée(s)</a>
+                    <a href="{{ route('offers.index') }}" class="btn-1 btn-2">Voir les offres publiées</a>
                     <a href="{{ route('companies.index') }}" class="btn-1 btn-2">Voir les entreprises</a>
                 </div>
             @endif

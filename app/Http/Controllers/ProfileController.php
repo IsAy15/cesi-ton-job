@@ -43,6 +43,10 @@ class ProfileController extends Controller
     public function wishlist()
     {
         $user = auth()->user();
+
+        if ($user->role === 'pilote') {
+            return redirect()->route('profile.index');
+        }
         $wishlist = $user->wishlist;
         return view('profile.wishlist', compact('wishlist'));
     }

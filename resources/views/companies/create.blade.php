@@ -11,7 +11,7 @@
 @endif
     <div class="container-1 default-bg fit-center">
         <h1>Ajouter une entreprise</h1>
-        <form action="{{ route('companies.store') }}" method="post" class="form-v" onsubmit="return validateForm()">
+        <form action="{{ route('companies.store') }}" method="post" class="form-v">
             @csrf
             <div>
                 <input type="text" name="cp_name" id="cp_name" placeholder="Nom de l'entreprise">

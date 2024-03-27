@@ -15,18 +15,17 @@
                 <input type="email" id="email" name="email" placeholder="Email">
             </div>
             <div class="input-required">
-                <select id="role" name="role">
-                    <option value="user" disabled selected>Rôle</option>
-                    <option value="admin">Admin</option>
-                    <option value="users">User</option>
-                    <option value="pilote">Pilote</option>
+                <input type="password" id="password" name="password" placeholder="Mot de passe">
+            </div>
+            <div>
+                <select name="role" id="role">
+                    @foreach($roles as $key => $role)
+                            <option value="{{ $key }}">{{ $role }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="input-required">
-                <input type="password" id="password" name="password" placeholder="Mot de passe">
-            </div>
-            <div class="input-required">
-                <select id="promotion" name="promotion" style="display:none;">
+                <select id="promotion" name="promotion">
                     <option value="" disabled selected>Promotion</option>
                     @foreach($promotions as $promotion)
                         <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
@@ -37,19 +36,4 @@
             <button type="submit" class="btn-1">Créer</button>
         </form>
     </div>
-    <script>
-        window.onload = function() {
-            var roleSelect = document.getElementById('role');
-            var promotionLabel = document.getElementById('promotionLabel');
-            var promotionSelect = document.getElementById('promotion');
-
-            roleSelect.addEventListener('change', function() {
-                if (roleSelect.value === 'admin') {
-                    promotionSelect.style.display = 'none';
-                } else {
-                    promotionSelect.style.display = 'block';
-                }
-            });
-        };
-    </script>
 @endsection
