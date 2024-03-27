@@ -29,7 +29,7 @@
             <tbody>
                 @foreach($usersWithPromotions as $user)
                     <tr>
-                        <td>{{ $user->lastname }}</td>
+                        <td><a href="{{ route('users.show', ['id' => $user->id]) }}">{{ $user->lastname }}</a></td>
                         <td>{{ $user->firstname }}</td>
                         <td>{{ $user->email }}</td>
                         <td>

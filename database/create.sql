@@ -132,15 +132,15 @@ CREATE TABLE offer_requirements(
 DELETE FROM `users`;
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`, `status`) VALUES
-(1, 'admin', 'admin', 'admin@ctj.fr', 'admin', 'admin', 'approved'),
-(2, 'user', 'user', 'user@ctj.fr', 'user', 'user', 'approved'),
-(3, 'user2', 'user2', 'user2@ctj.fr', 'user2', 'user', 'approved'),
-(4, 'user3', 'user3', 'user3@ctj.fr', 'user3', 'user', 'approved'),
-(5, 'pilote', 'pilote', 'pilote@ctj.fr', 'pilote', 'pilote', 'pending'),
-(6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', 'pilote2', 'pilote', 'pending'),
-(7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', 'pilote3', 'pilote', 'pending'),
-(8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', 'pilote4', 'pilote', 'pending'),
-(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', 'pilote5', 'pilote', 'pending');
+(1, 'admin', 'admin', 'admin@ctj.fr', MD5('admin'), 'admin', 'approved'),
+(2, 'user', 'user', 'user@ctj.fr', MD5('user'), 'user', 'approved'),
+(3, 'user2', 'user2', 'user2@ctj.fr', MD5('user2'), 'user', 'approved'),
+(4, 'user3', 'user3', 'user3@ctj.fr', MD5('user3'), 'user', 'approved'),
+(5, 'pilote', 'pilote', 'pilote@ctj.fr', MD5('pilote'), 'pilote', 'pending'),
+(6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', MD5('pilote2'), 'pilote', 'pending'),
+(7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', MD5('pilote3'), 'pilote', 'pending'),
+(8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', MD5('pilote4'), 'pilote', 'pending'),
+(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'pending');
 
 -- Remplissage de la table companies
 DELETE FROM companies;

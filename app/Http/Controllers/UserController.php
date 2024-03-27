@@ -17,6 +17,12 @@ class UserController extends Controller
         return view('users.index', compact('usersWithPromotions'));
     }
 
+    public function show($id)
+    {
+        $user = User::find($id);
+        return view('users.show', compact('user'));
+    }
+
     public function create()
     {
         $promotions = Promotion::all();
@@ -82,14 +88,18 @@ class UserController extends Controller
         DB::table('grades')->where('user_id', $id)->delete();
         DB::table('user_promotions')->where('user_id', $id)->delete();
         DB::table('student_abilities')->where('user_id', $id)->delete();
+        DB::table('applications')->where('user_id', $id)->delete();
+        DB::table('user_offer')->where('user_id', $id)->delete();
+        DB::table('user_wishlist')->where('user_id', $id)->delete();
 
 
-        // Supprimer l'utilisateur
         $user = User::findOrFail($id);
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
     }
+
+
 
 
     public function wishlist()
