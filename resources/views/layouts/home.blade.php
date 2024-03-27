@@ -29,11 +29,12 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="{{ route('profile.index') }}">Profil</a></li>
-                        @if (Auth::user()->role == 'admin')
-                            <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                             <li><a href="{{ route('companies.index') }}">Entreprises</a></li>
                             <li><a href="{{ route('offers.index') }}">Offres</a></li>
+                            @if (Auth::user()->role !== 'user')
+                            <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                             <li><a href="{{ route('promotions.index') }}">Promotions</a></li>
+                            @endif
                         @endif
                         <li>
                             <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
@@ -56,7 +57,7 @@
                     @endif
                     </ul>
                 </div>
-                @if (Auth::user()->role == !'pilote')
+                @if (Auth::user()->role !== 'pilote')
                 <div class="nav-menu wishlist">
                     <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
                         <i class="fa-solid fa-heart"></i>
@@ -64,7 +65,6 @@
                     </a>
                 </div>
                 @endif
-            @endif             
         </nav>
     </header>
     <main>

@@ -35,13 +35,16 @@ class OfferController extends Controller
       return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user'));
   }
   
-
-
-
-
   public function create()
   {
       $companies = Company::all();
+
+      $user = auth()->user();
+      
+      if ($user->role === 'user') {
+        return redirect()->route('offers.index');
+    }
+
       return view("offers.create", compact("companies"));
   }
 
@@ -67,7 +70,12 @@ class OfferController extends Controller
   public function edit($id)
     {
         $offer = Offer::findOrFail($id);
-        $companies = Company::all(); // Récupère toutes les entreprises
+        $companies = Company::all();
+        $user = auth()->user();
+        
+        if ($user->role === 'user') {
+        return redirect()->route('offers.index');
+    }
         return view('offers.edit', compact('offer', 'companies'));
     }
 
@@ -85,7 +93,6 @@ class OfferController extends Controller
         $offer->applies_count = $request->input('of_applies_count');
         $offer->type = $request->input('of_type');
         
-        // Récupérer la nouvelle valeur de company_id depuis le formulaire
         $company_id = $request->input('of_company_id');
         $offer->company_id = $company_id;
         
@@ -96,6 +103,12 @@ class OfferController extends Controller
 
     public function destroy($id)
 {
+    $user = auth()->user();
+      
+      if ($user->role === 'user') {
+        return redirect()->route('offers.index');
+    }
+    
     DB::table('offer_requirements')->where('of_id', $id)->delete();
 
     DB::table('user_offer')->where('offer_id', $id)->delete();
