@@ -14,6 +14,7 @@
                 </div>
             </form>
         </div>
+        <a href="{{ route('offers.data') }}" class="btn-1 btn-2">Afficher les données</a>
         @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
             <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre</a>
         @endif
