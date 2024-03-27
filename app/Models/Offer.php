@@ -45,7 +45,14 @@ class Offer extends Model
     }
 
     public function abilities()
-{
-    return $this->belongsToMany(Ability::class, 'offer_requirements', 'of_id', 'ab_id');
-}
+    {
+        return $this->belongsToMany(Ability::class, 'offer_requirements', 'of_id', 'ab_id');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+
 }

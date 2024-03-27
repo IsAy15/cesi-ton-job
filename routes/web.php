@@ -44,6 +44,7 @@ Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('
 
 //Offres routes
 Route::prefix('offer')->group(function(){
+    Route::get('/data', [OfferController::class, 'data'])->name('offers.data');
     Route::get('/', [OfferController::class, 'index'])->name('offers.index');
     Route::get('/create', [OfferController::class, 'create'])->name('offers.create');
     Route::get('/{id}', [OfferController::class, 'show'])->name('offers.show');
@@ -52,7 +53,6 @@ Route::prefix('offer')->group(function(){
     Route::put('/{id}/update', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::post('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
-    Route::get('/data', [OfferController::class, 'data'])->name('offers.data');
 });
 
 
