@@ -2,9 +2,9 @@
 @section('title', 'Votre profil')
 @section('content')
 @vite('resources/css/profile.css')
-    <div class="container">
+    <div class="container-1 default-bg fit-center">
         <h1>Modifier l'utilisateur</h1>
-        <form action="{{ route('profile.update', $user->id) }}" method="POST">
+        <form action="{{ route('profile.update', $user->id) }}" method="POST" class="form-v">
             @csrf
             @method('PUT')
 

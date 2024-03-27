@@ -7,7 +7,8 @@
             @if ($appliedOffers)
                 @foreach($appliedOffers as $offer)
                     <div class="container-1 area-bg">
-                        <a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a>
+                        <a href="{{ route('offers.show', $offer->id) }}" class="clickable">{{ $offer->title }}</a>
+                        <p>{{ $offer->company->name }}</p>
                     </div>
                 @endforeach
             @else

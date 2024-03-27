@@ -1,9 +1,8 @@
 <!-- resources/views/pending.blade.php -->
 @extends('layouts.home')
 @section('title', 'Utilisateurs en attente')
-
 @section('content')
-    <div class="container">
+    <div class="container-1 default-bg fit-center">
         <h1>Utilisateurs en attente</h1>
         <table>
             <thead>
