@@ -25,7 +25,7 @@
         <h2>{{ $offer->company->name }}</h2>
         <p>Type de contrat: {{ $offer->type }}</p>
         <p>{{ $offer->description }}</p>
-        <p>Ville : <span id="ville"></span> ({{ $offer->localization }})</p> 
+        <p>Ville : <span city></span> (<span cp>{{ $offer->localization }}</span>)</p> 
         <div class="space">
             <p>Date de début : {{ $offer->starting_date }}</p>
             <p>Date de fin : {{ $offer->ending_date }}</p>
@@ -67,5 +67,6 @@
 
     <a href="{{ route('offers.index') }}" class="btn-1">Retour</a>
 </div>
+@vite('resources/js/postal.js')
 @vite('resources/js/file.js')
 @endsection

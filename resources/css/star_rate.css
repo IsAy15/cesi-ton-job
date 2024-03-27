@@ -1,42 +1,44 @@
-form {
+
+
+div.rate{
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
 }
 
 .ratings {
     display: flex;
     flex-direction: row-reverse;
     span {
-        cursor: pointer;
         transition: color 0.2s;
         font-size: 50px;
-        &:hover {
-            color: orange;
-            & ~ span {
-                color: orange;
-            }
-        }
         &[data-clicked] {
+          color: orange;
+          & ~ span {
+            color: orange;
+          }
+        }
+        &.half {
+          position: relative;
+          &:before {
+            display: block;
+            position: absolute;
+            z-index: 1;
+            content: "\2605";
+            width: var(--vnote, 0%);
+            overflow: hidden;
+            color: orange;
+          }
+        }
+    }
+    &.active {
+        span:hover {
+            cursor: pointer;
             color: orange;
             & ~ span {
                 color: orange;
             }
         }
     }
-}
-.reset {
-    font-size: 18px;
-    text-decoration: none;
-    background-color: #4f5a78;
-    padding: 15px 50px;
-    display: inline-block;
-    margin-top: 20px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-.reset:hover {
-    filter: brightness(1.2);
 }

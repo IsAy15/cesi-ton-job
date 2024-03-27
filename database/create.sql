@@ -147,10 +147,10 @@ DELETE FROM companies;
 
 INSERT INTO companies (name, sector, localization) VALUES
 ('Dassault Systèmes', 'Informatique', '78140'),
-('Capgemini', 'Informatique', '75000'),
+('Capgemini', 'Informatique', '75001'),
 ('Thales', 'Informatique', '92400'),
 ('Atos', 'Informatique', '95870'),
-('Sopra Steria', 'Informatique', '75000'),
+('Sopra Steria', 'Informatique', '75001'),
 ('Ubisoft', 'Informatique', '93100'),
 ('OVHcloud', 'Informatique', '59100');
 

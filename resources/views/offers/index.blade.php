@@ -37,8 +37,8 @@
                 @foreach ($offers as $offer)
                     <tr>
                         <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
-                        <td class="code-postal">{{ $offer->localization }}</td>
-                        <td class="ville"></td> 
+                        <td cp>{{ $offer->localization }}</td>
+                        <td city></td> 
                         <td>{{ $offer->starting_date }}</td>
                         <td>{{ $offer->ending_date }}</td>
                         <td>{{ $offer->type }}</td>
@@ -61,4 +61,5 @@
         </table>
     </div>
 @vite('resources/js/offer.js')
+@vite('resources/js/postal.js')
 @endsection

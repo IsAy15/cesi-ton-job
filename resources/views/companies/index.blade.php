@@ -29,11 +29,11 @@
                     </div>
                     <div class="space">
                         <p>Localisation :</p>
-                        <p class="elements">{{ $company->localization }}</p>
+                        <p class="elements" city>{{ $company->localization }}</p>
                     </div>
                     <div class="space">
                         <p>Moyenne des notes :</p>
-                        <p class="elements">{{ $company->average_grade }}</p>
+                        <div class="elements" note='{{ $company->average_grade }}'></p></div>
                     </div>
                 </div>
             </div>
@@ -50,5 +50,8 @@
         </div>
     @endforeach
 </div>
+@vite('resources/js/postal.js')
 @vite('resources/js/entreprise_search.js')
+@vite('resources/js/star_rate.js')
+@vite('resources/css/star_rate.css')
 @endsection

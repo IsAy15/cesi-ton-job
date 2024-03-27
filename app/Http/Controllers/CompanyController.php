@@ -22,7 +22,7 @@ class CompanyController extends Controller
             
             $averageGrade = $grades->avg();
             
-            $company->average_grade = $averageGrade;
+            $company->average_grade = round($averageGrade,1);
         }
 
         return view('companies.index', compact('companies'));

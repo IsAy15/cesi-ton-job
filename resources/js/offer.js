@@ -1,17 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var postalCodes = document.querySelectorAll('.code-postal');
-    postalCodes.forEach(function(postalCodeElement) {
-        var postalCode = postalCodeElement.textContent.trim();
-        fetch('https://api-adresse.data.gouv.fr/search/?q=' + postalCode)
-            .then(response => response.json())
-            .then(data => {
-                if (data.features.length > 0) {
-                    var city = data.features[0].properties.city;
-                    postalCodeElement.nextElementSibling.textContent = city;
-                }
-            })
-            .catch(error => console.error('Erreur lors de la récupération de la ville :', error));
-    });
 
     document.getElementById('searchButton').addEventListener('click', function(event) {
         event.preventDefault();

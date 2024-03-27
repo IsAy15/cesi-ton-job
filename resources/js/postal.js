@@ -1,27 +1,27 @@
-var codeposInput = document.getElementById("of_codepos");
-var localizationInput = document.getElementById("of_localization");
+var input = document.querySelectorAll('[cp]');
+var output = document.querySelectorAll('[city]');
+if (!input.length) {
+    input = output;
+}
 
-codeposInput.addEventListener("input", function () {
-    var codepos = codeposInput.value.trim();
+for (let i = 0; i < input.length; i++) {
+    let cpElement = input[i];
+    let cp = cpElement.innerText.trim();
+    let cityElement = output[i];
 
-    if (codepos === "") {
-        localizationInput.value = "";
-        return;
-    }
-
-    var apiUrl = "https://geo.api.gouv.fr/communes?codePostal=" + codepos;
+    let apiUrl = "https://geo.api.gouv.fr/communes?codePostal=" + encodeURIComponent(cp);
 
     fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-            localizationInput.value = data.nom;
+            if (data.length > 0) {
+                cityElement.innerText = data[0].nom;
+            } else {
+                cityElement.innerText = "City Not Found";
+            }
         })
         .catch((error) => {
-            console.error("Erreur:", error);
-            localizationInput.value = "";
+            console.error("Error:", error);
+            cityElement.innerText = "";
         });
-});
-
-codeposInput.addEventListener("input", function () {
-    codeposInput.value = codeposInput.value.replace(/\D/g, "");
-});
+}
