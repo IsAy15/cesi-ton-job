@@ -22,6 +22,7 @@
         </div>
         <nav class="navbar">
             @if (Auth::check())
+                <!-- Utilisateur authentifié -->
                 <div class="nav-menu profile">
                     <div class="nav-menu-content" id="profile-link">
                         <i class="fa-solid fa-user"></i>
@@ -29,12 +30,11 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="{{ route('profile.index') }}">Profil</a></li>
-                            <li><a href="{{ route('companies.index') }}">Entreprises</a></li>
-                            <li><a href="{{ route('offers.index') }}">Offres</a></li>
-                            @if (Auth::user()->role !== 'user')
+                        <li><a href="{{ route('companies.index') }}">Entreprises</a></li>
+                        <li><a href="{{ route('offers.index') }}">Offres</a></li>
+                        @if (Auth::user()->role !== 'user')
                             <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                             <li><a href="{{ route('promotions.index') }}">Promotions</a></li>
-                            @endif
                         @endif
                         <li>
                             <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
@@ -52,25 +52,26 @@
                     <ul class="submenu">
                         <li><a href="{{ route('profile.offers') }}">Voir mes offres</a></li>
                         <li><a href="{{ route('offers.index') }}">Voir toutes les offres</a></li>
-                    @if (Auth::user()->role == 'admin')
-                        <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
-                    @endif
+                        @if (Auth::user()->role == 'admin')
+                            <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
+                        @endif
                     </ul>
                 </div>
                 @if (Auth::user()->role !== 'pilote')
-                <div class="nav-menu wishlist">
-                    <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
-                        <i class="fa-solid fa-heart"></i>
-                        <span>Favoris</span>
-                    </a>
-                </div>
+                    <div class="nav-menu wishlist">
+                        <a class="nav-menu-content" href="{{ route('profile.wishlist') }}">
+                            <i class="fa-solid fa-heart"></i>
+                            <span>Favoris</span>
+                        </a>
+                    </div>
                 @endif
+            @endif
         </nav>
     </header>
     <main>
         @yield('content')
-        @cookieconsentview
     </main>
+    <!-- Inclure ici le pied de page -->
     @extends('layouts.footer')
     @yield('footer')
 </body>
