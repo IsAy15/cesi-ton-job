@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
- 
-
 class AuthController extends Controller
 {
     // Méthode pour afficher le formulaire de connexion
@@ -26,43 +24,41 @@ class AuthController extends Controller
     }
 
     public function dologin(LoginRequest $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    $user = User::where('email', $credentials['email'])->first();
+        $user = User::where('email', $credentials['email'])->first();
 
-    if ($user) {
-        if ($user->status === 'approved' && $user->password === $credentials['password']) {
-            Auth::login($user);
+        if ($user) {
+            if ($user->status === 'approved' && md5($credentials['password']) === $user->password) {
+                Auth::login($user);
 
-            if ($user->role === 'admin' || $user->role === 'pilote') {
-                return redirect()->intended(route('users.index'));
+                if ($user->role === 'admin' || $user->role === 'pilote') {
+                    return redirect()->intended(route('users.index'));
+                } else {
+                    return redirect()->intended(route('profile.index'));
+                }
             } else {
-                return redirect()->intended(route('profile.index'));
+                return redirect()->back()->withInput()->withErrors([
+                    'email' => 'Votre compte est en attente de validation.',
+                ]);
             }
-        } else {
-            return redirect()->back()->withInput()->withErrors([
-                'email' => 'Votre compte est en attente de validation.',
-            ]);
         }
+
+        return redirect()->back()->withInput()->withErrors([
+            'email' => 'Email ou mot de passe incorrect',
+        ]);
     }
 
-    return redirect()->back()->withInput()->withErrors([
-        'email' => 'Email ou mot de passe incorrect',
-    ]);
-}
-
-
-    
-
-    public function register(){
+    public function register()
+    {
         return view('auth.register');
     }
 
     public function confirmation()
-{
-    return view('auth.confirmation');
-}
+    {
+        return view('auth.confirmation');
+    }
 
     public function doregister(Request $request)
     {
@@ -70,13 +66,11 @@ class AuthController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        $user->password = $request->password;
+        // Utilisation de MD5 pour hacher le mot de passe
+        $user->password = md5($request->password);
         $user->role = $request->role;
         $user->save();
 
         return redirect()->route('auth.confirmation');
     }
-
-
-
 }
