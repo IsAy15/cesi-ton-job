@@ -18,8 +18,8 @@
         <a href="{{ route('companies.data') }}" class="btn-1 btn-2"><i class="fa-solid fa-chart-simple"></i></a>
     </div>
     @foreach ($companies as $company)
-        <div class="container-1 area-bg">
-            <div class="liste-v">
+        <div class="container-1 area-bg company"> <!-- Ajouter la classe company -->
+            <div class="liste-v infos"> <!-- Ajouter la classe infos -->
                 <h2><a href="{{ route('companies.stats', $company->id) }}" class="clickable">{{ $company->name }}</a></h2>
                 <div class="liste-v">
                     <div class="space">
@@ -58,9 +58,9 @@
                 company = companies[i].getElementsByClassName("infos")[0];
                 txtValue = company.textContent || company.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    companies[i].style.display = "";
+                    companies[i].style.display = ""; // Afficher l'entreprise si elle correspond au filtre
                 } else {
-                    companies[i].style.display = "none";
+                    companies[i].style.display = "none"; // Cacher l'entreprise sinon
                 }
             }
         }

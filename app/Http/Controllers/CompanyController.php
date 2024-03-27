@@ -31,6 +31,12 @@ class CompanyController extends Controller
 
     public function create()
     {
+        $user = auth()->user();
+      
+      if ($user->role === 'user') {
+        return redirect()->route('copanies.index');
+    }
+
         return view('companies.create');
     }
     
@@ -55,6 +61,13 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $company = Company::find($id);
+
+        $user = auth()->user();
+      
+      if ($user->role === 'user') {
+        return redirect()->route('companies.index');
+    }
+
         return view('companies.edit', compact('company'));
     }
 
@@ -70,6 +83,12 @@ class CompanyController extends Controller
 
     public function destroy($id)
     {
+        $user = auth()->user();
+      
+      if ($user->role === 'user') {
+        return redirect()->route('companies.index');
+    }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
     
         Offer::where('company_id', $id)->delete();

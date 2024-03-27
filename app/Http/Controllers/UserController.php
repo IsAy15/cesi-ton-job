@@ -9,29 +9,33 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Wishlist;
 
 class UserController extends Controller
+
 {
     public function index()
-{
-    $currentUser = auth()->user();
+    {
+        $currentUser = auth()->user();
 
-    if ($currentUser->role === 'pilote'){
-        $pilotePromotionId = $currentUser->promotions->pluck('id')->toArray();
-        $usersWithPromotions = User::with('promotions')
-            ->where('id', '!=', $currentUser->id) // Exclure l'utilisateur actuel
-            ->whereHas('promotions', function ($query) use ($pilotePromotionId) {
-                $query->whereIn('id', $pilotePromotionId);
-            })
-            ->where('status', 'approved')
-            ->get();
-    } else {
-        $usersWithPromotions = User::with('promotions')
-            ->where('status', 'approved')
-            ->get();
+        if ($currentUser->role === 'user') {
+            return redirect()->route('profile.index');
+        }
+
+        if ($currentUser->role === 'pilote'){
+            $pilotePromotionId = $currentUser->promotions->pluck('id')->toArray();
+            $usersWithPromotions = User::with('promotions')
+                ->where('id', '!=', $currentUser->id)
+                ->whereHas('promotions', function ($query) use ($pilotePromotionId) {
+                    $query->whereIn('id', $pilotePromotionId);
+                })
+                ->where('status', 'approved')
+                ->get();
+        } else {
+            $usersWithPromotions = User::with('promotions')
+                ->where('status', 'approved')
+                ->get();
+        }
+
+        return view('users.index', compact('usersWithPromotions'));
     }
-
-    return view('users.index', compact('usersWithPromotions'));
-}
-
 
     public function show($id)
     {
@@ -39,28 +43,31 @@ class UserController extends Controller
         return view('users.show', compact('user'));
     }
 
-
     public function create()
-{
-    $promotions = Promotion::all();
-    $user = auth()->user();
-    
-    $roles = [
-        'user' => 'Utilisateur',
-        'admin' => 'Administrateur',
-        'pilote' => 'Pilote',
-    ];
+    {
+        $promotions = Promotion::all();
+        $user = auth()->user();
 
-    if ($user->role == 'pilote') {
-        $roles = ['user' => 'Utilisateur'];
+
+        if ($user->role === 'user') {
+            return redirect()->route('profile.index');
+        }
+        
+        $roles = [
+            'user' => 'Utilisateur',
+            'admin' => 'Administrateur',
+            'pilote' => 'Pilote',
+        ];
+
+        if ($user->role == 'pilote') {
+            $roles = ['user' => 'Utilisateur'];
+        }
+        
+        return view('users.create', compact('roles', 'promotions'));
     }
-    
-    return view('users.create', compact('roles', 'promotions'));
-}
 
     public function store(Request $request)
     {
-        // Validation des données du formulaire
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
@@ -86,6 +93,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $Currentuser = auth()->user();
+
+        if ($Currentuser->role === 'user') {
+            return redirect()->route('profile.index');
+        }
+
         $promotions = Promotion::all();
         return view('users.edit', compact('user', 'promotions'));
     }
@@ -120,19 +133,19 @@ class UserController extends Controller
         DB::table('user_offer')->where('user_id', $id)->delete();
         DB::table('user_wishlist')->where('user_id', $id)->delete();
 
-
         $user = User::findOrFail($id);
+        $Currentuser = auth()->user();
+
+        if ($Currentuser->role === 'user') {
+            return redirect()->route('profile.index');
+        }
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
     }
 
-
-
-
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class);
     }
-
 }

@@ -44,7 +44,7 @@
         </ul>
     </div>
     @auth
-        @if (!$isApplied)
+        @if ($user->role !== 'pilote' && !$isApplied)
             <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v" enctype="multipart/form-data">
                 @csrf
                 @csrf
@@ -62,9 +62,6 @@
                 </div>
                 <button type="submit" class="btn-1 btn-2">Postuler</button>
             </form>
-
-        @else
-            <p>Vous avez déjà postulé à cette offre.</p>
         @endif
     @endauth
 
@@ -97,7 +94,5 @@
             }
         })
         .catch(error => console.error('Erreur lors de la récupération de la ville :', error));
-
-        
 </script>
 @endsection

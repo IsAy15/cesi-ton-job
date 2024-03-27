@@ -2,12 +2,6 @@
 @section('title', 'Ajouter une offre')
 @section('content')
 @vite('resources/css/offer.css')
-@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
-    <?php
-        header('Location: /access-denied.php');
-        exit();
-    ?>
-@endif
     <div class="container-1 default-bg fit-center">
         <h1>Ajouter une offre</h1>
         <form action="{{ route('offers.store') }}" method="post" class="form-v">
