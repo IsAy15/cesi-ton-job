@@ -121,6 +121,9 @@ class CompanyController extends Controller
             return $company->grades->avg('value');
         })->avg();
 
+        $averageGrade = round($averageGrade, 2);
+
+
         $companyWithMostOffers = Company::withCount('offers')->orderByDesc('offers_count')->first();
 
         $companyWithMostApplications = Company::withCount('offers')
