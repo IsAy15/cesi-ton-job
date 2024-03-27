@@ -1,9 +1,7 @@
 @extends('layouts.home')
-@vite('resources/css/companies.css')
-@vite('resources/css/brouillon-generale.css')
 @section('title', 'Statistiques de l\'entreprise')
 @section('content')
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <h1>{{ $company->name }}</h1>
         <h2>Offres postées par l'entreprise :</h2>
         <div class="form-v">
@@ -15,7 +13,7 @@
         
         <a href="{{ route('companies.index') }}" class="btn-1">Retour</a>
     </div>
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
