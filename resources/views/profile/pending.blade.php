@@ -19,7 +19,8 @@
                     <td>{{ $user->lastname }} {{ $user->firstname }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary">Éditer</a>
+                        <a href="{{ route('profile.edit', $user->id) }}" class="btn-1"><i class="fa-solid fa-pen-to-square"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach

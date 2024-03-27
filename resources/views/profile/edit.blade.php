@@ -8,7 +8,6 @@
             @csrf
             @method('PUT')
 
-            <!-- Champ pour modifier le statut de l'utilisateur -->
             <div class="form-group">
                 <label for="status">Statut:</label>
                 <select name="status" class="form-control">
@@ -17,7 +16,6 @@
                 </select>
             </div>
 
-            <!-- Bouton de soumission -->
             <button type="submit" class="btn-1">Enregistrer</button>
         </form>
     </div>
