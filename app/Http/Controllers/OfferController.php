@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Offer;
 use App\Models\Company;
+use App\Models\Ability;
 use App\Models\Application;
 
 
@@ -132,6 +133,7 @@ class OfferController extends Controller
     $offer->increment('applies_count');
 
     return redirect()->route('offers.show', $id)->with('success', 'Votre candidature a été soumise avec succès.');
-} 
+}
+
 
 }

@@ -52,7 +52,9 @@ Route::prefix('offer')->group(function(){
     Route::put('/{id}/update', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::post('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
+    Route::get('/data', [OfferController::class, 'data'])->name('offers.data');
 });
+
 
 
 
