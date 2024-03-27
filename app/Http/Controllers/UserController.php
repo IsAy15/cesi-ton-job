@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Promotion; 
+use Illuminate\Support\Facades\DB;
 use App\Models\Wishlist;
 
 class UserController extends Controller
@@ -56,34 +57,44 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $user = User::find($id);
+    {
+        $user = User::find($id);
 
-    // Vérifier si l'utilisateur est un administrateur et si le rôle est envoyé dans la requête
-    if ($user->role === 'admin' && $request->has('role')) {
-        // Si l'utilisateur est un administrateur et le rôle est modifié, ignorer la mise à jour du rôle
-        $request->merge(['role' => 'admin']);
+        if ($user->role === 'admin' && $request->has('role')) {
+            $request->merge(['role' => 'admin']);
+        }
+
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+
+        if ($user->role !== 'admin' && $request->has('promotion')) {
+            $user->promotions()->sync([$request->promotion]);
+        }
+
+        return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
     }
 
-    $user->lastname = $request->lastname;
-    $user->firstname = $request->firstname;
-    $user->email = $request->email;
-    $user->password = $request->password;
-    $user->save();
+    public function destroy($id)
+    {
+        DB::table('grades')->where('user_id', $id)->delete();
+        DB::table('user_promotions')->where('user_id', $id)->delete();
+        DB::table('student_abilities')->where('user_id', $id)->delete();
 
-    // Synchronisation des promotions uniquement si le rôle n'est pas admin
-    if ($user->role !== 'admin' && $request->has('promotion')) {
-        $user->promotions()->sync([$request->promotion]);
+
+        // Supprimer l'utilisateur
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
     }
-
-    return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
-}
 
 
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class);
     }
-
 
 }

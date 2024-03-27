@@ -28,41 +28,29 @@
             </thead>
             <tbody>
                 @foreach($usersWithPromotions as $user)
-                    @if($user->role !== 'admin')
-                        <tr>
-                            <td>{{ $user->lastname }}</td>
-                            <td>{{ $user->firstname }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                @foreach($user->promotions as $promotion)
-                                    <a href="{{ route('promotions.users', ['id' => $promotion->id]) }}" class="clickable">{{ $promotion->name }}</a> 
-                                    @if(!$loop->last)
-                                        , 
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>
+                    <tr>
+                        <td>{{ $user->lastname }}</td>
+                        <td>{{ $user->firstname }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            @foreach($user->promotions as $promotion)
+                                <a href="{{ route('promotions.users', ['id' => $promotion->id]) }}" class="clickable">{{ $promotion->name }}</a> 
+                                @if(!$loop->last)
+                                    , 
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
+                            @if(Auth::user()->role = 'admin')
                                 <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn-1 btn-2">Modifier</a>
-                            </td>
-                        </tr>
-                    @elseif(Auth::user()->role != 'pilote')
-                        <tr>
-                            <td>{{ $user->lastname }}</td>
-                            <td>{{ $user->firstname }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                @foreach($user->promotions as $promotion)
-                                    <a href="{{ route('promotions.users', ['id' => $promotion->id]) }}" class="clickable">{{ $promotion->name }}</a> 
-                                    @if(!$loop->last)
-                                        , 
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>
-                                <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn-1 btn-2">Modifier</a>
-                            </td>
-                        </tr>
-                    @endif
+                                <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-1 btn-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
+                                </form>
+                            @endif                                
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

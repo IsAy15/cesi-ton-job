@@ -97,7 +97,6 @@ class OfferController extends Controller
 
     public function destroy($id)
 {
-    // Supprimer les références dans la table offer_requirements
     DB::table('offer_requirements')->where('of_id', $id)->delete();
 
     DB::table('user_offer')->where('offer_id', $id)->delete();
@@ -105,7 +104,6 @@ class OfferController extends Controller
     DB::table('applications')->where('offer_id', $id)->delete();
 
     DB::table('user_wishlist')->where('offer_id', $id)->delete();
-    // Ensuite, supprimer l'offre elle-même
     $offer = Offer::findOrFail($id);
     $offer->delete();
 
