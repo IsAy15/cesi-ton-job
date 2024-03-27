@@ -1,13 +1,10 @@
 @extends('layouts.home')
 @section('title', 'Modifier un utilisateur')
 @section('content')
-@vite('resources/css/offres.css')
-@vite('resources/css/brouillon-generale.css')
-@section('content')
-<div class="c-1 bg-1 fit-center">
+@vite('resources/css/offer.css')
+<div class="container-1 default-bg fit-center">
     <h1>Modifier l'utilisateur</h1>
-
-    <form method="POST" action="{{ route('users.update', $user->id) }}">
+    <form method="POST" action="{{ route('users.update', $user->id) }}" class="form-v">
         @csrf
         @method('PUT')
 

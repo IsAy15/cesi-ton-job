@@ -1,7 +1,6 @@
 @extends('layouts.home')
 @section('title', 'Ajouter une entreprise')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
 @vite('resources/css/checkmark.css')
 
 @if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
@@ -10,7 +9,7 @@
         exit();
     ?>
 @endif
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <h1>Ajouter une entreprise</h1>
         <form action="{{ route('companies.store') }}" method="post" class="form-v">
             @csrf

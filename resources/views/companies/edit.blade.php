@@ -1,7 +1,6 @@
 @extends('layouts.home')
 @section('title', 'Modifier une entreprise')
 @section('content')
-@vite('resources/css/brouillon-generale.css')
 
 @if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
     <?php
@@ -10,7 +9,7 @@
     ?>
 @endif
 
-    <div class="c-1 bg-1 fit-center">
+    <div class="container-1 default-bg fit-center">
         <h1>Modifier une entreprise</h1>
         <form action="{{ route('companies.update', $company->id) }}" method="post" class="form-v">
             @csrf

@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1>Utilisateurs en attente</h1>
-        <table class="table">
+        <table>
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -19,7 +19,8 @@
                     <td>{{ $user->lastname }} {{ $user->firstname }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary">Éditer</a>
+                        <a href="{{ route('profile.edit', $user->id) }}" class="btn-1"><i class="fa-solid fa-pen-to-square"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
