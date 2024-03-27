@@ -2,6 +2,7 @@
 @section('title', 'Liste des entreprises')
 @section('content')
 
+
 @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -48,24 +49,6 @@
             @endif
         </div>
     @endforeach
-    <script>
-        function filterCompanies() {
-            var input, filter, companies, company, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            companies = document.getElementsByClassName("company");
-            for (i = 0; i < companies.length; i++) {
-                company = companies[i].getElementsByClassName("infos")[0];
-                txtValue = company.textContent || company.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    companies[i].style.display = ""; // Afficher l'entreprise si elle correspond au filtre
-                } else {
-                    companies[i].style.display = "none"; // Cacher l'entreprise sinon
-                }
-            }
-        }
-
-        document.getElementById("searchInput").addEventListener("keyup", filterCompanies);
-    </script>
 </div>
+@vite('resources/js/entreprise_search.js')
 @endsection

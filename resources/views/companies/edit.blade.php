@@ -2,13 +2,6 @@
 @section('title', 'Modifier une entreprise')
 @section('content')
 
-@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
-    <?php
-        header('Location: /access-denied.php');
-        exit();
-    ?>
-@endif
-
     <div class="container-1 default-bg fit-center">
         <h1>Modifier une entreprise</h1>
         <form action="{{ route('companies.update', $company->id) }}" method="post" class="form-v">
