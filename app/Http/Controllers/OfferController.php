@@ -27,14 +27,12 @@ class OfferController extends Controller
 
   public function show($id)
   {
+    $user = auth()->user(); 
       $offer = Offer::findOrFail($id);
       $isInWishlist = auth()->check() ? auth()->user()->wishlist->contains($offer) : false;
       $isApplied = auth()->check() ? auth()->user()->offers->contains($offer) : false;
-  
-      $relatedOffers = Offer::where('company_id', $offer->company_id)
-                          ->where('id', '!=', $offer->id) // Exclure l'offre actuelle
-                          ->get();
-      return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'relatedOffers'));
+
+      return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user'));
   }
   
 
