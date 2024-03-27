@@ -26,5 +26,13 @@
 
         <h2>Offre avec la durée de stage la plus longue</h2>
         <p>{{ $longestInternshipOffer->title }}</p>
+
+        <h2>Départements avec le plus d'offres</h2>
+        <ul>
+            @foreach($departmentsWithMostOffers as $department)
+                <li id='dep{{ $department->code }}'><span class='dep'>{{ $department->code }}</span> - <span class='count'>{{ $department->offers_count }}</span> offres</li>
+            @endforeach
+        </ul>
     </div>
+    @vite('resources/js/departement.js')
 @endsection

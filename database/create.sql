@@ -146,13 +146,13 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`,
 DELETE FROM companies;
 
 INSERT INTO companies (name, sector, localization) VALUES
-('Dassault Systèmes', 'Informatique', 'Vélizy-Villacoublay'),
-('Capgemini', 'Informatique', 'Paris'),
-('Thales', 'Informatique', 'La Défense'),
-('Atos', 'Informatique', 'Bezons'),
-('Sopra Steria', 'Informatique', 'Paris'),
-('Ubisoft', 'Informatique', 'Montreuil'),
-('OVHcloud', 'Informatique', 'Roubaix');
+('Dassault Systèmes', 'Informatique', '78140'),
+('Capgemini', 'Informatique', '75000'),
+('Thales', 'Informatique', '92400'),
+('Atos', 'Informatique', '95870'),
+('Sopra Steria', 'Informatique', '75000'),
+('Ubisoft', 'Informatique', '93100'),
+('OVHcloud', 'Informatique', '59100');
 
 
 -- Remplissage de la table abilities

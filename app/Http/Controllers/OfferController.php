@@ -146,8 +146,14 @@ public function data()
     $longestInternshipOffer = Offer::where('type', 'stage')
     ->orderByRaw('DATEDIFF(ending_date, starting_date) DESC')
     ->first();
+
+    $departmentsWithMostOffers = Offer::select(DB::raw('LEFT(localization, 2) AS code'), DB::raw('COUNT(*) AS offers_count'))
+    ->groupBy('code')
+    ->orderByDesc('offers_count')
+    ->limit(5)
+    ->get();
     
-    return view('offers.data', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer'));
+    return view('offers.data', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
 }
 
 
