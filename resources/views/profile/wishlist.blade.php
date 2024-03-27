@@ -4,7 +4,7 @@
     <div class="container-1 default-bg fit-center">
         <h2>Vos favoris</h2>
         @if ($wishlist->count() === 0)
-            <p>Votre wishlist est vide.</p>
+            <p>Vous n'avez pas de favoris.</p>
         @else
             <div class="form-v fit-center">
                 @foreach($wishlist as $offer)
