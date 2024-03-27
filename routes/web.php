@@ -59,9 +59,6 @@ Route::prefix('offer')->group(function(){
 
 
 
-//Users routes
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-
 
 
 //Grades routes

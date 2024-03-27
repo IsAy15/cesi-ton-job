@@ -10,7 +10,6 @@
             <p><strong>Prénom:</strong> {{ $user->firstname }}</p>
             <p><strong>Email:</strong> {{ $user->email }}</p>
             <p><strong>Rôle:</strong> {{ $user->role }}</p>
-            <p><strong>Statut:</strong> {{ $user->status }}</p>
             <p><strong>Promotions:</strong> 
                 @forelse($user->promotions as $promotion)
                     {{ $promotion->name }}

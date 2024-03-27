@@ -29,7 +29,7 @@
             <tbody>
                 @foreach($usersWithPromotions as $user)
                     <tr>
-                        <td><a href="{{ route('users.show', ['id' => $user->id]) }}">{{ $user->lastname }}</a></td>
+                        <td><a href="{{ route('users.show', ['id' => $user->id]) }}" class="clickable">{{ $user->lastname }}</a></td>
                         <td>{{ $user->firstname }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
@@ -41,7 +41,7 @@
                             @endforeach
                         </td>
                         <td>
-                            @if(Auth::user()->role = 'admin')
+                            @if(Auth::user()->role == 'admin')
                                 <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn-1 btn-2">Modifier</a>
                                 <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="POST" style="display: inline;">
                                     @csrf

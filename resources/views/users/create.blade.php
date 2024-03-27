@@ -43,14 +43,10 @@
             var promotionLabel = document.getElementById('promotionLabel');
             var promotionSelect = document.getElementById('promotion');
 
-            // Écouter les changements dans la sélection de rôle
             roleSelect.addEventListener('change', function() {
-                // Vérifier si le rôle sélectionné est "admin"
                 if (roleSelect.value === 'admin') {
-                    // Masquer le champ de sélection de promotion
                     promotionSelect.style.display = 'none';
                 } else {
-                    // Afficher le champ de sélection de promotion
                     promotionSelect.style.display = 'block';
                 }
             });
