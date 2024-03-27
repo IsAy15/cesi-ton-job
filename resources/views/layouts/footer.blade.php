@@ -2,11 +2,11 @@
 @vite('resources/css/footer.css')
 <footer>
   <div class="footer-link">
-    <a class="footer-button" href="#">A Propos</a>
+    <a class="footer-button" href="{{ route('about')}}">A Propos</a>
     <p class="separation">|</p>
     <a class="footer-button" href="{{ route('policy')}}">Politique De Confidentialité</a>
     <p class="separation">|</p>
-    <a class="footer-button" href="#">Contact</a>
+    <a class="footer-button" href="{{ route('contact')}}">Contact</a>
   </div>
       <div class="footer-bottom">
         <svg class="logo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3613 2386" width="4rem">
