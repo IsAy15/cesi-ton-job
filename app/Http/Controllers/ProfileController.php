@@ -34,10 +34,10 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->status = 'approved';
+        $user->status = $request->status;
         $user->save();
 
-        return redirect()->route('profile.pending')->with('success', 'Le statut de l\'utilisateur a été changé avec succès.');
+        // return redirect()->route('profile.pending')->with('success', 'Le statut de l\'utilisateur a été changé avec succès.');
     }
 
     public function wishlist()

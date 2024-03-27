@@ -110,6 +110,10 @@ header {
                     text-align: center;
                     transition: 0.5s ease;
                     transform-origin: center;
+                    a {
+                        color: black;
+                        text-decoration: none;
+                    }
                     &:first-child {
                         border-radius: 0.5rem 0.5rem 0 0;
                     }
@@ -118,10 +122,17 @@ header {
                     }
                     &:hover {
                         background: rgb(50, 4, 86);
-                        color: white;
+                        a {
+                            color: white;
+                        }
                         transform: scale(1.1);
                         border-radius: 0.75rem;
                     }
+                }
+            }
+            &.wishlist {
+                * {
+                    color: inherit;
                 }
             }
         }
@@ -142,8 +153,8 @@ header {
     display: flex;
     flex-flow: column;
     align-items: center;
-    padding: 1rem 1.5rem 1.5rem;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 2.5rem;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     gap: 1rem;
 }
@@ -327,9 +338,11 @@ form select /* general */ {
 
 table /* general */ {
     width: 100%;
-    border: thin solid rgb(117, 117, 117);
     background-color: none;
-
+    border-collapse: separate;
+    border-spacing: 0;
+    border: thin solid rgb(117, 117, 117);
+    border-radius: 1.05rem;
     thead, tfoot /* general */ {
         background-color: rgb(16, 0, 105);
         color: white;
@@ -349,6 +362,7 @@ table /* general */ {
             padding: 1rem;
         }
         text-align: center;
+        vertical-align: middle;
     }
 
     tbody {
@@ -385,6 +399,7 @@ table /* general */ {
     cursor: pointer;
     text-decoration: underline;
     padding: 0.5rem;
+    color: inherit;
 }
 
 .clickable:hover /* general */ {
