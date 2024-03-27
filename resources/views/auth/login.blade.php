@@ -36,6 +36,4 @@
         <a href="{{ route('auth.register') }}" class="btn-1">Pas encore inscrit ?</a>
         <a href="#" class="btn-1">Je n'arrive pas à me connecter</a>
     </div>
-
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 @endsection

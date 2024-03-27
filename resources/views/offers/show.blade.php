@@ -67,32 +67,5 @@
 
     <a href="{{ route('offers.index') }}" class="btn-1">Retour</a>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var inputs = document.querySelectorAll('.inputfile');
-        inputs.forEach(function(input) {
-            input.addEventListener('change', function() {
-                var fileName = this.files[0].name;
-                var fileId = this.id + 'FileName';
-                var fileDisplay = document.getElementById(fileId);
-                fileDisplay.textContent = fileName;
-            });
-        });
-    });
-</script>
-
-<script>
-    var postalCode = "{{ $offer->localization }}";
-
-    fetch('https://api-adresse.data.gouv.fr/search/?q=' + postalCode)
-        .then(response => response.json())
-        .then(data => {
-            if (data.features.length > 0) {
-                var city = data.features[0].properties.city;
-                document.getElementById('ville').textContent = city;
-            }
-        })
-        .catch(error => console.error('Erreur lors de la récupération de la ville :', error));
-</script>
+@vite('resources/js/file.js')
 @endsection
