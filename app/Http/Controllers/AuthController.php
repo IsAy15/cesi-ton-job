@@ -66,7 +66,6 @@ class AuthController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        // Utilisation de MD5 pour hacher le mot de passe
         $user->password = md5($request->password);
         $user->role = $request->role;
         $user->save();
