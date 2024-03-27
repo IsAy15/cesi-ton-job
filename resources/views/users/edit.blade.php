@@ -49,7 +49,6 @@
         @endif
 
         <div class="fit-center">
-            <!-- Ajouter un champ caché pour envoyer le rôle actuel -->
             <button type="submit" class="btn-1">Modifier</button>
         </div>
     </form>

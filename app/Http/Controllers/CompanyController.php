@@ -115,4 +115,27 @@ class CompanyController extends Controller
         return redirect()->route('companies.index')->with('success', 'Note enregistrée avec succès.');
     }
 
+    public function data()
+    {
+        $averageGrade = Company::with('grades')->get()->map(function ($company) {
+            return $company->grades->avg('value');
+        })->avg();
+
+        $averageGrade = round($averageGrade, 2);
+
+
+        $companyWithMostOffers = Company::withCount('offers')->orderByDesc('offers_count')->first();
+
+        $companyWithMostApplications = Company::withCount('offers')
+        ->withSum('offers', 'applies_count') 
+        ->orderByDesc('offers_sum_applies_count')
+        ->first();
+
+        $sectorWithMostCompanies = Company::select('sector')
+        ->groupBy('sector')
+        ->orderByRaw('COUNT(*) DESC')
+        ->first();
+    
+        return view('companies.data', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies'));
+    }
 }

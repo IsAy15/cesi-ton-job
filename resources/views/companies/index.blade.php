@@ -14,6 +14,7 @@
     @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')
     <a href="{{ route('companies.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></a>
     @endif
+    <a href="{{ route('companies.data') }}" class="btn-1 btn-2"><i class="fa-solid fa-chart-simple"></i></a>
     @foreach ($companies as $company)
         <div class="container-1 area-bg">
             <div class="liste-v">

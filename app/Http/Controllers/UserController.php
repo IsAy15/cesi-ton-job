@@ -12,8 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $usersWithPromotions = User::with('promotions')->get();
-
+        $usersWithPromotions = User::with('promotions')->where('status', 'approved')->get();
         return view('users.index', compact('usersWithPromotions'));
     }
 
@@ -38,7 +37,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'role' => 'required',
             'password' => 'required|min:6',
-            'promotion' => 'required|exists:promotions,id',
         ]);
 
         $user = new User();
@@ -46,7 +44,7 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->email = $request->email;
         $user->role = $request->role;
-        $user->password = $request->password; 
+        $user->password = md5($request->password); 
         $user->status = 'approved';
         $user->save();
 
