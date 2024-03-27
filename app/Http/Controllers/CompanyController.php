@@ -154,7 +154,12 @@ class CompanyController extends Controller
         ->groupBy('sector')
         ->orderByRaw('COUNT(*) DESC')
         ->first();
+
+        $departmentWithMostCompanies = Company::select(DB::raw('LEFT(localization, 2) AS code'), DB::raw('COUNT(*) AS companies_count'))
+        ->groupBy('code')
+        ->orderByDesc('companies_count')
+        ->first();
     
-        return view('companies.data', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies'));
+        return view('companies.data', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies', 'departmentWithMostCompanies'));
     }
 }

@@ -14,6 +14,7 @@
     <h2>Entreprise avec le plus d'offres: {{ $companyWithMostOffers->name }}</h2>
     <h2>Entreprise avec le plus de candidat: {{ $companyWithMostApplications->name }}</h2>
     <h2>Secteur le plus representé: {{ $sectorWithMostCompanies->sector}}</h2>
+    <h2>Département avec le plus d'entreprises : <span class="dep">{{ $departmentWithMostCompanies->code }}</span></h2>
 </div>
-
+@vite('resources/js/departement.js')
 @endsection
