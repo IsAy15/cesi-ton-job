@@ -13,7 +13,6 @@ class UserController extends Controller
     public function index()
     {
         $usersWithPromotions = User::with('promotions')->where('status', 'approved')->get();
-
         return view('users.index', compact('usersWithPromotions'));
     }
 
