@@ -130,6 +130,17 @@ Route::get('/policy', function () {
     return view('policy');
 })->name('policy');
 
+
+//Contact
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+//About
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 //Promotions routes
 Route::prefix('promotion')->group(function(){
     Route::get('/', [PromotionController::class, 'index'])->name('promotions.index');

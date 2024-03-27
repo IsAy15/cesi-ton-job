@@ -1,4 +1,5 @@
 @extends('layouts.home')
+@section('title', 'Politique de confidentialité')
 @section('content')
     <div class="container-1 default-bg fit-center">
         <h1>Politique de confidentialité de CESI Ton Job</h1>
