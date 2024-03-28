@@ -1,8 +1,9 @@
 @extends('layouts.home')
 @section('title', 'Liste des compétences')
 @section('content')
-    <h1>Liste des compétences</h1>
-        <a href="{{ route('abilities.create') }}">Ajouter une compétence</a>
+    <div class="container-1 default-bg fit-center">
+        <h1>Liste des compétences</h1>
+        <a href="{{ route('abilities.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-user-plus"></i></a>
         <table>
             <thead>
                 <tr>
@@ -17,15 +18,18 @@
                         <td>{{ $ability->title }}</td>
                         <td>{{ $ability->description }}</td>
                         <td>
-                            <a href="{{ route('abilities.edit', $ability->id) }}">Modifier</a>
-                            <form action="{{ route('abilities.destroy', $ability->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Supprimer</button>
-                            </form>
+                            <div class="space">
+                                <a href="{{ route('abilities.edit', $ability->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <form action="{{ route('abilities.destroy', $ability->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
 @endsection
