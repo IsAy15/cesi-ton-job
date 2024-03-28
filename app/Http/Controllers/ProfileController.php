@@ -9,6 +9,7 @@ use App\Models\Offer;
 use App\Models\Auth;
 use App\Models\Wishlist;
 use App\Models\Ability;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -17,10 +18,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user(); 
-        if ($user->role === 'user') {
-            $abilities=$user ->abilities()->get();
-        }
-        return view('profile.index', compact('user', 'abilities'));
+        $userabilities = $user->abilities->pluck('id')->toArray();
+        $allabilities = Ability::wherenotin('id', $userabilities)->get();
+        return view('profile.index', compact('user','userabilities' ,'allabilities'));
     }
 
     public function add()
@@ -32,17 +32,18 @@ class ProfileController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $user = auth()->user();
-    
-        if ($request->has('abilities')) {
-            $abilitiesIds = $request->input('abilities');
-            
-            $user->abilities()->attach($abilitiesIds);
-        }
-    
-        return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
+{
+    $user = auth()->user();
+
+    if ($request->has('abilities')) {
+        $abilitiesIds = $request->input('abilities');
+        
+        $user->abilities()->attach($abilitiesIds);
     }
+
+    return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
+}
+
 
     public function pending()
     {
@@ -64,6 +65,14 @@ class ProfileController extends Controller
 
         // return redirect()->route('profile.pending')->with('success', 'Le statut de l\'utilisateur a été changé avec succès.');
     }
+
+    public function destroy($id)
+    {
+        DB::table('student_abilities')->where('ability_id', $id)->delete();
+
+        return redirect()->route('profile.index')->with('success', 'La compétence a été supprimée avec succès.');
+    }
+
 
     public function wishlist()
     {

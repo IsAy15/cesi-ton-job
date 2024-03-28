@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Promotion;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -68,6 +69,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = md5($request->password);
         $user->role = $request->role;
+        $user->promotion = $request->promotion;
         $user->save();
 
         return redirect()->route('auth.confirmation');

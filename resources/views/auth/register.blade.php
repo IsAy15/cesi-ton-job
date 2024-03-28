@@ -16,6 +16,12 @@
                     <option value="user">User</option>
                 </select>
             </div>
+            <div>
+                <label for="promotion">Promotion :</label>
+                <select id="promotion" name="promotion">
+                    @foreach($promotions as $promotion)
+                        <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
+                    @endforeach
             <button type="submit" class="btn-1">S'inscrire</button>
         </form>
     </div>
