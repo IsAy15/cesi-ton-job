@@ -16,7 +16,8 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user(); 
-        return view('profile.index', compact('user'));
+        $abilities = $user->abilities()->get();
+        return view('profile.index', compact('user', 'abilities'));
     }
 
     public function pending()
