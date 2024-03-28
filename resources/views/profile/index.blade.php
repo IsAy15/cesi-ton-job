@@ -30,7 +30,7 @@
                             <form class="delete"><a><i class="fa-regular fa-circle-xmark"></i></a></form>
                         </div>
                     @endforeach
-                    <a href="#" class="btn-1 btn-2">+</a>
+                    <a href="{{ route('profile.add') }}" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></a>
                 </div>
             </div>
         @endif

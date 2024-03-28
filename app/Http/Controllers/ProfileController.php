@@ -8,6 +8,7 @@ use App\Models\Promotion;
 use App\Models\Offer;
 use App\Models\Auth;
 use App\Models\Wishlist;
+use App\Models\Ability;
 
 
 
@@ -16,8 +17,31 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user(); 
-        $abilities = $user->abilities()->get();
+        if ($user->role === 'user') {
+            $abilities=$user ->abilities()->get();
+        }
         return view('profile.index', compact('user', 'abilities'));
+    }
+
+    public function add()
+    {
+        $user=auth()->user();
+        $userabilities = $user->abilities->pluck('id')->toArray();
+        $allabilities = Ability::wherenotin('id', $userabilities)->get();
+        return view('profile.add', compact('allabilities', 'userabilities'));
+    }
+
+    public function store(Request $request)
+    {
+        $user = auth()->user();
+    
+        if ($request->has('abilities')) {
+            $abilitiesIds = $request->input('abilities');
+            
+            $user->abilities()->attach($abilitiesIds);
+        }
+    
+        return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
     }
 
     public function pending()
