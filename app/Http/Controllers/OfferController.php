@@ -35,8 +35,10 @@ class OfferController extends Controller
       return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user'));
   }
   
-  public function create()
+  public function create(Request $request)
   {
+      $selected_company = session('company');
+
       $companies = Company::all();
 
       $user = auth()->user();
@@ -45,7 +47,7 @@ class OfferController extends Controller
         return redirect()->route('offers.index');
     }
 
-      return view("offers.create", compact("companies"));
+      return view("offers.create", compact("companies", "selected_company"));
   }
 
   public function store(Request $request)

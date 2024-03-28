@@ -31,7 +31,6 @@
                     <ul class="submenu">
                         <li><a href="{{ route('profile.index') }}">Profil</a></li>
                         <li><a href="{{ route('companies.index') }}">Entreprises</a></li>
-                        <li><a href="{{ route('offers.index') }}">Offres</a></li>
                         @if (Auth::user()->role !== 'user')
                             <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                             <li><a href="{{ route('promotions.index') }}">Promotions</a></li>
@@ -50,8 +49,8 @@
                         <span>Offres</span>
                     </div>
                     <ul class="submenu">
-                        <li><a href="{{ route('profile.offers') }}">Voir mes offres</a></li>
-                        <li><a href="{{ route('offers.index') }}">Voir toutes les offres</a></li>
+                        <li><a href="{{ route('profile.offers') }}">Mes offres</a></li>
+                        <li><a href="{{ route('offers.index') }}">Toutes les offres</a></li>
                         @if (Auth::user()->role == 'admin')
                             <li><a href="{{ route('offers.create') }}">Ajouter une offre</a></li>
                         @endif

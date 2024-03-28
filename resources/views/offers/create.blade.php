@@ -7,10 +7,11 @@
         <form action="{{ route('offers.store') }}" method="post" class="form-v">
             @csrf
                 <select name="of_company_id" id="of_company_id">
-                    <option value="" disabled selected hidden>Entreprise</option>
+                    <option value="" disabled @if(!$selected_company) selected @endif hidden>Entreprise</option>
                     @foreach($companies as $company)
-                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                        <option value="{{ $company->id }}" @if($selected_company == $company->id) selected @endif>{{ $company->name }}</option>
                     @endforeach
+                    <option value="new">Ajouter une entreprise</option>
                 </select>
                 <input type="text" name="of_title" id="of_title" placeholder="Titre">
                 <input type="text" name="of_type" id="of_type" placeholder="Type">
@@ -38,4 +39,12 @@
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
+    <script>
+        const selectElement = document.querySelector('#of_company_id');
+        selectElement.addEventListener('change', (event) => {
+            if (event.target.value == 'new') {
+                window.location.href = '{{ route("companies.create") }}?offer';
+            }
+        });
+    </script>
 @endsection

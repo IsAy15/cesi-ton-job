@@ -29,15 +29,17 @@ class CompanyController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
+        $create_offer = $request->has('offer');
+
         $user = auth()->user();
       
-      if ($user->role === 'user') {
-        return redirect()->route('copanies.index');
-    }
+        if ($user->role === 'user') {
+            return redirect()->route('companies.index');
+        }
 
-        return view('companies.create');
+        return view('companies.create', compact('create_offer'));
     }
     
 
@@ -51,7 +53,8 @@ class CompanyController extends Controller
         
         // Vérifie si l'utilisateur souhaite créer une offre pour cette entreprise
         if ($request->has('create_offer')) {
-            return redirect()->route('offers.create')->with('company_id', $company->id);
+            // Redirige vers la création d'une offre en passant l'id de l'entreprise dans l'url
+            return redirect()->route('offers.create')->with('company', $company->id);
         } else {
             return redirect()->route('companies.index');
         }

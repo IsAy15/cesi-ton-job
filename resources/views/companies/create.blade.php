@@ -30,7 +30,7 @@
             </div>
             <div class="form-v">
                 <label for="create_offer">Créer une offre après l'ajout de l'entreprise</label>
-                <input type="checkbox" name="create_offer" id="create_offer">
+                <input type="checkbox" name="create_offer" id="create_offer" @if($create_offer) checked @endif>
             </div>
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
