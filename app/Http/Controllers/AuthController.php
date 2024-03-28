@@ -53,25 +53,34 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        $promotions = Promotion::all();
+        return view('auth.register', compact('promotions'));
     }
+
+    public function doregister(Request $request)
+{
+    $user = new User();
+    $user->firstname = $request->firstname;
+    $user->lastname = $request->lastname;
+    $user->email = $request->email;
+    $user->password = md5($request->password);
+    $user->role = $request->role;
+    $user->save();
+
+    if ($user) {
+        $userId = $user->id;
+
+        $user->promotions()->attach($request->promotion, ['user_id' => $userId]);
+
+        return redirect()->route('auth.confirmation');
+    }
+}
+
 
     public function confirmation()
     {
         return view('auth.confirmation');
     }
 
-    public function doregister(Request $request)
-    {
-        $user = new User();
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->email = $request->email;
-        $user->password = md5($request->password);
-        $user->role = $request->role;
-        $user->promotion = $request->promotion;
-        $user->save();
-
-        return redirect()->route('auth.confirmation');
-    }
+    
 }

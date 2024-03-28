@@ -47,9 +47,25 @@ class ProfileController extends Controller
 
     public function pending()
     {
+        $user = auth()->user();
+
+        if ($user->role === 'pilote') {
+            $pilotepromotion = $user->promotions->pluck('id')->toArray();
+
+            $pendingUsers = User::where('role', 'user')
+                                ->whereHas('promotions', function($query) use ($pilotepromotion) {
+                                    $query->whereIn('id', $pilotepromotion);
+                                })
+                                ->where('status', 'pending')
+                                ->get();
+
+            return view('profile.pending', compact('pendingUsers'));
+        }
+
         $pendingUsers = User::where('status', 'pending')->get();
         return view('profile.pending', compact('pendingUsers'));
     }
+
 
     public function edit($id)
     {
