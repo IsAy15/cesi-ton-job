@@ -13,7 +13,7 @@
                 <label for="ab_description">Description</label>
                 <input type="text" name="ab_description" id="ab_description" placeholder="Description">
             </div>
-            <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-user-plus"></i></button>
+            <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></button>
         </form>
     </div>
 @endsection

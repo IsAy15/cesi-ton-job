@@ -13,7 +13,10 @@
                 <label for="ab_description">Description</label>
                 <input type="text" name="ab_description" id="ab_description" value="{{ $ability->description }}" placeholder="Description">
             </div>
-            <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></button>
+            <div class="liste-h fit-center">
+                <a href="{{ route('abilities.index') }}" class="btn-1 btn-2"><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="{{ route('abilities.edit', $ability->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-xmark"></i></a>
+                <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-check"></i></button>
         </form>
     </div>
 @endsection

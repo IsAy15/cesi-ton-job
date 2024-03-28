@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-1 default-bg fit-center">
         <h1>Liste des compétences</h1>
-        <a href="{{ route('abilities.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-user-plus"></i></a>
+        <a href="{{ route('abilities.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></a>
         <table>
             <thead>
                 <tr>
