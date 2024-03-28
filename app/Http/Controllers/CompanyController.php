@@ -51,7 +51,6 @@ class CompanyController extends Controller
         $company->localization = $request->input('cp_localization');
         $company->save();
         
-        // Vérifie si l'utilisateur souhaite créer une offre pour cette entreprise
         if ($request->has('create_offer')) {
             // Redirige vers la création d'une offre en passant l'id de l'entreprise dans l'url
             return redirect()->route('offers.create')->with('company', $company->id);

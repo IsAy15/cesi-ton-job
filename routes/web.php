@@ -35,6 +35,8 @@ Route::delete('/wishlist/remove/{offerId}', [WishlistController::class, 'removeF
 
 //Profiles routes
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/profile/add', [ProfileController::class, 'add'])->name('profile.add');
+Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
 Route::get('/profile/offers', [ProfileController::class, 'offers'])->name('profile.offers');
 Route::get('/profile/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
 Route::get('/profile/pending', [ProfileController::class, 'pending'])->name('profile.pending');
