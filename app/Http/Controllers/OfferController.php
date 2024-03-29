@@ -22,8 +22,11 @@ class OfferController extends Controller
     $offset = ($currentPage - 1) * $perpage;
     $pagedOffers = $offers->slice($offset, $perpage)->all();
     $totalPages = ceil($totaloffers / $perpage);
+    $promotions = Promotion::all();
+    $companies = Company::all();
+    $contractTypes = Offer::distinct()->pluck('type');
 
-    return view("offers.index",compact("offers","pagedOffers","totalPages","currentPage"));
+    return view("offers.index",compact("offers","pagedOffers","totalPages","currentPage","promotions","companies", "contractTypes"));
   }
 
   public function company()

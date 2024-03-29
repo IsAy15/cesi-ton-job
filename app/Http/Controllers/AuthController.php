@@ -69,11 +69,8 @@ class AuthController extends Controller
     $user->password = md5($request->password);
     $user->role = $request->role;
 
-    // Récupérer le niveau de l'utilisateur à partir de la requête
     $levelTitle = $request->input('level');
-    // Trouver le niveau correspondant dans la base de données
     $level = Level::where('title', $levelTitle)->first();
-    // Associer le niveau à l'utilisateur
     $user->level()->associate($level);
 
     $user->save();
