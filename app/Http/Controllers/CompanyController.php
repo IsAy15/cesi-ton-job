@@ -103,13 +103,19 @@ class CompanyController extends Controller
     }
 
 
-        public function stats($id)
+        public function data($id)
     {
         $company = Company::findOrFail($id);
         $totalApplications = $company->offers()->sum('applies_count');
         $offers = $company->offers()->get();
 
-        return view('companies.stats', compact('company', 'totalApplications', 'offers'));
+        $grades = Grade::where('company_id', $company->id)->pluck('value');
+            
+        $averageGrade = $grades->avg();
+            
+        $company->average_grade = round($averageGrade,1);
+
+        return view('companies.data', compact('company', 'totalApplications', 'offers'));
     }
 
     public function rate(Request $request)
@@ -136,7 +142,7 @@ class CompanyController extends Controller
         return redirect()->route('companies.index')->with('success', 'Note enregistrée avec succès.');
     }
 
-    public function data()
+    public function stats()
     {
         $averageGrade = Company::with('grades')->get()->map(function ($company) {
             return $company->grades->avg('value');
@@ -162,6 +168,6 @@ class CompanyController extends Controller
         ->orderByDesc('companies_count')
         ->first();
     
-        return view('companies.data', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies', 'departmentWithMostCompanies'));
+        return view('companies.stats', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies', 'departmentWithMostCompanies'));
     }
 }

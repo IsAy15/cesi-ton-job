@@ -166,7 +166,7 @@ class OfferController extends Controller
     return redirect()->route('offers.show', $id)->with('success', 'Votre candidature a été soumise avec succès.');
 }
 
-public function data()
+public function stats()
 {
     $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
     
@@ -184,7 +184,7 @@ public function data()
     ->limit(5)
     ->get();
     
-    return view('offers.data', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
+    return view('offers.stats', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
 }
 
 
