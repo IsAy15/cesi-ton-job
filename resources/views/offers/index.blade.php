@@ -49,12 +49,12 @@
             </select>
         </div>
     </div>
-
-    <a href="{{ route('offers.data') }}" class="btn-1 btn-2">Afficher les données</a>
+<div class="liste-h">
+    <a href="{{ route('offers.stats') }}" class="btn-1 btn-2">Afficher les statistiques&nbsp;<i class="fa-solid fa-chart-simple"></i></a>
     @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
-    <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre</a>
+    <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre&nbsp;<i class="fa-solid fa-plus"></i></a>
     @endif
-
+</div>
     <table id="offerTable">
         <thead>
             <tr>

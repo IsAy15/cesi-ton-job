@@ -16,25 +16,18 @@
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')
         <a href="{{ route('companies.create') }}" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></a>
         @endif
-        <a href="{{ route('companies.data') }}" class="btn-1 btn-2"><i class="fa-solid fa-chart-simple"></i></a>
+        <a href="{{ route('companies.stats') }}" class="btn-1 btn-2"><i class="fa-solid fa-chart-simple"></i></a>
     </div>
     @foreach ($companies as $company)
         <div class="container-1 area-bg company"> <!-- Ajouter la classe company -->
             <div class="liste-v infos"> <!-- Ajouter la classe infos -->
-                <h2><a href="{{ route('companies.stats', $company->id) }}" class="clickable">{{ $company->name }}</a></h2>
+                <h2><a href="{{ route('companies.data', $company->id) }}" class="clickable">{{ $company->name }}</a></h2>
                 <div class="liste-v">
                     <div class="space">
                         <p>Secteur :</p>
                         <p class="elements">{{ $company->sector }}</p>
                     </div>
-                    <div class="space">
-                        <p>Localisation :</p>
-                        <p class="elements" city>{{ $company->localization }}</p>
-                    </div>
-                    <div class="space">
-                        <p>Moyenne des notes :</p>
-                        <div class="elements" note='{{ $company->average_grade }}'></p></div>
-                    </div>
+                    <div note='{{ $company->average_grade }}'></p></div>
                 </div>
             </div>
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')

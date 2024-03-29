@@ -47,8 +47,8 @@ Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('
 
 //Offres routes
 Route::prefix('offer')->group(function(){
-    Route::get('/data', [OfferController::class, 'data'])->name('offers.data');
     Route::get('/', [OfferController::class, 'index'])->name('offers.index');
+    Route::get('/stats', [OfferController::class, 'stats'])->name('offers.stats');
     Route::get('/create', [OfferController::class, 'create'])->name('offers.create');
     Route::get('/{id}', [OfferController::class, 'show'])->name('offers.show');
     Route::post('/store', [OfferController::class, 'store'])->name('offers.store');
@@ -116,9 +116,9 @@ Route::prefix('company')->group(function (){
     Route::get('/{id}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
     Route::put('/{id}/update', [CompanyController::class, 'update'])->name('companies.update');
     Route::delete('/{id}/destroy', [CompanyController::class, 'destroy'])->name('companies.destroy');
-    Route::get('/{id}/stats', [CompanyController::class, 'stats'])->name('companies.stats');
+    Route::get('/{id}/data', [CompanyController::class, 'data'])->name('companies.data');
     Route::post('/rate', [CompanyController::class, 'rate'])->name('companies.rate');
-    Route::get('/data', [CompanyController::class, 'data'])->name('companies.data');
+    Route::get('/stats', [CompanyController::class, 'stats'])->name('companies.stats');
 });
 
 

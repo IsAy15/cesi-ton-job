@@ -1,6 +1,4 @@
-
-
-div.rate{
+div.rate {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -10,26 +8,27 @@ div.rate{
 .ratings {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: center;
     span {
         transition: color 0.2s;
         font-size: 50px;
         &[data-clicked] {
-          color: orange;
-          & ~ span {
             color: orange;
-          }
+            & ~ span {
+                color: orange;
+            }
         }
         &.half {
-          position: relative;
-          &:before {
-            display: block;
-            position: absolute;
-            z-index: 1;
-            content: "\2605";
-            width: var(--vnote, 0%);
-            overflow: hidden;
-            color: orange;
-          }
+            position: relative;
+            &:before {
+                display: block;
+                position: absolute;
+                z-index: 1;
+                content: "\2605";
+                width: var(--vnote, 0%);
+                overflow: hidden;
+                color: orange;
+            }
         }
     }
     &.active {
