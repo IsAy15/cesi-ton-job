@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Promotion;
+use App\Models\Level;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -54,17 +55,32 @@ class AuthController extends Controller
     public function register()
     {
         $promotions = Promotion::all();
-        return view('auth.register', compact('promotions'));
+        $levels = Level::all();
+        return view('auth.register', compact('promotions', 'levels'));
     }
 
     public function doregister(Request $request)
 {
+    $existingUser = User::where('email', $request->email)->first();
+
+    if ($existingUser) {
+        return redirect()->back()->withInput()->withErrors(['email' => 'Cette adresse e-mail est déjà utilisée. Veuillez en choisir une autre.']);
+    }
+
     $user = new User();
     $user->firstname = $request->firstname;
     $user->lastname = $request->lastname;
     $user->email = $request->email;
     $user->password = md5($request->password);
     $user->role = $request->role;
+
+    // Récupérer le niveau de l'utilisateur à partir de la requête
+    $levelTitle = $request->input('level');
+    // Trouver le niveau correspondant dans la base de données
+    $level = Level::where('title', $levelTitle)->first();
+    // Associer le niveau à l'utilisateur
+    $user->level()->associate($level);
+
     $user->save();
 
     if ($user) {
@@ -74,7 +90,10 @@ class AuthController extends Controller
 
         return redirect()->route('auth.confirmation');
     }
+
+
 }
+
 
 
     public function confirmation()

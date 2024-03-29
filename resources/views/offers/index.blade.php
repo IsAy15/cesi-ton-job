@@ -76,8 +76,74 @@
             </ul>
         </div>
     </div>
+    <script>
+//Fais un script en js qui fait fonctionner la pagination
+//quand la page est supérieur à 1, la pagination doit être visible
+//quand la page est supérieur à 1, un bouton "précédent" doit être visible sur la gauche
+//quand la page est inférieur à totalPages, un bouton "suivant" doit être visible sur la droite
+//quand il y a plus de 5 pages, des boutons "..." doivent être visible pour naviguer entre les pages
+//quand il y a plus de 5 pages, des boutons ">>" et "<<" doivent être visible pour naviguer entre les pages
+//Un seule pagination doit être visible à la fois
+//Les boutons "précédent" et "suivant" doivent être désactivés quand ils ne sont pas utilisables
+//Les boutons "..." doivent être désactivés quand ils ne sont pas utilisables
+//Les boutons ">>" et "<<" doivent être désactivés quand ils ne sont pas utilisables
+document.addEventListener('DOMContentLoaded', function() {
+    const paginationContainer = document.getElementById('paginationContainer');
+    const pagination = paginationContainer.querySelector('ul');
+    const currentPage = parseInt("{{ $currentPage }}");
+    const totalPages = parseInt("{{ $totalPages }}");
 
-@vite('resources/js/pagination.js')
+    if (totalPages > 1) {
+        if (currentPage > 1) {
+            const previousButton = document.createElement('li');
+            previousButton.innerHTML = `<a href="{{ route('offers.index') }}?page=${currentPage - 1}">Précédent</a>`;
+            pagination.appendChild(previousButton);
+        }
+
+        if (currentPage > 5) {
+            const firstButton = document.createElement('li');
+            firstButton.innerHTML = `<a href="{{ route('offers.index') }}?page=1">1</a>`;
+            pagination.appendChild(firstButton);
+        }
+
+        if (currentPage > 6) {
+            const previousDots = document.createElement('li');
+            previousDots.innerHTML = `<a href="#">...</a>`;
+            pagination.appendChild(previousDots);
+        }
+
+        for (let i = currentPage - 4; i <= currentPage + 4; i++) {
+            if (i > 0 && i <= totalPages) {
+                const pageButton = document.createElement('li');
+                pageButton.innerHTML = `<a href="{{ route('offers.index') }}?page=${i}" class="${i === currentPage ? 'active' : ''}">${i}</a>`;
+                pagination.appendChild(pageButton);
+            }
+        }
+
+        if (currentPage < totalPages - 5) {
+            const nextDots = document.createElement('li');
+            nextDots.innerHTML = `<a href="#">...</a>`;
+            pagination.appendChild(nextDots);
+        }
+
+        if (currentPage < totalPages - 4) {
+            const lastButton = document.createElement('li');
+            lastButton.innerHTML = `<a href="{{ route('offers.index') }}?page=${totalPages}">${totalPages}</a>`;
+            pagination.appendChild(lastButton);
+        }
+
+        if (currentPage < totalPages) {
+            const nextButton = document.createElement('li');
+            nextButton.innerHTML = `<a href="{{ route('offers.index') }}?page=${currentPage + 1}">Suivant</a>`;
+            pagination.appendChild(nextButton);
+        }
+    }
+});
+
+
+</script>
+
+
 
 @vite('resources/js/offer.js')
 @vite('resources/js/postal.js')
