@@ -2,13 +2,6 @@
 @section('title', 'Se connecter')
 @section('content')
 @vite('resources/css/login.css')
-<?php
-    if (Auth::check()) {
-        header('Location: ' . route('profile.index')); 
-        exit();
-    }
-?>
-
     <div class="container-1 default-bg fit-center">
         <h1>Connexion</h1>
         <form action="{{ route('auth.login') }}" method="post" class="form-v">

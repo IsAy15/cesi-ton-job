@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Ability::class, 'student_abilities', 'user_id', 'ability_id');
     }
 
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
     
 
 }

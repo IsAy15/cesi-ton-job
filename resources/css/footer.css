@@ -19,7 +19,7 @@ footer {
         flex-flow: row;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 2.5rem;
     }
 
     .separation {
@@ -42,4 +42,16 @@ footer {
         display: flex;
         justify-content: center;
     }
+}
+
+.cesi{
+    width: 100px; /* Largeur de l'image */
+    height: auto; /* Hauteur ajustée automatiquement pour garder les proportions */
+    border-radius: 5px; /* Bordure arrondie */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    transition: transform 0.3s ease; /* Transition fluide lors du survol */
+}
+
+.cesi:hover {
+    transform: scale(1.1); /* Zoom de 10% */
 }

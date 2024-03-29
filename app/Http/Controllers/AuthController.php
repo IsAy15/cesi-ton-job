@@ -7,11 +7,11 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Promotion;
+use App\Models\Level;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Méthode pour afficher le formulaire de connexion
     public function login()
     {
         return view('auth.login');
@@ -39,10 +39,6 @@ class AuthController extends Controller
                 } else {
                     return redirect()->intended(route('profile.index'));
                 }
-            } else {
-                return redirect()->back()->withInput()->withErrors([
-                    'email' => 'Votre compte est en attente de validation.',
-                ]);
             }
         }
 
@@ -54,17 +50,29 @@ class AuthController extends Controller
     public function register()
     {
         $promotions = Promotion::all();
-        return view('auth.register', compact('promotions'));
+        $levels = Level::all();
+        return view('auth.register', compact('promotions', 'levels'));
     }
 
     public function doregister(Request $request)
 {
+    $existingUser = User::where('email', $request->email)->first();
+
+    if ($existingUser) {
+        return redirect()->back()->withInput()->withErrors(['email' => 'Cette adresse e-mail est déjà utilisée. Veuillez en choisir une autre.']);
+    }
+
     $user = new User();
     $user->firstname = $request->firstname;
     $user->lastname = $request->lastname;
     $user->email = $request->email;
     $user->password = md5($request->password);
     $user->role = $request->role;
+
+    $levelTitle = $request->input('level');
+    $level = Level::where('title', $levelTitle)->first();
+    $user->level()->associate($level);
+
     $user->save();
 
     if ($user) {
@@ -74,7 +82,10 @@ class AuthController extends Controller
 
         return redirect()->route('auth.confirmation');
     }
+
+
 }
+
 
 
     public function confirmation()

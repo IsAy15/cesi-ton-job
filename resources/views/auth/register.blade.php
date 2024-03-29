@@ -24,6 +24,14 @@
                     @endforeach
                 </select>
             </div>
+            <div>
+                <label for="level">Niveau :</label>
+                <select id="level" name="level">
+                    @foreach($levels as $level)
+                    <option value="{{ $level->title }}">{{ $level->title }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn-1">S'inscrire</button>
         </form>
     </div>

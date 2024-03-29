@@ -11,7 +11,9 @@ CREATE TABLE users(
    password VARCHAR(500),
    role VARCHAR(50),
    status VARCHAR(50) NOT NULL DEFAULT 'pending',
-   PRIMARY KEY(id)
+   level_id INT,
+   PRIMARY KEY(id),
+   FOREIGN KEY(level_id) REFERENCES levels(id)
 );
 
 DROP TABLE IF EXISTS companies;
@@ -99,11 +101,22 @@ CREATE TABLE levels(
 );
 
 DROP TABLE IF EXISTS user_levels;
-CREATE TABLE user_levels(
+
+-- Recréer la table user_levels avec level_id autorisé à être NULL
+CREATE TABLE user_levels (
    user_id INT,
    level_id INT,
-   PRIMARY KEY(user_id, level_id),
+   PRIMARY KEY(user_id),
    FOREIGN KEY(user_id) REFERENCES users(id),
+   FOREIGN KEY(level_id) REFERENCES levels(id)
+);
+
+DROP TABLE IF EXISTS offer_levels;
+CREATE TABLE offer_levels (
+   offer_id INT,
+   level_id INT,
+   PRIMARY KEY(offer_id),
+   FOREIGN KEY(offer_id) REFERENCES offers(id),
    FOREIGN KEY(level_id) REFERENCES levels(id)
 );
 
@@ -173,6 +186,45 @@ INSERT INTO companies (name, sector, localization) VALUES
 ('Sopra Steria', 'Informatique', '75001'),
 ('Ubisoft', 'Informatique', '93100'),
 ('OVHcloud', 'Informatique', '59100');
+
+-- Remplissage de la table levels
+DELETE FROM levels;
+
+INSERT INTO levels (title) VALUES
+('A1'),
+('A2'),
+('A3'),
+('A4'),
+('A5');
+
+
+DELETE FROM user_levels;
+
+INSERT INTO user_levels (user_id, level_id) VALUES
+(1, NULL),
+(2, 1),
+(3, 2),
+(4, 3),
+(5, 4),
+(6, 5),
+(7, 1),
+(8, 2),
+(9, 3);
+
+DELETE FROM offer_levels;
+
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 1),
+(7, 2),
+(8, 3),
+(9, 4);
+
+
 
 
 -- Remplissage de la table abilities
