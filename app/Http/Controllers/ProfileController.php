@@ -9,6 +9,8 @@ use App\Models\Offer;
 use App\Models\Auth;
 use App\Models\Wishlist;
 use App\Models\Ability;
+use App\Models\UserLevel;
+use App\Models\Level;
 use Illuminate\Support\Facades\DB;
 
 
@@ -17,10 +19,12 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = auth()->user(); 
+        $user = auth()->user();
+        $userLevel = $user->userLevels()->first(); // Récupérer le premier niveau de l'utilisateur
+        $title = $userLevel ? $userLevel->level->title : ''; // Récupérer le titre du nivea 
         $userabilities = $user->abilities->pluck('id')->toArray();
         $allabilities = Ability::wherenotin('id', $userabilities)->get();
-        return view('profile.index', compact('user','userabilities' ,'allabilities'));
+        return view('profile.index', compact('user','userabilities' ,'allabilities', 'title', 'userLevel'));
     }
 
     public function add()

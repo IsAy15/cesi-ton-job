@@ -131,14 +131,11 @@ class UserController extends Controller
     $user->password = $request->password;
     $user->save();
 
-    // Mise à jour du niveau
     $levelTitle = $request->input('level');
     $level = Level::where('title', $levelTitle)->first();
 
-    // Supprimer les enregistrements existants dans user_levels
     $user->userLevels()->delete();
 
-    // Ajouter le nouvel enregistrement dans user_levels
     $userLevel = new UserLevel();
     $userLevel->user_id = $user->id;
     $userLevel->level_id = $level->id;

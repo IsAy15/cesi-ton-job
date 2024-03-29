@@ -10,6 +10,7 @@
             <p>{{ $user->lastname }}</p>
             <p>{{ $user->firstname }}</p>
             <p>{{ $user->email }}</p>
+            <p>{{ $title }}</p> <!-- Ajout du titre de l'utilisateur -->
             @if($user->role=='user')
                 @foreach($user->promotions as $promotion)
                     <p>{{ $promotion->name }}</p>
