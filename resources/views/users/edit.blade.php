@@ -25,7 +25,7 @@
 
         <div class="input-required fit-center">
             <label for="password">Mot de passe</label>
-            <input id="password" type="password" name="password" value="{{ old('email', $user->password) }}">
+            <input id="password" type="password" name="password" value="{{ old('password', $user->password) }}">
         </div>
 
         @if($user->role !== 'admin')
@@ -47,6 +47,15 @@
             </select>
         </div>
         @endif
+
+        <div class="input-required fit-center">
+            <label for="level">Niveau</label>
+            <select id="level" name="level">
+                @foreach($levels as $level)
+                <option value="{{ $level->title }}" {{ $user->userLevels->contains('level_id', $level->id) ? 'selected' : '' }}>{{ $level->title }}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="fit-center">
             <button type="submit" class="btn-1">Modifier</button>

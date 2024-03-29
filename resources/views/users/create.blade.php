@@ -24,6 +24,14 @@
                     @endforeach
                 </select>
             </div>
+            <select id="level" name="level">
+    <option value="" disabled selected>Niveau</option>
+    @foreach($levels as $level)
+        <option value="{{ $level->title }}">{{ $level->title }}</option>
+    @endforeach
+</select>
+
+
             <div class="input-required">
                 <select id="promotion" name="promotion">
                     <option value="" disabled selected>Promotion</option>

@@ -76,7 +76,7 @@
             <tr>
                 <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
                 <td cp>{{ $offer->localization }}</td>
-                <td city>({{ $offer->localization }})</td>
+                <td city></td>
                 <td data-starting-date>{{ $offer->starting_date }}</td>
                 <td data-ending-date>{{ $offer->ending_date }}</td>
                 <td data-type="{{ strtolower($offer->type) }}">{{ $offer->type }}</td>

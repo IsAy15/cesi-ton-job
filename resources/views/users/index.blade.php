@@ -15,13 +15,14 @@
         @endguest
         <input type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
         <a href="{{ route('users.create') }}" class="btn-1">Ajouter un utilisateur</a>
-
+        <a href="{{ route('profile.pending') }}" class="btn-1">Voir les utilisateurs en attente</a>
         <table id="userTable">
             <thead>
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Email</th>
+                    <th>Niveau</th>
                     <th>Promotions</th>
                     <th>Actions</th>
                 </tr>
@@ -32,9 +33,23 @@
                         <td><a href="{{ route('users.show', ['id' => $user->id]) }}" class="clickable">{{ $user->lastname }}</a></td>
                         <td>{{ $user->firstname }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>@foreach($user->userLevels as $userLevel)
+                            @if (!empty($userLevel->level->title))
+                            {{ $userLevel->level->title }}
+                            @else
+                            -
+                            @endif
+                            @if (!$loop->last),
+                            @endif
+                            @endforeach
+                        </td>
                         <td>
                             @foreach($user->promotions as $promotion)
-                                <a href="{{ route('promotions.users', ['id' => $promotion->id]) }}" class="clickable">{{ $promotion->name }}</a> 
+                            @if (!empty($promotion->name))
+                                <a href="{{ route('promotions.users', ['id' => $promotion->id]) }}" class="clickable">{{ $promotion->name }}</a>
+                            @else
+                                -
+                            @endif
                                 @if(!$loop->last)
                                     , 
                                 @endif

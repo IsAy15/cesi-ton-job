@@ -6,21 +6,35 @@
         <h1>Détails de l'utilisateur</h1>
 
         <div>
-            <p><strong>Nom:</strong> {{ $user->lastname }}</p>
-            <p><strong>Prénom:</strong> {{ $user->firstname }}</p>
-            <p><strong>Email:</strong> {{ $user->email }}</p>
-            <p><strong>Rôle:</strong> {{ $user->role }}</p>
-            <p><strong>Promotions:</strong> 
-                @forelse($user->promotions as $promotion)
-                    {{ $promotion->name }}
-                    @if (!$loop->last)
-                        ,
-                    @endif
-                @empty
-                    Aucune promotion pour cet utilisateur
-                @endforelse
-            </p>
-        </div>
+    <p><strong>Nom:</strong> {{ $user->lastname }}</p>
+    <p><strong>Prénom:</strong> {{ $user->firstname }}</p>
+    <p><strong>Email:</strong> {{ $user->email }}</p>
+    <p><strong>Rôle:</strong> {{ $user->role }}</p>
+    <p><strong>Niveau:</strong> 
+    <p><strong>Niveau:</strong> 
+    @foreach($user->userLevels as $userLevel)
+        {{ $userLevel->level->title }}
+        @if (!$loop->last)
+            ,
+        @endif
+    @endforeach
+</p>
+
+
+
+
+    <p><strong>Promotions:</strong> 
+        @forelse($user->promotions as $promotion)
+            {{ $promotion->name }}
+            @if (!$loop->last)
+                ,
+            @endif
+        @empty
+            Aucune promotion pour cet utilisateur
+        @endforelse
+    </p>
+</div>
+
 
         <div>
             <h2>Offres auxquelles l'utilisateur a postulé :</h2>

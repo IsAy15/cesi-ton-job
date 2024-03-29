@@ -5,8 +5,8 @@
         <h1>Formulaire d'inscription</h1>
         <form action="{{ route('auth.register') }}" method="post" class="form-v">
             @csrf
-            <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}" placeholder="Nom">
             <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}" placeholder="Prénom">
+            <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}" placeholder="Nom">
             <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Mot de passe">
             <div>
@@ -28,7 +28,7 @@
                 <label for="level">Niveau :</label>
                 <select id="level" name="level">
                     @foreach($levels as $level)
-                    <option value="{{ $level->title }}">{{ $level->title }}</option>
+                        <option value="{{ $level->title }}">{{ $level->title }}</option>
                     @endforeach
                 </select>
             </div>

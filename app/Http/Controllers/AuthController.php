@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Promotion;
 use App\Models\Level;
+use App\Models\UserLevel;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -69,22 +70,27 @@ class AuthController extends Controller
     $user->password = md5($request->password);
     $user->role = $request->role;
 
-    $levelTitle = $request->input('level');
-    $level = Level::where('title', $levelTitle)->first();
-    $user->level()->associate($level);
-
     $user->save();
 
     if ($user) {
         $userId = $user->id;
 
+        $levelTitle = $request->input('level');
+
+        $level = UserLevel::whereHas('level', function ($query) use ($levelTitle) {
+            $query->where('title', $levelTitle);
+        })->first();
+
+        if ($level) {
+            $user->userLevels()->save($level);
+        }
+
         $user->promotions()->attach($request->promotion, ['user_id' => $userId]);
 
         return redirect()->route('auth.confirmation');
     }
-
-
 }
+
 
 
 

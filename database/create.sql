@@ -11,9 +11,7 @@ CREATE TABLE users(
    password VARCHAR(500),
    role VARCHAR(50),
    status VARCHAR(50) NOT NULL DEFAULT 'pending',
-   level_id INT,
-   PRIMARY KEY(id),
-   FOREIGN KEY(level_id) REFERENCES levels(id)
+   PRIMARY KEY(id)
 );
 
 DROP TABLE IF EXISTS companies;
@@ -199,7 +197,6 @@ INSERT INTO levels (title) VALUES
 
 
 DELETE FROM user_levels;
-
 INSERT INTO user_levels (user_id, level_id) VALUES
 (1, NULL),
 (2, 1),
