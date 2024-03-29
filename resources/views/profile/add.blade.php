@@ -1,12 +1,12 @@
 @extends('layouts.home')
 @section('title', 'Ajouter des compétences')
 @section('content')
-@vite('resources/css/profile.css')
-<h1>Ajouter des compétences</h1>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <div class="card-header">Ajouter des compétences</div>
+
                 <div class="card-body">
                     @if ($allabilities->isEmpty())
                         <div class="alert alert-info" role="alert">

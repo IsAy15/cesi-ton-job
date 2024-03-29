@@ -23,6 +23,7 @@ class Offer extends Model
         'created_at',
         'updated_at',
         'company_id',
+        'promotion_id',
     ];
 
     protected $primaryKey = 'id';
@@ -32,6 +33,11 @@ class Offer extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function promotion()
+    {
+        return $this->belongsTo(Promotion::class);
     }
 
     public function users()

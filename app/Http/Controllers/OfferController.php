@@ -8,14 +8,22 @@ use App\Models\Offer;
 use App\Models\Company;
 use App\Models\Ability;
 use App\Models\Application;
+use App\Models\Promotion;
 
 
 
 class OfferController extends Controller
 {
   public function index(){
+    $perpage = 10;
     $offers = Offer::all();
-    return view("offers.index",compact("offers"));
+    $totaloffers = $offers->count();
+    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+    $offset = ($currentPage - 1) * $perpage;
+    $pagedOffers = $offers->slice($offset, $perpage)->all();
+    $totalPages = ceil($totaloffers / $perpage);
+
+    return view("offers.index",compact("offers","pagedOffers","totalPages","currentPage"));
   }
 
   public function company()
@@ -42,43 +50,48 @@ class OfferController extends Controller
       $companies = Company::all();
 
       $user = auth()->user();
+      $promotions = Promotion::all();
       
       if ($user->role === 'user') {
         return redirect()->route('offers.index');
     }
 
-      return view("offers.create", compact("companies", "selected_company"));
+      return view("offers.create", compact("companies", "selected_company","promotions"));
   }
 
   public function store(Request $request)
-{
-    $offer = new Offer();
-    $offer->title = $request->input('of_title');
-    $offer->description = $request->input('of_description');
-    $offer->localization = $request->input('of_localization');
-    $offer->starting_date = $request->input('of_starting_date');
-    $offer->ending_date = $request->input('of_ending_date');
-    $offer->places = $request->input('of_places');
-    $offer->salary = $request->input('of_salary');
-    $offer->type = $request->input('of_type');
-    $offer->company_id = $request->input('of_company_id');
-    $offer->save();
-    return redirect()->route('offers.index');
-}
+  {
+      $offer = new Offer();
+      $offer->title = $request->input('of_title');
+      $offer->description = $request->input('of_description');
+      $offer->localization = $request->input('of_localization');
+      $offer->starting_date = $request->input('of_starting_date');
+      $offer->ending_date = $request->input('of_ending_date');
+      $offer->places = $request->input('of_places');
+      $offer->salary = $request->input('of_salary');
+      $offer->type = $request->input('of_type');
+      $offer->company_id = $request->input('of_company_id');
+      $offer->applies_count = 0;
+      $offer->promotion_id = $request->input('of_promotion_id');
+
+      $offer->save();
+      return redirect()->route('offers.index');
+  }
 
 
 
 
   public function edit($id)
     {
-        $offer = Offer::findOrFail($id);
-        $companies = Company::all();
-        $user = auth()->user();
+      $promotions = Promotion::all(); 
+      $offer = Offer::findOrFail($id);
+      $companies = Company::all();
+      $user = auth()->user();
         
-        if ($user->role === 'user') {
-        return redirect()->route('offers.index');
+      if ($user->role === 'user') {
+      return redirect()->route('offers.index');
     }
-        return view('offers.edit', compact('offer', 'companies'));
+      return view('offers.edit', compact('offer', 'companies','promotions'));
     }
 
 
@@ -96,6 +109,7 @@ class OfferController extends Controller
         $offer->type = $request->input('of_type');
         
         $company_id = $request->input('of_company_id');
+        $offer->promotion_id = $request->input('of_promotion_id');
         $offer->company_id = $company_id;
         
         $offer->save();
@@ -118,6 +132,7 @@ class OfferController extends Controller
     DB::table('applications')->where('offer_id', $id)->delete();
 
     DB::table('user_wishlist')->where('offer_id', $id)->delete();
+    
     $offer = Offer::findOrFail($id);
     $offer->delete();
 

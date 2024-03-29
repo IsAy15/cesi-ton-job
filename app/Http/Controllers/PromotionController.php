@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Promotion;
 use App\Models\User;
+use App\Models\Offer;
 use Illuminate\Support\Facades\DB;
 
 
@@ -48,14 +49,25 @@ class PromotionController extends Controller
     }
 
     public function destroy($id)
-{
-        DB::table('user_promotions')->where('promotion_id', $id)->delete();
+    {
+        $user = auth()->user();
+          
+        if ($user->role === 'user') {
+            return redirect()->route('promotions.index');
+        }
+    
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+    
+        Offer::where('promotion_id', $id)->delete();
         
-        $promotion = Promotion::findOrFail($id);
-        $promotion->delete();
-
+        Promotion::destroy($id);
+    
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+    
         return redirect()->route('promotions.index')->with('success', 'Promotion supprimée avec succès');
-}
+    }
+    
+
 
     public function showUsers($id)
     {

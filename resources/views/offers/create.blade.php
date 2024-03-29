@@ -36,6 +36,14 @@
                 <label for="of_salary">Salaire (/mois)</label>
                 <input type="number" name="of_salary" id="of_salary">
             </div>
+            <div>
+                <select name="of_promotion_id" id="of_promotion_id">
+                    <option value="" disabled selected hidden>Promotion</option>
+                    @foreach($promotions as $promotion)
+                        <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>

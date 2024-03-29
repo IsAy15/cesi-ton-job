@@ -54,7 +54,14 @@
                 <label for="of_salary">Salaire</label>
                 <input type="number" name="of_salary" id="of_salary" value="{{ $offer->salary }}">
             </div>
-
+            <div>
+                <label for="of_promotion_id">Promotion</label>
+                <select name="of_promotion_id" id="of_promotion_id">
+                    @foreach($promotions as $promotion)
+                    <option value="{{ $promotion->id }}" @if($offer->promotion_id == $promotion->id) selected @endif>{{ $promotion->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn-1">Modifier</button>
         </form>
     </div>
