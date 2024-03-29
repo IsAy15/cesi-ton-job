@@ -35,13 +35,11 @@ class ProfileController extends Controller
 {
     $user = auth()->user();
 
-    if ($request->has('abilities')) {
-        $abilitiesIds = $request->input('abilities');
+    $abilitiesIds = $request->abilities;
         
-        $user->abilities()->attach($abilitiesIds);
-    }
+    $user->abilities()->attach($abilitiesIds);
 
-    return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
+    // return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
 }
 
 
@@ -82,11 +80,12 @@ class ProfileController extends Controller
         // return redirect()->route('profile.pending')->with('success', 'Le statut de l\'utilisateur a été changé avec succès.');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->ability;
         DB::table('student_abilities')->where('ability_id', $id)->delete();
 
-        return redirect()->route('profile.index')->with('success', 'La compétence a été supprimée avec succès.');
+        // return redirect()->route('profile.index')->with('success', 'La compétence a été supprimée avec succès.');
     }
 
 

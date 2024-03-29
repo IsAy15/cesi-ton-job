@@ -42,7 +42,7 @@ Route::get('/profile/wishlist', [ProfileController::class, 'wishlist'])->name('p
 Route::get('/profile/pending', [ProfileController::class, 'pending'])->name('profile.pending');
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 //Offres routes

@@ -22,36 +22,53 @@
         @if($user->role=='user')
             <div id="admin" class="container-1 area-bg">
                 <p>Compétences :</p>
-                <div class="liste-h"> 
+                <div class="liste-h ability_container"> 
                     @forelse($user->abilities as $ability)
                         <div class="liste-h elements">
                             <p>{{ $ability->title }}</p>
-                            <form action="{{ route('profile.destroy', $ability->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-1 btn-2"><i class="fa-regular fa-circle-xmark"></i></button>
-                            </form>
+                            <a href="#admin" ability_id="{{ $ability->id }}" class="fa-regular fa-circle-xmark btn-1 btn-2"></a>
                         </div>
                     @empty
                         <p>Aucune compétence</p>
                     @endforelse
                     @if(!$allabilities->isEmpty())
-                        <div class="popup" style="display: none;">
-                            <div class="popup-content" id="popup-content">
-                                <form action="{{ route('profile.store') }}" method="POST">
-                                    @csrf
-                                    <select name="abilities[]" multiple>
-                                        @foreach($allabilities as $ability)
-                                            <option value="{{ $ability->id }}">{{ $ability->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-check"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                        <button id="btn-plus" type="button" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></button>
+                    <style>
+                        .popup{
+                            position: relative;
+                            .popup-content{
+                                position: absolute;
+                                bottom: 0;
+                                /* left: -5rem; */
+                                z-index: 1;
+                                padding: 1rem;
+                                border-radius: 2rem;
+                                ul{
+                                    display: flex;
+                                    flex-flow: column;
+                                    gap: 1rem;
+                                    li{
+                                        display: flex;
+                                        justify-content: space-between;
+                                        gap: 1rem;
+                                        align-items: center;
+                                    }
+                                }
+                            }
+                        }
+                    </style>
+                        
                     @endif
                 </div>
+                <div class="popup">
+                    <dialog id="ability_popup" class="popup-content">
+                        <ul>
+                            @foreach($allabilities as $ability)
+                                <li ability_id="{{ $ability->id }}"><p>{{ $ability->title }}</p><a href="#" class="btn-1 btn-2 fa-solid fa-plus"></a></li>
+                            @endforeach
+                        </ul>
+                    </dialog>
+                </div>
+                <button id="btn-plus" type="button" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></button>
             </div>
         @endif
         @if($user->role=="pilote")

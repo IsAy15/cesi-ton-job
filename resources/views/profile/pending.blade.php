@@ -30,31 +30,5 @@
             </tbody>
         </table>
     </div>
-    <script>
-        const switchElements = document.querySelectorAll('.switch input');
-
-        switchElements.forEach((switchElement) => {
-        
-            switchElement.addEventListener('change', async (e) => {
-                const userId = e.target.id;
-                console.log(userId);
-                const response = await fetch(`/profile/update/${userId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        status: e.target.checked ? 'approved' : 'pending'
-                    })
-                });
-                if (response.ok) {
-                    console.log('User status updated');
-                    setTimeout(() => {
-                        e.target.closest("tr").remove();
-                    }, 1000);
-                }
-            });
-        });
-    </script>
+@vite('resources/js/pending.js')
 @endsection
