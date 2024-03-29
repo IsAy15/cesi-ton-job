@@ -1,6 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Votre profil')
 @section('content')
+@vite('resources/css/profile.css')
 <div class="container-1 default-bg fit-center">
     <div id="infos_perso" class="liste-h">
         <div id="photo" class="container-rond">
@@ -27,49 +28,22 @@
                     @forelse($user->abilities as $ability)
                         <div class="liste-h elements">
                             <p>{{ $ability->title }}</p>
-                            <a href="#admin" ability_id="{{ $ability->id }}" class="fa-regular fa-circle-xmark btn-1 btn-2"></a>
+                            <a href="#admin" ability_id="{{ $ability->id }}" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>
                         </div>
                     @empty
                         <p>Aucune compétence</p>
                     @endforelse
-                    @if(!$allabilities->isEmpty())
-                    <style>
-                        .popup{
-                            position: relative;
-                            .popup-content{
-                                position: absolute;
-                                bottom: 0;
-                                /* left: -5rem; */
-                                z-index: 1;
-                                padding: 1rem;
-                                border-radius: 2rem;
-                                ul{
-                                    display: flex;
-                                    flex-flow: column;
-                                    gap: 1rem;
-                                    li{
-                                        display: flex;
-                                        justify-content: space-between;
-                                        gap: 1rem;
-                                        align-items: center;
-                                    }
-                                }
-                            }
-                        }
-                    </style>
-                        
-                    @endif
                 </div>
-                <div class="popup">
+                <div class="popup liste-h">
+                    <button id="btn-plus" type="button" class="btn-3"><i class="fa-solid fa-plus"></i></button>
                     <dialog id="ability_popup" class="popup-content">
                         <ul>
                             @foreach($allabilities as $ability)
-                                <li ability_id="{{ $ability->id }}"><p>{{ $ability->title }}</p><a href="#" class="btn-1 btn-2 fa-solid fa-plus"></a></li>
+                                <li ability_id="{{ $ability->id }}"><p>{{ $ability->title }}</p><a href="#" class="btn-3"><i class="fa-solid fa-plus"></i></a></li>
                             @endforeach
                         </ul>
                     </dialog>
                 </div>
-                <button id="btn-plus" type="button" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></button>
             </div>
         @endif
         @if($user->role=="pilote")

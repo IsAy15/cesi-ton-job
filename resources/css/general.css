@@ -396,7 +396,7 @@ table /* general */ {
 }
 
 .elements /* general */ {
-    padding: 0.5rem;
+    padding: 0.2rem;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     background-color: rgba(128, 128, 128, 0.3);
