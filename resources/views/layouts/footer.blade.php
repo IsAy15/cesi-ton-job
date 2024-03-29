@@ -29,6 +29,9 @@
             <tspan x="0" y="103.8" class="t1" style="opacity: 0.05;">J</tspan><tspan  y="103.8" class="t1">o</tspan><tspan  y="103.8" class="t1">b</tspan>
           </text>
         </svg>
-CESI Ton Job &copy; <script>document.write(new Date().getFullYear());</script>
+  CESI Ton Job &copy; <script>document.write(new Date().getFullYear());</script>
+  <a href="https://www.cesi.fr">
+    <img class="cesi" src=".\.\images\icons\CESI.png" alt="Site du CESI">
+  </a>
 </div>
-    </footer>
+</footer>
