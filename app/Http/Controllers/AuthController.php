@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Méthode pour afficher le formulaire de connexion
     public function login()
     {
         return view('auth.login');
@@ -40,10 +39,6 @@ class AuthController extends Controller
                 } else {
                     return redirect()->intended(route('profile.index'));
                 }
-            } else {
-                return redirect()->back()->withInput()->withErrors([
-                    'email' => 'Votre compte est en attente de validation.',
-                ]);
             }
         }
 
