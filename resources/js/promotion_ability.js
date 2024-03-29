@@ -23,7 +23,7 @@ async function append_ability(id, ability, e) {
         e.target.closest("li").remove();
         let div = document.createElement("div");
         div.classList.add("liste-h", "elements");
-        div.innerHTML = `<p>${ability}</p><a href="#admin" class="fa-regular fa-circle-xmark btn-1 btn-2"></a>`;
+        div.innerHTML = `<p>${ability}</p><a href="#admin" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>`;
         document.querySelector(".ability_container").appendChild(div);
         let btn = div.querySelector("a");
         btn.setAttribute("ability_id", id);
