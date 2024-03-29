@@ -8,11 +8,10 @@
                 <input type="hidden" name="access_key" value="bff74283-e893-450f-ba71-6c451066d92a">
                 <div>
                     <input type="text" name="name" placeholder="Prénom NOM" required>
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="email" name="email" placeholder="Email (Précisez votre objet en début de message)" required>
                 </div>
                 <div>
                     <input type="text" name="phone" placeholder="Numero de téléphone">
-                    <input type="text" name="subject" placeholder="Objet du message">
                 </div>
                 <textarea name="message" cols="30" rows="10" placeholder="Votre message" required></textarea>
                 <div class="captcha-container">
