@@ -118,25 +118,39 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $user = User::find($id);
+{
+    $user = User::find($id);
 
-        if ($user->role === 'admin' && $request->has('role')) {
-            $request->merge(['role' => 'admin']);
-        }
-
-        $user->lastname = $request->lastname;
-        $user->firstname = $request->firstname;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
-
-        if ($user->role !== 'admin' && $request->has('promotion')) {
-            $user->promotions()->sync([$request->promotion]);
-        }
-
-        return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
+    if ($user->role === 'admin' && $request->has('role')) {
+        $request->merge(['role' => 'admin']);
     }
+
+    $user->lastname = $request->lastname;
+    $user->firstname = $request->firstname;
+    $user->email = $request->email;
+    $user->password = $request->password;
+    $user->save();
+
+    // Mise à jour du niveau
+    $levelTitle = $request->input('level');
+    $level = Level::where('title', $levelTitle)->first();
+
+    // Supprimer les enregistrements existants dans user_levels
+    $user->userLevels()->delete();
+
+    // Ajouter le nouvel enregistrement dans user_levels
+    $userLevel = new UserLevel();
+    $userLevel->user_id = $user->id;
+    $userLevel->level_id = $level->id;
+    $userLevel->save();
+
+    if ($user->role !== 'admin' && $request->has('promotion')) {
+        $user->promotions()->sync([$request->promotion]);
+    }
+
+    return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
+}
+
 
     public function destroy($id)
     {
