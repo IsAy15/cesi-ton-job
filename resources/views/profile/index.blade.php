@@ -22,13 +22,13 @@
     @if($user->role=="admin")
     @else
         @if($user->role=='user')
-            <div id="admin" class="container-1 area-bg">
+            <div id="abilities" class="container-1 area-bg">
                 <p>Compétences :</p>
                 <div class="liste-h ability_container"> 
                     @forelse($user->abilities as $ability)
                         <div class="liste-h elements">
                             <p>{{ $ability->title }}</p>
-                            <a href="#admin" ability_id="{{ $ability->id }}" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>
+                            <a href="#abilities" ability_id="{{ $ability->id }}" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>
                         </div>
                     @empty
                         <p>Aucune compétence</p>

@@ -4,12 +4,12 @@ const csrf = document
 
 const popup = document.querySelector("#ability_popup");
 
-const remove_abilities = document.querySelectorAll(".fa-circle-xmark");
+const remove_abilities = document.querySelectorAll("a[ability_id]");
 
 const add_abilities = document.querySelectorAll("li[ability_id]");
 
 async function append_ability(id, ability, e) {
-    const response = await fetch(`/profile/store/`, {
+    let response = await fetch(`/profile/store/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -23,7 +23,7 @@ async function append_ability(id, ability, e) {
         e.target.closest("li").remove();
         let div = document.createElement("div");
         div.classList.add("liste-h", "elements");
-        div.innerHTML = `<p>${ability}</p><a href="#admin" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>`;
+        div.innerHTML = `<p>${ability}</p><a href="#abilities" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>`;
         document.querySelector(".ability_container").appendChild(div);
         let btn = div.querySelector("a");
         btn.setAttribute("ability_id", id);
@@ -34,8 +34,13 @@ async function append_ability(id, ability, e) {
 }
 
 async function delete_ability(e) {
-    const id = e.target.getAttribute("ability_id");
-    const response = await fetch(`/profile/destroy`, {
+    if(e.target.tagName != "A"){
+        e = e.target.closest('a');
+    }else{
+        e = e.target;
+    }
+    let id = e.getAttribute("ability_id");
+    let response = await fetch(`/profile/destroy`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -46,10 +51,10 @@ async function delete_ability(e) {
         }),
     });
     if (response.ok) {
-        e.target.closest("div").remove();
+        e.closest("div").remove();
         let li = document.createElement("li");
         li.setAttribute("ability_id", id);
-        li.innerHTML = `<p>${e.target.previousElementSibling.innerText}</p><a href="#admin" class="btn-1 btn-2 fa-solid fa-plus"></a>`;
+        li.innerHTML = `<p>${e.closest('div').querySelector('p').innerText}</p><a href="#abilities" class="btn-3"><i class="fa-solid fa-plus"></i></a>`;
         document.querySelector("#ability_popup > ul").appendChild(li);
         let btn = li.querySelector("a");
         let ability = li.querySelector("p").innerText;
@@ -72,6 +77,7 @@ document.addEventListener("click", function (event) {
 });
 
 for (let remove_ability of remove_abilities) {
+    console.log(remove_ability);
     remove_ability.addEventListener("click", async (e) => {
         delete_ability(e);
     });
