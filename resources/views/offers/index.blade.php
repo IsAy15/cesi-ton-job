@@ -13,9 +13,10 @@
                     <h2>|</h2>
                     <input type="text" id="locationInput" placeholder="Localisation" class="input-search-bar">
                     <a href="#" id="searchButton" class="btn-1 btn-2"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="#" id="filterButton" class="btn-1 btn-2"><i class="fa-solid fa-filter"></i></a>
                 </div>
             </form>
-            <div class="filters">
+            <div class="filters" style="display: none;">
                 <select id="contractFilter">
                     <option value="all">Tous types de contrat</option>
                     @foreach($contractTypes as $contractType)
@@ -49,7 +50,7 @@
         <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre&nbsp;<i class="fa-solid fa-plus"></i></a>
         @endif
     </div>
-        <table id="offerTable">
+        <table id="offerTable" >
             <thead>
                 <tr>
                     <th>Titre</th>
@@ -60,7 +61,7 @@
                     <th>Type</th>
                     <th>Entreprise</th>
                     <th>Promotion</th>
-                    @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
+                    @if(Auth::user()->role !== 'user')
                     <th>Action</th>
                     @endif
                 </tr>
@@ -101,6 +102,21 @@
             </ul>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const filterButton = document.getElementById("filterButton");
+        const filters = document.querySelector(".filters");
+
+        filterButton.addEventListener("click", function() {
+            if (filters.style.display === "none") {
+                filters.style.display = "block";
+            } else {
+                filters.style.display = "none";
+            }
+        });
+    });
+</script>
+
 @vite('resources/js/offer.js')
 @vite('resources/js/postal.js')
 @vite('resources/js/offer_filter.js')

@@ -6,12 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const offerTable = document.getElementById('offerTable').getElementsByTagName('tbody')[0];
     const offers = offerTable.getElementsByTagName('tr');
 
-    // Fonction pour calculer la durée entre deux dates
     function calculateDuration(startingDateStr, endingDateStr) {
         const startingDate = new Date(startingDateStr);
         const endingDate = new Date(endingDateStr);
         const diffTime = Math.abs(endingDate - startingDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Conversion en jours
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
         if (diffDays <= 90) {
             return 'short';
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (diffDays <= 365) {
             return 'long';
         } else {
-            return 'very-long'; 
+            return 'very_long'; 
         }
     }
 
@@ -57,4 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     durationFilter.addEventListener('change', applyFilters);
     promotionFilter.addEventListener('change', applyFilters);
     companyFilter.addEventListener('change', applyFilters);
+
+    // Appliquer les filtres une fois que la page est chargée
+    applyFilters();
 });

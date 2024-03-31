@@ -56,7 +56,7 @@
                             @endforeach
                         </td>
                         <td>
-                            @if(Auth::user()->role = 'admin')
+                            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')
                                 <div class="table-interactions">
                                     <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="POST" style="display: inline;">

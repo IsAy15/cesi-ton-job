@@ -90,6 +90,10 @@ class UserController extends Controller
     $user->status = 'approved';
     $user->save();
 
+    if ($user->role !== 'admin' && $request->has('promotion')) {
+        $user->promotions()->sync([$request->promotion]);
+    }
+
     $level = Level::where('title', $request->level)->first();
 
     if ($level) {

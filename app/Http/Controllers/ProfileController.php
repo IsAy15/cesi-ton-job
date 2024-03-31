@@ -21,7 +21,11 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $userLevel = $user->userLevels()->first(); // Récupérer le premier niveau de l'utilisateur
-        $title = $userLevel ? $userLevel->level->title : ''; // Récupérer le titre du nivea 
+        $title = '';
+        if ($userLevel) {
+            $level = $userLevel->level;
+            $title = $level ? $level->title : '';
+        }
         $userabilities = $user->abilities->pluck('id')->toArray();
         $allabilities = Ability::wherenotin('id', $userabilities)->get();
         return view('profile.index', compact('user','userabilities' ,'allabilities', 'title', 'userLevel'));

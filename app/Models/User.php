@@ -54,6 +54,8 @@ class User extends Authenticatable
         return $this->belongsTo(Level::class, 'user_levels', 'user_id', 'level_id');
     }
 
+    
+
     public function userLevels()
     {
         return $this->hasMany(UserLevel::class, 'user_id');
