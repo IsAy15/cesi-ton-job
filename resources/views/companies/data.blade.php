@@ -7,7 +7,9 @@
             <p>Secteur d'activité : {{ $company->sector }}</p>
             <p>Note moyenne : </p><div note="{{ $company->average_grade }}"></div>
             <p>Localisation(s) : </p>
-            {{ $localizations = explode(", ", $company->localization) }}
+            @foreach ($localizations as $localization)
+                <p>{{ $localization }}</p>
+            @endforeach
         </div>
         <div>
             <h2>Offres postées par l'entreprise :</h2>
@@ -43,17 +45,17 @@
             $existingGrade = $company->grades()->where('user_id', $userId);
         @endphp
 
-            <!-- <p>Cette entreprise a déjà été notée.</p> -->
-            <form action="{{ route('companies.rate') }}" method="POST">
-                @csrf
-                <h1>Vous connaissez cette entreprise ?</h1>
-                <h2>Donnez votre avis :</h2>
-                <div class="ratings active" note="{{ $existingGrade->value('value') }}"></div>
-                <input type="hidden" name="company_id" value="{{ $company->id }}">
-                <input type="hidden" name="rating" id="rating">
-                <input type="submit" value="Envoyer" class="btn-1">
-            </form>
+        <form action="{{ route('companies.rate') }}" method="POST">
+            @csrf
+            <h1>Vous connaissez cette entreprise ?</h1>
+            <h2>Donnez votre avis :</h2>
+            <div class="ratings active" note="{{ $existingGrade->value('value') }}"></div>
+            <input type="hidden" name="company_id" value="{{ $company->id }}">
+            <input type="hidden" name="rating" id="rating">
+            <input type="submit" value="Envoyer" class="btn-1">
+        </form>
     </div>
     @vite('resources/js/star_rate.js')
     @vite('resources/css/star_rate.css')
+    @vite('resources/js/postal.js')
 @endsection
