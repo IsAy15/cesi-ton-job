@@ -43,7 +43,7 @@
         </div>
     @endforeach
 </div>
-@vite('resources/js/postal.js')
+@vite('resources/js/geoapigouv.js')
 @vite('resources/js/entreprise_search.js')
 @vite('resources/js/star_rate.js')
 @vite('resources/css/star_rate.css')

@@ -34,5 +34,5 @@
             @endforeach
         </ul>
     </div>
-    @vite('resources/js/departement.js')
+    @vite('resources/js/geoapigouv.js')
 @endsection

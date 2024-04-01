@@ -19,7 +19,7 @@ CREATE TABLE companies(
    id INT AUTO_INCREMENT,
    name VARCHAR(50),
    sector VARCHAR(50),
-   localization VARCHAR(50),
+   localization JSON,
    PRIMARY KEY(id)
 );
 
@@ -177,13 +177,14 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`,
 DELETE FROM companies;
 
 INSERT INTO companies (name, sector, localization) VALUES
-('Dassault Systèmes', 'Informatique', '78140'),
-('Capgemini', 'Informatique', '75001'),
-('Thales', 'Informatique', '92400'),
-('Atos', 'Informatique', '95870'),
-('Sopra Steria', 'Informatique', '75001'),
-('Ubisoft', 'Informatique', '93100'),
-('OVHcloud', 'Informatique', '59100');
+('Dassault Systèmes', 'Informatique', '{"code": "78640", "cp": "78140", "dep": "78"}'),
+('Capgemini', 'Informatique', '{"code": "75056", "cp": "75001", "dep": "75"}'),
+('Thales', 'Informatique', '{"code": "92026", "cp": "92400", "dep": "92"}'),
+('Airbus', 'Aéronautique', '{"code": "31000", "cp": "31670", "dep": "31"}'),
+('Atos', 'Informatique', '{"code": "95063", "cp": "95870", "dep": "95"}'),
+('Sopra Steria', 'Informatique', '{"code": "75056", "cp": "75001", "dep": "75"}'),
+('Ubisoft', 'Informatique', '{"code": "93048", "cp": "93100", "dep": "93"}'),
+('OVHcloud', 'Informatique', '{"code": "59512", "cp": "59100", "dep": "59"}');
 
 -- Remplissage de la table levels
 DELETE FROM levels;

@@ -1,0 +1,42 @@
+.container {
+            position: relative;
+            display: flex;
+        }
+        #selectedCommunes {
+            position: absolute;
+            display: flex;
+            flex-flow: row wrap;
+            gap: .25rem;
+            padding: .25rem;
+        }
+        #selectedCommunes p {
+            background-color: #f0f0f0;
+            padding: .25rem;
+            border-radius: .5rem;
+            cursor: pointer;
+            border: thin solid #ccc;
+        }
+        #selectedCommunes p:hover {
+            background-color: #e0e0e0;
+        }
+        #selectedCommunes p:active {
+            background-color: #d0d0d0;
+        }
+        #selectedCommunes p::after {
+            content: "✖";
+            margin-left: .5rem;
+        }
+        #selectedCommunes p:hover::after, #selectedCommunes p:active::after{
+            color: red;
+        }
+        #searchInput {
+            display: flex;
+            position: relative;
+            border-radius: .5rem;
+            border: thin solid #ccc;
+            padding: 2rem .25rem .5rem .25rem;
+            width: auto; /* Laisser la largeur s'ajuster automatiquement */
+            min-width: 5rem; /* Largeur minimale pour éviter qu'il ne devienne trop petit */
+            transition: width 0.3s ease; /* Animation de transition pour une expérience utilisateur fluide */
+            transition: height 0.3s ease; /* Animation de transition pour la hauteur */
+        }

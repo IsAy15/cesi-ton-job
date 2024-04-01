@@ -7,8 +7,8 @@
             <p>Secteur d'activité : {{ $company->sector }}</p>
             <p>Note moyenne : </p><div note="{{ $company->average_grade }}"></div>
             <p>Localisation(s) : </p>
-            @foreach ($company->localizations as $localization)               
-            <p city>{{ $localization }}</p>
+            @foreach ($localizations as $localization)               
+            <p city>{{ $localization->nom }} ({{ $localization->cp }})</p>
             @endforeach
         </div>
         <div>
@@ -57,5 +57,4 @@
     </div>
     @vite('resources/js/star_rate.js')
     @vite('resources/css/star_rate.css')
-    @vite('resources/js/postal.js')
 @endsection

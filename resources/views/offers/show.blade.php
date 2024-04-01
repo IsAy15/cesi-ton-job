@@ -67,6 +67,6 @@
 
     <a href="{{ route('offers.index') }}" class="btn-1">Retour</a>
 </div>
-@vite('resources/js/postal.js')
+@vite('resources/js/geoapigouv.js')
 @vite('resources/js/file.js')
 @endsection

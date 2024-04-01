@@ -118,6 +118,6 @@
 </script>
 
 @vite('resources/js/offer.js')
-@vite('resources/js/postal.js')
+@vite('resources/js/geoapigouv.js')
 @vite('resources/js/offer_filter.js')
 @endsection

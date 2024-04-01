@@ -48,7 +48,7 @@ class CompanyController extends Controller
         $company = new Company();
         $company->name = $request->input('cp_name');
         $company->sector = $request->input('cp_sector');
-        $company->localization = $request->input('cp_localization');
+        $company->localization = $request->input('selectedCommunes');
         $company->save();
         
         if ($request->has('create_offer')) {
@@ -115,9 +115,10 @@ class CompanyController extends Controller
             
         $company->average_grade = round($averageGrade,1);
 
-        $company->localizations = explode(", ", $company->localization);
+        // $company->localization = [{"nom":"Toulouse","code":"31555","cp":"31000","dep":"31"},{"nom":"Labège","code":"31254","cp":"31670","dep":"31"}]
+        $localizations = json_decode($company->localization);
 
-        return view('companies.data', compact('company', 'totalApplications', 'offers'));
+        return view('companies.data', compact('company', 'totalApplications', 'offers', 'localizations'));
     }
 
     public function rate(Request $request)

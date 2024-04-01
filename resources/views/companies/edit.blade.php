@@ -17,7 +17,7 @@
                     <input type="text" name="cp_sector" id="cp_sector" value="{{ $company->sector }}">
                 </div>
                 <div class="input-required fit-center">
-                    <label for="cp_localization">Localisation</label>
+                    <label for="cp_localization">Localisation(s)</label>
                     <input type="text" name="cp_localization" id="cp_localization" value="{{ $company->localization }}">
                 </div>
                 <button type="submit" class="btn-1">Modifier</button>

@@ -2,6 +2,7 @@
 @section('title', 'Ajouter une entreprise')
 @section('content')
 @vite('resources/css/checkmark.css')
+@vite('resources/css/entreprise_localisations.css')
 
 @if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
     <?php
@@ -17,7 +18,12 @@
                 <input type="text" name="cp_name" id="cp_name" placeholder="Nom de l'entreprise">
             </div>
             <div>
-                <input type="text" name="cp_localization" id="cp_localization" placeholder="Localisation">
+                <div class="container">
+                    <input id="searchInput" list="communes"  placeholder="Localisations">
+                    <div id="selectedCommunes"></div>
+                </div>
+                <datalist id="communes"></datalist>
+                <input type="hidden" id="selectedCommunesInput" name="selectedCommunes">
             </div>
             <div>
                 <select name="cp_sector" id="cp_sector">
@@ -36,5 +42,6 @@
         </form>
     </div>
 
+@vite('resources/js/entreprise_localisations.js')
 @vite('resources/js/entreprise_validation.js')
 @endsection
