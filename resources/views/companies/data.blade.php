@@ -8,7 +8,7 @@
             <p>Note moyenne : </p><div note="{{ $company->average_grade }}"></div>
             <p>Localisation(s) : </p>
             @foreach ($localizations as $localization)
-                <p>{{ $localization }}</p>
+                <p city>{{ $localization }}</p>
             @endforeach
         </div>
         <div>

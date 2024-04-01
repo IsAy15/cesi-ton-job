@@ -112,11 +112,12 @@ class CompanyController extends Controller
         $grades = Grade::where('company_id', $company->id)->pluck('value');
             
         $averageGrade = $grades->avg();
-        $localizations = explode(", ", $company->localization);
             
         $company->average_grade = round($averageGrade,1);
 
-        return view('companies.data', compact('company', 'totalApplications', 'offers', 'localizations'));
+        $company->localizations = explode(", ", $company->localization);
+
+        return view('companies.data', compact('company', 'totalApplications', 'offers'));
     }
 
     public function rate(Request $request)
