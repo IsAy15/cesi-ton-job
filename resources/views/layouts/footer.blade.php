@@ -31,7 +31,7 @@
         </svg>
   CESI Ton Job &copy; <script>document.write(new Date().getFullYear());</script>
   <a href="https://www.cesi.fr">
-    <img class="cesi" src=".\.\images\icons\CESI.png" alt="Site du CESI">
+    <img class="cesi" src="{{ asset('images/icons/CESI.png') }}" alt="Site du CESI">
   </a>
 </div>
 </footer>
