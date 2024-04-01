@@ -19,9 +19,30 @@
             @endif
         </div>
     </div>
-    @if($user->role=="admin")
-    @else
-        @if($user->role=='user')
+    @switch($user->role)
+        @case('admin')
+        <div id="promotions" class="container-1 area-bg">
+                <p>Mes promotions :</p>
+                <div class="liste-h">
+                    @forelse($user->promotions as $promotion)
+                        <div class="elements">
+                            <a href="{{ route('promotions.users', $promotion->id) }}">{{ $promotion->name }}</a>
+                        </div>
+                    @empty
+                        <p>Aucune promotion</p>
+                    @endforelse
+                    <a href="#" class="btn-1 btn-2">+</a>
+                </div>
+            </div>
+            <div class="liste-h">
+                <a href="{{ route('users.index') }}" class="btn-1">Voir les utilisateurs</a>
+                <a href="{{ route('promotions.index') }}" class="btn-1">Voir les promotions</a>
+                <a href="{{ route('offers.index') }}" class="btn-1">Voir les offres publiée(s)</a>
+                <a href="{{ route('companies.index') }}" class="btn-1">Voir les entreprises</a>
+                <a href="{{ route('profile.pending') }}" class="btn-1">Voir les utilisateurs en attente</a>
+            </div>
+            @break
+        @case('user')
             <div id="abilities" class="container-1 area-bg">
                 <p>Compétences :</p>
                 <div class="liste-h ability_container"> 
@@ -45,54 +66,32 @@
                     </dialog>
                 </div>
             </div>
-        @endif
-        @if($user->role=="pilote")
-            <div id="admin" class="container-1 area-bg">
-                <p>Promotions :</p>
-                <div class="liste-h"> 
-                    <div class="elements">
-                        <a href="#">Promo 1</a>
-                    </div>
-                    <div class="elements">
-                        <a href="#">Promo 2</a>
-                    </div>
-                    <div class="elements">
-                        <a href="#">Promo 3</a>
-                    </div>
-                    <div class="elements">
-                        <a href="#">Promo 4</a>
-                    </div>
-                    <div class="elements">
-                        <a href="#">Promo 5</a>
-                    </div>
-                    <a href="#" class="btn-1 btn-2">+</a>
-                </div>
-            </div>
-        @endif
-    @endif
-    @if($user->role=="admin")
-        <div class="liste-h">
-            <a href="{{ route('users.index') }}" class="btn-1">Voir les utilisateurs</a>
-            <a href="{{ route('promotions.index') }}" class="btn-1">Voir les promotions</a>
-            <a href="{{ route('offers.index') }}" class="btn-1">Voir les offres publiée(s)</a>
-            <a href="{{ route('companies.index') }}" class="btn-1">Voir les entreprises</a>
-            <a href="{{ route('profile.pending') }}" class="btn-1">Voir les utilisateurs en attente</a>
-        </div>
-    @else
-        @if($user->role=="user")
             <div class="liste-h">
                 <a href="{{ route('profile.offers') }}" class="btn-1 btn-2">Voir les offres postulées</a>
                 <a href="#" class="btn-1 btn-2">voir les stats</a>
             </div>
-        @endif
-        @if($user->role=="pilote")
+            @break
+        @case('pilote')
+            <div id="promotions" class="container-1 area-bg">
+                <p>Mes promotions :</p>
+                <div class="liste-h">
+                    @forelse($user->promotions as $promotion)
+                        <div class="elements">
+                            <a href="{{ route('promotions.users', $promotion->id) }}">{{ $promotion->name }}</a>
+                        </div>
+                    @empty
+                        <p>Aucune promotion</p>
+                    @endforelse
+                    <!-- <a href="#" class="btn-1 btn-2">+</a> -->
+                </div>
+            </div>
             <div class="liste-h">
                 <a href="{{ route('offers.index') }}" class="btn-1 btn-2">Voir les offres publiées</a>
                 <a href="{{ route('companies.index') }}" class="btn-1 btn-2">Voir les entreprises</a>
                 <a href="{{ route('profile.pending') }}" class="btn-1">Voir les utilisateurs en attente</a>
             </div>
-        @endif
-    @endif
+            @break
+    @endswitch
 </div>
 @vite('resources/js/promotion_ability.js')
 @endsection
