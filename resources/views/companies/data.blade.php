@@ -7,8 +7,8 @@
             <p>Secteur d'activité : {{ $company->sector }}</p>
             <p>Note moyenne : </p><div note="{{ $company->average_grade }}"></div>
             <p>Localisation(s) : </p>
-            @foreach ($localizations as $localization)
-                <p city>{{ $localization }}</p>
+            @foreach ($company->localizations as $localization)               
+            <p city>{{ $localization }}</p>
             @endforeach
         </div>
         <div>
