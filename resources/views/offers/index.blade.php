@@ -31,7 +31,8 @@
                 <select id="promotionFilter">
                     <option value="all">Toutes les promotions</option>
                     @foreach ($promotions as $promotion)
-                    <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
+                    <option value="{{ $promotion->id }}" @if(auth()->user()->role == "user" && $promotion->id == auth()->user()->promotions[0]->id) selected @endif
+                        >{{ $promotion->name }}</option>
                     @endforeach
                 </select>
                 <select id="companyFilter">
@@ -48,23 +49,28 @@
         <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre&nbsp;<i class="fa-solid fa-plus"></i></a>
         @endif
     </div>
-    <div class="form-v">
+    <div class="form-v offers-container">
         @foreach ($offers as $offer)
-            <div class="container-2 area-bg">
-                <h2><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></h2>
+            <div offer="{{ $offer->id }}" class="container-2 area-bg">
+                <h2><a title href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></h2>
                 <div class="space">
-                    <p>{{ $offer->type }}</p>
-                    <p>{{ $offer->promotion->name }}</p>
+                    <p contract>{{ $offer->type }}</p>
+                    <p promo="{{ $offer->promotion->id }}">{{ $offer->promotion->name }}</p>
                 </div>
                 <div class="space">
-                    <p>Début : {{ $offer->starting_date }}</p>
-                    <p>Fin : {{ $offer->ending_date }}</p>
+                    @php
+                        $origin = new DateTimeImmutable($offer->starting_date);
+                        $duration = $origin->diff(new DateTimeImmutable($offer->ending_date));
+                    @endphp
+                    <p start>Début : {{ $origin->format('d/m/Y') }}</p>
+                    <p duration="{{ $duration->format("%a") }}">Durée : {{ $duration->format('%a jours') }}</p>
                 </div>
                 <div class="space">
-                    <p>{{ $offer->company->name }}</p>
-                    <div class="ville">
-                        <p city></p>
-                        <p cp>({{ $offer->localization }})</p>
+                    <p company={{ $offer->company->id }}>{{ $offer->company->name }}</p>
+                    <div>
+                        <p>
+                            <span city></span> (<span cp>{{ $offer->localization }}</span>)
+                        </p>
                     </div>
                 </div>
                 @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")

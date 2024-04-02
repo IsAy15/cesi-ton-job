@@ -13,9 +13,7 @@
             <p>{{ $user->email }}</p>
             <p>{{ $title }}</p>
             @if($user->role=='user')
-                @foreach($user->promotions as $promotion)
-                    <p>{{ $promotion->name }}</p>
-                @endforeach
+                <p>{{ $user->promotions[0]->name }}</p>
             @endif
         </div>
     </div>
@@ -45,7 +43,7 @@
         @case('user')
             <div id="abilities" class="container-1 area-bg">
                 <p>Compétences :</p>
-                <div class="liste-h ability_container"> 
+                <div class="liste-h ability_container">
                     @forelse($user->abilities as $ability)
                         <div class="liste-h elements">
                             <p>{{ $ability->title }}</p>

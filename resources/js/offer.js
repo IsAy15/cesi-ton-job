@@ -5,25 +5,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const durationFilter = document.getElementById('durationFilter');
     const promotionFilter = document.getElementById('promotionFilter');
     const companyFilter = document.getElementById('companyFilter');
-    const offerTable = document.getElementById('offerTable').getElementsByTagName('tbody')[0];
-    const offers = offerTable.getElementsByTagName('tr');
+    const offerTable = document.querySelector('.offers-container');
+    const offers = offerTable.querySelectorAll("[offer]");
     const keywordInput = document.getElementById('keywordInput');
     const locationInput = document.getElementById('locationInput');
 
-    function calculateDuration(startingDateStr, endingDateStr) {
-        const startingDate = new Date(startingDateStr);
-        const endingDate = new Date(endingDateStr);
-        const diffTime = Math.abs(endingDate - startingDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-
-        if (diffDays <= 90) {
+    function calculateDuration(duration) {
+        if (duration <= 90) {
             return 'short';
-        } else if (diffDays <= 180) { 
+        } else if (duration <= 180) {
             return 'medium';
-        } else if (diffDays <= 365) {
+        } else if (duration <= 365) {
             return 'long';
         } else {
-            return 'very_long'; 
+            return 'very_long';
         }
     }
 
@@ -36,29 +31,29 @@ document.addEventListener("DOMContentLoaded", function() {
         const keyword = keywordInput.value.toLowerCase();
         const location = locationInput.value.toLowerCase();
 
-        for (let i = 0; i < offers.length; i++) {
-            const offerContract = offers[i].querySelector('[data-type]').getAttribute('data-type').toLowerCase();
-            const offerDuration = calculateDuration(offers[i].querySelector('[data-starting-date]').innerText, offers[i].querySelector('[data-ending-date]').innerText);
-            const offerPromotionId = offers[i].querySelector('[data-promotion]').getAttribute('data-promotion');
-            const offerCompanyId = offers[i].querySelector('[data-company]').getAttribute('data-company');
-            const offerTitle = offers[i].querySelector('td:first-child').innerText.toLowerCase();
-            const offerPostalCode = offers[i].querySelector('[cp]').innerText.toLowerCase();
-            const offerCity = offers[i].querySelector('[city]').innerText.toLowerCase();
+        for(let offer of offers) {
+            let offerPromotion = offer.querySelector('[promo]').getAttribute('promo');
+            let offerCompany = offer.querySelector('[company]').getAttribute('company');
+            let offerContract = offer.querySelector('[contract]').textContent.toLowerCase();
+            let offerDuration = calculateDuration(parseInt(offer.querySelector('[duration]').getAttribute('duration')));
+            let offerTitle = offer.querySelector('[title]').textContent.toLowerCase();
+            let offerPostalCode = offer.querySelector('[cp]').textContent;
+            let offerCity = offer.querySelector('[city]').textContent.toLowerCase();
 
-            // Vérifier si l'offre passe tous les filtres sélectionnés et la recherche
-            const contractPass = selectedContract === 'all' || offerContract === selectedContract;
-            const durationPass = selectedDuration === 'all' || offerDuration === selectedDuration;
-            const promotionPass = selectedPromotionId === 'all' || offerPromotionId === selectedPromotionId;
-            const companyPass = selectedCompanyId === 'all' || offerCompanyId === selectedCompanyId;
-            const keywordPass = keyword === '' || offerTitle.includes(keyword);
-            const locationPass = location === '' || offerPostalCode.includes(location) || offerCity.includes(location);
+            let contractPass = selectedContract === 'all' || offerContract === selectedContract;
+            let durationPass = selectedDuration === 'all' || offerDuration === selectedDuration;
+            let promotionPass = selectedPromotionId === 'all' || offerPromotion === selectedPromotionId;
+            let companyPass = selectedCompanyId === 'all' || offerCompany === selectedCompanyId;
+            let keywordPass = keyword === '' || offerTitle.includes(keyword);
+            let locationPass = location === '' || offerPostalCode.includes(location) || offerCity.includes(location);
 
-            // Afficher ou masquer l'offre en fonction du résultat des filtres et de la recherche
             if (contractPass && durationPass && promotionPass && companyPass && keywordPass && locationPass) {
-                offers[i].style.display = '';
-            } else {
-                offers[i].style.display = 'none';
+                offer.style.display = '';
             }
+            else {
+                offer.style.display = 'none';
+            }
+
         }
     }
 
