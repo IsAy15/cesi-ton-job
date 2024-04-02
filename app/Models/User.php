@@ -61,4 +61,11 @@ class User extends Authenticatable
         return $this->hasMany(UserLevel::class, 'user_id');
     }
 
+    public function useroffers()
+    {
+
+        return $this->belongsToMany(Offer::class, 'user_offer', 'user_id', 'offer_id');
+    }
+
+
 }

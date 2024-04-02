@@ -109,10 +109,16 @@ class ProfileController extends Controller
     }
 
     public function offers()
-    {
-        $user = auth()->user();
+{
+    $user = auth()->user();
+    if ($user->role === 'pilote') {
+        $createdOffers = $user->useroffers()->get(); 
+        return view('profile.offers', compact('createdOffers', 'user'));
+    } else {
         $appliedOffers = $user->offers;
-        return view('profile.offers', compact('appliedOffers'));
+        return view('profile.offers', compact('appliedOffers',  'user'));
     }
+}
+
 }
 

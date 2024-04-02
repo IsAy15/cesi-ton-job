@@ -68,7 +68,8 @@
                 </div>
                 <button type="submit" class="btn-1 btn-2">Postuler</button>
             </form>
-        @else
+        @endif
+        @if($user->role !== 'pilote'&& $isApplied)
             <div class="space">
             <a href="{{ Storage::url($application->cv) }}" download="{{ $application->cv }}">Télécharger le CV</a>
             <a href="{{ Storage::url($application->letter) }}" download="{{ $application->letter }}">Télécharger la lettre de motivation</a>
