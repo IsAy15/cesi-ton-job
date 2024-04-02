@@ -9,24 +9,19 @@ use App\Models\Company;
 use App\Models\Ability;
 use App\Models\Application;
 use App\Models\Promotion;
+use App\Models\Level;
 
 
 
 class OfferController extends Controller
 {
   public function index(){
-    $perpage = 10;
     $offers = Offer::all();
-    $totaloffers = $offers->count();
-    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-    $offset = ($currentPage - 1) * $perpage;
-    $pagedOffers = $offers->slice($offset, $perpage)->all();
-    $totalPages = ceil($totaloffers / $perpage);
     $promotions = Promotion::all();
     $companies = Company::all();
     $contractTypes = Offer::distinct()->pluck('type');
-
-    return view("offers.index",compact("offers","pagedOffers","totalPages","currentPage","promotions","companies", "contractTypes"));
+    
+    return view("offers.index",compact("offers","promotions","companies", "contractTypes"));
   }
 
   public function company()
@@ -54,12 +49,13 @@ class OfferController extends Controller
 
       $user = auth()->user();
       $promotions = Promotion::all();
+      $levels = Level::all();
       
       if ($user->role === 'user') {
         return redirect()->route('offers.index');
     }
 
-      return view("offers.create", compact("companies", "selected_company","promotions"));
+      return view("offers.create", compact("companies", "selected_company","promotions","levels"));
   }
 
   public function store(Request $request)
@@ -76,6 +72,11 @@ class OfferController extends Controller
       $offer->company_id = $request->input('of_company_id');
       $offer->applies_count = 0;
       $offer->promotion_id = $request->input('of_promotion_id');
+
+      $offer->levels()->attach($request->input('level_id'));
+      $offer->abilities()->attach($request->input('abilities'));
+
+
 
       $offer->save();
       return redirect()->route('offers.index');

@@ -2,8 +2,6 @@
 @section('title', 'Offres d\'emploi')
 @section('content')
 @vite('resources/css/offer.css')
-@vite('resources/css/pagination.css')
-@vite('resources/js/pagination.js')
     <div class="container-1 default-bg fit-center">
         <div class="input-required fit-center">
             <h1>Offres d'emploi</h1>
@@ -67,7 +65,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pagedOffers as $offer)
+                @foreach ($offers as $offer)
                 <tr>
                     <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
                     <td cp>{{ $offer->localization }}</td>
@@ -93,31 +91,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination" id="paginationContainer">
-            <ul>
-                @for ($i = 1; $i <= $totalPages; $i++) <li>
-                    <a href="{{ route('offers.index') }}?page={{ $i }}" class="{{ $i == $currentPage ? 'active' : '' }}">{{ $i }}</a>
-                    </li>
-                    @endfor
-            </ul>
-        </div>
     </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const filterButton = document.getElementById("filterButton");
-        const filters = document.querySelector(".filters");
-
-        filterButton.addEventListener("click", function() {
-            if (filters.style.display === "none") {
-                filters.style.display = "block";
-            } else {
-                filters.style.display = "none";
-            }
-        });
-    });
-</script>
-
 @vite('resources/js/offer.js')
 @vite('resources/js/geoapigouv.js')
-@vite('resources/js/offer_filter.js')
 @endsection

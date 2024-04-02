@@ -44,6 +44,25 @@
                     @endforeach
                 </select>
             </div>
+            <div>
+                <select name="of_level_id" id="of_level_id">
+                    <option value="" disabled selected hidden>Niveau requis</option>
+                    @foreach($levels as $level)
+                        <option value="{{ $level->id }}">{{ $level->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label>Compétences requises</label>
+                <div>
+                    @foreach($abilities as $ability)
+                    <label>
+                        <input type="checkbox" name="abilities[]" value="{{ $ability->id }}">
+                        {{ $ability->title }}
+                    </label>
+        @endforeach
+    </div>
+</div>
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
