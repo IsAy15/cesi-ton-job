@@ -1,6 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Modifier une entreprise')
 @section('content')
+@vite('resources/css/entreprise_localisations.css')
 
     <div class="container-1 default-bg fit-center">
         <h1>Modifier une entreprise</h1>
@@ -18,10 +19,19 @@
                 </div>
                 <div class="input-required fit-center">
                     <label for="cp_localization">Localisation(s)</label>
-                    <input type="text" name="cp_localization" id="cp_localization" value="{{ $company->localization }}">
+                    {{-- <input type="text" name="cp_localization" id="cp_localization" value="{{ $company->localization }}"> --}}
+                    <div>
+                        <div class="container">
+                            <input id="searchInput" list="communes" placeholder="Localisations" value="{{ $company->localization }}">
+                            <div id="selectedCommunes"></div>
+                        </div>
+                        <datalist id="communes"></datalist>
+                        <input type="hidden" id="selectedCommunesInput" name="selectedCommunes">
+                    </div>
                 </div>
                 <button type="submit" class="btn-1">Modifier</button>
             </div>
         </form>
     </div>
 @endsection
+@vite('resources/js/entreprise_localisations.js')
