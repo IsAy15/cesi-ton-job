@@ -52,9 +52,9 @@
                     @endforeach
                 </select>
             </div>
-            <div>
+            <div class="fit-center form-v">
                 <label>Compétences requises : </label>
-                <div>
+                <div class="abilities-select area-bg">
                     @foreach($abilities as $ability)
                     <label>
                         <input type="checkbox" name="abilities[]" value="{{ $ability->id }}">
