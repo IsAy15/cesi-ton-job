@@ -54,7 +54,6 @@
         @if ($user->role !== 'pilote' && !$isApplied)
             <form id="application" action="{{ route('offers.apply', $offer->id) }}" method="POST" class="form-v" enctype="multipart/form-data">
                 @csrf
-                @csrf
                 <div class="liste-h">
                     <div class="input-required">
                         <input type="file" id="cv" name="cv" class="inputfile">
@@ -69,6 +68,11 @@
                 </div>
                 <button type="submit" class="btn-1 btn-2">Postuler</button>
             </form>
+        @else
+            <div class="space">
+            <a href="{{ Storage::url($application->cv) }}" download="{{ $application->cv }}">Télécharger le CV</a>
+            <a href="{{ Storage::url($application->letter) }}" download="{{ $application->letter }}">Télécharger la lettre de motivation</a>
+            </div>
         @endif
     @endauth
 

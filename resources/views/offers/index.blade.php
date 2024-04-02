@@ -3,6 +3,11 @@
 @section('content')
 @vite('resources/css/offer.css')
     <div class="container-1 default-bg fit-center">
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
         <div class="input-required fit-center">
             <h1>Offres d'emploi</h1>
             <form>

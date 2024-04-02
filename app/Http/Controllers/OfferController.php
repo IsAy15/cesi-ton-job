@@ -26,6 +26,12 @@ class OfferController extends Controller
         $offers = $offers->diff(auth()->user()->offers);
     }
 
+    if (auth()->check() && auth()->user()->role !== 'pilote') {
+      $offers = $offers->reject(function ($offer) {
+          return auth()->user()->offers->contains($offer);
+      });
+  }
+
     return view("offers.index",compact("offers","promotions","companies", "contractTypes"));
   }
 
@@ -44,7 +50,10 @@ class OfferController extends Controller
       $isInWishlist = auth()->check() ? auth()->user()->wishlist->contains($offer) : false;
       $isApplied = auth()->check() ? auth()->user()->offers->contains($offer) : false;
 
-      return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user'));
+      $application = Application::where('user_id', auth()->id())->where('offer_id', $offer->id)->first();
+      
+
+      return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user', 'application'));
   }
 
   public function create(Request $request)
@@ -171,7 +180,7 @@ class OfferController extends Controller
     $offer = Offer::findOrFail($id);
     $offer->increment('applies_count');
 
-    return redirect()->route('offers.show', $id)->with('success', 'Votre candidature a été soumise avec succès.');
+    return redirect()->route('offers.index', $id)->with('success', 'Votre candidature a été soumise avec succès.');
 }
 
   public function stats()
