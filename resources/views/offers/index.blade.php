@@ -46,6 +46,7 @@
     <div class="liste-h">
         <a href="{{ route('offers.stats') }}" class="btn-1 btn-2">Afficher les statistiques&nbsp;<i class="fa-solid fa-chart-simple"></i></a>
         @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
+        <a href="{{ route('offers.hidden') }}" class="btn-1 btn-2">Afficher les offres cachées&nbsp;<i class="fa-solid fa-eye-slash"></i></a>
         <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre&nbsp;<i class="fa-solid fa-plus"></i></a>
         @endif
     </div>
@@ -66,7 +67,7 @@
                     <p duration="{{ $duration->format("%a") }}">Durée : {{ $duration->format('%a jours') }}</p>
                 </div>
                 <div class="space">
-                    <p company={{ $offer->company->id }}>{{ $offer->company->name }}</p>
+                    <p company={{ $offer->company->id}}>{{ $offer->company->name }}</p>
                     <div>
                         <p>
                             <span city></span> (<span cp>{{ $offer->localization }}</span>)
@@ -83,7 +84,7 @@
                         </form>
                         <form action="{{ route('offers.hide', $offer->id) }}" method="post">
                         @csrf
-                        <button type="submit" class="btn-1 btn-2">Cacher l'offre</button>
+                        <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-eye-slash"></i></button>
                         </form>
                     </div>
                 @endif

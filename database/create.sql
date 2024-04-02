@@ -262,15 +262,15 @@ INSERT INTO `promotions` (`name`) VALUES ('Informatique'), ('S3E'), ('Générale
 DELETE FROM `offers`;
 
 INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `company_id`,`promotion_id`, `status`) VALUES
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Stage', 1, 1, 'active'),
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Alternance', 1, 1, 'active'),
-('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Stage', 1, 1, 'active'),
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Alternance', 2, 2, 'active'),
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Stage', 2, 2, 'active'),
-('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Stage', 2, 2, 'active'),
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Alternance', 3, 3, 'active'),
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Stage', 3, 3, 'active'),
-('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2020-01-01', '2020-12-31', 5, 30000, 0, 'Alternance', 3, 3, 'active'),
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 1, 1, 'active'),
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2024-01-01', '2024-12-31', 5, 30000, 0, 'Alternance', 1, 1, 'active'),
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 1, 1, 'active'),
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2024-01-01', '2024-12-31', 5, 30000, 0, 'Alternance', 2, 2, 'active'),
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 2, 2, 'active'),
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 2, 2, 'active'),
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Alternance', 3, 3, 'active'),
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 3, 3, 'active'),
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Alternance', 3, 3, 'active'),
 ('Développeur Mobile', 'Nous recherchons un développeur mobile pour rejoindre notre équipe.', '75001', '2022-01-01', '2022-12-31', 3, 35000, 0, 'Stage', 4, 1 , 'active'),
 ('Développeur Python', 'Nous recherchons un développeur Python pour un projet innovant.', '75001', '2022-01-01', '2022-12-31', 3, 37000, 0, 'Stage', 2, 2, 'active');
 

@@ -16,6 +16,7 @@ use App\Models\Level;
 class OfferController extends Controller
 {
   public function index(){
+    Offer::where('starting_date', '<', now())->update(['status' => 'hidden']);
     $offers = Offer::where('status', '!=', 'hidden')->get();
     $promotions = Promotion::all();
     $companies = Company::all();
@@ -200,7 +201,24 @@ class OfferController extends Controller
       $offer->status = 'hidden';
       $offer->save();
 
+
       return redirect()->route('offers.index');
+  }
+
+  public function active($id)
+  {
+      $offer = Offer::findOrFail($id);
+      $offer->status = 'active';
+      $offer->save();
+
+      return redirect()->route('offers.hidden');
+  }
+
+  public function hidden()
+  {
+      $hiddenOffers = Offer::where('status', 'hidden')->get();
+
+      return view('offers.hidden', compact('hiddenOffers'));
   }
 
 

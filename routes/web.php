@@ -76,10 +76,12 @@ Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('
 //Offres routes
 Route::prefix('offer')->group(function(){
     Route::get('/', [OfferController::class, 'index'])->name('offers.index');
+    Route::get('/hidden', [OfferController::class, 'hidden'])->name('offers.hidden');
     Route::get('/stats', [OfferController::class, 'stats'])->name('offers.stats');
     Route::get('/create', [OfferController::class, 'create'])->name('offers.create');
     Route::get('/{id}', [OfferController::class, 'show'])->name('offers.show');
     Route::post('/{id}/hide', [OfferController::class, 'hide'])->name('offers.hide');
+    Route::post('/{id}/active', [OfferController::class, 'active'])->name('offers.active');
     Route::post('/store', [OfferController::class, 'store'])->name('offers.store');
     Route::get('/{id}/edit', [OfferController::class, 'edit'])->name('offers.edit');
     Route::put('/{id}/update', [OfferController::class, 'update'])->name('offers.update');
