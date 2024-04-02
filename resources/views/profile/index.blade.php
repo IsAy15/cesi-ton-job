@@ -86,8 +86,8 @@
                     <button id="btn-plus" type="button" class="btn-3"><i class="fa-solid fa-plus"></i></button>
                     <dialog id="promotion" class="popup-content">
                         <ul>
-                            @foreach($allabilities as $ability)
-                                <li ability_id="{{ $ability->id }}"><p>{{ $ability->title }}</p><a href="#" class="btn-3"><i class="fa-solid fa-plus"></i></a></li>
+                            @foreach($promotions as $promotion)
+                                <li promotion_id="{{ $pormotion->id }}"><p>{{ $pormotion->name }}</p><a href="#" class="btn-3"><i class="fa-solid fa-plus"></i></a></li>
                             @endforeach
                         </ul>
                     </dialog>
