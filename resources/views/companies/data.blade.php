@@ -45,7 +45,7 @@
             $existingGrade = $company->grades()->where('user_id', $userId);
         @endphp
 
-        <form action="{{ route('companies.rate') }}" method="POST">
+        <form action="{{ route('companies.rate') }}" method="POST" class="form-v">
             @csrf
             <h1>Vous connaissez cette entreprise ?</h1>
             <h2>Donnez votre avis :</h2>

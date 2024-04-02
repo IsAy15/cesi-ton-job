@@ -48,6 +48,9 @@
                 <li>{{ $ability->title }}</li>
             @endforeach
         </ul>
+        @if($user->role !== 'user' && $offer->status == 'hidden')
+        <p>Statut : {{ $offer->status }}</p>
+        @endif
 
     </div>
     @auth

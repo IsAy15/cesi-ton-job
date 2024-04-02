@@ -20,6 +20,7 @@ CREATE TABLE companies(
    name VARCHAR(50),
    sector VARCHAR(50),
    localization JSON,
+   status VARCHAR(50) NOT NULL DEFAULT 'active',
    PRIMARY KEY(id)
 );
 
@@ -99,16 +100,18 @@ CREATE TABLE levels(
    PRIMARY KEY(id)
 );
 
+-- Supprimez la table user_levels existante
 DROP TABLE IF EXISTS user_levels;
 
--- Recréer la table user_levels avec level_id autorisé à être NULL
+-- Recréez la table user_levels avec une clé primaire composite sur user_id et level_id
 CREATE TABLE user_levels (
    user_id INT,
    level_id INT,
-   PRIMARY KEY(user_id),
+   PRIMARY KEY(user_id, level_id),
    FOREIGN KEY(user_id) REFERENCES users(id),
    FOREIGN KEY(level_id) REFERENCES levels(id)
 );
+
 
 DROP TABLE IF EXISTS offer_levels;
 CREATE TABLE offer_levels (
@@ -155,7 +158,6 @@ CREATE TABLE offer_requirements(
    FOREIGN KEY(ab_id) REFERENCES abilities(id)
 );
 
--- Pour éviter les erreurs de clés étrangères
 
 
 -- Remplissage de la base de données
@@ -177,16 +179,17 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`,
 -- Remplissage de la table companies
 DELETE FROM companies;
 
-INSERT INTO `companies` (`id`, `name`, `sector`, `localization`) VALUES
-(1, 'Dassault Systèmes', 'Informatique', '[{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}]'),
-(2, 'Capgemini', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]'),
-(3, 'Thales', 'Informatique', '[{\"nom\": \"Courbevoie\", \"code\": \"92026\", \"cp\": \"92400\", \"dep\": \"92\"}]'),
-(4, 'Airbus', 'Aéronautique', '[{\"nom\": \"Labège\", \"code\": \"31000\", \"cp\": \"31670\", \"dep\": \"31\"}]'),
-(5, 'Atos', 'Informatique', '[{\"nom\": \"Bezons\", \"code\": \"95063\", \"cp\": \"95870\", \"dep\": \"95\"}]'),
-(6, 'Sopra Steria', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]'),
-(7, 'Ubisoft', 'Informatique', '[{\"nom\": \"Montreuil\", \"code\": \"93048\", \"cp\": \"93100\", \"dep\": \"93\"}]'),
-(8, 'OVHcloud', 'Informatique', '[{\"nom\": \"Roubaix\", \"code\": \"59512\", \"cp\": \"59100\", \"dep\": \"59\"}]'),
-(10, 'Inetum', 'Informatique', '[{\"nom\":\"Labège\",\"code\":\"31254\",\"cp\":\"31670\",\"dep\":\"31\"},{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}]');
+INSERT INTO `companies` (`id`, `name`, `sector`, `localization`, `status`) VALUES
+(1, 'Dassault Systèmes', 'Informatique', '[{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}]', 'active'),
+(2, 'Capgemini', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]', 'active'),
+(3, 'Thales', 'Informatique', '[{\"nom\": \"Courbevoie\", \"code\": \"92026\", \"cp\": \"92400\", \"dep\": \"92\"}]','active'),
+(4, 'Airbus', 'Aéronautique', '[{\"nom\": \"Labège\", \"code\": \"31000\", \"cp\": \"31670\", \"dep\": \"31\"}]', 'active'),
+(5, 'Atos', 'Informatique', '[{\"nom\": \"Bezons\", \"code\": \"95063\", \"cp\": \"95870\", \"dep\": \"95\"}]', 'active'),
+(6, 'Sopra Steria', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]', 'active'),
+(7, 'Ubisoft', 'Informatique', '[{\"nom\": \"Montreuil\", \"code\": \"93048\", \"cp\": \"93100\", \"dep\": \"93\"}]', 'active'),
+(8, 'OVHcloud', 'Informatique', '[{\"nom\": \"Roubaix\", \"code\": \"59512\", \"cp\": \"59100\", \"dep\": \"59\"}]', 'active'),
+(9, 'Société Générale', 'Banque', '[{\"nom\": \"La Défense\", \"code\": \"92062\", \"cp\": \"92400\", \"dep\": \"92\"}]', 'active'),
+(10, 'Inetum', 'Informatique', '[{\"nom\":\"Labège\",\"code\":\"31254\",\"cp\":\"31670\",\"dep\":\"31\"},{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}]','hidden');
 
 -- Remplissage de la table levels
 DELETE FROM levels;
@@ -201,14 +204,16 @@ INSERT INTO levels (title) VALUES
 
 DELETE FROM user_levels;
 INSERT INTO user_levels (user_id, level_id) VALUES
-(1, NULL),
 (2, 1),
 (3, 2),
 (4, 3),
-(5, 4),
+(5, 1),
+(5, 2),
 (6, 5),
 (7, 1),
+(8, 1),
 (8, 2),
+(8, 3),
 (9, 3);
 
 DELETE FROM offer_levels;
@@ -411,11 +416,13 @@ DELETE FROM `user_promotions`;
 
 INSERT INTO `user_promotions` (`user_id`, `promotion_id`) VALUES
 (2, 1),
-(3, 2),
+(3, 1),
 (4, 3),
 (5, 1),
 (6, 2),
-(7, 3);
+(7, 3),
+(8, 4),
+(9, 1);
 
 -- Remplissage de la table user_offer
 DELETE FROM `user_offer`;

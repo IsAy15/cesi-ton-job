@@ -76,6 +76,7 @@ Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('
 //Offres routes
 Route::prefix('offer')->group(function(){
     Route::get('/', [OfferController::class, 'index'])->name('offers.index');
+    Route::get('/outdated', [OfferController::class, 'outdated'])->name('offers.outdated');
     Route::get('/hidden', [OfferController::class, 'hidden'])->name('offers.hidden');
     Route::get('/stats', [OfferController::class, 'stats'])->name('offers.stats');
     Route::get('/create', [OfferController::class, 'create'])->name('offers.create');
@@ -87,6 +88,7 @@ Route::prefix('offer')->group(function(){
     Route::put('/{id}/update', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::post('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
+
 });
 
 
@@ -137,6 +139,9 @@ Route::prefix('company')->group(function (){
     Route::get('/{id}/data', [CompanyController::class, 'data'])->name('companies.data');
     Route::post('/rate', [CompanyController::class, 'rate'])->name('companies.rate');
     Route::get('/stats', [CompanyController::class, 'stats'])->name('companies.stats');
+    Route::post('/{id}/hide', [CompanyController::class, 'hide'])->name('companies.hide');
+    Route::post('/{id}/active', [CompanyController::class, 'active'])->name('companies.active');
+    Route::get('/hidden', [CompanyController::class, 'hidden'])->name('companies.hidden');
 });
 
 //Promotions routes

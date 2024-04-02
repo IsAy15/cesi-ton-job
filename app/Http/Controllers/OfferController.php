@@ -89,12 +89,13 @@ class OfferController extends Controller
       $offer->applies_count = 0;
       $offer->promotion_id = $request->input('of_promotion_id');
 
+      $offer->save();
+
       $offer->levels()->attach($request->input('level_id'));
       $offer->abilities()->attach($request->input('abilities'));
 
 
 
-      $offer->save();
       return redirect()->route('offers.index');
   }
 
@@ -138,7 +139,7 @@ class OfferController extends Controller
 
 
     public function destroy($id)
-{
+  {
     $user = auth()->user();
 
       if ($user->role === 'user') {
@@ -153,6 +154,8 @@ class OfferController extends Controller
 
     DB::table('user_wishlist')->where('offer_id', $id)->delete();
 
+    DB::table('offer_levels')->where('offer_id', $id)->delete();
+
     $offer = Offer::findOrFail($id);
     $offer->delete();
 
@@ -161,7 +164,7 @@ class OfferController extends Controller
 
 
   public function apply(Request $request, $id)
-{
+  {
     $request->validate([
         'cv' => 'required|file|mimes:pdf|max:2048',
         'letter' => 'required|file|mimes:pdf|max:2048',
@@ -225,10 +228,22 @@ class OfferController extends Controller
 
   public function hidden()
   {
-      $hiddenOffers = Offer::where('status', 'hidden')->get();
-
+    $hiddenOffers = Offer::where('status', 'hidden')
+    ->where('starting_date', '>', now())
+    ->get();
       return view('offers.hidden', compact('hiddenOffers'));
   }
+
+  public function outdated()
+{
+    $offers = Offer::where(function ($query) {
+        $query->where('starting_date', '<', now())
+            ->orWhere('status', 'hidden');
+    })->get();
+
+    return view("offers.outdated", compact("offers"));
+}
+
 
 
 

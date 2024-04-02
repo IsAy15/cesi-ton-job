@@ -12,8 +12,8 @@
             <div>
                 <label for="role">Rôle :</label>
                 <select id="role" name="role">
-                    <option value="pilote">Pilote</option>
-                    <option value="user">User</option>
+                    <option value="pilote">pilote</option>
+                    <option value="user">user</option>
                 </select>
             </div>
             <div>
@@ -24,15 +24,44 @@
                     @endforeach
                 </select>
             </div>
-            <div>
-                <label for="level">Niveau :</label>
-                <select id="level" name="level">
+            <div class="fit-center form-v">
+                <label>Niveau : </label>
+                <div class="abilities-select area-bg">
                     @foreach($levels as $level)
-                        <option value="{{ $level->title }}">{{ $level->title }}</option>
+                        <label>
+                            <input type="{{ auth()->user() && auth()->user()->role == 'user' ? 'radio' : 'checkbox' }}" name="levels[]" value="{{ $level->id }}">
+                            {{ $level->title }}
+                        </label>
                     @endforeach
-                </select>
+                </div>
             </div>
             <button type="submit" class="btn-1">S'inscrire</button>
         </form>
     </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var roleSelect = document.getElementById('role');
+        var levelCheckboxes = document.querySelectorAll('input[name="levels[]"]');
+        
+        roleSelect.addEventListener('change', function() {
+            if (roleSelect.value === 'user') {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('click', function() {
+                        // Désactiver tous les autres checkboxes
+                        levelCheckboxes.forEach(function(otherCheckbox) {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    });
+                });
+            } else {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.removeEventListener('click', null);
+                });
+            }
+        });
+    });
+</script>

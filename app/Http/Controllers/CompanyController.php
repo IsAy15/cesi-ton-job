@@ -15,7 +15,8 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $companies = Company::all();
+        $companies = Company::where('status', '!=', 'hidden')->get();
+
 
         foreach ($companies as $company) {
             $grades = Grade::where('company_id', $company->id)->pluck('value');
@@ -173,4 +174,35 @@ class CompanyController extends Controller
     
         return view('companies.stats', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies', 'departmentWithMostCompanies'));
     }
+
+    public function hide($id)
+    {
+        $companies = Company::findOrFail($id);
+        $companies->status = 'hidden';
+        $companies->save();
+
+
+        return redirect()->route('companies.index');
+    }
+
+    public function hidden()
+{
+    $hiddenCompanies = Company::where('status', 'hidden')->get();
+    foreach ($hiddenCompanies as $company) {
+        $company->localizations = json_decode($company->localization);
+    }
+    return view('companies.hidden', compact('hiddenCompanies'));
+}
+
+
+public function active($id)
+{
+    $company = Company::findOrFail($id);
+    $company->status = 'active';
+    $company->save();
+
+    return redirect()->route('companies.hidden');
+}
+
+
 }
