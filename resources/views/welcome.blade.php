@@ -71,6 +71,14 @@
           @endswitch
         @endif
         <a href="{{ $url }}" class="btn">{{ $text }}</a>
+        @if(!Auth::check())
+          <a href="{{ route('auth.register') }}" class="btn">Pas encore inscrit ?</a>
+        @else
+          <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
+            @csrf
+            <a href="#" onclick="document.getElementById('logout-form').submit();" class="btn">Déconnexion</a>
+          </form>
+        @endif
       </div>
     </header>
     <main>
