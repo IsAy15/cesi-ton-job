@@ -20,7 +20,7 @@ class OfferController extends Controller
     $promotions = Promotion::all();
     $companies = Company::all();
     $contractTypes = Offer::distinct()->pluck('type');
-    
+
     return view("offers.index",compact("offers","promotions","companies", "contractTypes"));
   }
 
@@ -29,18 +29,18 @@ class OfferController extends Controller
       return $this->belongsTo(Company::class);
   }
 
-  
+
 
   public function show($id)
   {
-    $user = auth()->user(); 
+    $user = auth()->user();
       $offer = Offer::findOrFail($id);
       $isInWishlist = auth()->check() ? auth()->user()->wishlist->contains($offer) : false;
       $isApplied = auth()->check() ? auth()->user()->offers->contains($offer) : false;
 
       return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user'));
   }
-  
+
   public function create(Request $request)
   {
       $selected_company = session('company');
@@ -51,7 +51,7 @@ class OfferController extends Controller
       $promotions = Promotion::all();
       $levels = Level::all();
       $abilities = Ability::all();
-      
+
       if ($user->role === 'user') {
         return redirect()->route('offers.index');
     }
@@ -88,11 +88,11 @@ class OfferController extends Controller
 
   public function edit($id)
     {
-      $promotions = Promotion::all(); 
+      $promotions = Promotion::all();
       $offer = Offer::findOrFail($id);
       $companies = Company::all();
       $user = auth()->user();
-        
+
       if ($user->role === 'user') {
       return redirect()->route('offers.index');
     }
@@ -112,11 +112,11 @@ class OfferController extends Controller
         $offer->salary = $request->input('of_salary');
         $offer->applies_count = $request->input('of_applies_count');
         $offer->type = $request->input('of_type');
-        
+
         $company_id = $request->input('of_company_id');
         $offer->promotion_id = $request->input('of_promotion_id');
         $offer->company_id = $company_id;
-        
+
         $offer->save();
         return redirect()->route('offers.index');
     }
@@ -125,11 +125,11 @@ class OfferController extends Controller
     public function destroy($id)
 {
     $user = auth()->user();
-      
+
       if ($user->role === 'user') {
         return redirect()->route('offers.index');
     }
-    
+
     DB::table('offer_requirements')->where('of_id', $id)->delete();
 
     DB::table('user_offer')->where('offer_id', $id)->delete();
@@ -137,7 +137,7 @@ class OfferController extends Controller
     DB::table('applications')->where('offer_id', $id)->delete();
 
     DB::table('user_wishlist')->where('offer_id', $id)->delete();
-    
+
     $offer = Offer::findOrFail($id);
     $offer->delete();
 
@@ -171,11 +171,11 @@ class OfferController extends Controller
 public function stats()
 {
     $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
-    
+
     $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(5)->get();
-    
+
     $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->take(3)->get();
-    
+
     $longestInternshipOffer = Offer::where('type', 'stage')
     ->orderByRaw('DATEDIFF(ending_date, starting_date) DESC')
     ->first();
@@ -185,7 +185,7 @@ public function stats()
     ->orderByDesc('offers_count')
     ->limit(5)
     ->get();
-    
+
     return view('offers.stats', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
 }
 
