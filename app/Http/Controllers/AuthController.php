@@ -91,9 +91,6 @@ class AuthController extends Controller
     }
 }
 
-
-
-
     public function confirmation()
     {
         return view('auth.confirmation');

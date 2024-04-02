@@ -32,7 +32,21 @@
                     @endforeach
                 </select>
             </div>
+            <div id="additional-levels"></div>
+            <button type="button" class="btn-1" onclick="addLevelSelector()">Plus</button>
             <button type="submit" class="btn-1">S'inscrire</button>
         </form>
     </div>
+    
+    <script>
+        function addLevelSelector() {
+            var levelSelector = document.createElement("select");
+            levelSelector.name = "additional_levels[]";
+            levelSelector.innerHTML = '<option value="" disabled selected hidden>Niveau</option>';
+            @foreach($levels as $level)
+                levelSelector.innerHTML += '<option value="{{ $level->title }}">{{ $level->title }}</option>';
+            @endforeach
+            document.getElementById("additional-levels").appendChild(levelSelector);
+        }
+    </script>
 @endsection
