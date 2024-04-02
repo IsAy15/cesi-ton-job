@@ -2,6 +2,7 @@
 @section('title', 'Votre profil')
 @section('content')
 @vite('resources/css/profile.css')
+@vite('resources/css/abilities.css')
 <div class="container-1 default-bg fit-center">
     <div id="infos_perso" class="liste-h">
         <div id="photo" class="container-rond">
@@ -41,27 +42,18 @@
             </div>
             @break
         @case('user')
-            <div id="abilities" class="container-1 area-bg">
+            <div class="container-1 area-bg">
                 <p>Compétences :</p>
                 <div class="liste-h ability_container">
-                    @forelse($user->abilities as $ability)
-                        <div class="liste-h elements">
-                            <p>{{ $ability->title }}</p>
-                            <a href="#abilities" ability_id="{{ $ability->id }}" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>
-                        </div>
-                    @empty
-                        <p>Aucune compétence</p>
-                    @endforelse
-                </div>
-                <div class="popup liste-h">
-                    <button id="btn-plus" type="button" class="btn-3"><i class="fa-solid fa-plus"></i></button>
-                    <dialog id="ability_popup" class="popup-content">
-                        <ul>
-                            @foreach($allabilities as $ability)
-                                <li ability_id="{{ $ability->id }}"><p>{{ $ability->title }}</p><a href="#" class="btn-3"><i class="fa-solid fa-plus"></i></a></li>
-                            @endforeach
-                        </ul>
-                    </dialog>
+                    <div class="container">
+                        <input id="searchInput" list="abilities" value="{{ $user->abilities }}">
+                        <div id="selectedAbilities"></div>
+                    </div>
+                    <datalist id="abilities">
+                        @foreach($allabilities as $ability)
+                            <option ability_id="{{ $ability->id }}" value="{{ $ability->title }}"></option>
+                        @endforeach
+                    </datalist>
                 </div>
             </div>
             <div class="liste-h">

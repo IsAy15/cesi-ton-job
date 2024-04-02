@@ -1,14 +1,31 @@
 const csrf = document
     .querySelector('meta[name="csrf_token"]')
     .getAttribute("content");
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("abilities");
+const selectedAbilitiesDiv = document.getElementById("selectedAbilities");
+const selectedAbilitiesInput = document.getElementById("selectedAbilitiesInput");
+const remInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);
+var selectedAbilities = [];
 
-const popup = document.querySelector("#ability_popup");
+// DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", function() {
+    // orderDatalistAbilities();
+    if(searchInput.value != "[]"){
+        selectedAbilities = JSON.parse(searchInput.value);
+        selectedAbilities.forEach(selectedAbility => {
+            removeSelectedAbility(selectedAbility.id);
+            setTimeout(() => {
+                addSelectedAbility(selectedAbility);
+            }, 100);
 
-const remove_abilities = document.querySelectorAll("a[ability_id]");
+        });
+    }else{
+        searchInput.value = "";
+    }
+});
 
-const add_abilities = document.querySelectorAll("li[ability_id]");
-
-async function append_ability(id, ability, e) {
+async function addSelectedAbility(selectedAbility) {
     let response = await fetch(`/profile/store/`, {
         method: "POST",
         headers: {
@@ -16,30 +33,43 @@ async function append_ability(id, ability, e) {
             "X-CSRF-TOKEN": csrf,
         },
         body: JSON.stringify({
-            abilities: id,
+            abilities: parseInt(selectedAbility.id),
         }),
     });
     if (response.ok) {
-        e.target.closest("li").remove();
-        let div = document.createElement("div");
-        div.classList.add("liste-h", "elements");
-        div.innerHTML = `<p>${ability}</p><a href="#abilities" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>`;
-        document.querySelector(".ability_container").appendChild(div);
-        let btn = div.querySelector("a");
-        btn.setAttribute("ability_id", id);
-        btn.addEventListener("click", async (e) => {
-            delete_ability(e);
+        selectedAbilities.push({
+            id: parseInt(selectedAbility.id),
+            title: selectedAbility.title
         });
+        removeFromDatalist(selectedAbility.id);
+        renderselectedAbilities();
+        searchInput.value = "";
     }
 }
 
-async function delete_ability(e) {
-    if(e.target.tagName != "A"){
-        e = e.target.closest('a');
-    }else{
-        e = e.target;
+function removeFromDatalist(id) {
+    let option = searchResults.querySelector(`option[ability_id="${id}"]`);
+    if (option) {
+        searchResults.removeChild(option);
     }
-    let id = e.getAttribute("ability_id");
+}
+
+function orderDatalistAbilities() {
+    let options = getDatalistOptions();
+    options.sort((a, b) => a.value.localeCompare(b.value));
+    searchResults.innerHTML = "";
+    options.forEach(option => searchResults.appendChild(option));
+}
+
+function addToDatalist(selectedAbility) {
+    let option = document.createElement("option");
+    option.setAttribute("ability_id", selectedAbility.id);
+    option.value = selectedAbility.title;
+    searchResults.appendChild(option);
+    orderDatalistAbilities();
+}
+
+async function removeSelectedAbility(id) {
     let response = await fetch(`/profile/destroy`, {
         method: "DELETE",
         headers: {
@@ -51,43 +81,66 @@ async function delete_ability(e) {
         }),
     });
     if (response.ok) {
-        e.closest("div").remove();
-        let li = document.createElement("li");
-        li.setAttribute("ability_id", id);
-        li.innerHTML = `<p>${e.closest('div').querySelector('p').innerText}</p><a href="#abilities" class="btn-3"><i class="fa-solid fa-plus"></i></a>`;
-        document.querySelector("#ability_popup > ul").appendChild(li);
-        let btn = li.querySelector("a");
-        let ability = li.querySelector("p").innerText;
-        btn.addEventListener("click", async (e) => {
-            append_ability(id, ability, e);
+        console.log(selectedAbilities);
+        console.log(selectedAbilities.find(ability => ability.id === parseInt(id)));
+        addToDatalist(selectedAbilities.find(ability => ability.id === parseInt(id)));
+        selectedAbilities = selectedAbilities.filter(ability => ability.id !== parseInt(id));
+        renderselectedAbilities();
+    }
+
+}
+
+function renderselectedAbilities() {
+    selectedAbilitiesDiv.innerHTML = selectedAbilities.map(ability => `<p ability_id="${ability.id}">${ability.title}</p>`).join("");
+    selectedAbilitiesDiv.querySelectorAll("p").forEach(abilityElement => {
+        let id = abilityElement.getAttribute("ability_id");
+        abilityElement.addEventListener("click", () => removeSelectedAbility(id));
+    });
+
+    // Ajustement de la largeur et de la hauteur de l'input
+    adjustInputWidth();
+    adjustInputHeight();
+}
+
+// Fonction pour récupérer les options de la datalist
+function getDatalistOptions() {
+    let options = [];
+    for (let i = 0; i < searchResults.children.length; i++) {
+        options.push(searchResults.children[i]);
+    }
+    return options;
+}
+
+// Fonction pour ajuster la largeur de l'input en fonction de la taille du contenu sélectionné
+function adjustInputWidth() {
+    let selectedAbilitiesWidth = selectedAbilitiesDiv.getBoundingClientRect().width - (remInPixels /2) - 2;
+    searchInput.style.width = selectedAbilitiesWidth + 'px';
+}
+
+// Fonction pour ajuster la hauteur de l'input en fonction de la hauteur de #selectedAbilities
+function adjustInputHeight() {
+    let selectedAbilitiesHeight = selectedAbilitiesDiv.getBoundingClientRect().height;
+    searchInput.style.paddingTop = (remInPixels/2) + selectedAbilitiesHeight + 'px';
+}
+
+// Appeler la fonction pour ajuster la largeur lors du chargement de la page
+window.addEventListener('load', adjustInputWidth);
+// Appeler la fonction pour ajuster la largeur chaque fois que les communes sélectionnées sont mises à jour
+window.addEventListener('resize', adjustInputWidth);
+
+// Appeler la fonction pour ajuster la hauteur lors du chargement de la page
+window.addEventListener('load', adjustInputHeight);
+// Appeler la fonction pour ajuster la hauteur chaque fois que les communes sélectionnées sont mises à jour
+window.addEventListener('resize', adjustInputHeight);
+
+searchInput.addEventListener("change", function () {
+    let selectedOption = searchResults.querySelector(`option[value="${searchInput.value}"]`);
+    if (selectedOption) {
+        let selectedID = selectedOption.getAttribute("ability_id");
+        let selectedTitle = selectedOption.value;
+        addSelectedAbility({
+            id: selectedID,
+            title: selectedTitle
         });
     }
-}
-
-document.getElementById("btn-plus").addEventListener("click", async (e) => {
-    setTimeout(() => {
-        popup.open = !popup.open;
-    }, 100);
 });
-
-document.addEventListener("click", function (event) {
-    if (popup.open) {
-        popup.open = false;
-    }
-});
-
-for (let remove_ability of remove_abilities) {
-    console.log(remove_ability);
-    remove_ability.addEventListener("click", async (e) => {
-        delete_ability(e);
-    });
-}
-
-for (let add_ability of add_abilities) {
-    let id = add_ability.getAttribute("ability_id");
-    let btn = add_ability.querySelector("a");
-    let ability = add_ability.querySelector("p").innerText;
-    btn.addEventListener("click", async (e) => {
-        append_ability(id, ability, e);
-    });
-}
