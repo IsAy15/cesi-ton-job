@@ -89,12 +89,13 @@ class OfferController extends Controller
       $offer->applies_count = 0;
       $offer->promotion_id = $request->input('of_promotion_id');
 
+      $offer->save();
+
       $offer->levels()->attach($request->input('level_id'));
       $offer->abilities()->attach($request->input('abilities'));
 
 
 
-      $offer->save();
       return redirect()->route('offers.index');
   }
 

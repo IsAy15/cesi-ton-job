@@ -100,16 +100,18 @@ CREATE TABLE levels(
    PRIMARY KEY(id)
 );
 
+-- Supprimez la table user_levels existante
 DROP TABLE IF EXISTS user_levels;
 
--- Recréer la table user_levels avec level_id autorisé à être NULL
+-- Recréez la table user_levels avec une clé primaire composite sur user_id et level_id
 CREATE TABLE user_levels (
    user_id INT,
    level_id INT,
-   PRIMARY KEY(user_id),
+   PRIMARY KEY(user_id, level_id),
    FOREIGN KEY(user_id) REFERENCES users(id),
    FOREIGN KEY(level_id) REFERENCES levels(id)
 );
+
 
 DROP TABLE IF EXISTS offer_levels;
 CREATE TABLE offer_levels (
@@ -156,7 +158,6 @@ CREATE TABLE offer_requirements(
    FOREIGN KEY(ab_id) REFERENCES abilities(id)
 );
 
--- Pour éviter les erreurs de clés étrangères
 
 
 -- Remplissage de la base de données
@@ -203,14 +204,16 @@ INSERT INTO levels (title) VALUES
 
 DELETE FROM user_levels;
 INSERT INTO user_levels (user_id, level_id) VALUES
-(1, NULL),
 (2, 1),
 (3, 2),
 (4, 3),
-(5, 4),
+(5, 1),
+(5, 2),
 (6, 5),
 (7, 1),
+(8, 1),
 (8, 2),
+(8, 3),
 (9, 3);
 
 DELETE FROM offer_levels;
@@ -413,11 +416,13 @@ DELETE FROM `user_promotions`;
 
 INSERT INTO `user_promotions` (`user_id`, `promotion_id`) VALUES
 (2, 1),
-(3, 2),
+(3, 1),
 (4, 3),
 (5, 1),
 (6, 2),
-(7, 3);
+(7, 3),
+(8, 4),
+(9, 1);
 
 -- Remplissage de la table user_offer
 DELETE FROM `user_offer`;

@@ -15,21 +15,26 @@ class UserController extends Controller
 {
     public function index()
 {
-    $currentUser = auth()->user();
+    $user = auth()->user();
 
-    if ($currentUser->role === 'user') {
+    if ($user->role === 'user') {
         return redirect()->route('profile.index');
     }
 
-    if ($currentUser->role === 'pilote') {
-        $pilotePromotionIds = $currentUser->promotions->pluck('id')->toArray();
+    if ($user->role === 'pilote') {
+        $pilotePromotionIds = $user->promotions->pluck('id')->toArray();
+        $userLevelIds = $user->userLevels->pluck('level_id')->toArray();
 
         $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
-            ->where('id', '!=', $currentUser->id)
+            ->where('id', '!=', $user->id)
             ->whereHas('promotions', function ($query) use ($pilotePromotionIds) {
                 $query->whereIn('id', $pilotePromotionIds);
             })
             ->where('status', 'approved')
+            ->where('role', 'user')
+            ->whereHas('userLevels', function ($query) use ($userLevelIds) {
+                $query->whereIn('level_id', $userLevelIds);
+            })
             ->get();
     } else {
         $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
@@ -39,6 +44,7 @@ class UserController extends Controller
 
     return view('users.index', compact('usersWithPromotions'));
 }
+
 
 
     public function show($id)

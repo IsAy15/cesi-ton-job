@@ -15,7 +15,7 @@
             <tbody>
                 @foreach($pendingUsers as $user)
                 <tr>
-                    <td>{{ $user->lastname }} {{ $user->firstname }}</td>
+                    <td><a href="{{ route('users.show', ['id' => $user->id]) }}" class="clickable">{{ $user->lastname }}</a>{{ $user->firstname }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
                         <label class="switch">

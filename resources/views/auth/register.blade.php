@@ -12,8 +12,8 @@
             <div>
                 <label for="role">Rôle :</label>
                 <select id="role" name="role">
-                    <option value="pilote">Pilote</option>
-                    <option value="user">User</option>
+                    <option value="pilote">pilote</option>
+                    <option value="user">user</option>
                 </select>
             </div>
             <div>
@@ -24,29 +24,44 @@
                     @endforeach
                 </select>
             </div>
-            <div>
-                <label for="level">Niveau :</label>
-                <select id="level" name="level">
+            <div class="fit-center form-v">
+                <label>Niveau : </label>
+                <div class="abilities-select area-bg">
                     @foreach($levels as $level)
-                        <option value="{{ $level->title }}">{{ $level->title }}</option>
+                        <label>
+                            <input type="{{ auth()->user() && auth()->user()->role == 'user' ? 'radio' : 'checkbox' }}" name="levels[]" value="{{ $level->id }}">
+                            {{ $level->title }}
+                        </label>
                     @endforeach
-                </select>
+                </div>
             </div>
-            <div id="additional-levels"></div>
-            <button type="button" class="btn-1" onclick="addLevelSelector()">Plus</button>
             <button type="submit" class="btn-1">S'inscrire</button>
         </form>
     </div>
-    
-    <script>
-        function addLevelSelector() {
-            var levelSelector = document.createElement("select");
-            levelSelector.name = "additional_levels[]";
-            levelSelector.innerHTML = '<option value="" disabled selected hidden>Niveau</option>';
-            @foreach($levels as $level)
-                levelSelector.innerHTML += '<option value="{{ $level->title }}">{{ $level->title }}</option>';
-            @endforeach
-            document.getElementById("additional-levels").appendChild(levelSelector);
-        }
-    </script>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var roleSelect = document.getElementById('role');
+        var levelCheckboxes = document.querySelectorAll('input[name="levels[]"]');
+        
+        roleSelect.addEventListener('change', function() {
+            if (roleSelect.value === 'user') {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('click', function() {
+                        // Désactiver tous les autres checkboxes
+                        levelCheckboxes.forEach(function(otherCheckbox) {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    });
+                });
+            } else {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.removeEventListener('click', null);
+                });
+            }
+        });
+    });
+</script>

@@ -67,29 +67,22 @@ class AuthController extends Controller
     $user->firstname = $request->firstname;
     $user->lastname = $request->lastname;
     $user->email = $request->email;
-    $user->password = md5($request->password);
+    $user->password = md5($request->password); 
     $user->role = $request->role;
 
     $user->save();
 
-    if ($user) {
-        $userId = $user->id;
-
-        $levelTitle = $request->input('level');
-
-        $level = UserLevel::whereHas('level', function ($query) use ($levelTitle) {
-            $query->where('title', $levelTitle);
-        })->first();
-
-        if ($level) {
-            $user->userLevels()->save($level);
-        }
-
-        $user->promotions()->attach($request->promotion, ['user_id' => $userId]);
-
-        return redirect()->route('auth.confirmation');
+    $selectedLevels = $request->input('levels');
+    foreach ($selectedLevels as $levelId) {
+        $user->userLevels()->create(['level_id' => $levelId]);
     }
+    
+    $user->promotions()->attach($request->promotion);
+
+    return redirect()->route('auth.confirmation');
 }
+
+
 
     public function confirmation()
     {
