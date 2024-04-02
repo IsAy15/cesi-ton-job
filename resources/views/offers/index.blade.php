@@ -48,49 +48,38 @@
         <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre&nbsp;<i class="fa-solid fa-plus"></i></a>
         @endif
     </div>
-        <table id="offerTable" >
-            <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Code postal</th>
-                    <th>Ville</th>
-                    <th>Date de début</th>
-                    <th>Date de fin</th>
-                    <th>Type</th>
-                    <th>Entreprise</th>
-                    <th>Promotion</th>
-                    @if(Auth::user()->role !== 'user')
-                    <th>Action</th>
-                    @endif
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($offers as $offer)
-                <tr>
-                    <td><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></td>
-                    <td cp>{{ $offer->localization }}</td>
-                    <td city></td>
-                    <td data-starting-date>{{ $offer->starting_date }}</td>
-                    <td data-ending-date>{{ $offer->ending_date }}</td>
-                    <td data-type="{{ strtolower($offer->type) }}">{{ $offer->type }}</td>
-                    <td data-company="{{ $offer->company->id }}">{{ $offer->company->name }}</td>
-                    <td data-promotion="{{ $offer->promotion->id }}">{{ $offer->promotion->name }}</td>
-                    @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
-                    <td>
-                        <div class="table-interactions">
-                            <a href="{{ route('offers.edit', $offer->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
-                            </form>
-                        </div>
-                    </td>
-                    @endif
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="form-v">
+        @foreach ($offers as $offer)
+            <div class="container-2 area-bg">
+                <h2><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a></h2>
+                <div class="space">
+                    <p>{{ $offer->type }}</p>
+                    <p>{{ $offer->promotion->name }}</p>
+                </div>
+                <div class="space">
+                    <p>Début : {{ $offer->starting_date }}</p>
+                    <p>Fin : {{ $offer->ending_date }}</p>
+                </div>
+                <div class="space">
+                    <p>{{ $offer->company->name }}</p>
+                    <div class="ville">
+                        <p city></p>
+                        <p cp>({{ $offer->localization }})</p>
+                    </div>
+                </div>
+                @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
+                    <div class="liste-h">
+                        <a href="{{ route('offers.edit', $offer->id) }}" class="btn-1 btn-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <form action="{{ route('offers.destroy', $offer->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
+                @endif
+            </div>
+        @endforeach
+    </div>
     </div>
 @vite('resources/js/offer.js')
 @vite('resources/js/geoapigouv.js')

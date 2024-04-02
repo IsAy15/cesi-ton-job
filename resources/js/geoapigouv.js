@@ -22,7 +22,7 @@ if (!input.length) {
 
 for (let i = 0; i < input.length; i++) {
     let cpElement = input[i];
-    let cp = cpElement.innerText.trim();
+    let cp = cpElement.innerText.trim().replace(/[^0-9]/g, ''); // Extract only digits
     let cityElement = output[i];
 
     let getURL = apiUrl + "communes?codePostal=" + encodeURIComponent(cp);
