@@ -55,7 +55,7 @@
             <div class="fit-center form-v">
                 <label>Compétences requises : </label>
                 <div class="abilities-select area-bg">
-                    @foreach($abilities as $ability)
+                    @foreach($abilities->sortBy('title') as $ability)
                     <label>
                         <input type="checkbox" name="abilities[]" value="{{ $ability->id }}">
                         {{ $ability->title }}
