@@ -61,8 +61,8 @@
                         {{ $ability->title }}
                     </label>
                     @endforeach
+                    <a href="{{ route('abilities.create') }}" class="btn-1 btn-2" ><i class="fa-solid fa-plus"></i></a>
                 </div>
-                <a href="{{ route('abilities.create') }}" class="btn-1" >Ajouter une compétence</a>
             </div>
             <button type="submit" class="btn-1">Ajouter</button>
         </form>

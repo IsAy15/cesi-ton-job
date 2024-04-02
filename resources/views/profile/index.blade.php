@@ -72,15 +72,25 @@
         @case('pilote')
             <div id="promotions" class="container-1 area-bg">
                 <p>Mes promotions :</p>
-                <div class="liste-h">
+                <div class="liste-h ability_container">
                     @forelse($user->promotions as $promotion)
-                        <div class="elements">
+                        <div class="liste-h elements">
                             <a href="{{ route('promotions.users', $promotion->id) }}">{{ $promotion->name }}</a>
+                            <a href="#abilities" ability_id="{{ $promotion->id }}" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>
                         </div>
                     @empty
-                        <p>Aucune promotion</p>
+                        <p>Aucune compétence</p>
                     @endforelse
-                    <!-- <a href="#" class="btn-1 btn-2">+</a> -->
+                </div>
+                <div class="popup liste-h">
+                    <button id="btn-plus" type="button" class="btn-3"><i class="fa-solid fa-plus"></i></button>
+                    <dialog id="promotion" class="popup-content">
+                        <ul>
+                            @foreach($allabilities as $ability)
+                                <li ability_id="{{ $ability->id }}"><p>{{ $ability->title }}</p><a href="#" class="btn-3"><i class="fa-solid fa-plus"></i></a></li>
+                            @endforeach
+                        </ul>
+                    </dialog>
                 </div>
             </div>
             <div class="liste-h">
