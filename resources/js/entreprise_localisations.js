@@ -6,11 +6,20 @@ const selectedCommunesInput = document.getElementById("selectedCommunesInput");
 const remInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);
 var selectedCommunes = [];
 
+// DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", function() {
+    if(searchInput.value){
+        selectedCommunes = JSON.parse(searchInput.value);
+        selectedCommunes.forEach(selectedCommune => {
+            removeSelectedCommune(selectedCommune.cp, selectedCommune.code);
+            addSelectedCommune(selectedCommune);
+        });
+    }
+});
+
 function addSelectedCommune(selectedCommune) {
-    // Vérifier si la commune est déjà dans la liste
     let isDuplicate = selectedCommunes.some(commune => commune.nom === selectedCommune.nom && commune.code === selectedCommune.code && commune.cp === selectedCommune.cp);
-    
-    // Si ce n'est pas un doublon, l'ajouter à la liste et afficher dans la console
+
     if (!isDuplicate) {
         selectedCommunes.push({
             nom: selectedCommune.nom,
@@ -18,7 +27,6 @@ function addSelectedCommune(selectedCommune) {
             cp: selectedCommune.cp,
             dep: selectedCommune.dep
         });
-        console.log(selectedCommunes);
         renderSelectedCommunes();
         updateHiddenInput(); // Mettre à jour le champ de formulaire caché
     }
@@ -27,7 +35,6 @@ function addSelectedCommune(selectedCommune) {
 
 function removeSelectedCommune(cp, code) {
     selectedCommunes = selectedCommunes.filter(commune => !(commune.cp === cp && commune.code === code));
-    console.log(selectedCommunes);
     renderSelectedCommunes();
     updateHiddenInput(); // Mettre à jour le champ de formulaire caché
 }
@@ -135,8 +142,6 @@ searchInput.addEventListener("change", function (event) {
         const selectedCP = selectedOption.getAttribute("cp");
         const selectedCommuneCode = selectedOption.getAttribute("code");
         const selectedDep = selectedOption.getAttribute("dep");
-        console.log("Code postal :", selectedCP);
-        console.log("Code de la commune :", selectedCommuneCode);
         addSelectedCommune({
             nom: selectedOption.textContent,
             code: selectedCommuneCode,
