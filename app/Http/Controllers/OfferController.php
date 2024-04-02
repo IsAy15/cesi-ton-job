@@ -21,6 +21,10 @@ class OfferController extends Controller
     $companies = Company::all();
     $contractTypes = Offer::distinct()->pluck('type');
 
+    if (auth()->check() && auth()->user()->role === 'user'){
+        $offers = $offers->diff(auth()->user()->offers);
+    }
+
     return view("offers.index",compact("offers","promotions","companies", "contractTypes"));
   }
 

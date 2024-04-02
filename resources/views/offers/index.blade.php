@@ -31,7 +31,8 @@
                 <select id="promotionFilter">
                     <option value="all">Toutes les promotions</option>
                     @foreach ($promotions as $promotion)
-                    <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
+                    <option value="{{ $promotion->id }}" @if(auth()->user()->role == "user" && $promotion->id == auth()->user()->promotions[0]->id) selected @endif
+                        >{{ $promotion->name }}</option>
                     @endforeach
                 </select>
                 <select id="companyFilter">
