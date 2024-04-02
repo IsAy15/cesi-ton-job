@@ -29,6 +29,34 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+//Policy
+Route::get('/policy', function () {
+    return view('policy');
+})->name('policy');
+
+
+//Contact
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+//About
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+
+//Auth routes
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'doregister'])->name('auth.register');
+Route::get('/register/confirmation', [AuthController::class, 'confirmation'])->name('auth.confirmation');
+
+
+Route::middleware('auth')->group(function(){
+
 Route::post('/wishlist/add/{offer}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
 Route::delete('/wishlist/remove/{offerId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
@@ -60,12 +88,6 @@ Route::prefix('offer')->group(function(){
 
 
 
-
-
-
-
-
-
 //Grades routes
 Route::prefix('grade')->group(function(){
     Route::get('/', [GradeController::class, 'index'])->name('grades.index');
@@ -89,13 +111,6 @@ Route::prefix('ability')->group(function(){
 
 
 
-//Auth routes
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'dologin'])->name('auth.login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
-Route::post('/register', [AuthController::class, 'doregister'])->name('auth.register');
-Route::get('/register/confirmation', [AuthController::class, 'confirmation'])->name('auth.confirmation');
 
 
 // User routes
@@ -121,29 +136,6 @@ Route::prefix('company')->group(function (){
     Route::get('/stats', [CompanyController::class, 'stats'])->name('companies.stats');
 });
 
-
-
-
-
-
-
-
-//Policy
-Route::get('/policy', function () {
-    return view('policy');
-})->name('policy');
-
-
-//Contact
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-//About
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
 //Promotions routes
 Route::prefix('promotion')->group(function(){
     Route::get('/', [PromotionController::class, 'index'])->name('promotions.index');
@@ -157,5 +149,9 @@ Route::prefix('promotion')->group(function(){
     Route::post('/{id}/addUser', [PromotionController::class, 'storeUser'])->name('promotions.storeUser');
     Route::delete('/{id}/removeUser/{userId}', [PromotionController::class, 'removeUser'])->name('promotions.removeUser');
 });
+
+});
+
+
 
 

@@ -60,5 +60,9 @@ class Offer extends Model
         return $this->hasMany(Application::class);
     }
 
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class, 'offer_levels', 'offer_id', 'level_id');
+    }
 
 }
