@@ -11,7 +11,6 @@
     <p><strong>Email:</strong> {{ $user->email }}</p>
     <p><strong>Rôle:</strong> {{ $user->role }}</p>
     <p><strong>Niveau:</strong> 
-    <p><strong>Niveau:</strong> 
     @foreach($user->userLevels as $userLevel)
         {{ $userLevel->level->title }}
         @if (!$loop->last)

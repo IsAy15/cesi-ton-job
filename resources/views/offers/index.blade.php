@@ -75,6 +75,10 @@
                             @method('DELETE')
                             <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-trash"></i></button>
                         </form>
+                        <form action="{{ route('offers.hide', $offer->id) }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn-1 btn-2">Cacher l'offre</button>
+                        </form>
                     </div>
                 @endif
             </div>

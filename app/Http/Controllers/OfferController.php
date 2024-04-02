@@ -16,10 +16,14 @@ use App\Models\Level;
 class OfferController extends Controller
 {
   public function index(){
-    $offers = Offer::all();
+    $offers = Offer::where('status', '!=', 'hidden')->get();
     $promotions = Promotion::all();
     $companies = Company::all();
     $contractTypes = Offer::distinct()->pluck('type');
+
+    if (auth()->check() && auth()->user()->role === 'user'){
+      $offers = $offers->diff(auth()->user()->offers);
+    }
     
     return view("offers.index",compact("offers","promotions","companies", "contractTypes"));
   }
@@ -168,26 +172,36 @@ class OfferController extends Controller
     return redirect()->route('offers.show', $id)->with('success', 'Votre candidature a été soumise avec succès.');
 }
 
-public function stats()
-{
-    $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
-    
-    $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(5)->get();
-    
-    $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->take(3)->get();
-    
-    $longestInternshipOffer = Offer::where('type', 'stage')
-    ->orderByRaw('DATEDIFF(ending_date, starting_date) DESC')
-    ->first();
+  public function stats()
+  {
+      $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
+      
+      $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(5)->get();
+      
+      $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->take(3)->get();
+      
+      $longestInternshipOffer = Offer::where('type', 'stage')
+      ->orderByRaw('DATEDIFF(ending_date, starting_date) DESC')
+      ->first();
 
-    $departmentsWithMostOffers = Offer::select(DB::raw('LEFT(localization, 2) AS code'), DB::raw('COUNT(*) AS offers_count'))
-    ->groupBy('code')
-    ->orderByDesc('offers_count')
-    ->limit(5)
-    ->get();
-    
-    return view('offers.stats', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
-}
+      $departmentsWithMostOffers = Offer::select(DB::raw('LEFT(localization, 2) AS code'), DB::raw('COUNT(*) AS offers_count'))
+      ->groupBy('code')
+      ->orderByDesc('offers_count')
+      ->limit(5)
+      ->get();
+      
+      return view('offers.stats', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
+  }
+
+  public function hide($id)
+  {
+      $offer = Offer::findOrFail($id);
+      $offer->status = 'hidden';
+      $offer->save();
+
+      return redirect()->route('offers.index');
+  }
+
 
 
 
