@@ -50,12 +50,13 @@ class OfferController extends Controller
       $user = auth()->user();
       $promotions = Promotion::all();
       $levels = Level::all();
+      $abilities = Ability::all();
       
       if ($user->role === 'user') {
         return redirect()->route('offers.index');
     }
 
-      return view("offers.create", compact("companies", "selected_company","promotions","levels"));
+      return view("offers.create", compact("companies", "selected_company","promotions","levels","abilities"));
   }
 
   public function store(Request $request)

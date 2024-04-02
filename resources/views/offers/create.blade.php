@@ -53,16 +53,17 @@
                 </select>
             </div>
             <div>
-                <label>Compétences requises</label>
+                <label>Compétences requises : </label>
                 <div>
                     @foreach($abilities as $ability)
                     <label>
                         <input type="checkbox" name="abilities[]" value="{{ $ability->id }}">
                         {{ $ability->title }}
                     </label>
-        @endforeach
-    </div>
-</div>
+                    @endforeach
+                </div>
+                <a href="{{ route('abilities.create') }}" class="btn-1" >Ajouter une compétence</a>
+            </div>
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
