@@ -20,6 +20,7 @@ CREATE TABLE companies(
    name VARCHAR(50),
    sector VARCHAR(50),
    localization JSON,
+   status VARCHAR(50) NOT NULL DEFAULT 'active',
    PRIMARY KEY(id)
 );
 
@@ -177,16 +178,17 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`,
 -- Remplissage de la table companies
 DELETE FROM companies;
 
-INSERT INTO `companies` (`id`, `name`, `sector`, `localization`) VALUES
-(1, 'Dassault Systèmes', 'Informatique', '[{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}]'),
-(2, 'Capgemini', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]'),
-(3, 'Thales', 'Informatique', '[{\"nom\": \"Courbevoie\", \"code\": \"92026\", \"cp\": \"92400\", \"dep\": \"92\"}]'),
-(4, 'Airbus', 'Aéronautique', '[{\"nom\": \"Labège\", \"code\": \"31000\", \"cp\": \"31670\", \"dep\": \"31\"}]'),
-(5, 'Atos', 'Informatique', '[{\"nom\": \"Bezons\", \"code\": \"95063\", \"cp\": \"95870\", \"dep\": \"95\"}]'),
-(6, 'Sopra Steria', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]'),
-(7, 'Ubisoft', 'Informatique', '[{\"nom\": \"Montreuil\", \"code\": \"93048\", \"cp\": \"93100\", \"dep\": \"93\"}]'),
-(8, 'OVHcloud', 'Informatique', '[{\"nom\": \"Roubaix\", \"code\": \"59512\", \"cp\": \"59100\", \"dep\": \"59\"}]'),
-(10, 'Inetum', 'Informatique', '[{\"nom\":\"Labège\",\"code\":\"31254\",\"cp\":\"31670\",\"dep\":\"31\"},{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}]');
+INSERT INTO `companies` (`id`, `name`, `sector`, `localization`, `status`) VALUES
+(1, 'Dassault Systèmes', 'Informatique', '[{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}]', 'active'),
+(2, 'Capgemini', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]', 'active'),
+(3, 'Thales', 'Informatique', '[{\"nom\": \"Courbevoie\", \"code\": \"92026\", \"cp\": \"92400\", \"dep\": \"92\"}]','active'),
+(4, 'Airbus', 'Aéronautique', '[{\"nom\": \"Labège\", \"code\": \"31000\", \"cp\": \"31670\", \"dep\": \"31\"}]', 'active'),
+(5, 'Atos', 'Informatique', '[{\"nom\": \"Bezons\", \"code\": \"95063\", \"cp\": \"95870\", \"dep\": \"95\"}]', 'active'),
+(6, 'Sopra Steria', 'Informatique', '[{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}]', 'active'),
+(7, 'Ubisoft', 'Informatique', '[{\"nom\": \"Montreuil\", \"code\": \"93048\", \"cp\": \"93100\", \"dep\": \"93\"}]', 'active'),
+(8, 'OVHcloud', 'Informatique', '[{\"nom\": \"Roubaix\", \"code\": \"59512\", \"cp\": \"59100\", \"dep\": \"59\"}]', 'active'),
+(9, 'Société Générale', 'Banque', '[{\"nom\": \"La Défense\", \"code\": \"92062\", \"cp\": \"92400\", \"dep\": \"92\"}]', 'active'),
+(10, 'Inetum', 'Informatique', '[{\"nom\":\"Labège\",\"code\":\"31254\",\"cp\":\"31670\",\"dep\":\"31\"},{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}]','hidden');
 
 -- Remplissage de la table levels
 DELETE FROM levels;

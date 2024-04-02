@@ -139,6 +139,9 @@ Route::prefix('company')->group(function (){
     Route::get('/{id}/data', [CompanyController::class, 'data'])->name('companies.data');
     Route::post('/rate', [CompanyController::class, 'rate'])->name('companies.rate');
     Route::get('/stats', [CompanyController::class, 'stats'])->name('companies.stats');
+    Route::post('/{id}/hide', [CompanyController::class, 'hide'])->name('companies.hide');
+    Route::post('/{id}/active', [CompanyController::class, 'active'])->name('companies.active');
+    Route::get('/hidden', [CompanyController::class, 'hidden'])->name('companies.hidden');
 });
 
 //Promotions routes
