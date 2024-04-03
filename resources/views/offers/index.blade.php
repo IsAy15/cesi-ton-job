@@ -75,9 +75,10 @@
                 <div class="space">
                     <p company={{ $offer->company->id}}>{{ $offer->company->name }}</p>
                     <div>
-                        <p>
-                            <span city></span> (<span cp>{{ $offer->localization }}</span>)
-                        </p>
+                        @php
+                            $offer->localization = json_decode($offer->localization);
+                        @endphp
+                        <p>{{ $offer->localization->nom }} ({{ $offer->localization->cp }})</p>
                     </div>
                 </div>
                 @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
@@ -99,5 +100,4 @@
     </div>
     </div>
 @vite('resources/js/offer.js')
-@vite('resources/js/geoapigouv.js')
 @endsection

@@ -51,7 +51,7 @@ class OfferController extends Controller
       $isApplied = auth()->check() ? auth()->user()->offers->contains($offer) : false;
 
       $application = Application::where('user_id', auth()->id())->where('offer_id', $offer->id)->first();
-      
+
 
       return view('offers.show', compact('offer', 'isInWishlist', 'isApplied', 'user', 'application'));
   }
@@ -89,12 +89,12 @@ class OfferController extends Controller
       $offer->applies_count = 0;
       $offer->promotion_id = $request->input('of_promotion_id');
 
+      $offer->levels()->attach($request->input('of_level_id'));
+      $abilitiesArray = json_decode($request->input('of_abilities'), true);
+      $abilities = array_column($abilitiesArray, 'id');
+      $offer->abilities()->attach($abilities);
+
       $offer->save();
-
-      $offer->levels()->attach($request->input('level_id'));
-      $offer->abilities()->attach($request->input('abilities'));
-
-
 
       return redirect()->route('offers.index');
   }
@@ -108,11 +108,13 @@ class OfferController extends Controller
       $offer = Offer::findOrFail($id);
       $companies = Company::all();
       $user = auth()->user();
+      $offerabilities = $offer->abilities->pluck('id')->toArray();
+      $allabilities = Ability::wherenotin('id', $offerabilities)->get();
 
       if ($user->role === 'user') {
       return redirect()->route('offers.index');
     }
-      return view('offers.edit', compact('offer', 'companies','promotions'));
+      return view('offers.edit', compact('offer', 'companies','promotions', 'allabilities'));
     }
 
 
@@ -128,10 +130,12 @@ class OfferController extends Controller
         $offer->salary = $request->input('of_salary');
         $offer->applies_count = $request->input('of_applies_count');
         $offer->type = $request->input('of_type');
-
         $company_id = $request->input('of_company_id');
         $offer->promotion_id = $request->input('of_promotion_id');
         $offer->company_id = $company_id;
+        $abilitiesArray = json_decode($request->input('of_abilities'), true);
+        $abilities = array_column($abilitiesArray, 'id');
+        $offer->abilities()->sync($abilities);
 
         $offer->save();
         return redirect()->route('offers.index');
@@ -189,21 +193,21 @@ class OfferController extends Controller
   public function stats()
   {
       $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
-      
+
       $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(5)->get();
-      
+
       $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->take(3)->get();
-      
+
       $longestInternshipOffer = Offer::where('type', 'stage')
       ->orderByRaw('DATEDIFF(ending_date, starting_date) DESC')
       ->first();
 
-      $departmentsWithMostOffers = Offer::select(DB::raw('LEFT(localization, 2) AS code'), DB::raw('COUNT(*) AS offers_count'))
-      ->groupBy('code')
-      ->orderByDesc('offers_count')
-      ->limit(5)
-      ->get();
-      
+      $departmentsWithMostOffers = DB::table('offers')
+            ->selectRaw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", "") AS dep, COUNT(*) AS offers_count')
+            ->groupByRaw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", ""), localization')
+            ->limit(5)
+            ->get();
+
       return view('offers.stats', compact('offersWithMostApplications', 'offersInWishlist', 'topAbilities', 'longestInternshipOffer', 'departmentsWithMostOffers'));
   }
 
