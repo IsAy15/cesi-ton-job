@@ -1,25 +1,61 @@
-.pagination .page-link {
-  font-size: 0.8rem; /* Taille de la police des éléments de pagination */
+/* Pagination CSS */
+
+/* Envelopper la pagination dans une ligne */
+.pagination {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 20px 0;
 }
 
-.pagination .page-item.disabled .page-link {
-  cursor: not-allowed; /* Curseur pour les éléments de pagination désactivés */
+/* Style des éléments de pagination */
+.page-item {
+  list-style: none;
+  margin: 0 5px; /* Espacement entre les éléments */
 }
 
-.pagination .page-item .page-link {
-  padding: 0.25rem 0.5rem; /* Espacement interne des éléments de pagination */
-}
-
-.pagination .page-item.active .page-link {
-  z-index: 1;
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff; /* Couleur de fond et bordure de l'élément de pagination actif */
-}
-
-.pagination .page-link:focus, .pagination .page-link:hover {
-  color: #0056b3;
+/* Style des liens de pagination */
+.page-link {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
   text-decoration: none;
-  background-color: #e9ecef; /* Couleur de survol des éléments de pagination */
-  border-color: #dee2e6;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Style des liens actifs */
+.page-item.active .page-link {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Style des liens désactivés */
+.page-item.disabled .page-link {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Style des flèches de navigation */
+.page-link[aria-hidden="true"] {
+  font-size: 14px;
+}
+
+/* Optionnel : Style des liens de navigation pour les rendre plus petits */
+.page-link[aria-label] {
+  font-size: 12px;
+}
+
+/* Optionnel : Style de la pagination pour une utilisation sur des dispositifs mobiles */
+@media (max-width: 768px) {
+  .pagination {
+      flex-wrap: wrap;
+  }
+
+  .page-item {
+      margin: 5px 2px;
+  }
 }
