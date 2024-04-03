@@ -50,5 +50,6 @@
             </tbody>
         </table>
     </div>
+    
 @vite('/resources/js/user_search.js')
 @endsection
