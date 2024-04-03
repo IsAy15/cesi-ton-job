@@ -47,9 +47,9 @@
             @endif
         </div>
     @endforeach
-    <div>
+    <div class="container-1 liste-h">
         {{ $companies->links() }}
-        </div>
+    </div>
 </div>
 @vite('resources/js/geoapigouv.js')
 @vite('resources/js/entreprise_search.js')
