@@ -75,14 +75,6 @@
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
-    <script>
-        const selectElement = document.querySelector('#of_company_id');
-        selectElement.addEventListener('change', (event) => {
-            if (event.target.value == 'new') {
-                window.location.href = '{{ route("companies.create") }}?offer';
-            }
-        });
-    </script>
 @endsection
 @vite('resources/js/add_offer_abilities.js')
 @vite('resources/js/offer_localization.js')
