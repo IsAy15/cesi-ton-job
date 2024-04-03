@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-1 default-bg fit-center">
         <h1>Ajouter une compétence</h1>
-        <form action="{{ route('abilities.store') }}" method="post" class="form-v">
+        <form action="{{ route('abilities.store') }}" method="post" class="form-v" id="addAbilityForm">
             @csrf
             <div class="input-required fit-center">
                 <label for="ab_title">Titre</label>
@@ -16,4 +16,5 @@
             <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-plus"></i></button>
         </form>
     </div>
+@vite('resources/js/abilities/champ_obligatoire.js')
 @endsection
