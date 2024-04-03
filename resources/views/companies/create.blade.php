@@ -3,13 +3,6 @@
 @section('content')
 @vite('resources/css/checkmark.css')
 @vite('resources/css/entreprise_localisations.css')
-
-@if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
-    <?php
-        header('Location: /access-denied.php');
-        exit();
-    ?>
-@endif
     <div class="container-1 default-bg fit-center">
         <h1>Ajouter une entreprise</h1>
         <form action="{{ route('companies.store') }}" method="post" class="form-v">
@@ -41,7 +34,9 @@
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
+        
 
 @vite('resources/js/entreprise_localisations.js')
 @vite('resources/js/entreprise_validation.js')
+@vite('resources/js/companies/champ_obligatoire.js')
 @endsection

@@ -1,40 +1,61 @@
-/* pagination.css */
+/* Pagination CSS */
 
+/* Envelopper la pagination dans une ligne */
 .pagination {
   display: flex;
-  align-items: center;
+  flex-flow: row;
   justify-content: center;
-  flex-direction: column;
-}
-
-.pagination ul {
-  list-style: none;
+  align-items: center;
   padding: 0;
-  margin: 0;
-  display: flex;
+  margin: 20px 0;
 }
 
-.pagination ul li {
-  color: #fff;
-  display: flex;
+/* Style des éléments de pagination */
+.page-item {
+  list-style: none;
+  margin: 0 5px; /* Espacement entre les éléments */
 }
 
-.pagination ul li a {
-  background-color: #444B6E;
+/* Style des liens de pagination */
+.page-link {
+  display: block;
   padding: 5px 10px;
-  border: 2px solid #3D315B;
-  border-right: 0;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
-.pagination ul li.active a {
-  background-color: #9AB87A;
+/* Style des liens actifs */
+.page-item.active .page-link {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
 
-.pagination ul li:first-child a {
-  border-radius: 5px 0 0 5px;
+/* Style des liens désactivés */
+.page-item.disabled .page-link {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-.pagination ul li:last-child a {
-  border-radius: 0 5px 5px 0;
-  border-right: 2px solid #3D315B;
+/* Style des flèches de navigation */
+.page-link[aria-hidden="true"] {
+  font-size: 14px;
+}
+
+/* Optionnel : Style des liens de navigation pour les rendre plus petits */
+.page-link[aria-label] {
+  font-size: 12px;
+}
+
+/* Optionnel : Style de la pagination pour une utilisation sur des dispositifs mobiles */
+@media (max-width: 768px) {
+  .pagination {
+      flex-wrap: wrap;
+  }
+
+  .page-item {
+      margin: 5px 2px;
+  }
 }

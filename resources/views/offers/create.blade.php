@@ -86,3 +86,4 @@
 @endsection
 @vite('resources/js/add_offer_abilities.js')
 @vite('resources/js/offer_localization.js')
+@vite('resources/js/offers/champ_obligatoire.js')

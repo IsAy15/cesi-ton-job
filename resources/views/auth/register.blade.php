@@ -12,8 +12,8 @@
             <div>
                 <label for="role">Rôle :</label>
                 <select id="role" name="role">
-                    <option value="pilote">pilote</option>
-                    <option value="user">user</option>
+                    <option value="pilote">Pilote</option>
+                    <option value="user">User</option>
                 </select>
             </div>
             <div>
@@ -38,30 +38,6 @@
             <button type="submit" class="btn-1">S'inscrire</button>
         </form>
     </div>
-@endsection
+@vite('resources/js/auth/champ_obligatoire.js')
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var roleSelect = document.getElementById('role');
-        var levelCheckboxes = document.querySelectorAll('input[name="levels[]"]');
-        
-        roleSelect.addEventListener('change', function() {
-            if (roleSelect.value === 'user') {
-                levelCheckboxes.forEach(function(checkbox) {
-                    checkbox.addEventListener('click', function() {
-                        // Désactiver tous les autres checkboxes
-                        levelCheckboxes.forEach(function(otherCheckbox) {
-                            if (otherCheckbox !== checkbox) {
-                                otherCheckbox.checked = false;
-                            }
-                        });
-                    });
-                });
-            } else {
-                levelCheckboxes.forEach(function(checkbox) {
-                    checkbox.removeEventListener('click', null);
-                });
-            }
-        });
-    });
-</script>
+@endsection
