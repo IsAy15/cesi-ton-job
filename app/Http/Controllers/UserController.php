@@ -86,7 +86,7 @@ class UserController extends Controller
             'role' => 'required',
             'password' => 'required|min:6',
         ]);
-
+    
         $user = new User();
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
@@ -94,21 +94,38 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->password = md5($request->password); 
         $user->status = 'approved';
+    
+        // Assigner l'avatar en fonction du rôle
+        switch ($request->role) {
+            case 'user':
+                $user->avatar = 'user.jpg';
+                break;
+            case 'pilote':
+                $user->avatar = 'pilote.jpg';
+                break;
+            case 'admin':
+                $user->avatar = 'admin.jpg';
+                break;
+            default:
+                $user->avatar = 'default.jpg'; 
+                break;
+        }
+    
         $user->save();
-
+    
         if ($user->role !== 'admin' && $request->has('promotion')) {
             $user->promotions()->sync([$request->promotion]);
         }
-
+    
         $selectedLevels = $request->input('levels', []);
-
+    
         foreach ($selectedLevels as $levelId) {
             $user->userLevels()->create(['level_id' => $levelId]);
         }
-        
-
+    
         return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès.');
     }
+    
 
 
     public function edit($id)

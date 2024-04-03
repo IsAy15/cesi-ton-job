@@ -11,6 +11,7 @@ CREATE TABLE users(
    password VARCHAR(500),
    role VARCHAR(50),
    status VARCHAR(50) NOT NULL DEFAULT 'pending',
+   avatar VARCHAR(5000),
    PRIMARY KEY(id)
 );
 
@@ -165,16 +166,16 @@ CREATE TABLE offer_requirements(
 -- Remplissage de la table users
 DELETE FROM `users`;
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`, `status`) VALUES
-(1, 'admin', 'admin', 'admin@ctj.fr', MD5('admin'), 'admin', 'approved'),
-(2, 'user', 'user', 'user@ctj.fr', MD5('user'), 'user', 'approved'),
-(3, 'user2', 'user2', 'user2@ctj.fr', MD5('user2'), 'user', 'approved'),
-(4, 'user3', 'user3', 'user3@ctj.fr', MD5('user3'), 'user', 'approved'),
-(5, 'pilote', 'pilote', 'pilote@ctj.fr', MD5('pilote'), 'pilote', 'approved'),
-(6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', MD5('pilote2'), 'pilote', 'approved'),
-(7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', MD5('pilote3'), 'pilote', 'approved'),
-(8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', MD5('pilote4'), 'pilote', 'approved'),
-(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'approved');
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`, `status`,`avatar`) VALUES
+(1, 'admin', 'admin', 'admin@ctj.fr', MD5('admin'), 'admin', 'approved', 'admin.jpg'),
+(2, 'user', 'user', 'user@ctj.fr', MD5('user'), 'user', 'approved', 'user.jpg'),
+(3, 'user2', 'user2', 'user2@ctj.fr', MD5('user2'), 'user', 'approved', 'user.jpg'),
+(4, 'user3', 'user3', 'user3@ctj.fr', MD5('user3'), 'user', 'approved', 'user.jpg'),
+(5, 'pilote', 'pilote', 'pilote@ctj.fr', MD5('pilote'), 'pilote', 'approved', 'pilote.jpg'),
+(6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', MD5('pilote2'), 'pilote', 'approved', 'pilote.jpg'),
+(7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', MD5('pilote3'), 'pilote', 'approved', 'pilote.jpg'),
+(8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', MD5('pilote4'), 'pilote', 'approved', 'pilote.jpg'),
+(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'approved', 'pilote.jpg');
 
 -- Remplissage de la table companies
 DELETE FROM companies;

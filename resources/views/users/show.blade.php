@@ -6,6 +6,7 @@
         <h1>Détails de l'utilisateur</h1>
 
         <div>
+    <img src="/uploads/avatars/{{ $user->avatar }}"style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
     <p><strong>Nom:</strong> {{ $user->lastname }}</p>
     <p><strong>Prénom:</strong> {{ $user->firstname }}</p>
     <p><strong>Email:</strong> {{ $user->email }}</p>
