@@ -61,6 +61,7 @@ Route::post('/wishlist/add/{offer}', [WishlistController::class, 'addToWishlist'
 Route::delete('/wishlist/remove/{offerId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
 
+
 //Profiles routes
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile/add', [ProfileController::class, 'add'])->name('profile.add');

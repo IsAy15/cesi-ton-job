@@ -10,6 +10,7 @@ use App\Models\Ability;
 use App\Models\Application;
 use App\Models\Promotion;
 use App\Models\Level;
+use Illuminate\Support\Facades\Response;
 
 
 
@@ -165,13 +166,15 @@ class OfferController extends Controller
 
   public function apply(Request $request, $id)
   {
+  
     $request->validate([
         'cv' => 'required|file|mimes:pdf|max:2048',
         'letter' => 'required|file|mimes:pdf|max:2048',
     ]);
 
-    $cvPath = $request->file('cv')->store('cv');
-    $letterPath = $request->file('letter')->store('letter');
+    $cvPath = $request->file('cv')->store('public/cv');
+    $letterPath = $request->file('letter')->store('public/lettre_motivation');
+
 
     $application = new Application();
     $application->cv = $cvPath;
@@ -243,8 +246,6 @@ class OfferController extends Controller
 
     return view("offers.outdated", compact("offers"));
 }
-
-
 
 
 }

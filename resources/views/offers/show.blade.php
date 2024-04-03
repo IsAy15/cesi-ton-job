@@ -9,7 +9,7 @@
         @if ($isInWishlist)
             <form action="{{ route('wishlist.remove', $offer->id) }}" method="post">
                 @csrf
-                @method('DELETE') <!-- Ajout de la méthode DELETE -->
+                @method('DELETE') 
                 <button type="submit" class="btn-1 btn-2"><i class="fa-solid fa-heart"></i></button>
             </form>
         @else
