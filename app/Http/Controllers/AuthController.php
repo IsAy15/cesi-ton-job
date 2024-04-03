@@ -75,6 +75,18 @@ class AuthController extends Controller
 
     $user->save();
 
+    switch ($request->role) {
+        case 'user':
+            $user->avatar = 'user.jpg';
+            break;
+        case 'pilote':
+            $user->avatar = 'pilote.jpg';
+            break;
+        default:
+            $user->avatar = 'default.jpg'; 
+            break;
+    }
+
     $selectedLevels = $request->input('levels');
     foreach ($selectedLevels as $levelId) {
         $user->userLevels()->create(['level_id' => $levelId]);
