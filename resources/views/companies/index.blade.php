@@ -47,6 +47,9 @@
             @endif
         </div>
     @endforeach
+    <div>
+        {{ $companies->links() }}
+        </div>
 </div>
 @vite('resources/js/geoapigouv.js')
 @vite('resources/js/entreprise_search.js')
