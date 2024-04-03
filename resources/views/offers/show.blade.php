@@ -25,7 +25,10 @@
         <h2>{{ $offer->company->name }}</h2>
         <p>Type de contrat: {{ $offer->type }}</p>
         <p>{{ $offer->description }}</p>
-        <p>Ville : <span city></span> (<span cp>{{ $offer->localization }}</span>)</p>
+        @php
+            $offer->localization = json_decode($offer->localization);
+        @endphp
+        <p>Ville : <span>{{ $offer->localization->nom }}</span> (<span>{{ $offer->localization->cp }}</span>)</p>
         <div class="space">
             <p>Date de début : {{ $offer->starting_date }}</p>
             <p>Date de fin : {{ $offer->ending_date }}</p>
@@ -41,7 +44,7 @@
             <p>Places disponibles : {{ $offer->places }}</p>
             <p>Nombres de candidatures : {{ $offer->applies_count }}</p>
         </div>
-        
+
         <h3>Compétences requises :</h3>
         <ul>
             @foreach($offer->abilities as $ability)
@@ -83,6 +86,5 @@
     <a href="{{ route('offers.index') }}" class="btn-1">Retour</a>
 </div>
 
-@vite('resources/js/geoapigouv.js')
 @vite('resources/js/file.js')
 @endsection

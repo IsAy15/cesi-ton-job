@@ -63,15 +63,17 @@ Route::delete('/wishlist/remove/{offerId}', [WishlistController::class, 'removeF
 
 
 //Profiles routes
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-Route::get('/profile/add', [ProfileController::class, 'add'])->name('profile.add');
-Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
-Route::get('/profile/offers', [ProfileController::class, 'offers'])->name('profile.offers');
-Route::get('/profile/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
-Route::get('/profile/pending', [ProfileController::class, 'pending'])->name('profile.pending');
-Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::prefix('profile')->group(function(){
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/add', [ProfileController::class, 'add'])->name('profile.add');
+    Route::post('/store', [ProfileController::class, 'store'])->name('profile.store');
+    Route::get('/offers', [ProfileController::class, 'offers'])->name('profile.offers');
+    Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
+    Route::get('/pending', [ProfileController::class, 'pending'])->name('profile.pending');
+    Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
 //Offres routes
@@ -120,13 +122,15 @@ Route::prefix('ability')->group(function(){
 
 
 // User routes
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/{id}/show', [UserController::class, 'show'])->name('users.show');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/{id}/update', [UserController::class, 'update'])->name('users.update');
-Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
+Route::prefix('users')->group(function (){
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/{id}/show', [UserController::class, 'show'])->name('users.show');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/{id}/update', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/{id}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 
 //Entreprise routes
@@ -143,6 +147,7 @@ Route::prefix('company')->group(function (){
     Route::post('/{id}/hide', [CompanyController::class, 'hide'])->name('companies.hide');
     Route::post('/{id}/active', [CompanyController::class, 'active'])->name('companies.active');
     Route::get('/hidden', [CompanyController::class, 'hidden'])->name('companies.hidden');
+    Route::get('/{id}/localizations', [CompanyController::class, 'localizations'])->name('companies.localizations');
 });
 
 //Promotions routes

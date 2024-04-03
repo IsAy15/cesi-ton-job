@@ -30,9 +30,11 @@
         <h2>Départements avec le plus d'offres</h2>
         <ul>
             @foreach($departmentsWithMostOffers as $department)
-                <li><span dep="{{ $department->code }}">{{ $department->code }}</span> - <span class='count'>{{ $department->offers_count }}</span> offres</li>
+                <li><span dep="{{ $department->dep }}"></span> - <span count>{{ $department->offers_count }}</span> offres</li>
             @endforeach
         </ul>
+        <canvas id="departmentsWithMostOffers"></canvas>
     </div>
     @vite('resources/js/geoapigouv.js')
+    @vite('resources/js/offers_stats.js')
 @endsection

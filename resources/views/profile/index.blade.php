@@ -1,13 +1,12 @@
 @extends('layouts.home')
 @section('title', 'Votre profil')
 @section('content')
-ppm!
 @vite('resources/css/abilities.css')
 <div class="container-1 default-bg fit-center">
     <div id="infos_perso" class="liste-h">
-        <div id="photo" class="container-rond">
-            <img src="{{ asset('images/icons/33645487-icC3B4ne-de-profil-avatar-portrait-masculin-personne-dC3A9contractC3A9e.png') }}" />
-        </div>
+    <div id="photo" class="container-rond">
+    <img src="/uploads/avatars/{{ $user->avatar }}" alt="Photo de profil">
+</div>
         <div id="infos" class="liste-v">
             <p>{{ $user->lastname }}</p>
             <p>{{ $user->firstname }}</p>
