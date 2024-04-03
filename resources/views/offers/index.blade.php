@@ -14,7 +14,10 @@
                 <div class="liste-h search-bar">
                     <input type="text" id="keywordInput" placeholder="Mot-clés" class="">
                     <h2>|</h2>
-                    <input type="text" id="locationInput" placeholder="Localisation" class="input-search-bar">
+                    <input type="text" id="locationInput" placeholder="Localisation" list="communes" class="input-search-bar">
+                    <datalist id="communes">
+                    </datalist>
+                    <input type="hidden" id="selectedCommuneInput" name="selectedCommune">
                     <a href="#" id="searchButton" class="btn-1 btn-2"><i class="fa-solid fa-magnifying-glass"></i></a>
                     <a href="#" id="filterButton" class="btn-1 btn-2"><i class="fa-solid fa-filter"></i></a>
                 </div>
@@ -78,7 +81,7 @@
                         @php
                             $offer->localization = json_decode($offer->localization);
                         @endphp
-                        <p>{{ $offer->localization->nom }} ({{ $offer->localization->cp }})</p>
+                        <p dep="{{ $offer->localization->dep }}">{{ $offer->localization->nom }} ({{ $offer->localization->cp }})</p>
                     </div>
                 </div>
                 @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
