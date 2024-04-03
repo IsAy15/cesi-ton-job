@@ -11,4 +11,5 @@
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
+@vite('resources/js/promotions/champ_obligatoire.js')
 @endsection
