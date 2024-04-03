@@ -2,6 +2,7 @@
 @section('title', 'Ajouter une offre')
 @section('content')
 @vite('resources/css/offer.css')
+@vite('resources/css/abilities.css')
     <div class="container-1 default-bg fit-center">
         <h1>Ajouter une offre</h1>
         <form action="{{ route('offers.store') }}" method="post" class="form-v">
@@ -16,8 +17,11 @@
                 <input type="text" name="of_title" id="of_title" placeholder="Titre">
                 <input type="text" name="of_type" id="of_type" placeholder="Type">
                 <textarea type="text" name="of_description" id="of_description" placeholder="Description"></textarea>
-                <input type="text" name="of_localization" id="of_localization" placeholder="Code postal">
-            
+                {{-- <input type="text" name="of_localization" id="of_localization" placeholder="Code postal"> --}}
+                <select name="of_localization" id="of_localization">
+                    <option value="" disabled selected hidden>Localisation</option>
+                </select>
+
             <div class="liste-h space">
                 <div class="input-required">
                     <label for="of_starting_date">Date de début</label>
@@ -55,18 +59,23 @@
             <div class="fit-center form-v">
                 <label>Compétences requises : </label>
                 <div class="abilities-select area-bg">
-                    @foreach($abilities->sortBy('title') as $ability)
-                    <label>
-                        <input type="checkbox" name="abilities[]" value="{{ $ability->id }}">
-                        {{ $ability->title }}
-                    </label>
-                    @endforeach
-                    <a href="{{ route('abilities.create') }}" class="btn-1 btn-2" ><i class="fa-solid fa-plus"></i></a>
+                    <div class="container">
+                        <input id="searchInput" list="abilities">
+                        <div id="selectedAbilities"></div>
+                    </div>
+                    <datalist id="abilities">
+                        @foreach($abilities->sortBy('title') as $ability)
+                            <option ability_id="{{ $ability->id }}" value="{{ $ability->title }}"></option>
+                        @endforeach
+                    </datalist>
+                    <input type="hidden" id="selectedAbilitiesInput" name="of_abilities">
                 </div>
+                <a href="{{ route('abilities.create') }}" class="btn-1 btn-2" >Créer une nouvelle compétence &nbsp;<i class="fa-solid fa-plus"></i></a>
             </div>
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
-    @vite('resources/js/offers/offer_company.js')
-    @vite('resources/js/offers/champ_obligatoire.js')
 @endsection
+@vite('resources/js/add_offer_abilities.js')
+@vite('resources/js/offer_localization.js')
+@vite('resources/js/offers/champ_obligatoire.js')

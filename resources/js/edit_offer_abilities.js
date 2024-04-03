@@ -18,28 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.value = "";
     renderselectedAbilities();
     orderDatalistAbilities();
+    updateHiddenInput();
 });
 
-async function addSelectedAbility(selectedAbility) {
-    let response = await fetch(`/profile/store/`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": csrf,
-        },
-        body: JSON.stringify({
-            abilities: parseInt(selectedAbility.id),
-        }),
+function addSelectedAbility(selectedAbility) {
+    selectedAbilities.push({
+        id: parseInt(selectedAbility.id),
+        title: selectedAbility.title,
     });
-    if (response.ok) {
-        selectedAbilities.push({
-            id: parseInt(selectedAbility.id),
-            title: selectedAbility.title,
-        });
-        removeFromDatalist(selectedAbility.id);
-        renderselectedAbilities();
-        searchInput.value = "";
-    }
+    removeFromDatalist(selectedAbility.id);
+    renderselectedAbilities();
+    updateHiddenInput();
+    searchInput.value = "";
 }
 
 function removeFromDatalist(id) {
@@ -64,30 +54,19 @@ function addToDatalist(selectedAbility) {
     orderDatalistAbilities();
 }
 
-async function removeSelectedAbility(id) {
-    let response = await fetch(`/profile/destroy`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": csrf,
-        },
-        body: JSON.stringify({
-            ability: id,
-        }),
-    });
-    if (response.ok) {
-        console.log(selectedAbilities);
-        console.log(
-            selectedAbilities.find((ability) => ability.id === parseInt(id))
-        );
-        addToDatalist(
-            selectedAbilities.find((ability) => ability.id === parseInt(id))
-        );
-        selectedAbilities = selectedAbilities.filter(
-            (ability) => ability.id !== parseInt(id)
-        );
-        renderselectedAbilities();
-    }
+function removeSelectedAbility(id) {
+    console.log(selectedAbilities);
+    console.log(
+        selectedAbilities.find((ability) => ability.id === parseInt(id))
+    );
+    addToDatalist(
+        selectedAbilities.find((ability) => ability.id === parseInt(id))
+    );
+    selectedAbilities = selectedAbilities.filter(
+        (ability) => ability.id !== parseInt(id)
+    );
+    renderselectedAbilities();
+    updateHiddenInput();
 }
 
 function renderselectedAbilities() {
@@ -141,6 +120,10 @@ window.addEventListener("resize", adjustInputWidth);
 window.addEventListener("load", adjustInputHeight);
 // Appeler la fonction pour ajuster la hauteur chaque fois que les communes sélectionnées sont mises à jour
 window.addEventListener("resize", adjustInputHeight);
+
+function updateHiddenInput() {
+    selectedAbilitiesInput.value = JSON.stringify(selectedAbilities);
+}
 
 searchInput.addEventListener("change", function () {
     let selectedOption = searchResults.querySelector(

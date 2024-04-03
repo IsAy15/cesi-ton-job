@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Votre profil')
 @section('content')
-@vite('resources/css/profile.css')
+ppm!
 @vite('resources/css/abilities.css')
 <div class="container-1 default-bg fit-center">
     <div id="infos_perso" class="liste-h">

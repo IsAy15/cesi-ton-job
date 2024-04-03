@@ -2,6 +2,7 @@
 @section('title', 'Modifier une offre')
 @section('content')
 @vite('resources/css/offer.css')
+@vite('resources/css/abilities.css')
 @if(Auth::user()->role != 'admin' && Auth::user()->role != 'pilote')
     <?php
         header('Location: /access-denied.php');
@@ -16,7 +17,7 @@
                 <label for="of_company_id">Nom de l'entreprise</label>
                 <select name="of_company_id" id="of_company_id">
                     @foreach($companies as $company)
-                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                    <option value="{{ $company->id }}" @if($offer->company->id == $company->id) selected @endif>{{ $company->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -34,7 +35,13 @@
             </div>
             <div class="input-required fit-center">
                 <label for="of_localization">Localisation</label>
-                <input type="text" name="of_localization" id="of_localization" value="{{ $offer->localization }}">
+                <select name="of_localization" id="of_localization">
+                    @php
+                        $nom = json_decode($offer->localization)->nom;
+                        $cp = json_decode($offer->localization)->cp;
+                    @endphp
+                    <option value="{{ $offer->localization }}">{{ $nom }} ({{ $cp }})</option>
+                </select>
             </div>
             <div class="liste-h space">
             <div class="input-required">
@@ -62,7 +69,22 @@
                     @endforeach
                 </select>
             </div>
+            <div>
+                <div class="container">
+                    <input id="searchInput" list="abilities" value="{{ $offer->abilities }}">
+                    <div id="selectedAbilities"></div>
+                </div>
+                <datalist id="abilities">
+                    @foreach($allabilities as $ability)
+                        <option ability_id="{{ $ability->id }}" value="{{ $ability->title }}"></option>
+                    @endforeach
+                </datalist>
+                <input type="hidden" id="selectedAbilitiesInput" name="of_abilities">
+            </div>
             <button type="submit" class="btn-1">Modifier</button>
         </form>
     </div>
 @endsection
+@vite('resources/js/edit_offer_abilities.js')
+@vite('resources/js/offer_localization.js')
+

@@ -45,7 +45,7 @@ CREATE TABLE offers(
    id INT AUTO_INCREMENT,
    title VARCHAR(50),
    description VARCHAR(1000),
-   localization TEXT,
+   localization JSON,
    starting_date DATE,
    ending_date DATE,
    places INT,
@@ -267,18 +267,18 @@ INSERT INTO `promotions` (`name`) VALUES ('Informatique'), ('S3E'), ('Générale
 -- Remplissage de la table offers
 DELETE FROM `offers`;
 
-INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `company_id`,`promotion_id`, `status`) VALUES
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 1, 1, 'active'),
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2024-01-01', '2024-12-31', 5, 30000, 0, 'Alternance', 1, 1, 'active'),
-('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 1, 1, 'active'),
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2024-01-01', '2024-12-31', 5, 30000, 0, 'Alternance', 2, 2, 'active'),
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 2, 2, 'active'),
-('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 2, 2, 'active'),
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Alternance', 3, 3, 'active'),
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', 3, 3, 'active'),
-('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '31670', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Alternance', 3, 3, 'active'),
-('Développeur Mobile', 'Nous recherchons un développeur mobile pour rejoindre notre équipe.', '75001', '2022-01-01', '2022-12-31', 3, 35000, 0, 'Stage', 4, 1 , 'active'),
-('Développeur Python', 'Nous recherchons un développeur Python pour un projet innovant.', '75001', '2022-01-01', '2022-12-31', 3, 37000, 0, 'Stage', 2, 2, 'active');
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) VALUES
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 1, 1),
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '{\"nom\":\"Vélizy-Villacoublay\",\"code\":\"78640\",\"cp\":\"78140\",\"dep\":\"78\"}', '2024-01-01', '2024-12-31', 5, 30000, NULL, 'Alternance', NULL, NULL, 'hidden', 1, 1),
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 1, 1),
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}', '2024-01-01', '2024-12-31', 5, 30000, 0, 'Alternance', NULL, NULL, 'hidden', 2, 2),
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '{\"nom\":\"Paris\",\"code\":\"75056\",\"cp\":\"75001\",\"dep\":\"75\"}', '2025-01-01', '2025-12-31', 5, 30000, NULL, 'Stage', NULL, NULL, 'active', 2, 2),
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '{\"nom\":\"Paris\",\"code\":\"75056\",\"cp\":\"75001\",\"dep\":\"75\"}', '2025-01-01', '2025-12-31', 5, 30000, NULL, 'Stage', NULL, NULL, 'active', 2, 2),
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '{\"nom\":\"Courbevoie\",\"code\":\"92026\",\"cp\":\"92400\",\"dep\":\"92\"}', '2025-01-01', '2025-12-31', 5, 30000, NULL, 'Alternance', NULL, NULL, 'active', 3, 3),
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '{\"nom\":\"Courbevoie\",\"code\":\"92026\",\"cp\":\"92400\",\"dep\":\"92\"}', '2025-01-01', '2025-12-31', 5, 30000, NULL, 'Stage', NULL, NULL, 'active', 3, 3),
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '{\"nom\":\"Courbevoie\",\"code\":\"92026\",\"cp\":\"92400\",\"dep\":\"92\"}', '2025-01-01', '2025-12-31', 5, 30000, NULL, 'Alternance', NULL, NULL, 'active', 3, 3),
+('Développeur Mobile', 'Nous recherchons un développeur mobile pour rejoindre notre équipe.', '{\"nom\":\"Labège\",\"code\":\"31000\",\"cp\":\"31670\",\"dep\":\"31\"}', '2022-01-01', '2022-12-31', 3, 35000, NULL, 'Stage', NULL, NULL, 'hidden', 4, 1),
+('Développeur Python', 'Nous recherchons un développeur Python pour un projet innovant.', '{\"nom\":\"Paris\",\"code\":\"75056\",\"cp\":\"75001\",\"dep\":\"75\"}', '2022-01-01', '2022-12-31', 3, 37000, NULL, 'Stage', NULL, NULL, 'hidden', 2, 2);
 
 -- Remplissage de la table applications
 DELETE FROM `applications`;

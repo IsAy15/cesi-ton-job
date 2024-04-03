@@ -20,9 +20,9 @@ class CompanyController extends Controller
 
         foreach ($companies as $company) {
             $grades = Grade::where('company_id', $company->id)->pluck('value');
-            
+
             $averageGrade = $grades->avg();
-            
+
             $company->average_grade = round($averageGrade,1);
         }
 
@@ -35,14 +35,14 @@ class CompanyController extends Controller
         $create_offer = $request->has('offer');
 
         $user = auth()->user();
-      
+
         if ($user->role === 'user') {
             return redirect()->route('companies.index');
         }
 
         return view('companies.create', compact('create_offer'));
     }
-    
+
 
     public function store(Request $request)
     {
@@ -51,7 +51,7 @@ class CompanyController extends Controller
         $company->sector = $request->input('cp_sector');
         $company->localization = $request->input('selectedCommunes');
         $company->save();
-        
+
         if ($request->has('create_offer')) {
             return redirect()->route('offers.create')->with('company', $company->id);
         } else {
@@ -65,7 +65,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
 
         $user = auth()->user();
-      
+
       if ($user->role === 'user') {
         return redirect()->route('companies.index');
     }
@@ -86,19 +86,19 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $user = auth()->user();
-      
+
       if ($user->role === 'user') {
         return redirect()->route('companies.index');
     }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-    
+
         Offer::where('company_id', $id)->delete();
-        
+
         Company::destroy($id);
-    
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-    
+
         return redirect()->route('companies.index');
     }
 
@@ -110,9 +110,9 @@ class CompanyController extends Controller
         $offers = $company->offers()->get();
 
         $grades = Grade::where('company_id', $company->id)->pluck('value');
-            
+
         $averageGrade = $grades->avg();
-            
+
         $company->average_grade = round($averageGrade,1);
 
         // $company->localization = [{"nom":"Toulouse","code":"31555","cp":"31000","dep":"31"},{"nom":"Labège","code":"31254","cp":"31670","dep":"31"}]
@@ -123,7 +123,7 @@ class CompanyController extends Controller
 
     public function rate(Request $request)
     {
-        $userId = auth()->id(); 
+        $userId = auth()->id();
         $companyId = $request->input('company_id');
         $rating = $request->input('rating');
 
@@ -157,7 +157,7 @@ class CompanyController extends Controller
         $companyWithMostOffers = Company::withCount('offers')->orderByDesc('offers_count')->first();
 
         $companyWithMostApplications = Company::withCount('offers')
-        ->withSum('offers', 'applies_count') 
+        ->withSum('offers', 'applies_count')
         ->orderByDesc('offers_sum_applies_count')
         ->first();
 
@@ -170,7 +170,7 @@ class CompanyController extends Controller
         ->groupBy('code')
         ->orderByDesc('companies_count')
         ->first();
-    
+
         return view('companies.stats', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies', 'departmentWithMostCompanies'));
     }
 
@@ -201,6 +201,12 @@ public function active($id)
     $company->save();
 
     return redirect()->route('companies.hidden');
+}
+
+public function localizations($id){
+    $company = Company::findOrFail($id);
+    $localizations = json_decode($company->localization);
+    return new JsonResponse($localizations);
 }
 
 
