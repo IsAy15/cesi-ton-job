@@ -15,6 +15,9 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::check()) {
+            return redirect()->route('offers.index');
+        }
         return view('auth.login');
     }
 
