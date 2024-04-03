@@ -50,11 +50,14 @@
 
         <div class="input-required fit-center">
             <label for="level">Niveau</label>
-            <select id="level" name="level">
+            <div class="abilities-select area-bg">
                 @foreach($levels as $level)
-                <option value="{{ $level->title }}" {{ $user->userLevels->contains('level_id', $level->id) ? 'selected' : '' }}>{{ $level->title }}</option>
+                    <label>
+                        <input type="{{ $user->role === 'user' ? 'radio' : 'checkbox' }}" name="levels[]" value="{{ $level->id }}" {{ $user->userLevels->contains('level_id', $level->id) ? 'checked' : '' }}>
+                        {{ $level->title }}
+                    </label>
                 @endforeach
-            </select>
+            </div>
         </div>
 
         <div class="fit-center">
@@ -62,4 +65,32 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var roleSelect = document.getElementById('role');
+        var levelCheckboxes = document.querySelectorAll('input[name="levels[]"]');
+        
+        roleSelect.addEventListener('change', function() {
+            if (roleSelect.value === 'user') {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('click', function() {
+                        // Désactiver tous les autres checkboxes
+                        levelCheckboxes.forEach(function(otherCheckbox) {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    });
+                });
+            } else {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.removeEventListener('click', null);
+                });
+            }
+        });
+    });
+</script>
 @endsection

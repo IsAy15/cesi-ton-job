@@ -20,16 +20,10 @@
             <div>
                 <select name="role" id="role">
                     @foreach($roles as $key => $role)
-                            <option value="{{ $key }}">{{ $role }}</option>
+                        <option value="{{ $key }}">{{ $role }}</option>
                     @endforeach
                 </select>
             </div>
-            <select id="level" name="level">
-                <option value="" disabled selected>Niveau</option>
-                @foreach($levels as $level)
-                    <option value="{{ $level->title }}">{{ $level->title }}</option>
-                @endforeach
-            </select>
             <div class="input-required">
                 <select id="promotion" name="promotion">
                     <option value="" disabled selected>Promotion</option>
@@ -38,58 +32,70 @@
                     @endforeach
                 </select>
             </div>
+            <div id="levels-container" class="input-required fit-center">
+                <label>Niveau : </label>
+                <div class="abilities-select area-bg">
+                    @foreach($levels as $level)
+                    <label>
+                        <input type="checkbox" name="levels[]" value="{{ $level->id }}">
+                        {{ $level->title }}
+                    </label>
+                    @endforeach
+                </div>
+            </div>
 
             <button type="submit" class="btn-1">Créer</button>
         </form>
     </div>
     <script>
-        window.onload = function() {
-            document.getElementById('role').addEventListener('change', function() {
-                if (this.value === 'admin') {
-                    document.getElementById('promotion').style.display = 'none';
-                    document.getElementById('level').style.display = 'none';
-                } else {
-                    document.getElementById('promotion').style.display = 'block';
-                    document.getElementById('level').style.display = 'block';
-                }
-            });
-
-            document.getElementById('password').addEventListener('input', function() {
-                if (this.value.length < 6) {
-                    this.setCustomValidity('Le mot de passe doit contenir au moins 6 caractères');
-                } else {
-                    this.setCustomValidity('');
-                }
-            });
-
-            document.getElementById('user-form').addEventListener('submit', function(event) {
-                var inputs = document.querySelectorAll('.input-required input, .input-required select');
-                var isEmpty = false;
-                var isInvalidOption = false;
-
-                inputs.forEach(function(input) {
-                    if (input.value.trim() === '') {
-                        isEmpty = true;
-                        input.classList.add('error');
-                    } else {
-                        input.classList.remove('error');
-                    }
-                    if (input.tagName === 'SELECT' && input.value === '') {
-                        isInvalidOption = true;
-                    }
+           document.addEventListener('DOMContentLoaded', function() {
+        var roleSelect = document.getElementById('role');
+        var levelCheckboxes = document.querySelectorAll('input[name="levels[]"]');
+        
+        roleSelect.addEventListener('change', function() {
+            if (roleSelect.value === 'user') {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('click', function() {
+                        // Désactiver tous les autres checkboxes
+                        levelCheckboxes.forEach(function(otherCheckbox) {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    });
                 });
+            } else {
+                levelCheckboxes.forEach(function(checkbox) {
+                    checkbox.removeEventListener('click', null);
+                });
+            }
+        });
+    });
 
-                if (isEmpty && isInvalidOption) {
-                    event.preventDefault();
-                    alert('Veuillez remplir tous les champs obligatoires et sélectionner une option valide.');
-                } else if (isEmpty) {
-                    event.preventDefault();
-                    alert('Veuillez remplir tous les champs obligatoires.');
-                } else if (isInvalidOption) {
-                    event.preventDefault();
-                    alert('Veuillez sélectionner une option valide.');
-                }
-            });
-        };
+    document.getElementById('password').addEventListener('input', function() {
+        if (this.value.length < 6) {
+            this.setCustomValidity('Le mot de passe doit contenir au moins 6 caractères');
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+
+    document.getElementById('user-form').addEventListener('submit', function(event) {
+        var role = document.getElementById('role').value;
+        var promotion = document.getElementById('promotion').value;
+
+        if (role === 'admin' && promotion !== '') {
+            event.preventDefault();
+            alert('Un admin ne peut pas avoir de promotion');
+        }
+
+        if (role !== 'admin' && promotion === '') {
+            event.preventDefault();
+            alert('Veuillez sélectionner une promotion');
+        }
+    });
+});
+
+
     </script>
 @endsection

@@ -78,39 +78,37 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'lastname' => 'required',
-        'firstname' => 'required',
-        'email' => 'required|email|unique:users',
-        'role' => 'required',
-        'password' => 'required|min:6',
-    ]);
+    {
+        $request->validate([
+            'lastname' => 'required',
+            'firstname' => 'required',
+            'email' => 'required|email|unique:users',
+            'role' => 'required',
+            'password' => 'required|min:6',
+        ]);
 
-    $user = new User();
-    $user->lastname = $request->lastname;
-    $user->firstname = $request->firstname;
-    $user->email = $request->email;
-    $user->role = $request->role;
-    $user->password = md5($request->password); 
-    $user->status = 'approved';
-    $user->save();
+        $user = new User();
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->password = md5($request->password); 
+        $user->status = 'approved';
+        $user->save();
 
-    if ($user->role !== 'admin' && $request->has('promotion')) {
-        $user->promotions()->sync([$request->promotion]);
+        if ($user->role !== 'admin' && $request->has('promotion')) {
+            $user->promotions()->sync([$request->promotion]);
+        }
+
+        $selectedLevels = $request->input('levels', []);
+
+        foreach ($selectedLevels as $levelId) {
+            $user->userLevels()->create(['level_id' => $levelId]);
+        }
+        
+
+        return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès.');
     }
-
-    $level = Level::where('title', $request->level)->first();
-
-    if ($level) {
-        $userLevel = new UserLevel();
-        $userLevel->user_id = $user->id; 
-        $userLevel->level_id = $level->id; 
-        $userLevel->save();
-    } 
-
-    return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès.');
-}
 
 
     public function edit($id)
@@ -128,35 +126,44 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $user = User::find($id);
+    {
+        $user = User::find($id);
 
-    if ($user->role === 'admin' && $request->has('role')) {
-        $request->merge(['role' => 'admin']);
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'Utilisateur non trouvé.']);
+        }
+
+        $user->lastname = $request->input('lastname');
+        $user->firstname = $request->input('firstname');
+        $user->email = $request->input('email');
+
+        // Vérifier si un nouveau mot de passe est fourni
+        if ($request->filled('password')) {
+            $user->password = md5($request->input('password'));
+        }
+
+        // Mettre à jour le rôle uniquement si l'utilisateur connecté est un admin
+        if (auth()->user()->role === 'admin' && $request->filled('role')) {
+            $user->role = $request->input('role');
+        }
+
+        $user->save();
+
+        // Mettre à jour les niveaux sélectionnés
+        $selectedLevels = $request->input('levels');
+        $user->userLevels()->delete(); // Supprimer les anciens niveaux sélectionnés
+        foreach ($selectedLevels as $levelId) {
+            $user->userLevels()->create(['level_id' => $levelId]);
+        }
+
+        // Mettre à jour la promotion uniquement si l'utilisateur connecté est un admin
+        if (auth()->user()->role === 'admin' && $request->filled('promotion')) {
+            $user->promotions()->sync([$request->input('promotion')]);
+        }
+
+        return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
     }
 
-    $user->lastname = $request->lastname;
-    $user->firstname = $request->firstname;
-    $user->email = $request->email;
-    $user->password = $request->password;
-    $user->save();
-
-    $levelTitle = $request->input('level');
-    $level = Level::where('title', $levelTitle)->first();
-
-    $user->userLevels()->delete();
-
-    $userLevel = new UserLevel();
-    $userLevel->user_id = $user->id;
-    $userLevel->level_id = $level->id;
-    $userLevel->save();
-
-    if ($user->role !== 'admin' && $request->has('promotion')) {
-        $user->promotions()->sync([$request->promotion]);
-    }
-
-    return redirect()->route('users.index')->with('success', 'Utilisateur modifié avec succès.');
-}
 
 
     public function destroy($id)

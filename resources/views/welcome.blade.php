@@ -72,7 +72,7 @@
         @endif
         <a href="{{ $url }}" class="btn">{{ $text }}</a>
         @if(!Auth::check())
-          <a href="{{ route('auth.register') }}" class="btn">Pas encore inscrit ?</a>
+          <a href="{{ route('auth.register') }}" class="btn">S'inscrire</a>
         @else
           <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
             @csrf
