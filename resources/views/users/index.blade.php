@@ -1,17 +1,16 @@
 @extends('layouts.home')
 @section('title', 'Liste des utilisateurs')
-@vite('/resources/css/tableaux.css')
 @section('content')
     <?php
         if (Auth::check() && strpos(Auth::user()->role, 'user') !== false) {
-            header('Location: /access-denied.php'); 
+            header('Location: /access-denied.php');
             exit();
         }
     ?>
     <div class="container-1 default-bg fit-center">
         <h1>Liste des utilisateurs</h1>
         @guest
-            <a href="{{ route('auth.login') }}">Se connecter</a> 
+            <a href="{{ route('auth.login') }}">Se connecter</a>
         @endguest
         <input type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
         <a href="{{ route('users.create') }}" class="btn-1">Ajouter un utilisateur</a>
@@ -43,13 +42,13 @@
                                         <button type="submit" class="btn-1 btn-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </div>
-                            @endif                                
+                            @endif
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    
+
 @vite('/resources/js/user_search.js')
 @endsection

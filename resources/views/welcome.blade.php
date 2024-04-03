@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="description" content="Page d'accueil de CESI Ton Job">
 
     <title>CESI Ton Stage</title>
 
@@ -120,6 +122,7 @@
       <script>
         document.querySelector('.cookiebtn__label').innerHTML = '<i class="fa-solid fa-cookie"></i>';
         document.querySelector('.cookiebtn__label').style.fontSize = '1.5rem';
+        document.querySelector('.cookiebtn__label').setAttribute('title', 'Réinitialiser les cookies');
       </script>
 
     </main>

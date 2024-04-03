@@ -14,7 +14,7 @@ return [
         'icons' => [
             '72x72' => [
                 'path' => '/images/icons/icon-72x72.png',
-                'purpose' => 'any'
+                'purpose' => 'any maskable'
             ],
             '96x96' => [
                 'path' => '/images/icons/icon-96x96.png',
