@@ -47,7 +47,7 @@
             @endif
         </div>
     @endforeach
-    <div class="container-1 liste-h">
+    <div>
         {{ $companies->links() }}
     </div>
 </div>

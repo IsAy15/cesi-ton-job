@@ -1,61 +1,13 @@
-/* Pagination CSS */
+.pag-font{
+  font-size: 1.3rem;
+}
 
-/* Envelopper la pagination dans une ligne */
-.pagination {
+.no_under{
+  text-decoration: none; /* Annule le soulignement */
+}
+
+.ecart{
   display: flex;
   flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 20px 0;
-}
-
-/* Style des éléments de pagination */
-.page-item {
-  list-style: none;
-  margin: 0 5px; /* Espacement entre les éléments */
-}
-
-/* Style des liens de pagination */
-.page-link {
-  display: block;
-  padding: 5px 10px;
-  color: #333;
-  text-decoration: none;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* Style des liens actifs */
-.page-item.active .page-link {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-/* Style des liens désactivés */
-.page-item.disabled .page-link {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* Style des flèches de navigation */
-.page-link[aria-hidden="true"] {
-  font-size: 14px;
-}
-
-/* Optionnel : Style des liens de navigation pour les rendre plus petits */
-.page-link[aria-label] {
-  font-size: 12px;
-}
-
-/* Optionnel : Style de la pagination pour une utilisation sur des dispositifs mobiles */
-@media (max-width: 768px) {
-  .pagination {
-      flex-wrap: wrap;
-  }
-
-  .page-item {
-      margin: 5px 2px;
-  }
+  gap: space-between;
 }
