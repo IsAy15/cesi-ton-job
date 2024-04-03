@@ -15,7 +15,7 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $companies = Company::where('status', '!=', 'hidden')->get();
+        $companies = Company::where('status', '!=', 'hidden')->paginate(5);
 
 
         foreach ($companies as $company) {
@@ -53,7 +53,6 @@ class CompanyController extends Controller
         $company->save();
         
         if ($request->has('create_offer')) {
-            // Redirige vers la création d'une offre en passant l'id de l'entreprise dans l'url
             return redirect()->route('offers.create')->with('company', $company->id);
         } else {
             return redirect()->route('companies.index');
