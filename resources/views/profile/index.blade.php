@@ -69,7 +69,7 @@
                 <div class="liste-h ability_container">
                     @foreach($user->userLevels as $userLevel)
                         <div class="liste-h elements">
-                        <p>{{ $title }}</p>
+                        <p>{{ $userLevel->level->title }}</p>
                         </div>
                     @endforeach
                 </div>
