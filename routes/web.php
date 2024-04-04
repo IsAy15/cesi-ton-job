@@ -7,7 +7,6 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WishlistController;
 
@@ -92,18 +91,6 @@ Route::prefix('offer')->group(function(){
     Route::delete('/{id}/destroy', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::post('/{id}/apply', [OfferController::class, 'apply'])->name('offers.apply');
 
-});
-
-
-
-//Grades routes
-Route::prefix('grade')->group(function(){
-    Route::get('/', [GradeController::class, 'index'])->name('grades.index');
-    Route::get('/create', [GradeController::class, 'create'])->name('grades.create');
-    Route::post('/store', [GradeController::class, 'store'])->name('grades.store');
-    Route::get('/{id}/edit', [GradeController::class, 'edit'])->name('grades.edit');
-    Route::put('/{id}/update', [GradeController::class, 'update'])->name('grades.update');
-    Route::delete('/{id}/destroy', [GradeController::class, 'destroy'])->name('grades.destroy');
 });
 
 //Abilities routes

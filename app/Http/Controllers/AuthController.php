@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Promotion;
 use App\Models\Level;
-use App\Models\UserLevel;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
