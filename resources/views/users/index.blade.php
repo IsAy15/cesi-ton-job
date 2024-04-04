@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($usersWithPromotions as $user)
+                @foreach($usersCesi as $user)
                     <tr>
                         <td><a href="{{ route('users.show', ['id' => $user->id]) }}" class="clickable">{{ $user->lastname }}</a></td>
                         <td>{{ $user->firstname }}</td>
@@ -40,9 +40,16 @@
                         </td>
                     </tr>
                 @endforeach
+                
             </tbody>
+            
         </table>
+        <div>
+        {{ $usersCesi->links() }}
     </div>
+        
+    </div>
+
 
 @vite('/resources/js/user_search.js')
 @endsection

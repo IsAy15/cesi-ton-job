@@ -26,7 +26,7 @@ class UserController extends Controller
             $userLevelIds = $user->userLevels->pluck('level_id')->toArray();
             $campus = $user->campus;
 
-            $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
+            $usersCesi = User::with(['promotions', 'userLevels.level'])
                 ->where('id', '!=', $user->id)
                 ->where('status', 'approved')
                 ->where('role', 'user')
@@ -37,14 +37,14 @@ class UserController extends Controller
                 ->whereHas('promotions', function ($query) use ($pilotePromotionIds) {
                     $query->whereIn('id', $pilotePromotionIds);
                 })
-                ->get();
+                ->paginate(10);
         } else {
-            $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
+            $usersCesi = User::with(['promotions', 'userLevels.level'])
                 ->where('status', 'approved')
-                ->get();
+                ->paginate(10);
         }
 
-        return view('users.index', compact('usersWithPromotions'));
+        return view('users.index', compact('usersCesi'));
     }
 
 

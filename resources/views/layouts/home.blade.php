@@ -36,6 +36,7 @@
                         @if (Auth::user()->role !== 'user')
                             <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                             <li><a href="{{ route('promotions.index') }}">Promotions</a></li>
+                            <li><a href="{{ route('abilities.index') }}">Compétences</a></li>
                         @endif
                         <li>
                             <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
