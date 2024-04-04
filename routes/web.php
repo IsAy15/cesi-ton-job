@@ -104,10 +104,6 @@ Route::prefix('ability')->group(function(){
 });
 
 
-
-
-
-
 // User routes
 Route::prefix('users')->group(function (){
     Route::get('/', [UserController::class, 'index'])->name('users.index');

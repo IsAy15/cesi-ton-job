@@ -40,7 +40,9 @@
             @if($user->offers->count() > 0)
                 <ul class="fit-center">
                     @foreach($user->offers as $offer)
-                        <li>{{ $offer->title }}</li>
+                    <li>
+                        <a href="{{ route('offers.show', $offer->id) }}" class="clickable">{{ $offer->title }}</a>  - {{ $offer->company->name }}
+                    </li>                    
                     @endforeach
                 </ul>
             @else
