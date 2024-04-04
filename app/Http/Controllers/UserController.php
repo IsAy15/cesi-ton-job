@@ -52,6 +52,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::with('userLevels.level')->find($id);
+        if (auth()->user()->role === 'user' && auth()->id() != $id) {
+            return redirect()->route('profile.index')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
+        }
         return view('users.show', compact('user'));
     }
 

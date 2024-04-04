@@ -6,14 +6,14 @@
         <h2>Offres avec le plus de candidatures</h2>
         <ul>
             @foreach($offersWithMostApplications as $offer)
-                <li><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a> - {{ $offer->applications_count }} candidatures</li>
+                <li><a class="clickable" href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a> - {{ $offer->applies_count }} candidatures - {{ $offer->company->name }}</li>
             @endforeach
         </ul>
 
         <h2>Offres les plus ajoutées aux favoris</h2>
         <ul>
             @foreach($offersInWishlist as $offer)
-                <li><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a> - {{ $offer->wishlist_count }} mise en favoris</li>
+                <li><a href="{{ route('offers.show', $offer->id) }}">{{ $offer->title }}</a> - {{ $offer->wishlist_count }} mises en favoris</li>
             @endforeach
         </ul>
         <div id="topAbilities">
