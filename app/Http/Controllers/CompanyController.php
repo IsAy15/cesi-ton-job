@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Grade;
 use App\Models\Offer;
-use App\Models\Application;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 

@@ -13,12 +13,20 @@ class PromotionController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+        if($user->role !== 'admin'){
+            return redirect()->route('profile.index');
+        }
         $promotions = Promotion::all();
         return view('promotions.index', compact('promotions'));
     }
 
     public function create()
     {
+        $user = auth()->user();
+        if($user->role !== 'admin'){
+            return redirect()->route('profile.index');
+        }
         return view('promotions.create');
     }
 
@@ -34,6 +42,10 @@ class PromotionController extends Controller
 
     public function edit($id)
     {
+        $user = auth()->user();
+        if($user->role !== 'admin'){
+            return redirect()->route('profile.index');
+        }
         $promotion = Promotion::find($id);
         return view('promotions.edit', compact('promotion'));
     }
@@ -51,9 +63,8 @@ class PromotionController extends Controller
     public function destroy($id)
     {
         $user = auth()->user();
-          
-        if ($user->role === 'user') {
-            return redirect()->route('promotions.index');
+        if($user->role !== 'admin'){
+            return redirect()->route('profile.index');
         }
     
         DB::statement('SET FOREIGN_KEY_CHECKS=0');

@@ -49,7 +49,7 @@
                         <div id="selectedAbilities"></div>
                     </div>
                     <datalist id="abilities">
-                        @foreach($allabilities as $ability)
+                        @foreach($allAbilities as $ability)
                             <option ability_id="{{ $ability->id }}" value="{{ $ability->title }}"></option>
                         @endforeach
                     </datalist>

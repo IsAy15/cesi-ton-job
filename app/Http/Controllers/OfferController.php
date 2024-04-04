@@ -10,7 +10,6 @@ use App\Models\Ability;
 use App\Models\Application;
 use App\Models\Promotion;
 use App\Models\Level;
-use Illuminate\Support\Facades\Response;
 
 
 
@@ -247,14 +246,19 @@ class OfferController extends Controller
   }
 
   public function outdated()
-{
+  {
+    $user=auth()->user();
+    if($user->role === 'user'){
+        return redirect()->route('offers.index');
+    }
+
     $offers = Offer::where(function ($query) {
         $query->where('starting_date', '<', now())
-            ->orWhere('status', 'hidden');
-    })->get();
+              ->orWhere('status', 'hidden');
+      })->get();
 
-    return view("offers.outdated", compact("offers"));
-}
+      return view("offers.outdated", compact("offers"));
+  }
 
 
 }

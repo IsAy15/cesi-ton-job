@@ -4,13 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Promotion; 
-use App\Models\Offer;
-use App\Models\Auth;
-use App\Models\Wishlist;
 use App\Models\Ability;
-use App\Models\UserLevel;
-use App\Models\Level;
 use Illuminate\Support\Facades\DB;
 
 
@@ -26,29 +20,31 @@ class ProfileController extends Controller
             $level = $userLevel->level;
             $title = $level ? $level->title : '';
         }
-        $userabilities = $user->abilities->pluck('id')->toArray();
-        $allabilities = Ability::wherenotin('id', $userabilities)->get();
-        return view('profile.index', compact('user','userabilities' ,'allabilities', 'title', 'userLevel'));
+        $userAbilities = $user->abilities->pluck('id')->toArray();
+        $allAbilities = Ability::wherenotin('id', $userAbilities)->get();
+        return view('profile.index', compact('user','userAbilities' ,'allAbilities', 'title', 'userLevel'));
     }
 
-    public function add()
+    /*public function add()
     {
+        if(auth()->user()->role === 'user'){
+            return redirect()->route('profile.index');}
         $user=auth()->user();
         $userabilities = $user->abilities->pluck('id')->toArray();
         $allabilities = Ability::wherenotin('id', $userabilities)->get();
         return view('profile.add', compact('allabilities', 'userabilities'));
-    }
+    }*/
 
     public function store(Request $request)
-{
-    $user = auth()->user();
+    {
+        $user = auth()->user();
 
-    $abilitiesIds = $request->abilities;
-        
-    $user->abilities()->attach($abilitiesIds);
+        $abilitiesIds = $request->abilities;
+            
+        $user->abilities()->attach($abilitiesIds);
 
-    // return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
-}
+        // return redirect()->route('profile.index')->with('success', 'Compétences ajoutées avec succès.');  
+    }
 
 
     public function pending()
@@ -67,15 +63,23 @@ class ProfileController extends Controller
 
             return view('profile.pending', compact('pendingUsers'));
         }
+        elseif($user->role === 'user'){
+            return redirect()->route('profile.index');
+        }
+        else{
+            $pendingUsers = User::where('status', 'pending')->get();
+            return view('profile.pending', compact('pendingUsers'));
+        }
 
-        $pendingUsers = User::where('status', 'pending')->get();
-        return view('profile.pending', compact('pendingUsers'));
     }
 
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        if($user->role !== 'admin'){
+            return redirect()->route('profile.index');
+        }
         return view('profile.edit', compact('user'));
     }
 
@@ -109,16 +113,16 @@ class ProfileController extends Controller
     }
 
     public function offers()
-{
-    $user = auth()->user();
-    if ($user->role === 'pilote') {
-        $createdOffers = $user->useroffers()->get(); 
-        return view('profile.offers', compact('createdOffers', 'user'));
-    } else {
-        $appliedOffers = $user->offers;
-        return view('profile.offers', compact('appliedOffers',  'user'));
+    {
+        $user = auth()->user();
+        if ($user->role !== 'user') {
+            $createdOffers = $user->useroffers()->get(); 
+            return view('profile.offers', compact('createdOffers', 'user'));
+        } else {
+            $appliedOffers = $user->offers;
+            return view('profile.offers', compact('appliedOffers',  'user'));
+        }
     }
-}
 
 }
 
