@@ -1,10 +1,10 @@
 .inputfile {
-	width: 0;
-	height: 0;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 .inputfile + label {
@@ -20,19 +20,18 @@
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: rgba(128, 128, 128, 0.4);
-
 }
 
 .inputfile + label {
-	cursor: pointer; /* "hand" cursor */
+    cursor: pointer; /* "hand" cursor */
 }
 
 .inputfile:focus + label {
-	outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
 }
 
-.search-bar{
+.search-bar {
     display: flex;
     align-items: center;
     padding: 0.5rem;
@@ -61,7 +60,7 @@ input#keywordInput {
     background: none;
 }
 
-input[type="date"]{
+input[type="date"] {
     background-color: rgba(128, 128, 128, 0.116);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     padding: 0.1rem;
@@ -70,14 +69,14 @@ input[type="date"]{
     outline: none;
     border-radius: 5px;
 }
-::-webkit-calendar-picker-indicator{
+::-webkit-calendar-picker-indicator {
     background-color: #ffffff;
     padding: 5px;
     cursor: pointer;
     border-radius: 3px;
 }
 
-input[type=number] {
+input[type="number"] {
     padding: 0.2rem;
     background-color: rgba(128, 128, 128, 0.116);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -101,4 +100,8 @@ input[type=number] {
     height: 5rem;
     width: fit-content;
     overflow-y: auto;
+}
+
+p[dep] {
+    text-align: right;
 }
