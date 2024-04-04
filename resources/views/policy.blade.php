@@ -19,6 +19,6 @@
         <p  class="paragraphe">En tant qu'utilisateur de CESI Ton Job, vous avez le droit d'accéder, de rectifier, de mettre à jour ou de supprimer vos données personnelles. Vous pouvez exercer ces droits en modifiant les informations de votre profil ou en nous contactant directement.</p>
         <h2>Modification de la politique de confidentialité :</h2>
         <p  class="paragraphe">Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page, et nous vous encourageons à consulter régulièrement cette politique pour rester informé(e) de nos pratiques en matière de confidentialité.</p>
-        <p  class="paragraphe">En utilisant CESI Ton Job, vous acceptez les termes de cette politique de confidentialité. Si vous avez des questions ou des préoccupations concernant notre utilisation de vos données personnelles, veuillez nous contacter à l'adresse [adresse e-mail de contact].</p>
+        <p  class="paragraphe">En utilisant CESI Ton Job, vous acceptez les termes de cette politique de confidentialité. Si vous avez des questions ou des préoccupations concernant notre utilisation de vos données personnelles, veuillez nous contacter à l'adresse <a href="mailto:contact@ctj.fr">contact@ctj.fr</a>.</p>
     </div>
 @endsection

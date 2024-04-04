@@ -1,17 +1,9 @@
 @extends('layouts.home')
 @section('title', 'Liste des utilisateurs')
 @section('content')
-    <?php
-        if (Auth::check() && strpos(Auth::user()->role, 'user') !== false) {
-            header('Location: /access-denied.php');
-            exit();
-        }
-    ?>
+
     <div class="container-1 default-bg fit-center">
         <h1>Liste des utilisateurs</h1>
-        @guest
-            <a href="{{ route('auth.login') }}">Se connecter</a>
-        @endguest
         <input type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
         <a href="{{ route('users.create') }}" class="btn-1">Ajouter un utilisateur</a>
         <a href="{{ route('profile.pending') }}" class="btn-1">Voir les utilisateurs en attente</a>
