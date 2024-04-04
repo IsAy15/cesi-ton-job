@@ -170,27 +170,27 @@ class OfferController extends Controller
   public function apply(Request $request, $id)
   {
 
-    $request->validate([
-        'cv' => 'required|file|mimes:pdf|max:2048',
-        'letter' => 'required|file|mimes:pdf|max:2048',
-    ]);
+      $request->validate([
+          'cv' => 'required|file|mimes:pdf|max:2048',
+          'letter' => 'required|file|mimes:pdf|max:2048',
+      ]);
 
-    $cvPath = $request->file('cv')->store('public/cv');
-    $letterPath = $request->file('letter')->store('public/lettre_motivation');
+      $cvPath = $request->file('cv')->store('public/cv');
+      $letterPath = $request->file('letter')->store('public/lettre_motivation');
 
 
-    $application = new Application();
-    $application->cv = $cvPath;
-    $application->letter = $letterPath;
-    $application->offer_id = $id;
-    $application->user_id = auth()->id();
-    $application->save();
+      $application = new Application();
+      $application->cv = $cvPath;
+      $application->letter = $letterPath;
+      $application->offer_id = $id;
+      $application->user_id = auth()->id();
+      $application->save();
 
-    $offer = Offer::findOrFail($id);
-    $offer->increment('applies_count');
+      $offer = Offer::findOrFail($id);
+      $offer->increment('applies_count');
 
-    return redirect()->route('offers.index', $id)->with('success', 'Votre candidature a été soumise avec succès.');
-}
+      return redirect()->route('offers.index', $id)->with('success', 'Votre candidature a été soumise avec succès.');
+  }
 
   public function stats()
   {

@@ -27,6 +27,6 @@
     </div>
     <div class="container-1 default-bg fit-center">
         <a href="{{ route('auth.register') }}" class="btn-1">Pas encore inscrit ?</a>
-        <a href="#" class="btn-1">Je n'arrive pas à me connecter</a>
+        <a href="{{route('contact')}}" class="btn-1">Je n'arrive pas à me connecter</a>
     </div>
 @endsection
