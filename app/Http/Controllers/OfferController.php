@@ -235,6 +235,10 @@ class OfferController extends Controller
 
   public function hidden()
   {
+    $user=auth()->user();
+    if($user->role === 'user'){
+        return redirect()->route('offers.index');
+    }
     $hiddenOffers = Offer::where('status', 'hidden')
     ->where('starting_date', '>', now())
     ->get();

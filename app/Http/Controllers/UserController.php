@@ -14,36 +14,36 @@ class UserController extends Controller
 
 {
     public function index()
-{
-    $user = auth()->user();
+    {
+        $user = auth()->user();
 
-    if ($user->role === 'user') {
-        return redirect()->route('profile.index');
+        if ($user->role === 'user') {
+            return redirect()->route('profile.index');
+        }
+
+        if ($user->role === 'pilote') {
+            $pilotePromotionIds = $user->promotions->pluck('id')->toArray();
+            $userLevelIds = $user->userLevels->pluck('level_id')->toArray();
+
+            $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
+                ->where('id', '!=', $user->id)
+                ->whereHas('promotions', function ($query) use ($pilotePromotionIds) {
+                    $query->whereIn('id', $pilotePromotionIds);
+                })
+                ->where('status', 'approved')
+                ->where('role', 'user')
+                ->whereHas('userLevels', function ($query) use ($userLevelIds) {
+                    $query->whereIn('level_id', $userLevelIds);
+                })
+                ->get();
+        } else {
+            $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
+                ->where('status', 'approved')
+                ->get();
+        }
+
+        return view('users.index', compact('usersWithPromotions'));
     }
-
-    if ($user->role === 'pilote') {
-        $pilotePromotionIds = $user->promotions->pluck('id')->toArray();
-        $userLevelIds = $user->userLevels->pluck('level_id')->toArray();
-
-        $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
-            ->where('id', '!=', $user->id)
-            ->whereHas('promotions', function ($query) use ($pilotePromotionIds) {
-                $query->whereIn('id', $pilotePromotionIds);
-            })
-            ->where('status', 'approved')
-            ->where('role', 'user')
-            ->whereHas('userLevels', function ($query) use ($userLevelIds) {
-                $query->whereIn('level_id', $userLevelIds);
-            })
-            ->get();
-    } else {
-        $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
-            ->where('status', 'approved')
-            ->get();
-    }
-
-    return view('users.index', compact('usersWithPromotions'));
-}
 
 
 
@@ -130,13 +130,14 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
-        $levels = Level::all();
-        $Currentuser = auth()->user();
-
-        if ($Currentuser->role === 'user') {
+        $CurrentUser = auth()->user();
+        if ($CurrentUser->role === 'user') {
             return redirect()->route('profile.index');
         }
+
+        $user = User::find($id);
+        $levels = Level::all();
+  
 
         $promotions = Promotion::all();
         return view('users.edit', compact('user', 'promotions', 'levels'));
@@ -185,6 +186,11 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        $CurrentUser = auth()->user();
+        if ($CurrentUser->role === 'user') {
+            return redirect()->route('profile.index');
+        }
+
         DB::table('grades')->where('user_id', $id)->delete();
         DB::table('user_promotions')->where('user_id', $id)->delete();
         DB::table('student_abilities')->where('user_id', $id)->delete();
@@ -193,12 +199,7 @@ class UserController extends Controller
         DB::table('user_wishlist')->where('user_id', $id)->delete();
         DB::table('user_levels')->where('user_id', $id)->delete();
 
-        $user = User::findOrFail($id);
-        $Currentuser = auth()->user();
-
-        if ($Currentuser->role === 'user') {
-            return redirect()->route('profile.index');
-        }
+        $user = User::findOrFail($id); 
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');

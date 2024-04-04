@@ -8,6 +8,10 @@ use App\Models\Ability;
 class AbilityController extends Controller
 {
     public function index(){
+        $user = auth()->user();
+        if($user->role === 'user'){
+            return redirect()->route('profile.index');
+        }
         $abilities = Ability::all();
         return view("abilities.index",compact("abilities"));
     }
@@ -17,6 +21,10 @@ class AbilityController extends Controller
     }
 
     public function store(Request $request){
+        $user = auth()->user();
+        if($user->role === 'user'){
+            return redirect()->route('profile.index');
+        }
         $ability = new Ability();
         $ability->title = $request->input('ab_title');
         $ability->description = $request->input('ab_description');
@@ -30,6 +38,10 @@ class AbilityController extends Controller
     }
 
     public function update(Request $request, $id){
+        $user = auth()->user();
+        if($user->role === 'user'){
+            return redirect()->route('profile.index');
+        }
         $ability = Ability::findOrFail($id);
         $ability->title = $request->input('ab_title');
         $ability->description = $request->input('ab_description');
@@ -38,6 +50,10 @@ class AbilityController extends Controller
     }
 
     public function destroy($id){
+        $user = auth()->user();
+        if($user->role === 'user'){
+            return redirect()->route('profile.index');
+        }
         $ability = Ability::findOrFail($id);
         $ability->delete();
         return redirect()->route('abilities.index');

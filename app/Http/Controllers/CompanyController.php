@@ -23,7 +23,8 @@ class CompanyController extends Controller
 
             $averageGrade = $grades->avg();
 
-            $company->average_grade = round($averageGrade,1);
+            $company->averageGrade = round($averageGrade, 1);
+            
         }
 
         return view('companies.index', compact('companies'));
@@ -62,13 +63,12 @@ class CompanyController extends Controller
 
     public function edit($id)
     {
-        $company = Company::find($id);
-
         $user = auth()->user();
+        if ($user->role === 'user') {
+            return redirect()->route('companies.index');
+        }
 
-      if ($user->role === 'user') {
-        return redirect()->route('companies.index');
-    }
+        $company = Company::find($id);
 
         return view('companies.edit', compact('company'));
     }
@@ -113,7 +113,7 @@ class CompanyController extends Controller
 
         $averageGrade = $grades->avg();
 
-        $company->average_grade = round($averageGrade,1);
+        $company->averageGrade = round($averageGrade,1);
 
         // $company->localization = [{"nom":"Toulouse","code":"31555","cp":"31000","dep":"31"},{"nom":"Labège","code":"31254","cp":"31670","dep":"31"}]
         $localizations = json_decode($company->localization);
@@ -185,29 +185,35 @@ class CompanyController extends Controller
     }
 
     public function hidden()
-{
-    $hiddenCompanies = Company::where('status', 'hidden')->get();
-    foreach ($hiddenCompanies as $company) {
-        $company->localizations = json_decode($company->localization);
+    {
+        $user = auth()->user();
+        if($user->role === 'user'){
+            return redirect()->route('companies.index');
+        }
+
+        $hiddenCompanies = Company::where('status', 'hidden')->get();
+        foreach ($hiddenCompanies as $company) {
+            $company->localizations = json_decode($company->localization);
+        }
+        
+        return view('companies.hidden', compact('hiddenCompanies'));
     }
-    return view('companies.hidden', compact('hiddenCompanies'));
-}
 
 
-public function active($id)
-{
-    $company = Company::findOrFail($id);
-    $company->status = 'active';
-    $company->save();
+    public function active($id)
+    {
+        $company = Company::findOrFail($id);
+        $company->status = 'active';
+        $company->save();
 
-    return redirect()->route('companies.hidden');
-}
+        return redirect()->route('companies.hidden');
+    }
 
-public function localizations($id){
-    $company = Company::findOrFail($id);
-    $localizations = json_decode($company->localization);
-    return new JsonResponse($localizations);
-}
+    public function localizations($id){
+        $company = Company::findOrFail($id);
+        $localizations = json_decode($company->localization);
+        return new JsonResponse($localizations);
+    }
 
 
 }
