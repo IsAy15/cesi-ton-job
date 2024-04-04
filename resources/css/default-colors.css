@@ -1,5 +1,5 @@
 :root {
-    --main: #ed5c3c;
+    --main: #ff0000;
     --lefttopcorner: #fab330;
     --rightbottomcorner: #800080;
     --background: linear-gradient(
@@ -9,6 +9,7 @@
         var(--rightbottomcorner)
     );
     --backcolor: #fff;
+    --backcolor2: #000;
     --textcolor: #000;
     --titlecolor: #fff;
     --hovertext: #fff;
