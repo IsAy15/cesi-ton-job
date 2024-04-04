@@ -208,6 +208,7 @@ class OfferController extends Controller
       $departmentsWithMostOffers = DB::table('offers')
             ->selectRaw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", "") AS dep, COUNT(*) AS offers_count')
             ->groupBy('dep')
+            ->orderByDesc('offers_count')
             ->limit(5)
             ->get();
 
