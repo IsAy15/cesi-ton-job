@@ -24,16 +24,18 @@ class UserController extends Controller
         if ($user->role === 'pilote') {
             $pilotePromotionIds = $user->promotions->pluck('id')->toArray();
             $userLevelIds = $user->userLevels->pluck('level_id')->toArray();
+            $campus = $user->campus;
 
             $usersWithPromotions = User::with(['promotions', 'userLevels.level'])
                 ->where('id', '!=', $user->id)
-                ->whereHas('promotions', function ($query) use ($pilotePromotionIds) {
-                    $query->whereIn('id', $pilotePromotionIds);
-                })
                 ->where('status', 'approved')
                 ->where('role', 'user')
+                ->where('campus', $campus)
                 ->whereHas('userLevels', function ($query) use ($userLevelIds) {
                     $query->whereIn('level_id', $userLevelIds);
+                })
+                ->whereHas('promotions', function ($query) use ($pilotePromotionIds) {
+                    $query->whereIn('id', $pilotePromotionIds);
                 })
                 ->get();
         } else {
@@ -92,7 +94,8 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->email = $request->email;
         $user->role = $request->role;
-        $user->password = md5($request->password); 
+        $user->password = md5($request->password);
+        $user->campus = $request->campus; 
         $user->status = 'approved';
     
         // Assigner l'avatar en fonction du rôle

@@ -13,6 +13,7 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Email</th>
+                    <th>Campus</th>
                     <th>Rôle</th>
                     <th>Actions</th>
                 </tr>
@@ -23,6 +24,7 @@
                         <td><a href="{{ route('users.show', ['id' => $user->id]) }}" class="clickable">{{ $user->lastname }}</a></td>
                         <td>{{ $user->firstname }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->campus }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
                             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')

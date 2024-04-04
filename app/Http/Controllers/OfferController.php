@@ -254,7 +254,7 @@ class OfferController extends Controller
 
     $offers = Offer::where(function ($query) {
         $query->where('starting_date', '<', now())
-              ->orWhere('status', 'hidden');
+              ->where('status', 'hidden');
       })->get();
 
       return view("offers.outdated", compact("offers"));

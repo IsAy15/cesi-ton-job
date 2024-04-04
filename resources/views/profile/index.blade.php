@@ -11,8 +11,11 @@
             <p>{{ $user->lastname }}</p>
             <p>{{ $user->firstname }}</p>
             <p>{{ $user->email }}</p>
+            <p>{{ $user->campus }}</p>
+            @if($user->role === 'user')
             <p>{{ $title }}</p>
-            @if($user->role=='user')
+            @endif
+            @if($user->role !=='admin')
                 <p>{{ $user->promotions[0]->name }}</p>
             @endif
         </div>
@@ -62,25 +65,16 @@
             @break
         @case('pilote')
             <div id="promotions" class="container-1 area-bg">
-                <p>Mes promotions :</p>
+                <p>Mes niveaux :</p>
                 <div class="liste-h ability_container">
-                    @forelse($user->promotions as $promotion)
+                    @foreach($user->userLevels as $userLevel)
                         <div class="liste-h elements">
-                            <a href="{{ route('promotions.users', $promotion->id) }}">{{ $promotion->name }}</a>
-                            <a href="#abilities" ability_id="{{ $promotion->id }}" class="btn-3"><i class="fa-regular fa-circle-xmark"></i></a>
+                        <p>{{ $title }}</p>
                         </div>
-                    @empty
-                        <p>Aucune compétence</p>
-                    @endforelse
+                    @endforeach
                 </div>
                 <div class="popup liste-h">
-                    <button id="btn-plus" type="button" class="btn-3"><i class="fa-solid fa-plus"></i></button>
                     <dialog id="promotion" class="popup-content">
-                        <ul>
-                            @foreach($promotions as $promotion)
-                                <li promotion_id="{{ $pormotion->id }}"><p>{{ $pormotion->name }}</p><a href="#" class="btn-3"><i class="fa-solid fa-plus"></i></a></li>
-                            @endforeach
-                        </ul>
                     </dialog>
                 </div>
             </div>

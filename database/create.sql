@@ -12,6 +12,7 @@ CREATE TABLE users(
    role VARCHAR(50),
    status VARCHAR(50) NOT NULL DEFAULT 'pending',
    avatar VARCHAR(5000),
+   campus VARCHAR(50),
    PRIMARY KEY(id)
 );
 
@@ -166,16 +167,16 @@ CREATE TABLE offer_requirements(
 -- Remplissage de la table users
 DELETE FROM `users`;
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`, `status`,`avatar`) VALUES
-(1, 'admin', 'admin', 'admin@ctj.fr', MD5('admin'), 'admin', 'approved', 'admin.jpg'),
-(2, 'user', 'user', 'user@ctj.fr', MD5('user'), 'user', 'approved', 'user.jpg'),
-(3, 'user2', 'user2', 'user2@ctj.fr', MD5('user2'), 'user', 'approved', 'user.jpg'),
-(4, 'user3', 'user3', 'user3@ctj.fr', MD5('user3'), 'user', 'approved', 'user.jpg'),
-(5, 'pilote', 'pilote', 'pilote@ctj.fr', MD5('pilote'), 'pilote', 'approved', 'pilote.jpg'),
-(6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', MD5('pilote2'), 'pilote', 'approved', 'pilote.jpg'),
-(7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', MD5('pilote3'), 'pilote', 'approved', 'pilote.jpg'),
-(8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', MD5('pilote4'), 'pilote', 'approved', 'pilote.jpg'),
-(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'approved', 'pilote.jpg');
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`, `status`,`avatar`, `campus`) VALUES
+(1, 'admin', 'admin', 'admin@ctj.fr', MD5('admin'), 'admin', 'approved', 'admin.jpg','Toulouse'),
+(2, 'user', 'user', 'user@ctj.fr', MD5('user'), 'user', 'approved', 'user.jpg', 'Bordeaux'),
+(3, 'user2', 'user2', 'user2@ctj.fr', MD5('user2'), 'user', 'approved', 'user.jpg', 'Montpellier'),
+(4, 'user3', 'user3', 'user3@ctj.fr', MD5('user3'), 'user', 'approved', 'user.jpg', 'Pau'),
+(5, 'pilote', 'pilote', 'pilote@ctj.fr', MD5('pilote'), 'pilote', 'approved', 'pilote.jpg', 'Bordeaux'),
+(6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', MD5('pilote2'), 'pilote', 'approved', 'pilote.jpg', 'Angoulême'),
+(7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', MD5('pilote3'), 'pilote', 'approved', 'pilote.jpg', 'Arras'),
+(8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', MD5('pilote4'), 'pilote', 'approved', 'pilote.jpg', 'Caen'),
+(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'approved', 'pilote.jpg', 'Dijon');
 
 -- Remplissage de la table companies
 DELETE FROM companies;
@@ -484,9 +485,6 @@ INSERT INTO offer_requirements (of_id, ab_id) VALUES
 (7, 1), (7, 2), (7, 3), (7, 13), (7, 14), (7, 15), (7, 16),
 (8, 4), (8, 5), (8, 6), (8, 13), (8, 14), (8, 15), (8, 16);
 
-
---Remplissage d'offres à grande échelle--
-
 INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
 VALUES
 ('Développeur Front-end - Vérification', 'Nous recherchons un développeur front-end pour rejoindre notre équipe de vérification.', '{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 1, 1);
@@ -539,7 +537,7 @@ INSERT INTO offer_requirements (of_id, ab_id) VALUES
 
 INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
 VALUES
-('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '{\"nom\":\"Bezons\",\"code\":\"95063\",\"cp\":\"95870\",\"dep\":\"95\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 5, 1);
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '{\"nom\":\"Bezons\",\"code\":\"95063\",\"cp\":\"95870\",\"dep\":\"95\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'hidden', 5, 1);
 INSERT INTO offer_levels (offer_id, level_id) VALUES
 (17, 1); -- Niveau A1
 INSERT INTO offer_requirements (of_id, ab_id) VALUES

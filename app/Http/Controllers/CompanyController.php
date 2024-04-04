@@ -179,6 +179,9 @@ class CompanyController extends Controller
         $companies->status = 'hidden';
         $companies->save();
 
+        //Quand on cache une entreprise, on cache aussi toutes ses offres
+        Offer::where('company_id', $id)->update(['status' => 'hidden']);
+
 
         return redirect()->route('companies.index');
     }

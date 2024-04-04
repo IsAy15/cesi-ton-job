@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Promotion;
 use App\Models\Level;
 
+
 class AuthController extends Controller
 {
     public function login()
@@ -51,6 +52,9 @@ class AuthController extends Controller
 
     public function register()
     {
+        if(auth()->check()){
+            return redirect()->route('offers.index');
+        }
         $promotions = Promotion::all();
         $levels = Level::all();
         return view('auth.register', compact('promotions', 'levels'));
@@ -67,10 +71,11 @@ class AuthController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        $user->password = md5($request->password); 
+        $user->password = md5($request->password);
+        $user->campus = $request->campus;
+        $user->avatar = 
         $user->role = $request->role;
 
-        $user->save();
 
         switch ($request->role) {
             case 'user':
@@ -83,6 +88,8 @@ class AuthController extends Controller
                 $user->avatar = 'default.jpg'; 
                 break;
         }
+
+        $user->save();
 
         $selectedLevels = $request->input('levels');
         foreach ($selectedLevels as $levelId) {
