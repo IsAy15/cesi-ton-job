@@ -6,8 +6,25 @@
   text-decoration: none; /* Annule le soulignement */
 }
 
-.ecart{
-  display: flex;
-  flex-flow: row;
-  gap: space-between;
+.select{
+  text-decoration: underline; /* Annule le soulignement */
+  color: var(--eltcolor);
+}
+
+.ecart-r{
+  margin-right: 1rem;
+}
+.ecart-l{
+  margin-left: 1rem;
+}
+
+.ecart-b{
+  margin: 0 0.1rem;
+}
+
+.pag-el:hover{
+  color: var(--eltcolor);
+  transform: scale(1.1);
+  font-style: bold;
+  cursor: pointer;
 }
