@@ -23,7 +23,7 @@ class CompanyController extends Controller
             $averageGrade = $grades->avg();
 
             $company->averageGrade = round($averageGrade, 1);
-            
+
         }
 
         return view('companies.index', compact('companies'));
@@ -152,25 +152,30 @@ class CompanyController extends Controller
 
         $averageGrade = round($averageGrade, 2);
 
+        $companiesWithMostOffers = Company::withCount('offers')->orderByDesc('offers_count')->limit(3)->get();
 
-        $companyWithMostOffers = Company::withCount('offers')->orderByDesc('offers_count')->first();
-
-        $companyWithMostApplications = Company::withCount('offers')
+        $companiesWithMostApplications = Company::withCount('offers')
         ->withSum('offers', 'applies_count')
         ->orderByDesc('offers_sum_applies_count')
-        ->first();
+        ->limit(3)
+        ->get();
 
-        $sectorWithMostCompanies = Company::select('sector')
+        $sectorsWithMostCompanies = Company::select('sector', DB::raw('COUNT(*) AS sector_count'))
         ->groupBy('sector')
-        ->orderByRaw('COUNT(*) DESC')
-        ->first();
+        ->orderByRaw('sector_count DESC')
+        ->limit(3)
+        ->get();
 
-        $departmentWithMostCompanies = Company::select(DB::raw('LEFT(localization, 2) AS code'), DB::raw('COUNT(*) AS companies_count'))
-        ->groupBy('code')
+        $departmentsWithMostCompanies = Company::select(DB::raw('REPLACE(JSON_UNQUOTE(JSON_EXTRACT(localization, CONCAT(\'$[\', numbers.n, \'].dep\'))), \'"\', \'\') AS dep'))
+        ->selectRaw('COUNT(*) AS companies_count')
+        ->crossJoin(DB::raw('(SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4) AS numbers'))
+        ->whereNotNull(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(localization, CONCAT(\'$[\', numbers.n, \'].dep\')))'))
+        ->groupBy('dep')
         ->orderByDesc('companies_count')
-        ->first();
+        ->limit(3)
+        ->get();
 
-        return view('companies.stats', compact('averageGrade', 'companyWithMostOffers', 'companyWithMostApplications', 'sectorWithMostCompanies', 'departmentWithMostCompanies'));
+        return view('companies.stats', compact('averageGrade', 'companiesWithMostOffers', 'companiesWithMostApplications', 'sectorsWithMostCompanies', 'departmentsWithMostCompanies'));
     }
 
     public function hide($id)
@@ -197,7 +202,7 @@ class CompanyController extends Controller
         foreach ($hiddenCompanies as $company) {
             $company->localizations = json_decode($company->localization);
         }
-        
+
         return view('companies.hidden', compact('hiddenCompanies'));
     }
 

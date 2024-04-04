@@ -194,18 +194,17 @@ class OfferController extends Controller
 
   public function stats()
   {
-      $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
+      $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->limit(5)->get();
 
-      $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(5)->get();
+      $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->limit(5)->get();
 
-      $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->take(3)->get();
+      $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->limit(3)->get();
 
       $longestInternshipOffer = Offer::where('type', 'stage')
       ->orderByRaw('DATEDIFF(ending_date, starting_date) DESC')
       ->first();
 
-      $departmentsWithMostOffers = DB::table('offers')
-            ->selectRaw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", "") AS dep, COUNT(*) AS offers_count')
+      $departmentsWithMostOffers = Offer::select(DB::raw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", "") AS dep'), DB::raw('COUNT(*) AS offers_count'))
             ->groupBy('dep')
             ->orderByDesc('offers_count')
             ->limit(5)
