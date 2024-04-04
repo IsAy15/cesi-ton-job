@@ -5,7 +5,7 @@
         <h1>{{ $company->name }}</h1>
         <div>
             <p>Secteur d'activité : {{ $company->sector }}</p>
-            <p>Note moyenne : </p><div note="{{ $company->average_grade }}"></div>
+            <p>Note moyenne : </p><div note="{{ $company->averageGrade }}"></div>
             <p>Localisation(s) : </p>
             @foreach ($localizations as $localization)               
             <p city>{{ $localization->nom }} ({{ $localization->cp }})</p>

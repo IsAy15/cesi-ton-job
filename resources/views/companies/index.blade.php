@@ -28,7 +28,7 @@
                         <p>Secteur :</p>
                         <p class="elements">{{ $company->sector }}</p>
                     </div>
-                    <div note='{{ $company->average_grade }}'></p></div>
+                    <div note='{{ $company->averageGrade }}'></p></div>
                 </div>
             </div>
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')

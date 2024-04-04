@@ -170,7 +170,7 @@ class OfferController extends Controller
 
   public function apply(Request $request, $id)
   {
-  
+
     $request->validate([
         'cv' => 'required|file|mimes:pdf|max:2048',
         'letter' => 'required|file|mimes:pdf|max:2048',
@@ -207,7 +207,8 @@ class OfferController extends Controller
 
       $departmentsWithMostOffers = DB::table('offers')
             ->selectRaw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", "") AS dep, COUNT(*) AS offers_count')
-            ->groupByRaw('REPLACE(JSON_EXTRACT(localization, "$.dep"), "\"", ""), localization')
+            ->groupBy('dep')
+            ->orderByDesc('offers_count')
             ->limit(5)
             ->get();
 
@@ -235,6 +236,10 @@ class OfferController extends Controller
 
   public function hidden()
   {
+    $user=auth()->user();
+    if($user->role === 'user'){
+        return redirect()->route('offers.index');
+    }
     $hiddenOffers = Offer::where('status', 'hidden')
     ->where('starting_date', '>', now())
     ->get();

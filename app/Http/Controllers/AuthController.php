@@ -38,7 +38,7 @@ class AuthController extends Controller
             if ($user->status === 'approved' && md5($credentials['password']) === $user->password) {
                 Auth::login($user);
 
-                if ($user->role === 'admin' || $user->role === 'pilote') {
+                if ($user->role !== 'user') {
                     return redirect()->intended(route('users.index'));
                 } else {
                     return redirect()->intended(route('profile.index'));
@@ -59,48 +59,51 @@ class AuthController extends Controller
     }
 
     public function doregister(Request $request)
-{
-    $existingUser = User::where('email', $request->email)->first();
-
-    if ($existingUser) {
+    {
+        $existingUser = User::where('email', $request->email)->first();
+        if ($existingUser) {
         return redirect()->back()->withInput()->withErrors(['email' => 'Cette adresse e-mail est déjà utilisée. Veuillez en choisir une autre.']);
     }
 
-    $user = new User();
-    $user->firstname = $request->firstname;
-    $user->lastname = $request->lastname;
-    $user->email = $request->email;
-    $user->password = md5($request->password); 
-    $user->role = $request->role;
+        $user = new User();
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->password = md5($request->password); 
+        $user->role = $request->role;
 
-    $user->save();
+        $user->save();
 
-    switch ($request->role) {
-        case 'user':
-            $user->avatar = 'user.jpg';
-            break;
-        case 'pilote':
-            $user->avatar = 'pilote.jpg';
-            break;
-        default:
-            $user->avatar = 'default.jpg'; 
-            break;
+        switch ($request->role) {
+            case 'user':
+                $user->avatar = 'user.jpg';
+                break;
+            case 'pilote':
+                $user->avatar = 'pilote.jpg';
+                break;
+            default:
+                $user->avatar = 'default.jpg'; 
+                break;
+        }
+
+        $selectedLevels = $request->input('levels');
+        foreach ($selectedLevels as $levelId) {
+            $user->userLevels()->create(['level_id' => $levelId]);
+        }
+        
+        $user->promotions()->attach($request->promotion);
+
+        return redirect()->route('auth.confirmation');
     }
-
-    $selectedLevels = $request->input('levels');
-    foreach ($selectedLevels as $levelId) {
-        $user->userLevels()->create(['level_id' => $levelId]);
-    }
-    
-    $user->promotions()->attach($request->promotion);
-
-    return redirect()->route('auth.confirmation');
-}
 
 
 
     public function confirmation()
     {
+        if(Auth::check()){
+            return redirect()->route('offers.index');
+        }
+
         return view('auth.confirmation');
     }
 
