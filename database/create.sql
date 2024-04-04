@@ -489,7 +489,7 @@ INSERT INTO offer_requirements (of_id, ab_id) VALUES
 
 INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
 VALUES
-('Développeur Front-end - Vérification', 'Nous recherchons un développeur front-end pour rejoindre notre équipe de vérification.', '{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 12, 1);
+('Développeur Front-end - Vérification', 'Nous recherchons un développeur front-end pour rejoindre notre équipe de vérification.', '{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 1, 1);
 INSERT INTO offer_levels (offer_id, level_id) VALUES
 (12, 1); -- Niveau A1
 INSERT INTO offer_requirements (of_id, ab_id) VALUES
@@ -559,7 +559,7 @@ INSERT INTO offer_requirements (of_id, ab_id) VALUES
 
 INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
 VALUES
-('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}', '2025-01-01', '2025-12-31', 4, 32000, 0, 'Alternance', NULL, NULL, 'hidden', 10, 2);
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}', '2025-01-01', '2025-12-31', 4, 32000, 0, 'Alternance', NULL, NULL, 'active', 10, 2);
 INSERT INTO offer_levels (offer_id, level_id) VALUES
 (19, 3); -- Niveau A3
 INSERT INTO offer_requirements (of_id, ab_id) VALUES
