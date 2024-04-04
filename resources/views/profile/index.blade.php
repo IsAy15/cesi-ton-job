@@ -60,7 +60,7 @@
             </div>
             <div class="liste-h">
                 <a href="{{ route('profile.offers') }}" class="btn-1 btn-2">Voir les offres postulées</a>
-                <a href="#" class="btn-1 btn-2">voir les stats</a>
+                <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn-1 btn-2">voir les stats</a>
             </div>
             @break
         @case('pilote')
