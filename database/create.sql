@@ -483,3 +483,106 @@ INSERT INTO offer_requirements (of_id, ab_id) VALUES
 (6, 4), (6, 5), (6, 6), (6, 9), (6, 13), (6, 14), (6, 15), (6, 16),
 (7, 1), (7, 2), (7, 3), (7, 13), (7, 14), (7, 15), (7, 16),
 (8, 4), (8, 5), (8, 6), (8, 13), (8, 14), (8, 15), (8, 16);
+
+
+--Remplissage d'offres à grande échelle--
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Front-end - Vérification', 'Nous recherchons un développeur front-end pour rejoindre notre équipe de vérification.', '{\"nom\": \"Vélizy-Villacoublay\", \"code\": \"78640\", \"cp\": \"78140\", \"dep\": \"78\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 1, 1);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(12, 1); -- Niveau A1
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(12, 1), -- HTML
+(12, 2), -- CSS
+(12, 3); -- JavaScript
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour rejoindre notre équipe.', '{\"nom\": \"Labège\", \"code\": \"31000\", \"cp\": \"31670\", \"dep\": \"31\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 4, 1);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(13, 2); -- Niveau A2
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(13, 4), -- Java
+(13, 6), -- C++
+(13, 13); -- MongoDB
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Web Front-end', 'Nous recherchons un développeur web front-end pour rejoindre notre équipe.', '{\"nom\": \"Paris\", \"code\": \"75056\", \"cp\": \"75001\", \"dep\": \"75\"}', '2025-01-01', '2025-12-31', 5, 28000, 0, 'Stage', NULL, NULL, 'active', 2, 1);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(14, 1); -- Niveau A1
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(14, 1), -- HTML
+(14, 2), -- CSS
+(14, 3); -- JavaScript
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Java', 'Nous recherchons un développeur Java pour renforcer notre équipe.', '{\"nom\": \"Montreuil\", \"code\": \"93048\", \"cp\": \"93100\", \"dep\": \"93\"}', '2025-01-01', '2025-12-31', 3, 32000, 0, 'Stage', NULL, NULL, 'active', 7, 2);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(15, 3); -- Niveau A3
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(15, 4), -- Java
+(15, 14), -- React
+(15, 16); -- Angular
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Python', 'Nous recherchons un développeur Python pour un projet innovant.', '{\"nom\":\"La Défense\",\"code\":\"92062\",\"cp\":\"92400\",\"dep\":\"92\"}', '2025-01-01', '2025-12-31', 5, 35000, 0, 'Stage', NULL, NULL, 'active', 9, 3);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(16, 4); -- Niveau A4
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(16, 7), -- Python
+(16, 13), -- MongoDB
+(16, 14); -- MySQL
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Front-end', 'Nous recherchons un développeur front-end pour rejoindre notre équipe.', '{\"nom\":\"Bezons\",\"code\":\"95063\",\"cp\":\"95870\",\"dep\":\"95\"}', '2025-01-01', '2025-12-31', 5, 30000, 0, 'Stage', NULL, NULL, 'active', 5, 1);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(17, 1); -- Niveau A1
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(17, 1), -- HTML
+(17, 2), -- CSS
+(17, 3); -- JavaScript
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Mobile', 'Nous recherchons un développeur mobile pour rejoindre notre équipe.', '{\"nom\":\"Roubaix\",\"code\":\"59512\",\"cp\":\"59100\",\"dep\":\"59\"}', '2025-01-01', '2025-12-31', 3, 33000, 0, 'Stage', NULL, NULL, 'active', 8, 1);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(18, 2); -- Niveau A2
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(18, 12), -- React
+(18, 13), -- MongoDB
+(18, 16); -- Angular
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Back-end', 'Nous recherchons un développeur back-end pour rejoindre notre équipe.', '{\"nom\":\"Toulouse\",\"code\":\"31555\",\"cp\":\"31000\",\"dep\":\"31\"}', '2025-01-01', '2025-12-31', 4, 32000, 0, 'Alternance', NULL, NULL, 'active', 10, 2);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(19, 3); -- Niveau A3
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(19, 4), -- Java
+(19, 14), -- React
+(19, 15); -- Vue.js
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Full-stack', 'Nous recherchons un développeur full-stack pour un projet passionnant.', '{\"nom\":\"Labège\",\"code\":\"31254\",\"cp\":\"31670\",\"dep\":\"31\"}', '2025-01-01', '2025-12-31', 3, 35000, 0, 'Stage', NULL, NULL, 'active', 4, 1);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(20, 4); -- Niveau A4
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(20, 5), -- C++
+(20, 6), -- Python
+(20, 7); -- SQL
+
+INSERT INTO `offers` (`title`, `description`, `localization`, `starting_date`, `ending_date`, `places`, `salary`, `applies_count`, `type`, `created_at`, `updated_at`, `status`, `company_id`, `promotion_id`) 
+VALUES
+('Développeur Java', 'Nous recherchons un développeur Java pour un projet innovant.', '{\"nom\":\"Roubaix\",\"code\":\"59512\",\"cp\":\"59100\",\"dep\":\"59\"}', '2025-01-01', '2025-12-31', 2, 33000, 0, 'Alternance', NULL, NULL, 'active', 8, 2);
+INSERT INTO offer_levels (offer_id, level_id) VALUES
+(21, 5); -- Niveau A5
+INSERT INTO offer_requirements (of_id, ab_id) VALUES
+(21, 8), -- SQL Server
+(21, 10), -- Symfony
+(21, 13); -- MongoDB
