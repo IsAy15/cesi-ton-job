@@ -8,7 +8,7 @@
         @foreach($offersWithMostApplications as $offer)
         <li>
             <a href="{{ route('offers.show', $offer->id) }}" class="clickable">{{ $offer->title }}</a> 
-            - {{ $offer->applications_count }} candidatures - {{ $offer->company->name }}
+            - {{ $offer->applies_count }} candidatures - {{ $offer->company->name }}
         </li>
     @endforeach
 

@@ -194,9 +194,9 @@ class OfferController extends Controller
 
   public function stats()
   {
-      $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applications_count')->take(5)->get();
+      $offersWithMostApplications = Offer::withCount('applications')->orderByDesc('applies_count')->take(3)->get();
 
-      $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(5)->get();
+      $offersInWishlist = Offer::withCount('wishlist')->orderByDesc('wishlist_count')->take(3)->get();
 
       $topAbilities = Ability::withCount('offers')->orderByDesc('offers_count')->take(3)->get();
 
