@@ -88,12 +88,19 @@ class OfferController extends Controller
 
       $offer->save();
 
+      if($offer -> starting_date < now()){
+        return redirect()->route('offers.create')->with('error', 'La date de début doit être supérieure à la date actuelle.');
+      }
+
+      if($offer -> starting_date > $offer -> ending_date){
+        return redirect()->route('offers.create')->with('error', 'La date de fin doit être supérieure à la date de début.');
+      }
+
 
       $offer->levels()->attach($request->input('of_level_id'));
       $abilitiesArray = json_decode($request->input('of_abilities'), true);
       $abilities = array_column($abilitiesArray, 'id');
       $offer->abilities()->attach($abilities);
-
 
       return redirect()->route('offers.index');
   }
@@ -135,6 +142,10 @@ class OfferController extends Controller
         $abilitiesArray = json_decode($request->input('of_abilities'), true);
         $abilities = array_column($abilitiesArray, 'id');
         $offer->abilities()->sync($abilities);
+
+        if($offer -> starting_date < now()){
+          return redirect()->route('offers.edit')->with('error', 'La date de début doit être supérieure à la date actuelle.');
+        }
 
         $offer->save();
         return redirect()->route('offers.index');
@@ -240,7 +251,7 @@ class OfferController extends Controller
     $hiddenOffers = Offer::where('status', 'hidden')
     ->where('starting_date', '>', now())
     ->get();
-      return view('offers.hidden', compact('hiddenOffers'));
+    return view('offers.hidden', compact('hiddenOffers'));
   }
 
   public function outdated()

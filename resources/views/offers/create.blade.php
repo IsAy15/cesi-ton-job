@@ -5,6 +5,12 @@
 @vite('resources/css/abilities.css')
     <div class="container-1 default-bg fit-center">
         <h1>Ajouter une offre</h1>
+        <!--Nous allons afficher un message d'erreur à partir du controlleur--->
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <form action="{{ route('offers.store') }}" method="post" class="form-v">
             @csrf
                 <select name="of_company_id" id="of_company_id">
@@ -34,11 +40,11 @@
             </div>
             <div>
                 <label for="of_places">Places disponibles</label>
-                <input type="number" name="of_places" id="of_places">
+                <input type="number" name="of_places" id="of_places" min="0">
             </div>
             <div>
                 <label for="of_salary">Salaire (/mois)</label>
-                <input type="number" name="of_salary" id="of_salary">
+                <input type="number" name="of_salary" id="of_salary" min="0">
             </div>
             <div>
                 <select name="of_promotion_id" id="of_promotion_id">
@@ -75,6 +81,7 @@
             <button type="submit" class="btn-1">Ajouter</button>
         </form>
     </div>
+
 @endsection
 @vite('resources/js/add_offer_abilities.js')
 @vite('resources/js/offer_localization.js')
