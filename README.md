@@ -1,3 +1,66 @@
+# CESI Ton Job
+
+CESI Ton Job est un projet en partenariat avec CESI école d’ingénieur, visant à aider les étudiants à trouver leur contrat professionnel, que ce soit un stage, une alternance, un CDI ou un CDD. Ce système permet aux pilotes de promotion de poster toutes les offres des partenaires de CESI, que les étudiants peuvent consulter et même candidater.
+
+## Fonctionnalités
+
+- **Consultation des offres** : Les étudiants peuvent consulter toutes les offres de contrats professionnels publiées par les pilotes de promotion ou l'administateur.
+- **Candidature en ligne** : Les étudiants ont la possibilité de postuler directement aux offres qui les intéressent via la plateforme.
+- **Facilité de recherche** : Les offres sont catégorisées et peuvent être filtrées pour une recherche plus efficace.
+- **Mise en valeur de la collaboration avec le monde professionnel** : CESI Ton Job met en avant la collaboration entre CESI et ses partenaires professionnels, soulignant ainsi l'importance de l'enseignement en lien avec le monde du travail.
+- **Consultation des entreprises** : 
+
+## Technologies utilisées
+
+- **Laravel** : Le projet est développé en utilisant le framework PHP Laravel pour sa robustesse et sa flexibilité.
+- **MySQL** : La base de données MySQL est utilisée pour stocker les données des utilisateurs, des offres et des candidatures.
+- **HTML/CSS/JavaScript** : Pour le développement de l'interface utilisateur.
+- **NodeJs** : Pour créer des applications et d'outils côté serveur en JavaScript.
+
+## Installation
+
+1. Clonez ce dépôt sur votre machine locale en utilisant la commande `git clone`, en passant par `Github Desktop` ou votre IDE.
+2. Assurez-vous d'avoir PHP, Composer, MySQL et Node.js installés sur votre machine et enregistrés dans vos variables d'execution système. Vous pouvez consulter les liens suivants pour vous aider à les installer : [Composer](https://getcomposer.org/) & [Node.js](https://nodejs.org/).
+3. Copiez le `.env.example` et renommez le en `.env` puis configurez votre environnement de base de données dans le fichier `.env` en renseignant les informations de connexion appropriées.
+4. Ouvrez un terminal dans le dossier du projet
+5. Exécutez `composer install` pour installer les dépendances PHP.
+6. Exécutez `npm install` pour installer les dépendances JavaScript.
+7. Exécutez `.\dbreset.bat` pour créer et mettre à jour la base de données.
+8. Exécutez `npm run dev` pour compiler les assets pour le développement.
+9. Enfin, exécutez `php artisan serve` pour démarrer le serveur de développement de Laravel.
+
+Note : en cas de problèmes, n'hésitez pas à contacter l'un des membres du groupe dès que possible.
+
+### Utilitisation
+Pour la connexion, voilà les codes par défaut :
+Pour les utilisateurs : 
+- email : user@ctj.fr   password : user
+- email : user2@ctj.fr   password : user2
+- email : user3@ctj.fr   password : user3
+
+Pour les pilotes pilote : 
+- email : pilote@ctj.fr      password : pilote
+- email : pilote2@ctj.fr      password : pilote2
+- email : pilote3@ctj.fr      password : pilote3
+- email : pilote4@ctj.fr      password : pilote4
+- email : pilote5@ctj.fr      password : pilote5
+
+Pour l'administrateur : 
+- email : admin@ctj.fr        password : admin 
+
+
+## Auteurs
+
+- [SOBHI Achraf](lien-vers-votre-site-ou-profil) 
+- [Molina Adrien](lien-vers-votre-site-ou-profil) 
+- [CELLIER HUGO](lien-vers-votre-site-ou-profil)
+- [SIADOUX VALENTIN](lien-vers-votre-site-ou-profil)
+
+## Licence
+
+Ce projet est sous licence MIT.
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -64,3 +127,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
