@@ -52,7 +52,7 @@
             </div>
         </div>
     <div class="liste-h">
-        <a href="{{ route('offers.stats') }}" class="btn-1 btn-2">Afficher les statistiques&nbsp;<i class="fa-solid fa-chart-simple"></i></a>
+        <a href="{{ route('offers.stats') }}" class="btn-1 btn-2">Afficher les statistiques&nbsp;<i class="fa-solid fa-chart-simple"></i></i></a>
         @if(Auth::user()->role=="admin" || Auth::user()->role=="pilote")
         <a href="{{ route('offers.create') }}" class="btn-1 btn-2">Ajouter une offre&nbsp;<i class="fa-solid fa-plus"></i></a>
         <a href="{{ route('offers.hidden') }}" class="btn-1 btn-2">Afficher les offres cachées&nbsp;<i class="fa-solid fa-eye-slash"></i></a>
@@ -100,6 +100,9 @@
                 @endif
             </div>
         @endforeach
+    </div>
+    <div class="pagination">
+        {{ $offers->links() }}
     </div>
     </div>
 

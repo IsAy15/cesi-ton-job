@@ -29,6 +29,10 @@ class Offer extends Model
     protected $primaryKey = 'id';
 
     public $timestamps = false;
+
+    protected $attributes = [
+        'applies_count' => 0,
+    ];
     
     public function company()
     {

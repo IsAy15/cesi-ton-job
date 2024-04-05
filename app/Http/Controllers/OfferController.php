@@ -17,23 +17,20 @@ class OfferController extends Controller
 {
   public function index(){
     Offer::where('starting_date', '<', now())->update(['status' => 'hidden']);
-    $offers = Offer::where('status', '!=', 'hidden')->get();
     $promotions = Promotion::all();
     $companies = Company::all();
     $contractTypes = Offer::distinct()->pluck('type');
 
+    $offersQuery = Offer::where('status', '!=', 'hidden');
+
     if (auth()->check() && auth()->user()->role === 'user'){
-        $offers = $offers->diff(auth()->user()->offers);
+        $offersQuery->whereNotIn('id', auth()->user()->offers->pluck('id'));
     }
 
-    if (auth()->check() && auth()->user()->role !== 'pilote') {
-      $offers = $offers->reject(function ($offer) {
-          return auth()->user()->offers->contains($offer);
-      });
-  }
+    $offers = $offersQuery->paginate(10);
 
-    return view("offers.index",compact("offers","promotions","companies", "contractTypes"));
-  }
+    return view("offers.index", compact("offers", "promotions", "companies", "contractTypes"));
+}
 
 
   public function company()
@@ -89,12 +86,14 @@ class OfferController extends Controller
       $offer->applies_count = 0;
       $offer->promotion_id = $request->input('of_promotion_id');
 
+      $offer->save();
+
+
       $offer->levels()->attach($request->input('of_level_id'));
       $abilitiesArray = json_decode($request->input('of_abilities'), true);
       $abilities = array_column($abilitiesArray, 'id');
       $offer->abilities()->attach($abilities);
 
-      $offer->save();
 
       return redirect()->route('offers.index');
   }

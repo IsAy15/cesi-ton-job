@@ -138,3 +138,6 @@ searchInput.addEventListener("change", function () {
         });
     }
 });
+
+console.log("Script is running!"); // Vérifiez si le script est exécuté
+

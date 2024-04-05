@@ -77,7 +77,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->name = $request->input('cp_name');
         $company->sector = $request->input('cp_sector');
-        $company->localization = $request->input('cp_localization');
+        $company->localization = $request->input('selectedCommunes');
         $company->save();
         return redirect()->route('companies.index');
     }
@@ -101,25 +101,25 @@ class CompanyController extends Controller
         return redirect()->route('companies.index');
     }
 
-
-        public function data($id)
+    public function data($id)
     {
         $company = Company::findOrFail($id);
         $totalApplications = $company->offers()->sum('applies_count');
         $offers = $company->offers()->get();
-
+    
         $grades = Grade::where('company_id', $company->id)->pluck('value');
-
         $averageGrade = $grades->avg();
-
-        $company->averageGrade = round($averageGrade,1);
-
-        // $company->localization = [{"nom":"Toulouse","code":"31555","cp":"31000","dep":"31"},{"nom":"Labège","code":"31254","cp":"31670","dep":"31"}]
-        $localizations = json_decode($company->localization);
-
+        $company->averageGrade = round($averageGrade, 1);
+    
+        // Assurez-vous que $company->localization est défini avant de le décodé en JSON
+        $localizations = [];
+        if ($company->localization) {
+            $localizations = json_decode($company->localization);
+        }
+    
         return view('companies.data', compact('company', 'totalApplications', 'offers', 'localizations'));
     }
-
+    
     public function rate(Request $request)
     {
         $userId = auth()->id();
