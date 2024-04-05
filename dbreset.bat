@@ -1,1 +1,1 @@
-mysql -u root -p --default-character-set=utf8mb4 -D cesi_ton_job < database/create.sql
+mysql -u root -p --default-character-set=utf8mb4 -e "CREATE DATABASE IF NOT EXISTS cesi_ton_job; USE cesi_ton_job; source database/create.sql;" && echo "La base de données cesi_ton_job a été créée avec succès."
