@@ -3,14 +3,15 @@
 @section('content')
 
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
 
 <div class="container-1 default-bg fit-center">
     <h1>Liste des Entreprises</h1>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <input type="text" id="searchInput" placeholder="Rechercher une entreprise...">
     <div class="liste-h">
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'pilote')

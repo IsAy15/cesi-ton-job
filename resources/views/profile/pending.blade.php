@@ -4,12 +4,18 @@
 @section('content')
     <div class="container-1 default-bg fit-center">
         <h1>Utilisateurs en attente</h1>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table>
             <thead>
                 <tr>
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Validation</th>
+                    <th>Refus</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,9 +28,16 @@
                             <input type="checkbox" id="{{ $user->id }}">
                             <span class="slider round"></span>
                         </label>
-                        <!-- <a href="{{ route('profile.edit', $user->id) }}" class="btn-1"><i class="fa-solid fa-pen-to-square"></i>
-                        </a> -->
                     </td>
+                    <td>
+                        <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-1 btn-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')"><i class="fa-solid fa-trash"></i></button>
+                    </form>                    
+                    </td>
+
+                        
                 </tr>
                 @endforeach
             </tbody>

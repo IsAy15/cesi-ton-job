@@ -15,7 +15,7 @@
         <p class="paragraphe">
             Notre plateforme offre une interface conviviale et intuitive, conçue pour simplifier votre recherche 
             d'opportunités. Que vous soyez à la recherche d'un stage pour acquérir une expérience pratique, d'un 
-            contrat en alternance pour combiner études et expérience professionnelle, ou d'un emploi pour débuter 
+            contrat en alternance pour combiner études et expériences professionnelles, ou d'un emploi pour débuter 
             votre carrière, vous trouverez ici une multitude d'offres correspondant à vos aspirations et à votre profil.
         </p>
         <h2>Nos partenaires :</h2>

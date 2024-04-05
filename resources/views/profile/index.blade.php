@@ -22,19 +22,6 @@
     </div>
     @switch($user->role)
         @case('admin')
-        <div id="promotions" class="container-1 area-bg">
-                <p>Mes promotions :</p>
-                <div class="liste-h">
-                    @forelse($user->promotions as $promotion)
-                        <div class="elements">
-                            <a href="{{ route('promotions.users', $promotion->id) }}">{{ $promotion->name }}</a>
-                        </div>
-                    @empty
-                        <p>Aucune promotion</p>
-                    @endforelse
-                    <a href="#" class="btn-1 btn-2">+</a>
-                </div>
-            </div>
             <div class="liste-h">
                 <a href="{{ route('users.index') }}" class="btn-1">Voir les utilisateurs</a>
                 <a href="{{ route('promotions.index') }}" class="btn-1">Voir les promotions</a>

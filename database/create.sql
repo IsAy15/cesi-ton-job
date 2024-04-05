@@ -176,7 +176,7 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `role`,
 (6, 'pilote2', 'pilote2', 'pilote2@ctj.fr', MD5('pilote2'), 'pilote', 'approved', 'pilote.jpg', 'Angoulême'),
 (7, 'pilote3', 'pilote3', 'pilote3@ctj.fr', MD5('pilote3'), 'pilote', 'approved', 'pilote.jpg', 'Arras'),
 (8, 'pilote4', 'pilote4', 'pilote4@ctj.fr', MD5('pilote4'), 'pilote', 'approved', 'pilote.jpg', 'Caen'),
-(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'approved', 'pilote.jpg', 'Dijon');
+(9, 'pilote5', 'pilote5', 'pilote5@ctj.fr', MD5('pilote5'), 'pilote', 'pending', 'pilote.jpg', 'Dijon');
 
 -- Remplissage de la table companies
 DELETE FROM companies;
