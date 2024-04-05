@@ -1,6 +1,7 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     "/",
+    "/offline",
     "/css/general.css",
     "/js/welcome.js",
     "/images/icons/icon-72x72.png",
@@ -11,16 +12,6 @@ var filesToCache = [
     "/images/icons/icon-192x192.png",
     "/images/icons/icon-384x384.png",
     "/images/icons/icon-512x512.png",
-    "/images/icons/splash-640x1136.png",
-    "/images/icons/splash-750x1334.png",
-    "/images/icons/splash-1242x2208.png",
-    "/images/icons/splash-1125x2436.png",
-    "/images/icons/splash-828x1792.png",
-    "/images/icons/splash-1242x2688.png",
-    "/images/icons/splash-1536x2048.png",
-    "/images/icons/splash-1668x2224.png",
-    "/images/icons/splash-1668x2388.png",
-    "/images/icons/splash-2048x2732.png",
 ];
 
 // Cache on install
@@ -39,24 +30,52 @@ self.addEventListener("activate", (event) => {
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames
-                    .filter((cacheName) => cacheName.startsWith("pwa-"))
-                    .filter((cacheName) => cacheName !== staticCacheName)
+                    .filter(
+                        (cacheName) =>
+                            cacheName.startsWith("pwa-") &&
+                            cacheName !== staticCacheName
+                    )
                     .map((cacheName) => caches.delete(cacheName))
             );
         })
     );
 });
 
-// Serve from Cache
+// Serve from Cache or Network
 self.addEventListener("fetch", (event) => {
     event.respondWith(
-        caches
-            .match(event.request)
-            .then((response) => {
-                return response || fetch(event.request);
-            })
-            .catch(() => {
-                return caches.match("offline");
-            })
+        caches.match(event.request).then((response) => {
+            // Cache hit - return response
+            if (response) {
+                return response;
+            }
+
+            // Clone the request because it's a stream and can be consumed once
+            let fetchRequest = event.request.clone();
+
+            return fetch(fetchRequest)
+                .then((response) => {
+                    // Check if we received a valid response
+                    if (
+                        !response ||
+                        response.status !== 200 ||
+                        response.type !== "basic"
+                    ) {
+                        return response;
+                    }
+
+                    // Clone the response because it's a stream as well
+                    let responseToCache = response.clone();
+
+                    caches.open(staticCacheName).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+
+                    return response;
+                })
+                .catch(() => {
+                    return caches.match("offline");
+                });
+        })
     );
 });
