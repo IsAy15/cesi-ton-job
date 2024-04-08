@@ -8,7 +8,6 @@ CESI Ton Job est un projet en partenariat avec CESI école d’ingénieur, visan
 - **Candidature en ligne** : Les étudiants ont la possibilité de postuler directement aux offres qui les intéressent via la plateforme.
 - **Facilité de recherche** : Les offres sont catégorisées et peuvent être filtrées pour une recherche plus efficace.
 - **Mise en valeur de la collaboration avec le monde professionnel** : CESI Ton Job met en avant la collaboration entre CESI et ses partenaires professionnels, soulignant ainsi l'importance de l'enseignement en lien avec le monde du travail.
-- **Consultation des entreprises** : 
 
 ## Technologies utilisées
 
